@@ -1,0 +1,180 @@
+# PromptEstates
+
+> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+
+PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue covers more than 2,000 properties from UAE developers. The app interface is available in 10 languages. The product is pre-launch (launch planned for 1 December 2026) and will be offered on a subscription with founder pricing before launch (see Pricing below); this site collects an early-access waitlist. Analytics are informational and not investment advice.
+
+## Pages
+- [English](https://promptestates.com/en/): PromptEstates — AI search for Dubai off-plan property
+- [Русский](https://promptestates.com/): PromptEstates — ИИ-поиск новостроек в Дубае и ОАЭ
+- [العربية](https://promptestates.com/ar/): PromptEstates — بحث ذكي عن عقارات دبي قيد الإنشاء
+
+## Guide (English; Russian and Arabic versions under / and /ar/)
+- [What is off-plan property in Dubai](https://promptestates.com/en/guide/off-plan/): Off-plan means buying from the developer before completion. How it works in Dubai: payment plans, escrow accounts, Oqood registration, benefits and risks.
+- [The DLD fee when buying property in Dubai](https://promptestates.com/en/guide/dld-fee/): The Dubai Land Department fee is 4% of the property price. Who pays it and when, what other costs come with buying in Dubai and how to work out the full cost.
+- [UAE Golden Visa through property](https://promptestates.com/en/guide/golden-visa/): UAE Golden Visa through AED 2M+ property: do off-plan and mortgaged homes qualify, who you can include, documents and steps. Compared with the 2-year visa.
+- [Payment plans for off-plan property in Dubai](https://promptestates.com/en/guide/payment-plans/): How developer payment plans work in Dubai: booking, instalments during construction, the balance on handover and post-handover plans. How to compare them.
+- [How to check a developer in Dubai](https://promptestates.com/en/guide/check-developer/): Checks to make before buying off-plan in Dubai: RERA registration, the escrow account, delivered projects, on-time handovers and construction status.
+- [Off-plan vs ready property in Dubai](https://promptestates.com/en/guide/off-plan-vs-ready/): Comparing off-plan and ready property in Dubai: price, payment, risks, rental income and who each option suits.
+- [The costs of buying an apartment in Dubai](https://promptestates.com/en/guide/buying-costs/): What a buyer pays in Dubai beyond the price: the 4% DLD fee, registration, agent commission and service charges. How to work out the full cost.
+- [Can foreigners buy property in Dubai?](https://promptestates.com/en/guide/foreign-ownership/): Foreigners can buy property in Dubai with full ownership in freehold areas. Which areas qualify, whether you need a visa and how ownership is registered.
+- [Rental yield in Dubai: how to calculate it](https://promptestates.com/en/guide/rental-yield/): How to calculate the yield from renting out a home in Dubai: gross and net yield, the formula, a worked example and what affects the result.
+- [The 2-year investor visa through Dubai property](https://promptestates.com/en/guide/property-visa/): A 2-year UAE residence visa through Dubai property: since April 2026 there is no minimum value for a sole owner. Conditions, family, costs and steps.
+- [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
+- [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
+- [Jumeirah Village Circle (JVC)](https://promptestates.com/en/areas/jvc/): Jumeirah Village Circle is a residential Dubai community with apartments, townhouses and parks. What the area is like, who it suits and how to find off-plan projects.
+- [Dubai Hills Estate](https://promptestates.com/en/areas/dubai-hills/): Dubai Hills Estate is a family community with a park, a golf course and a mall. What the area is like, who it suits and how to find off-plan projects here.
+- [Dubai Creek Harbour](https://promptestates.com/en/areas/dubai-creek-harbour/): Dubai Creek Harbour is a new district on Dubai Creek with views of Downtown. What the area is like, who it suits and how to find off-plan projects here.
+- [Palm Jumeirah](https://promptestates.com/en/areas/palm-jumeirah/): Palm Jumeirah is a palm-shaped man-made island with beachfront residences and villas. What the area is like, who it suits and how to find off-plan projects.
+- [Downtown Dubai](https://promptestates.com/en/areas/downtown-dubai/): Downtown Dubai is the city centre around Burj Khalifa and Dubai Mall. What homes are built here, who the area suits and what to consider when buying off-plan.
+- [MBR City & Meydan](https://promptestates.com/en/areas/mbr-city/): Mohammed Bin Rashid City and Meydan are a large area next to Downtown: Sobha Hartland, District One, Azizi Riviera. Who it suits and what is being built.
+- [Dubai South](https://promptestates.com/en/areas/dubai-south/): Dubai South surrounds Al Maktoum airport and Expo City. Affordable apartments and villas, large projects such as Emaar South and Azizi Venice. Who it suits.
+- [Dubai Islands](https://promptestates.com/en/areas/dubai-islands/): Dubai Islands are five Nakheel islands off the Deira coast with beaches, marinas and resorts. What is built, who it suits and how it differs from Palm Jumeirah.
+- [Arjan](https://promptestates.com/en/areas/arjan/): Arjan is a Dubailand district next to Dubai Miracle Garden: mid-rise buildings, affordable studios and apartments for rent. Who builds there and who it suits.
+- [Jumeirah Village Triangle (JVT)](https://promptestates.com/en/areas/jvt/): Jumeirah Village Triangle neighbours JVC, with villas, townhouses and new residential buildings. How it differs from JVC, who builds there and who it suits.
+- [Al Furjan](https://promptestates.com/en/areas/al-furjan/): Al Furjan is a Nakheel family community between Sheikh Zayed Road and Sheikh Mohammed Bin Zayed Road, with metro access. Villas, townhouses and apartments.
+- [DAMAC Hills](https://promptestates.com/en/areas/damac-hills/): DAMAC Hills is a DAMAC community around the Trump International golf club: villas, townhouses and apartments with golf views. Who it suits and what to check.
+- [Emaar Properties](https://promptestates.com/en/developers/emaar/): Emaar is one of Dubai’s largest developers: Burj Khalifa, Downtown, Dubai Hills Estate, Dubai Creek Harbour. What it builds and what to check before buying.
+- [DAMAC Properties](https://promptestates.com/en/developers/damac/): DAMAC is a Dubai developer in the premium segment: DAMAC Hills, DAMAC Lagoons, branded residences. What it builds and what to check before buying.
+- [Nakheel](https://promptestates.com/en/developers/nakheel/): Nakheel created Palm Jumeirah and Jumeirah Village Circle and is developing Dubai Islands and Palm Jebel Ali. What it builds and what to check before buying.
+- [Sobha Realty](https://promptestates.com/en/developers/sobha/): Sobha Realty is an upper-segment developer: the Sobha Hartland community in Dubai, in-house construction and attention to finish. What to check before buying.
+- [Meraas](https://promptestates.com/en/developers/meraas/): Meraas created Bluewaters Island, City Walk and La Mer and is part of Dubai Holding. What it builds, in which segment and what to check before buying.
+- [Binghatti](https://promptestates.com/en/developers/binghatti/): Binghatti is a Dubai developer known for distinctive facades and branded towers: Bugatti, Mercedes-Benz, Jacob & Co. What to check before buying.
+- [Danube Properties](https://promptestates.com/en/developers/danube/): Danube Properties is an affordable-segment developer in Dubai, known for a payment plan with 1% monthly instalments. What it builds and what to check.
+- [Aldar Properties](https://promptestates.com/en/developers/aldar/): Aldar is Abu Dhabi’s largest developer: Yas Island and Saadiyat Island, and it now builds in Dubai too. What it builds and what to check before buying.
+- [Imtiaz Developments](https://promptestates.com/en/developers/imtiaz/): Imtiaz Developments builds residential projects in JVC, Al Furjan, Dubai Islands and Meydan. What it is known for, what it builds and what to check.
+- [Iman Developers](https://promptestates.com/en/developers/iman/): Iman Developers builds mid-rise residential buildings in JVC, Arjan and Motor City. The Oxford series, delivery record and what to check before buying.
+- [Ellington Properties](https://promptestates.com/en/developers/ellington/): Ellington Properties is a design-led Dubai developer in JVC, Palm Jumeirah, MBR City and Dubai Hills. What it is known for, what it builds and what to check.
+- [Azizi Developments](https://promptestates.com/en/developers/azizi/): Azizi Developments is one of Dubai's largest private developers: Riviera in Meydan, Azizi Venice in Dubai South, Burj Azizi. What to check before buying.
+- [Samana Developers](https://promptestates.com/en/developers/samana/): Samana Developers is a Dubai developer known for apartments with private balcony pools: Arjan, JVC, Dubailand, Dubai South. What to check before buying.
+- [Select Group](https://promptestates.com/en/developers/select-group/): Select Group develops premium waterfront projects in Dubai: Marina Gate in Dubai Marina and Peninsula in Business Bay. What to check before buying.
+- [Omniyat](https://promptestates.com/en/developers/omniyat/): Omniyat is an ultra-luxury Dubai developer: The Opus by Zaha Hadid, One at Palm Jumeirah, Dorchester Collection residences. What it builds and for whom.
+- [Object 1](https://promptestates.com/en/developers/object-1/): Object 1 builds residential projects in JVC, JVT, Dubai Sports City and Jebel Ali. The 1Wood, V1TER and Elaris projects and what to check before buying.
+
+## Pricing (pre-launch founder offer, AED, one-time payment, no auto-renewal)
+
+- Search — 3 months: AED 299 (AED 447 after launch). Includes: AI search across 2,000+ projects; Price per sq ft, area trends, rental yield; Developer check; 10 PDF project reports.
+- Investor — 12 months: AED 899 (AED 1,788 after launch). Includes: Everything in Search; Unlimited PDF reports; Alerts on new launches and price drops; First-wave access.
+- Founder — lifetime: AED 2,499. Includes: Everything in Investor — forever; All future features at no extra cost; Direct line to the team; A say in the product roadmap.
+
+Full refund any time before launch and for 14 days after — no questions asked. Details: https://promptestates.com/en/#pricing
+
+## FAQ (English)
+
+> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+
+### What is PromptEstates?
+PromptEstates is an AI service for finding off-plan property in the UAE. You describe what you want in plain words, and the AI matches developer projects and shows market analytics for each one: price per m², area trends, rental yield forecast and payment plan.
+
+### How many properties does PromptEstates cover?
+More than 2,000 properties from UAE developers, with prices, payment plans and developer information.
+
+### Which cities and emirates does it cover?
+Dubai, Abu Dhabi and other UAE emirates. You can search by a specific area — such as Dubai Marina, Business Bay or JVC — or simply describe what matters: waterfront, near the metro, for rental.
+
+### How does the AI choose projects?
+The AI matches your budget, area, handover date and goal — to live in or to rent out — against developer projects, area price per m², handover schedules and rental demand, then explains why each option made the shortlist.
+
+### How much will the service cost?
+Joining the waitlist is free. After launch it is a subscription: Search for 3 months, Investor for 12 months or Founder for life. Until launch founder pricing applies — up to 50% below the regular price (e.g. AED 899 a year instead of AED 1,788) with a full refund guarantee.
+
+### Is the analytics investment advice?
+No. PromptEstates analytics and forecasts are for information only and help you compare projects; they do not constitute investment advice.
+
+### What is off-plan property?
+Off-plan means buying a home from the developer before construction is finished. Payment usually follows a plan: a share on booking, a share during construction and the rest on handover or after it (post-handover). In Dubai, buyers’ payments for such projects go into the project’s escrow account.
+
+### What is the DLD fee when buying property in Dubai?
+It is the Dubai Land Department registration fee — 4% of the property price. PromptEstates includes it in the payment plan total, so you compare projects on the full cost rather than the advertised price.
+
+### Can buying property in the UAE get me a Golden Visa?
+Yes: property worth AED 2M+ by DLD valuation qualifies for the Golden Visa — including off-plan from an approved developer or a mortgaged home with a bank NOC. On a smaller budget there is the 2-year investor visa: since April 2026 a sole owner of a completed Dubai home faces no minimum value. PromptEstates project cards carry a Gold visa mark.
+
+### Which languages does PromptEstates support?
+The app interface is available in 10 languages: English, Russian, Arabic, Chinese, French, Turkish, Hindi, Italian, German and Spanish. This website is in English, Russian and Arabic.
+
+### Why pay before launch?
+Founder pricing is only available until launch: up to 50% below the regular price, and the Founder plan gives lifetime access for a single payment. There are 100 seats and it won’t be offered after launch.
+
+### What if the product isn’t right for me?
+We refund in full any time before launch and within 14 days after — just write to us. There is no auto-renewal.
+
+## Вопросы и ответы (Русский)
+
+> ИИ-поиск новостроек в Дубае и ОАЭ: подбор off-plan проектов по запросу, цена за м², доходность аренды, проверка застройщика. Ранний доступ.
+
+### Что такое PromptEstates?
+PromptEstates — это ИИ-сервис для поиска новостроек (off-plan недвижимости) в ОАЭ. Вы описываете запрос обычными словами, а ИИ подбирает проекты застройщиков и показывает аналитику рынка по каждому: цену за м², динамику района, прогноз доходности аренды и план платежей.
+
+### Сколько объектов в базе PromptEstates?
+Более 2000 объектов от застройщиков ОАЭ — с ценами, планами платежей и сведениями о застройщиках.
+
+### Какие города и эмираты охватывает сервис?
+Дубай, Абу-Даби и другие эмираты ОАЭ. Можно искать по конкретному району — например, Dubai Marina, Business Bay или JVC — или просто описать, что важно: у воды, рядом с метро, под аренду.
+
+### Как ИИ подбирает проекты?
+ИИ сопоставляет ваш бюджет, район, срок сдачи и цель покупки — жить или сдавать — с проектами застройщиков, ценами за м² в районе, сроками сдачи и спросом на аренду, а затем объясняет, почему каждый вариант попал в подборку.
+
+### Сколько будет стоить сервис?
+Запись в лист ожидания бесплатная. После запуска — подписка: «Поиск» на 3 месяца, «Инвестор» на 12 месяцев или «Основатель» навсегда. До запуска действует цена основателя — до 50% ниже обычной (например, 899 AED за год вместо 1 788 AED) с полным возвратом.
+
+### Является ли аналитика инвестиционной рекомендацией?
+Нет. Аналитика и прогнозы PromptEstates носят информационный характер и помогают сравнивать проекты, но не являются инвестиционной рекомендацией.
+
+### Что такое off-plan недвижимость?
+Off-plan — это покупка квартиры у застройщика до завершения строительства. Обычно оплата идёт по плану платежей: часть при бронировании, часть во время стройки и остаток при сдаче или после неё (post-handover). В Дубае деньги покупателей по таким проектам поступают на эскроу-счёт проекта.
+
+### Что такое сбор DLD при покупке недвижимости в Дубае?
+Это регистрационный сбор Dubai Land Department — 4% от стоимости объекта. PromptEstates включает его в итоговую стоимость плана платежей, чтобы вы сравнивали проекты по полной цене, а не по цене из рекламы.
+
+### Можно ли получить Golden Visa при покупке недвижимости в ОАЭ?
+Да: недвижимость от 2 млн AED по оценке DLD даёт право на Golden Visa — в том числе новостройка у одобренного застройщика или объект в ипотеке с NOC банка. Если бюджет меньше, есть виза инвестора на 2 года: с апреля 2026 года для единственного владельца готовой квартиры в Дубае минимальной стоимости нет. В карточках PromptEstates есть отметка Gold visa.
+
+### На каких языках работает PromptEstates?
+Интерфейс приложения доступен на 10 языках: английском, русском, арабском, китайском, французском, турецком, хинди, итальянском, немецком и испанском. Этот сайт — на русском, английском и арабском.
+
+### Зачем платить до запуска?
+Цена основателя действует только до запуска: до 50% ниже обычной, а тариф «Основатель» — бессрочный доступ за один платёж. Это 100 мест, после запуска его не будет.
+
+### Что если продукт мне не подойдёт?
+Вернём деньги полностью в любой момент до запуска и в течение 14 дней после — достаточно написать нам. Автопродления нет.
+
+## الأسئلة الشائعة (العربية)
+
+> بحث ذكي عن عقارات دبي والإمارات قيد الإنشاء: مشاريع مطابقة لطلبك، سعر المتر، العائد الإيجاري والتحقق من المطوّر. سجّل للوصول المبكر.
+
+### ما هو PromptEstates؟
+PromptEstates خدمة تعتمد على الذكاء الاصطناعي للبحث عن العقارات قيد الإنشاء في الإمارات. تصف ما تريده بكلمات بسيطة، فيختار الذكاء الاصطناعي مشاريع المطوّرين ويعرض تحليلات السوق لكل منها: سعر المتر المربع، اتجاهات المنطقة، توقع العائد الإيجاري وخطة الدفع.
+
+### كم عدد العقارات في PromptEstates؟
+أكثر من 2000 عقار من مطوّري الإمارات، مع الأسعار وخطط الدفع ومعلومات المطوّرين.
+
+### ما المدن والإمارات التي تغطيها الخدمة؟
+دبي وأبوظبي وسائر إمارات الدولة. يمكنك البحث حسب منطقة محددة مثل دبي مارينا أو الخليج التجاري أو قرية جميرا الدائرية، أو ببساطة وصف ما يهمك: على الواجهة المائية، قرب المترو، للإيجار.
+
+### كيف يختار الذكاء الاصطناعي المشاريع؟
+يطابق الذكاء الاصطناعي ميزانيتك والمنطقة وموعد التسليم وهدف الشراء — للسكن أو للإيجار — مع مشاريع المطوّرين وأسعار المتر في المنطقة ومواعيد التسليم والطلب على الإيجار، ثم يشرح سبب اختيار كل خيار.
+
+### كم ستكلف الخدمة؟
+التسجيل في قائمة الانتظار مجاني. بعد الإطلاق تعمل الخدمة باشتراك: «بحث» لمدة 3 أشهر، أو «مستثمر» لمدة 12 شهرًا، أو «مؤسس» مدى الحياة. وحتى الإطلاق يسري سعر المؤسسين — أقل بنسبة تصل إلى 50% (مثل 899 درهمًا للسنة بدل 1,788 درهمًا) مع ضمان استرداد كامل.
+
+### هل تُعد التحليلات نصيحة استثمارية؟
+لا. تحليلات وتوقعات PromptEstates لأغراض إعلامية فقط وتساعدك على مقارنة المشاريع، لكنها لا تُعد نصيحة استثمارية.
+
+### ما هي العقارات قيد الإنشاء (Off-plan)؟
+الشراء على المخطط يعني شراء وحدة من المطوّر قبل اكتمال البناء. يتم الدفع عادةً وفق خطة: جزء عند الحجز، وجزء أثناء البناء، والباقي عند التسليم أو بعده. في دبي تُودَع دفعات المشترين في حساب ضمان خاص بالمشروع.
+
+### ما هي رسوم دائرة الأراضي والأملاك عند الشراء في دبي؟
+هي رسوم تسجيل دائرة الأراضي والأملاك في دبي بنسبة 4% من سعر العقار. يضيفها PromptEstates إلى إجمالي خطة الدفع لتقارن المشاريع بالتكلفة الكاملة لا بالسعر المعلن.
+
+### هل يمكن الحصول على الإقامة الذهبية عند شراء عقار في الإمارات؟
+نعم: العقار بقيمة مليوني درهم فأكثر وفق تقييم دائرة الأراضي يؤهل للإقامة الذهبية، بما في ذلك العقار قيد الإنشاء من مطوّر معتمد أو العقار المرهون بشهادة عدم ممانعة من البنك. وبميزانية أصغر توجد تأشيرة المستثمر لمدة سنتين: منذ أبريل 2026 لا حد أدنى للقيمة لمالك وحيد لعقار جاهز في دبي. تحمل بطاقات PromptEstates علامة Gold visa.
+
+### ما اللغات التي يدعمها PromptEstates؟
+واجهة التطبيق متاحة بعشر لغات: الإنجليزية والروسية والعربية والصينية والفرنسية والتركية والهندية والإيطالية والألمانية والإسبانية. هذا الموقع متاح بالعربية والإنجليزية والروسية.
+
+### لماذا أدفع قبل الإطلاق؟
+سعر المؤسسين متاح حتى الإطلاق فقط: أقل بنسبة تصل إلى 50% من السعر العادي، وباقة «مؤسس» تمنح وصولًا مدى الحياة بدفعة واحدة. عددها 100 مقعد ولن تُعرض بعد الإطلاق.
+
+### ماذا لو لم يناسبني المنتج؟
+نعيد المبلغ كاملًا في أي وقت قبل الإطلاق وخلال 14 يومًا بعده — يكفي أن تراسلنا. لا يوجد تجديد تلقائي.

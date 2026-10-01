@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 620" width="640" height="620">
+  <defs>
+    <pattern id="wood" width="120" height="16" patternUnits="userSpaceOnUse">
+      <rect width="120" height="16" fill="#d8bf9c"/>
+      <path d="M0 15.5H120" stroke="#c7ab84" stroke-width="1"/>
+      <path d="M38 0V16M96 0V16" stroke="#cdb28c" stroke-width="1"/>
+    </pattern>
+    <pattern id="wood2" width="120" height="16" patternUnits="userSpaceOnUse" patternTransform="translate(60 8)">
+      <rect width="120" height="16" fill="#d8bf9c"/>
+      <path d="M0 15.5H120" stroke="#c7ab84" stroke-width="1"/>
+      <path d="M22 0V16M80 0V16" stroke="#cdb28c" stroke-width="1"/>
+    </pattern>
+    <pattern id="tile" width="22" height="22" patternUnits="userSpaceOnUse">
+      <rect width="22" height="22" fill="#ece7df"/>
+      <path d="M0 21.5H22M21.5 0V22" stroke="#d9d2c6" stroke-width="1"/>
+    </pattern>
+    <pattern id="deck" width="12" height="80" patternUnits="userSpaceOnUse">
+      <rect width="12" height="80" fill="#b89c78"/>
+      <path d="M11.5 0V80" stroke="#a88c69" stroke-width="1"/>
+    </pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3b2f25" flood-opacity=".28"/>
+    </filter>
+    <radialGradient id="leaf" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#7fae4f"/><stop offset="1" stop-color="#3f6e2a"/>
+    </radialGradient>
+    <symbol id="plant" viewBox="-30 -30 60 60">
+      <g filter="url(#sh)">
+        <circle r="13" cx="-9" cy="-6" fill="url(#leaf)"/><circle r="12" cx="9" cy="-8" fill="url(#leaf)"/>
+        <circle r="13" cx="0" cy="8" fill="url(#leaf)"/><circle r="10" cx="-12" cy="9" fill="url(#leaf)"/><circle r="10" cx="13" cy="7" fill="url(#leaf)"/>
+      </g>
+    </symbol>
+    <symbol id="num" viewBox="-17 -17 34 34" overflow="visible">
+      <circle r="16" fill="#1c2f4a" stroke="#fff" stroke-width="2"/>
+    </symbol>
+  </defs>
+
+  <!-- balcony (08) -->
+  <rect x="34" y="176" width="70" height="300" fill="url(#deck)"/>
+  <path d="M34 176V476H104" fill="none" stroke="#9aa3a6" stroke-width="3"/>
+  <use href="#plant" x="10" y="140" width="80" height="80"/>
+  <use href="#plant" x="28" y="190" width="54" height="54"/>
+  <rect x="48" y="392" width="42" height="56" rx="6" fill="#8c9a6e" filter="url(#sh)"/>
+
+  <!-- floors -->
+  <rect x="104" y="84" width="286" height="244" fill="url(#wood)"/>
+  <rect x="104" y="328" width="466" height="252" fill="url(#wood2)"/>
+  <rect x="390" y="84" width="180" height="128" fill="url(#tile)"/>
+  <rect x="478" y="212" width="92" height="116" fill="url(#tile)"/>
+  <rect x="390" y="212" width="88" height="116" fill="#cdb592"/>
+
+  <!-- bedroom 01 -->
+  <rect x="176" y="156" width="148" height="112" rx="4" fill="#ece6dc"/>
+  <g filter="url(#sh)">
+    <rect x="196" y="98" width="108" height="130" rx="6" fill="#f7f4ef"/>
+    <rect x="196" y="160" width="108" height="68" rx="4" fill="#2f4a6e"/>
+    <path d="M196 170H304M196 184H304M196 198H304M196 212H304" stroke="#3d5b82" stroke-width="1.2"/>
+    <rect x="206" y="108" width="40" height="24" rx="8" fill="#fff"/>
+    <rect x="254" y="108" width="40" height="24" rx="8" fill="#fff"/>
+    <rect x="212" y="120" width="30" height="16" rx="5" fill="#3d5b82"/>
+    <rect x="258" y="120" width="30" height="16" rx="5" fill="#3d5b82"/>
+    <rect x="168" y="100" width="24" height="22" rx="3" fill="#b9a488"/>
+    <rect x="308" y="100" width="24" height="22" rx="3" fill="#b9a488"/>
+    <circle cx="180" cy="111" r="6" fill="#f3ead8"/><circle cx="320" cy="111" r="6" fill="#f3ead8"/>
+    <path d="M150 262 a22 22 0 0 1 44 0 v10 h-44z" fill="#34547a"/>
+    <circle cx="210" cy="278" r="7" fill="#efe9df"/>
+  </g>
+  <rect x="104" y="96" width="14" height="210" fill="#e9e1d4"/>
+  <path d="M106 100v200M110 100v200M114 100v200" stroke="#cfc4b3" stroke-width="1"/>
+  <use href="#plant" x="130" y="220" width="46" height="46"/>
+  <!-- wardrobe -->
+  <rect x="338" y="92" width="44" height="120" fill="#efe9df" filter="url(#sh)"/>
+  <path d="M360 92v120" stroke="#d8cfc1" stroke-width="1.5"/>
+
+  <!-- storage 04 -->
+  <rect x="398" y="226" width="72" height="30" fill="#efe9df" filter="url(#sh)"/>
+
+  <!-- bathroom 05 -->
+  <g filter="url(#sh)">
+    <rect x="496" y="92" width="66" height="112" rx="3" fill="#f4f1ec"/>
+    <path d="M500 96h58v104" fill="none" stroke="#c9d6dc" stroke-width="2"/>
+    <ellipse cx="425" cy="112" rx="13" ry="16" fill="#fff" stroke="#d9d2c6"/>
+    <rect x="414" y="94" width="22" height="10" rx="3" fill="#fff" stroke="#d9d2c6"/>
+    <rect x="448" y="94" width="36" height="26" rx="5" fill="#fff" stroke="#d9d2c6"/>
+    <ellipse cx="466" cy="106" rx="11" ry="7" fill="#e3e8ea"/>
+  </g>
+  <!-- bathroom 06 -->
+  <g filter="url(#sh)">
+    <ellipse cx="548" cy="238" rx="12" ry="15" fill="#fff" stroke="#d9d2c6"/>
+    <rect x="538" y="218" width="22" height="9" rx="3" fill="#fff" stroke="#d9d2c6"/>
+    <rect x="530" y="286" width="34" height="32" rx="5" fill="#fff" stroke="#d9d2c6"/>
+    <ellipse cx="547" cy="302" rx="10" ry="8" fill="#e3e8ea"/>
+  </g>
+
+  <!-- living 02 -->
+  <rect x="150" y="400" width="176" height="150" rx="4" fill="#ece6dc"/>
+  <rect x="104" y="350" width="14" height="210" fill="#e9e1d4"/>
+  <path d="M106 354v200M110 354v200M114 354v200" stroke="#cfc4b3" stroke-width="1"/>
+  <g filter="url(#sh)">
+    <path d="M160 410h40v96h92v40H160z" fill="#efe9df"/>
+    <path d="M168 418h26v82h92v38H168z" fill="#f6f2ec"/>
+    <rect x="232" y="420" width="46" height="46" rx="4" fill="#dcdcdc"/>
+    <path d="M238 430l12 8 10-4 12 10" fill="none" stroke="#b8b8b8" stroke-width="1.5"/>
+    <rect x="220" y="556" width="90" height="16" rx="3" fill="#b79f7f"/>
+  </g>
+  <rect x="190" y="536" width="96" height="36" rx="3" fill="#dfe3e8"/>
+  <path d="M200 546c20 6 40-6 60 2s16 10 20 12" fill="none" stroke="#7e97b0" stroke-width="3"/>
+  <!-- dining -->
+  <g filter="url(#sh)">
+    <circle cx="340" cy="392" r="11" fill="#34547a"/><circle cx="378" cy="392" r="11" fill="#34547a"/>
+    <circle cx="340" cy="446" r="11" fill="#34547a"/><circle cx="378" cy="446" r="11" fill="#34547a"/>
+    <circle cx="359" cy="419" r="24" fill="#f4f4f4"/>
+    <circle cx="359" cy="419" r="24" fill="none" stroke="#dcdcdc"/>
+  </g>
+  <use href="#plant" x="322" y="486" width="74" height="74"/>
+
+  <!-- kitchen 03 -->
+  <g filter="url(#sh)">
+    <path d="M438 560h124V410h-26v124h-98z" fill="#e8e1d5"/>
+    <rect x="536" y="440" width="22" height="40" rx="3" fill="#3a3a3a"/>
+    <circle cx="542" cy="450" r="4" fill="#666"/><circle cx="552" cy="450" r="4" fill="#666"/><circle cx="542" cy="468" r="4" fill="#666"/><circle cx="552" cy="468" r="4" fill="#666"/>
+    <rect x="470" y="538" width="30" height="18" rx="3" fill="#cfd6da"/>
+    <rect x="408" y="498" width="22" height="58" fill="#b79f7f"/>
+  </g>
+  <rect x="440" y="336" width="122" height="22" fill="#e8e1d5" filter="url(#sh)"/>
+
+  <!-- walls -->
+  <g fill="none" stroke="#7a6c60" stroke-linecap="square">
+    <path d="M104 84H570V580H104Z" stroke-width="14"/>
+    <path d="M104 328H200M300 328H570" stroke-width="8"/>
+    <path d="M390 84V328" stroke-width="8"/>
+    <path d="M390 212H570" stroke-width="8"/>
+    <path d="M478 212V328" stroke-width="8"/>
+    <path d="M390 256V300" stroke="#d8bf9c" stroke-width="10"/>
+    <path d="M478 280V316" stroke="#d8bf9c" stroke-width="10"/>
+    <path d="M430 212V212" stroke-width="0"/>
+  </g>
+  <path d="M104 150V300M104 360V540" stroke="#bcd3dc" stroke-width="6"/>
+  <path d="M440 212h28" stroke="#ece7df" stroke-width="10"/>
+
+  <!-- room numbers -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">
+    <use href="#num" x="241" y="260" width="34" height="34"/><text x="258" y="282">01</text>
+    <use href="#num" x="205" y="360" width="34" height="34"/><text x="222" y="382">02</text>
+    <use href="#num" x="425" y="440" width="34" height="34"/><text x="442" y="462">03</text>
+    <use href="#num" x="417" y="266" width="34" height="34"/><text x="434" y="288">04</text>
+    <use href="#num" x="438" y="146" width="34" height="34"/><text x="455" y="168">05</text>
+    <use href="#num" x="490" y="248" width="34" height="34"/><text x="507" y="270">06</text>
+    <use href="#num" x="470" y="366" width="34" height="34"/><text x="487" y="388">07</text>
+    <use href="#num" x="52" y="300" width="34" height="34"/><text x="69" y="322">08</text>
+  </g>
+</svg>
