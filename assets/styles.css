@@ -1247,3 +1247,42 @@ html.menu-open{overflow:hidden}
   .mag-card:not(.mag-feat) .mag-lead{display:none}
   .mag-card:not(.mag-feat) i{padding-top:4px;font-size:13px}
 }
+
+/* ---------- mobile structure pass ---------- */
+[data-faq]:not(.is-open) .faq-extra{display:none}
+.faq-toggle{margin-top:18px;height:44px}
+.swipe-hint{display:none}
+.mcta{display:none}
+@media (max-width:720px){
+  .shot-scroll{overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .shot-scroll img{width:780px;max-width:none;height:auto}
+  .swipe-hint{display:block;margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
+  .mcta{display:block;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:25;transform:translateY(140%);transition:transform .35s var(--ease)}
+  .mcta.is-on{transform:none}
+  .mcta[hidden]{display:block;visibility:hidden}
+  .mcta .btn{width:100%;box-shadow:0 18px 40px -12px rgba(0,0,0,.55)}
+  html.menu-open .mcta{display:none}
+  .why-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .why{padding:16px 14px;border-radius:16px}
+  .why b{font-size:15px;line-height:1.25}
+  .why p{margin-top:6px;font-size:13px;line-height:1.45}
+  .hero .cards .card:nth-of-type(n+3){display:none}
+  .feature .frame{min-height:0}
+  #guide .doc-grid .doc-card:nth-child(n+5){display:none}
+  #guide .area-links{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  #guide .area-links::-webkit-scrollbar{display:none}
+  #guide .area-links>*{flex:0 0 auto}
+  .tiers{display:flex;max-width:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:18px 16px 10px;scrollbar-width:none}
+  .tiers::-webkit-scrollbar{display:none}
+  .tier{flex:0 0 86%;scroll-snap-align:center}
+  .mk:not(.active){font-size:0;width:16px;height:16px;padding:0}
+  .faq summary{min-height:56px}
+}
+@media (max-width:720px){
+  body:has(.mcta){padding-bottom:84px}
+  #agent .features{display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:0 16px 12px;scrollbar-width:none;align-items:stretch}
+  #agent .features::-webkit-scrollbar{display:none}
+  #agent .feature{flex:0 0 88%;min-width:0;scroll-snap-align:center;margin:0}
+  #agent .feature .frame{max-height:520px}
+  #agent .sec-head::after{content:attr(data-swipe);display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+}

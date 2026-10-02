@@ -115,6 +115,9 @@
           var el = document.createElement('button');
           el.type = 'button'; el.className = 'mk' + (i === 0 ? ' active' : ''); el.textContent = p.n;
           var html = '<b>' + p.n + '</b>' + (p.u ? '<a href="' + p.u + '">' + more + ' →</a>' : '');
+          el.addEventListener('click', function () {
+            holder.querySelectorAll('.mk').forEach(function (x) { x.classList.toggle('active', x === el); });
+          });
           new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat(p.c)
             .setPopup(new maplibregl.Popup({ offset: 18, closeButton: false }).setHTML(html)).addTo(map);
           bounds.extend(p.c);
@@ -477,6 +480,25 @@
       track('guide_topic', { topic: tp });
     });
   });
+
+  /* ---------- FAQ: show all / fewer ---------- */
+  document.querySelectorAll('.faq-toggle').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var box = b.closest('[data-faq]'), open = !box.classList.contains('is-open');
+      box.classList.toggle('is-open', open);
+      b.textContent = b.getAttribute(open ? 'data-less' : 'data-more');
+    });
+  });
+
+  /* ---------- sticky quiz button on phones: after the hero, hidden near the final form ---------- */
+  var mcta = document.querySelector('[data-mcta]');
+  var heroEl = document.querySelector('.hero'), joinEl = document.getElementById('join');
+  if (mcta && heroEl && 'IntersectionObserver' in window) {
+    var heroVis = true, joinVis = false;
+    var upd = function () { var on = !heroVis && !joinVis; mcta.hidden = false; mcta.classList.toggle('is-on', on); };
+    new IntersectionObserver(function (es) { heroVis = es[0].isIntersecting; upd(); }).observe(heroEl);
+    if (joinEl) new IntersectionObserver(function (es) { joinVis = es[0].isIntersecting; upd(); }, { threshold: 0.15 }).observe(joinEl);
+  }
 
   /* ---------- full-cost calculator ---------- */
   document.querySelectorAll('.calc').forEach(function (c) {
