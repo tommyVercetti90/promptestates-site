@@ -1286,3 +1286,18 @@ html.menu-open{overflow:hidden}
   #agent .feature .frame{max-height:520px}
   #agent .sec-head::after{content:attr(data-swipe);display:block;margin-top:8px;font-size:13px;color:var(--muted)}
 }
+
+/* ---------- cookie banner ---------- */
+.ck{position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:14px;max-width:560px;padding:14px 16px;border-radius:18px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2),0 24px 60px -24px rgba(0,0,0,.6);font-size:13px;line-height:1.45;color:var(--text-2)}
+.ck[hidden]{display:none}
+.ck p{margin:0;flex:1}
+.ck a{color:var(--text);text-decoration:underline;text-underline-offset:2px}
+.ck-btns{display:flex;gap:8px;flex-shrink:0}
+.ck .btn{height:38px;padding:0 14px;font-size:13px}
+[dir="rtl"] .ck{left:auto;right:16px}
+@media (max-width:720px){
+  .ck{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));flex-direction:column;align-items:stretch;gap:10px;max-width:none}
+  [dir="rtl"] .ck{right:10px}
+  .ck-btns .btn{flex:1;height:44px}
+  html.ck-open .mcta{display:none}
+}

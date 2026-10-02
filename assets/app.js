@@ -169,7 +169,35 @@
     window.dataLayer.push(Object.assign({ event: name }, params));
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.ym === 'function' && cfg.metrika) window.ym(cfg.metrika, 'reachGoal', name, params);
+    if (typeof window.clarity === 'function') {
+      window.clarity('event', name);
+      /* keep the sessions of people who reached the funnel's key steps */
+      if (name === 'sign_up' || name === 'quiz_complete' || name === 'plan_reserve') window.clarity('upgrade', name);
+      Object.keys(params).forEach(function (k) { if (typeof params[k] === 'string') window.clarity('set', name + '_' + k, params[k]); });
+    }
+    if (window.posthog && typeof window.posthog.capture === 'function') window.posthog.capture(name, params);
   };
+
+  /* Cookie banner: OK keeps analytics on; Decline switches GA to denied, stops Clarity and PostHog */
+  var ck = document.querySelector('[data-ck]');
+  var ckChoice = (function () { try { return localStorage.getItem('pe_consent'); } catch (_) { return null; } })();
+  if (ck && !ckChoice) { ck.hidden = false; root.classList.add('ck-open'); }
+  var ckSet = function (v) {
+    try { localStorage.setItem('pe_consent', v); } catch (_) {}
+    if (ck) ck.hidden = true;
+    root.classList.remove('ck-open');
+    if (v === 'denied') {
+      if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied' });
+      if (typeof window.clarity === 'function') window.clarity('consent', false);
+      if (window.posthog && window.posthog.opt_out_capturing) window.posthog.opt_out_capturing();
+    } else if (typeof window.clarity === 'function') {
+      window.clarity('consent');
+    }
+  };
+  if (ck) {
+    ck.querySelector('[data-ck-ok]').addEventListener('click', function () { ckSet('granted'); });
+    ck.querySelector('[data-ck-no]').addEventListener('click', function () { ckSet('denied'); });
+  }
   var store = {
     get: function (k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
