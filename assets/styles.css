@@ -1301,3 +1301,28 @@ html.menu-open{overflow:hidden}
   .ck-btns .btn{flex:1;height:44px}
   html.ck-open .mcta{display:none}
 }
+
+/* ---------- page transitions (View Transitions API) + pinned back button ---------- */
+@view-transition{navigation:auto}
+.header{view-transition-name:site-header}
+::view-transition-old(root){animation:vt-out .2s ease both}
+::view-transition-new(root){animation:vt-in .34s cubic-bezier(.2,.7,.2,1) both}
+html:active-view-transition-type(back)::view-transition-old(root){animation-name:vt-out-back}
+html:active-view-transition-type(back)::view-transition-new(root){animation-name:vt-in-back}
+@keyframes vt-out{to{opacity:0;transform:translateX(-24px)}}
+@keyframes vt-in{from{opacity:0;transform:translateX(32px)}}
+@keyframes vt-out-back{to{opacity:0;transform:translateX(24px)}}
+@keyframes vt-in-back{from{opacity:0;transform:translateX(-32px)}}
+[dir="rtl"] ::view-transition-new(root){animation-name:vt-in-back}
+[dir="rtl"] ::view-transition-old(root){animation-name:vt-out-back}
+@supports not (view-transition-name:none){main{animation:page-in .35s cubic-bezier(.2,.7,.2,1) both}}
+@keyframes page-in{from{opacity:0;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root),main{animation:none!important}}
+/* the breadcrumbs row with "Back" stays pinned under the header while scrolling */
+.doc .crumbs-row{position:sticky;top:var(--hdr,60px);z-index:20;margin:0 -12px;padding:10px 12px;background:linear-gradient(var(--bg) 70%,transparent)}
+.spot-hero .crumbs-row .back-link{display:none}
+.spot-back{flex:0 0 auto;margin-inline-end:6px}
+.spot-nav .spot-back{height:36px;background:var(--surface-3)}
+.doc .crumbs-row{flex-wrap:nowrap;background:var(--bg);box-shadow:0 10px 16px -12px rgba(0,0,0,.35)}
+.doc .crumbs-row .crumbs{display:block;min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doc .crumbs-row .crumbs>span[aria-hidden]{margin:0 6px}

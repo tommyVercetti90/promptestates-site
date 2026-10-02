@@ -35,6 +35,21 @@
     });
   });
 
+  /* header height for the pinned back button; direction of the page transition when going back */
+  var hdr = document.querySelector('.header');
+  var setHdr = function () { if (hdr) root.style.setProperty('--hdr', hdr.offsetHeight + 'px'); };
+  setHdr(); window.addEventListener('resize', setHdr);
+  window.addEventListener('pagereveal', function (e) {
+    try {
+      if (e.viewTransition && window.navigation && navigation.activation && navigation.activation.navigationType === 'traverse') e.viewTransition.types.add('back');
+    } catch (_) {}
+  });
+  window.addEventListener('pageswap', function (e) {
+    try {
+      if (e.viewTransition && e.activation && e.activation.navigationType === 'traverse') e.viewTransition.types.add('back');
+    } catch (_) {}
+  });
+
   /* Mobile menu */
   var burger = document.querySelector('.burger');
   var mnav = document.getElementById('mnav');
@@ -484,7 +499,7 @@
     counters.forEach(function (c) { cio.observe(c); });
   }
   /* highlight the current section in the sticky in-page nav */
-  var spotLinks = document.querySelectorAll('.spot-nav a');
+  var spotLinks = document.querySelectorAll('.spot-nav a[href^="#"]');
   if (spotLinks.length && 'IntersectionObserver' in window) {
     var sio = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
