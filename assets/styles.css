@@ -1326,3 +1326,45 @@ html:active-view-transition-type(back)::view-transition-new(root){animation-name
 .doc .crumbs-row{flex-wrap:nowrap;background:var(--bg);box-shadow:0 10px 16px -12px rgba(0,0,0,.35)}
 .doc .crumbs-row .crumbs{display:block;min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .doc .crumbs-row .crumbs>span[aria-hidden]{margin:0 6px}
+
+/* ---------- project cards & listings ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.pcard{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);transition:transform .3s var(--ease),box-shadow .3s}
+.pcard:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line),0 24px 50px -32px rgba(0,0,0,.55)}
+.pc-img{position:relative;display:block;aspect-ratio:16/10;background:radial-gradient(120% 120% at 0 0,#1d6f8f,#114154 50%,#071c24)}
+.pc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pc-img em{position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;background:rgba(10,14,18,.6);color:#fff;font-style:normal;font-size:12px;font-weight:600;backdrop-filter:blur(8px)}
+.pc-ph{position:absolute;inset:0;display:grid;place-items:center;font-size:42px;font-weight:800;color:rgba(107,191,224,.5)}
+.pc-body{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px}
+.pc-body b{font-size:17px;line-height:1.3;font-weight:600}
+.pc-loc,.pc-meta{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.pc-price{font-size:18px;font-weight:700;color:var(--accent)}
+.pc-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;margin-top:4px;padding:4px 10px;border-radius:999px;background:rgba(34,197,94,.12);color:#22c55e;font-size:12px;font-weight:600}
+.pj-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pj-chips li{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:600}
+.pj-facts,.pj-roi,.pj-total{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.pj-facts div,.pj-roi div,.pj-total div{padding:14px 16px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.pj-facts span,.pj-roi span,.pj-total span{display:block;font-size:12px;color:var(--muted)}
+.pj-facts b,.pj-roi b,.pj-total b{display:block;margin-top:4px;font-size:16px}
+.pj-roi b{font-size:22px;color:var(--accent)}
+.pj-total .hl{background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.pj-total b{font-size:18px}
+.pj-plan{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.pp-row{display:grid;grid-template-columns:1fr auto auto;gap:6px 14px;align-items:center;padding:12px 16px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);font-size:14px}
+.pp-row em{font-style:normal;color:var(--muted);font-size:13px}
+.pp-row i{grid-column:1/-1;height:6px;border-radius:6px;background:var(--accent)}
+.pj-cta{margin-top:16px}
+.listing-bottom{margin-top:28px}
+.listing-bottom p{font-size:16px;line-height:1.7;color:var(--text-2)}
+.query-line{display:flex;align-items:center;gap:10px;margin-top:28px;padding:12px;border-radius:18px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.query-line span{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap}
+.query-line input{flex:1;min-width:0;height:42px;padding:0 14px;border:none;border-radius:12px;background:var(--surface-3);color:var(--text);font:inherit;font-size:14px}
+.listing-hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.listing-hub a{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:18px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.listing-hub b{font-size:17px}
+.listing-hub span{font-size:13px;color:var(--muted);line-height:1.5}
+@media (max-width:720px){
+  .pgrid,.listing-hub{grid-template-columns:1fr}
+  .pj-facts,.pj-roi,.pj-total{grid-template-columns:1fr 1fr}
+  .query-line{flex-direction:column;align-items:stretch}
+}

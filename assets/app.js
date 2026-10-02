@@ -179,8 +179,12 @@
   /* ---------- funnel helpers ---------- */
   var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   window.dataLayer = window.dataLayer || [];
+  /* A/B variants come from the inline <head> script (window.PE_EXP), e.g. "hero:a,cta:b,contact:a" */
+  var EXP = window.PE_EXP || {};
+  var expStr = Object.keys(EXP).map(function (k) { return k + ':' + EXP[k]; }).join(',');
   var track = function (name, params) {
-    params = params || {};
+    params = Object.assign({}, params || {});
+    if (expStr) params.exp = expStr;
     window.dataLayer.push(Object.assign({ event: name }, params));
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.ym === 'function' && cfg.metrika) window.ym(cfg.metrika, 'reachGoal', name, params);
@@ -192,6 +196,18 @@
     }
     if (window.posthog && typeof window.posthog.capture === 'function') window.posthog.capture(name, params);
   };
+  /* tell every analytics tool which variants this visitor sees, so reports can be split by them */
+  if (expStr) {
+    var expProps = {};
+    Object.keys(EXP).forEach(function (k) { expProps['exp_' + k] = EXP[k]; });
+    if (typeof window.gtag === 'function') window.gtag('set', 'user_properties', expProps);
+    if (typeof window.clarity === 'function') Object.keys(EXP).forEach(function (k) { window.clarity('set', 'exp_' + k, EXP[k]); });
+    if (window.posthog && window.posthog.register) window.posthog.register(expProps);
+    track('experiment_view', {});
+    /* variant B of the contact test also changes the field's placeholder */
+    var qc = document.getElementById('q-contact');
+    if (qc && EXP.contact === 'b' && qc.getAttribute('data-ph-b')) qc.placeholder = qc.getAttribute('data-ph-b');
+  }
 
   /* Cookie banner: OK keeps analytics on; Decline switches GA to denied, stops Clarity and PostHog */
   var ck = document.querySelector('[data-ck]');
@@ -240,7 +256,7 @@
      The lead counts as sent when at least one of them accepted it. */
   /* FormSubmit e-mails fields as a plain table, so give them readable names and drop the empty ones */
   var LABELS = { contact: 'Контакт', goal: 'Цель', budget: 'Бюджет', area: 'Район', plan: 'Тариф', calc: 'Калькулятор',
-                 source: 'Источник', lang: 'Язык', page: 'Страница', ref_code: 'Реф. код', ref_from: 'Пригласил (код)' };
+                 source: 'Источник', lang: 'Язык', page: 'Страница', ref_code: 'Реф. код', ref_from: 'Пригласил (код)', exp: 'A/B варианты' };
   var SOURCES = { quiz: 'Квиз', form: 'Форма' };
   var PLANS = { search: 'Поиск · 3 мес', investor: 'Инвестор · 12 мес', founder: 'Основатель' };
   var forInbox = function (d) {
@@ -259,7 +275,7 @@
   /* With the Brevo worker configured it adds the contact, starts the e-mail sequence and sends a branded
      notification; FormSubmit is then only a fallback if the worker is unreachable. */
   var sendLead = function (fields) {
-    var d = Object.assign({ lang: root.lang, page: location.pathname, ref_from: store.get('pe_ref_in') || '', ref_code: myRef }, fields);
+    var d = Object.assign({ lang: root.lang, page: location.pathname, ref_from: store.get('pe_ref_in') || '', ref_code: myRef, exp: expStr }, fields);
     if (cfg.brevo) {
       return post(cfg.brevo, d).catch(function (err) {
         if (cfg.endpoint) return post(cfg.endpoint, forInbox(d));
