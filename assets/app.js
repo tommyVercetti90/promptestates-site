@@ -549,6 +549,102 @@
     });
   });
 
+
+  /* ---------- phone app: chat search over the project base ---------- */
+  var sheet = document.getElementById('msheet');
+  var tabMenu = document.querySelector('[data-tab-menu]');
+  if (tabMenu && burger) tabMenu.addEventListener('click', function () { burger.click(); tabMenu.classList.toggle('is-on', !mnav.hidden); });
+  if (sheet && typeof sheet.showModal === 'function') {
+    var T = JSON.parse(sheet.getAttribute('data-i18n'));
+    var DB = JSON.parse(document.getElementById('pe-projects').textContent);
+    var log = sheet.querySelector('[data-mlog]');
+    var more = sheet.querySelector('[data-mmore]');
+    var numLoc = root.lang === 'ar' ? 'en' : root.lang;
+    var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+    var bubble = function (cls, html) {
+      var b = document.createElement('div'); b.className = 'mb ' + cls; b.innerHTML = html; log.appendChild(b);
+      log.scrollTop = log.scrollHeight; return b;
+    };
+    var AREAS = [['jvc', /jvc|village circle|джей ?ви ?си/], ['jvt', /jvt|village triangle/], ['marina', /marina|марин|مارينا/],
+      ['sports', /sport|спорт/], ['south', /dubai south|дубай саут|mataar/], ['downtown', /downtown|даунтаун|داون/],
+      ['palm', /palm|палм|نخلة/], ['island', /island|айленд|جزر/], ['business bay', /business bay|бизнес бей/],
+      ['creek', /creek|крик/], ['ras al khaimah', /ras al|rak\b|рас.?эль|marjan|марджан|رأس الخيمة/]];
+    var parse = function (q) {
+      var s = q.toLowerCase().replace(/,/g, '.'), f = {};
+      var m = s.match(/(\d+(?:\.\d+)?)\s*(млн|миллион|m\b|mln|million|مليون)/) || s.match(/(млн|million|مليون)/);
+      if (m) f.max = (parseFloat(m[1]) || 1) * 1e6;
+      else if ((m = s.match(/(\d+(?:\.\d+)?)\s*(тыс|k\b|к\b|ألف)/))) f.max = parseFloat(m[1]) * 1e3;
+      else if ((m = s.match(/\b(\d{6,8})\b/))) f.max = parseFloat(m[1]);
+      if (f.max && /\b(от|from|over|above|من)\b/.test(s) && !/\b(до|under|below|max|أقل)\b/.test(s)) { f.min = f.max; delete f.max; }
+      if (/студи|studio|استوديو|0 ?br/.test(s)) f.unit = '0BR';
+      else if ((m = s.match(/([1-4])\s*(?:-?х|br|bed|спал|комн|غرف)/))) f.unit = m[1] + 'BR';
+      AREAS.forEach(function (a) { if (a[1].test(s)) f.area = a[0]; });
+      if (/доход|yield|roi|عائد|аренд/.test(s)) f.yield = true;
+      return f;
+    };
+    var run = function (f, relax) {
+      var r = DB.filter(function (p) {
+        var loc = (p.a + ' ' + p.c).toLowerCase();
+        if (f.area && !relax.area && loc.indexOf(f.area === 'south' ? 'south' : f.area) < 0) return false;
+        if (f.max && !relax.price && p.p > f.max) return false;
+        if (f.min && !relax.price && p.p < f.min) return false;
+        if (f.unit && !relax.unit && p.u.indexOf(f.unit) < 0) return false;
+        return true;
+      });
+      r.sort(f.yield ? function (a, b) { return (b.y || 0) - (a.y || 0) || a.p - b.p; } : function (a, b) { return a.p - b.p; });
+      return r;
+    };
+    var card = function (p) {
+      return '<a class="mcard" href="/project/' + p.s + '/"><div class="mcard-ph">' + esc(p.n.charAt(0)) + '</div><b>' + esc(p.n) + '</b>'
+        + '<span>' + esc(p.a || p.c) + (p.d ? ' · ' + esc(p.d) : '') + '</span>'
+        + (p.p ? '<em>' + esc(T.mFrom) + ' AED ' + Math.round(p.p).toLocaleString(numLoc) + '</em>' : '')
+        + '<span>' + esc(p.u.replace('Apartment ', '').replace('0BR', 'Studio')) + (p.y ? ' · ' + p.y + '%' : '') + '</span></a>';
+    };
+    var answer = function (q) {
+      bubble('mb-me', esc(q));
+      var typing = bubble('mb-ai mb-typing', '<i></i><i></i><i></i>');
+      var f = parse(q), r = run(f, {}), near = false;
+      [{ area: 1 }, { area: 1, unit: 1 }, { area: 1, unit: 1, price: 1 }].some(function (rx) {
+        if (r.length) return true; near = true; r = run(f, rx); return false;
+      });
+      r = r.slice(0, 5);
+      track('chat_query', { results: r.length, near: near ? 'yes' : 'no' });
+      setTimeout(function () {
+        typing.remove();
+        bubble('mb-ai', esc(near ? T.mNear : T.mFound.replace('{n}', r.length)));
+        var c = document.createElement('div'); c.className = 'mcards'; c.innerHTML = r.map(card).join(''); log.appendChild(c);
+        more.hidden = false;
+        log.scrollTop = log.scrollHeight;
+      }, 900);
+    };
+    var openChat = function (q, src) {
+      if (!sheet.open) {
+        sheet.showModal();
+        if (!log.children.length) bubble('mb-ai', esc(T.mHello));
+        track('chat_open', { from: src || 'tab' });
+      }
+      if (q) answer(q);
+      else setTimeout(function () { sheet.querySelector('[data-msheet-form] input').focus(); }, 50);
+    };
+    document.querySelectorAll('.mchip').forEach(function (b) {
+      b.addEventListener('click', function () { openChat(b.textContent, 'chip'); });
+    });
+    var homeForm = document.querySelector('[data-mchat-form]');
+    if (homeForm) homeForm.addEventListener('submit', function (ev) {
+      ev.preventDefault(); var i = homeForm.querySelector('input'); var q = i.value.trim(); i.value = ''; i.blur(); openChat(q, 'home');
+    });
+    sheet.querySelector('[data-msheet-form]').addEventListener('submit', function (ev) {
+      ev.preventDefault(); var i = ev.target.querySelector('input'); var q = i.value.trim(); if (q) { i.value = ''; answer(q); }
+    });
+    sheet.querySelector('[data-msheet-close]').addEventListener('click', function () { sheet.close(); });
+    /* "Get the full shortlist" opens the quiz above the chat */
+    more.querySelector('[data-quiz-open]').addEventListener('click', function () { sheet.close(); }, true);
+    document.querySelectorAll('[data-mchat-open]').forEach(function (a) {
+      if (a.pathname === location.pathname) a.addEventListener('click', function (ev) { ev.preventDefault(); openChat('', 'tab'); });
+    });
+    if (location.hash === '#search' && matchMedia('(max-width:720px)').matches) openChat('', 'link');
+  }
+
   /* ---------- sticky quiz button on phones: after the hero, hidden near the final form ---------- */
   var mcta = document.querySelector('[data-mcta]');
   var heroEl = document.querySelector('.hero'), joinEl = document.getElementById('join');
