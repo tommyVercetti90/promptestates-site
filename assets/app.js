@@ -534,7 +534,7 @@
       var tp = c.getAttribute('data-topic');
       magChips.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
       document.querySelectorAll('.mag-card').forEach(function (card) {
-        card.hidden = tp !== 'all' && card.getAttribute('data-topic') !== tp;
+        card.hidden = tp === 'all' ? card.classList.contains('mag-only') : card.getAttribute('data-topic') !== tp;
         card.classList.toggle('mag-feat', tp === 'all' && card === card.parentElement.firstElementChild);
       });
       track('guide_topic', { topic: tp });

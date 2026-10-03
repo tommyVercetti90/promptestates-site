@@ -1488,3 +1488,26 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
   .emi-stats dd{font-size:16px}
   .emi-tabs a{min-width:0;flex:1 1 calc(25% - 8px);padding:8px 6px}
 }
+
+/* ---------- each emirate has its own palette, pattern and landmark ---------- */
+.emirate-dubai{--e1:#061d30;--e2:#14496b;--ink:#e2c27d;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23e2c27d' stroke-width='1' stroke-opacity='.28'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Cpath d='M0 28h9.5M46.5 28H56M28 0v9.5M28 46.5V56'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-abu-dhabi{--e1:#e9dfca;--e2:#fbf7ee;--ink:#8a6a2f;--etxt:#3a2c12;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%238a6a2f' stroke-width='1' stroke-opacity='.22'%3E%3Cpath d='M28 4 52 28 28 52 4 28Z'/%3E%3Cpath d='M28 16 40 28 28 40 16 28Z'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-sharjah{--e1:#4e1a19;--e2:#8c3b2e;--ink:#f0c98a;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f0c98a' stroke-width='1' stroke-opacity='.28'%3E%3Cpath d='M6 56V30a22 22 0 0 1 44 0v26'/%3E%3Cpath d='M16 56V32a12 12 0 0 1 24 0v24'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-ajman{--e1:#082f25;--e2:#14644c;--ink:#dcc890;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23dcc890' stroke-width='1' stroke-opacity='.28'%3E%3Cpath d='M28 4 52 28 28 52 4 28Z'/%3E%3Cpath d='M28 16 40 28 28 40 16 28Z'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-umm-al-quwain{--e1:#0f3936;--e2:#227064;--ink:#c3e7d3;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c3e7d3' stroke-width='1' stroke-opacity='.3'%3E%3Cpath d='M0 14c7-6 14-6 21 0s14 6 21 0 14-6 21 0M0 34c7-6 14-6 21 0s14 6 21 0 14-6 21 0'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-ras-al-khaimah{--e1:#241c38;--e2:#53406d;--ink:#f2b56a;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f2b56a' stroke-width='1' stroke-opacity='.28'%3E%3Cpath d='M0 44 14 20 28 44 42 20 56 44'/%3E%3Cpath d='M0 56 14 32 28 56 42 32 56 56'/%3E%3C/g%3E%3C/svg%3E")}
+.emirate-fujairah{--e1:#052a42;--e2:#0f6190;--ink:#a6dcf2;--etxt:#fff;--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23a6dcf2' stroke-width='1' stroke-opacity='.3'%3E%3Cpath d='M0 14c7-6 14-6 21 0s14 6 21 0 14-6 21 0M0 34c7-6 14-6 21 0s14 6 21 0 14-6 21 0'/%3E%3C/g%3E%3C/svg%3E")}
+.mag-emirates .mag-img{background:var(--pat) center/56px,radial-gradient(120% 95% at 50% 110%,var(--e2),var(--e1) 72%)}
+.mag-emirates .mag-img::after{border-color:color-mix(in srgb,var(--ink) 60%,transparent)}
+.mag-emirates .emi-name{color:var(--ink);margin-top:0;position:absolute;left:0;right:0;bottom:12%;text-align:center}
+.emi-art{position:absolute;left:50%;top:22%;width:44%;max-width:170px;transform:translateX(-50%);fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.mag-emirates .mag-tag{background:color-mix(in srgb,var(--ink) 20%,transparent);color:var(--ink)}
+.emirate-abu-dhabi .mag-tag{color:#5c4518}
+.emi-hero .emi-arch{background:var(--pat) center/56px,radial-gradient(120% 80% at 50% 100%,var(--e2),var(--e1) 75%);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink) 65%,transparent),0 30px 60px -36px rgba(0,0,0,.6)}
+.emi-hero .emi-arch::before{border-color:color-mix(in srgb,var(--ink) 50%,transparent)}
+.emi-hero .emi-arch b{color:var(--ink);margin-top:0;position:absolute;bottom:12%;left:0;right:0}
+.emi-hero .emi-art{top:18%;width:58%}
+.emi-hero .emi-stats div{border-inline-start-color:var(--e2)}
+.emirate-abu-dhabi .emi-stats div{border-inline-start-color:var(--ink)}
+.mag-areas .mag-img{position:relative;background:radial-gradient(120% 120% at 0 0,#1d6f8f,#114154 55%,#071c24)}
+.mag-areas .tile-ph{inset:0;top:auto;right:auto;z-index:0;display:grid;place-items:center;width:100%;height:100%}
