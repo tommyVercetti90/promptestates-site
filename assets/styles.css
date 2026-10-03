@@ -1254,8 +1254,7 @@ html.menu-open{overflow:hidden}
 .swipe-hint{display:none}
 .mcta{display:none}
 @media (max-width:720px){
-  .shot-scroll{overflow-x:auto;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-  .shot-scroll img{width:780px;max-width:none;height:auto}
+
   .swipe-hint{display:block;margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
   .mcta{display:block;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:25;transform:translateY(140%);transition:transform .35s var(--ease)}
   .mcta.is-on{transform:none}
@@ -1269,10 +1268,10 @@ html.menu-open{overflow:hidden}
   .hero .cards .card:nth-of-type(n+3){display:none}
   .feature .frame{min-height:0}
   #guide .doc-grid .doc-card:nth-child(n+5){display:none}
-  #guide .area-links{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+
   #guide .area-links::-webkit-scrollbar{display:none}
   #guide .area-links>*{flex:0 0 auto}
-  .tiers{display:flex;max-width:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:18px 16px 10px;scrollbar-width:none}
+
   .tiers::-webkit-scrollbar{display:none}
   .tier{flex:0 0 86%;scroll-snap-align:center}
   .mk:not(.active){font-size:0;width:16px;height:16px;padding:0}
@@ -1280,7 +1279,6 @@ html.menu-open{overflow:hidden}
 }
 @media (max-width:720px){
   body:has(.mcta){padding-bottom:84px}
-  #agent .features{display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:0 16px 12px;scrollbar-width:none;align-items:stretch}
   #agent .features::-webkit-scrollbar{display:none}
   #agent .feature{flex:0 0 88%;min-width:0;scroll-snap-align:center;margin:0}
   #agent .feature .frame{max-height:520px}
@@ -1369,75 +1367,58 @@ html:active-view-transition-type(back)::view-transition-new(root){animation-name
   .query-line{flex-direction:column;align-items:stretch}
 }
 
-/* ---------- phone = app: chat search, bottom tab bar, chat sheet ---------- */
-.mchat,.tabbar,.msheet{display:none}
-.mchat-box{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 16px;border-radius:999px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2),0 10px 30px -18px rgba(0,0,0,.5)}
-.mchat-box input{flex:1;min-width:0;height:44px;border:none;background:none;color:var(--text);font:inherit;font-size:16px;outline:none}
-.mchat-box input::placeholder{color:var(--muted-2)}
-.mchat-box button{flex:none;display:grid;place-items:center;width:44px;height:44px;border:none;border-radius:50%;background:var(--accent);color:#06222d;cursor:pointer}
-.mchat-box:focus-within{box-shadow:inset 0 0 0 2px var(--accent)}
+/* ---------- phones: app-like bottom tab bar; everything stacks vertically, nothing scrolls sideways ---------- */
+.tabbar{display:none}
 @media (max-width:720px){
-  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  html,body{overflow-x:clip}
+  body,body:has(.mcta){padding-bottom:calc(84px + env(safe-area-inset-bottom))}
   .mcta,.mcta.is-on{display:none!important}
-  .header .burger,.header .btn-white{display:none}
-  .ck{bottom:calc(72px + env(safe-area-inset-bottom))}
-  /* hero becomes the app's home screen */
-  .hero{padding:20px 0 8px;min-height:0}
-  .hero .hero-frame,.hero .sub,.hero .hero-actions{display:none}
-  .hero .kicker{margin-bottom:12px}
-  .hero h1{font-size:28px;line-height:1.15;letter-spacing:-.02em}
-  .hero h1 .h1-sub{font-size:28px}
-  .hero-grid,.hero-copy{min-width:0;grid-template-columns:minmax(0,1fr)}
-  .mchat{display:flex;flex-direction:column;gap:12px;margin-top:22px;min-width:0}
-  .mchat-q{font-size:15px;font-weight:600;color:var(--muted)}
-  .mchips{display:flex;gap:8px;margin:0 -16px;padding:2px 16px 6px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
-  .mchips::-webkit-scrollbar{display:none}
-  .mchip{flex:none;scroll-snap-align:start;height:38px;padding:0 14px;border:none;border-radius:999px;background:var(--surface-3);color:var(--text);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
-  .mchip:active{transform:scale(.96)}
-  .areas{padding:14px 0}
-  .areas>p{display:none}
-  /* sections read like app cards */
-  .sec{padding:36px 0}
-  .sec-head h2{font-size:24px}
-  .why-grid{display:flex;gap:10px;margin:0 -16px;padding:0 16px 4px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
-  .why-grid::-webkit-scrollbar{display:none}
-  .why-grid .why{flex:0 0 78%;scroll-snap-align:start}
-  /* bottom tab bar */
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.6) blur(18px);-webkit-backdrop-filter:saturate(1.6) blur(18px);border-top:1px solid var(--line)}
-  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;min-height:50px;justify-content:center;border:none;background:none;color:var(--muted-2);font:inherit;font-size:11px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .tab[aria-current="page"],.tab.is-on{color:var(--accent)}
-  .tab:active svg{transform:scale(.9)}
-  .mnav{inset:56px 0 calc(64px + env(safe-area-inset-bottom))}
-  /* chat sheet */
-  .msheet[open]{display:flex;flex-direction:column;position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:0;border:none;background:var(--bg);color:var(--text);animation:sheetUp .32s var(--ease)}
-  .msheet::backdrop{background:rgba(0,0,0,.5)}
-  .msheet-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px 16px;border-bottom:1px solid var(--line)}
-  .msheet-top b{display:flex;align-items:center;gap:8px;font-size:16px}
-  .msheet-x{display:grid;place-items:center;width:44px;height:44px;border:none;border-radius:50%;background:var(--surface-3);color:var(--text);cursor:pointer}
-  .mlog{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:16px;overscroll-behavior:contain}
-  .mb{max-width:86%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.45;animation:mbIn .25s var(--ease)}
-  .mb-ai{align-self:flex-start;background:var(--surface-3);border-bottom-left-radius:6px}
-  .mb-me{align-self:flex-end;background:var(--accent);color:#06222d;border-bottom-right-radius:6px;font-weight:500}
-  [dir="rtl"] .mb-ai{border-bottom-left-radius:18px;border-bottom-right-radius:6px}
-  [dir="rtl"] .mb-me{border-bottom-right-radius:18px;border-bottom-left-radius:6px}
-  .mb-typing{display:flex;gap:4px;padding:15px 16px}
-  .mb-typing i{width:7px;height:7px;border-radius:50%;background:var(--muted-2);animation:dot 1s infinite}
-  .mb-typing i:nth-child(2){animation-delay:.15s}.mb-typing i:nth-child(3){animation-delay:.3s}
-  .mcards{display:flex;gap:10px;margin:0 -16px;padding:0 16px 4px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;animation:mbIn .3s var(--ease)}
-  .mcards::-webkit-scrollbar{display:none}
-  .mcard{flex:0 0 76%;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:18px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);color:var(--text)}
-  .mcard-ph{height:92px;margin:-14px -14px 6px;border-radius:18px 18px 0 0;display:grid;place-items:center;background:radial-gradient(120% 120% at 0 0,#1d6f8f,#114154 55%,#071c24);font-size:34px;font-weight:800;color:rgba(107,191,224,.55)}
-  .mcard b{font-size:16px;line-height:1.3}
-  .mcard span{font-size:13px;color:var(--muted)}
-  .mcard em{font-style:normal;font-size:17px;font-weight:700;color:var(--accent)}
-  .mmore{display:flex;flex-direction:column;gap:6px;padding:10px 16px 0;text-align:center}
-  .mmore small{font-size:12px;color:var(--muted)}
-  .msheet-in{margin:10px 12px calc(10px + env(safe-area-inset-bottom))}
+  .header .burger{display:none}
+  .ck{bottom:calc(80px + env(safe-area-inset-bottom))}
+  img,video,svg,canvas{max-width:100%}
+  /* hero: text + one clear action */
+  .hero{padding:24px 0 12px;min-height:0}
+  .hero .hero-frame{display:none}
+  .hero h1{font-size:30px;line-height:1.12;letter-spacing:-.02em}
+  .hero h1 .h1-sub{font-size:30px}
+  .hero .sub{font-size:16px;line-height:1.5}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .areas{display:none}
+  /* app screenshot fits the width instead of scrolling */
+  .shot-scroll{overflow:visible}
+  .shot-scroll img{width:100%;max-width:100%;height:auto}
+  .swipe-hint,.float-card{display:none!important}
+  .showcase,.browser{max-width:100%}
+  /* cards stack */
+  .why-grid{display:grid!important;grid-template-columns:1fr!important;gap:10px;margin:0;padding:0;overflow:visible}
+  .why-grid .why{flex:none}
+  #agent .features{display:flex;flex-direction:column;overflow:visible;margin:0;padding:0;gap:12px}
+  #agent .feature{flex:none;width:100%}
+  #agent .feature .frame{display:none}
+  #agent .feature-cap{padding:18px;border-radius:18px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+  #agent .sec-head::after{content:none}
+  .tiers{display:flex;flex-direction:column;overflow:visible;margin:0;padding:12px 0 0;gap:12px}
+  .tier{flex:none;width:100%}
+  .tier.is-pop{order:-1}
+  #guide .area-links,.mag-chips,.spot-nav .container,.isl-tabs,.rx-tabs{flex-wrap:wrap;overflow:visible}
+  /* Apple HIG: the tab bar floats above content on a glass material, navigation only, single-word labels */
+  .tabbar{position:fixed;left:12px;right:12px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:repeat(4,1fr);padding:4px;border-radius:28px;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:saturate(1.8) blur(22px);-webkit-backdrop-filter:saturate(1.8) blur(22px);box-shadow:inset 0 0 0 1px var(--line-2),0 12px 32px -14px rgba(0,0,0,.45)}
+  .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;border:none;border-radius:24px;background:none;color:var(--muted);font:inherit;font-size:11px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+  .tab[aria-current="page"],.tab.is-on{color:var(--accent);background:var(--accent-soft)}
+  .tab:active{transform:scale(.96)}
+  .mnav{inset:56px 0 calc(84px + env(safe-area-inset-bottom))}
+  /* HIG type & touch: 17px body, 44pt targets, 20pt side margins */
+  .container{padding:0 20px}
+  body{font-size:17px;-webkit-text-size-adjust:100%}
+  .sec{padding:40px 0}
+  .sec-head h2,.doc h2{font-size:26px;line-height:1.2;letter-spacing:-.015em}
+  .sec-sub,.doc p,.doc li,.feature-cap p,.why p,.faq p{font-size:16px;line-height:1.55}
+  .btn{min-height:48px}
+  .crumbs{min-width:0;overflow:hidden}
+  .footer a,.doc-chips a,.area-links a,.mag-chips button,.langs a,.linkish{min-height:44px;display:inline-flex;align-items:center}
+  .header .btn-white{height:40px;min-height:40px;padding:0 16px;font-size:14px}
 }
-@keyframes sheetUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
-@keyframes mbIn{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
-@keyframes dot{0%,80%,100%{opacity:.3}40%{opacity:1}}
-@media (prefers-reduced-motion:reduce){.msheet[open],.mb,.mcards{animation:none}}
 
 /* ---------- DLD construction block on district pages ---------- */
 .dld{margin:32px 0;padding:22px;border-radius:22px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
@@ -1456,3 +1437,5 @@ html:active-view-transition-type(back)::view-transition-new(root){animation-name
 .dld-named li{display:flex;flex-direction:column;padding:10px 14px;border-radius:12px;background:var(--surface-3)}
 .dld-named span{font-size:13px;color:var(--muted)}
 @media (max-width:720px){.dld{padding:16px}.dld-tiles{grid-template-columns:1fr 1fr}.dld-tiles b{font-size:20px}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
