@@ -1441,3 +1441,11 @@ html:active-view-transition-type(back)::view-transition-new(root){animation-name
 @media (max-width:720px){.dld{padding:16px}.dld-tiles{grid-template-columns:1fr 1fr}.dld-tiles b{font-size:20px}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ---------- data table in articles (DLD) ---------- */
+.dtbl{width:100%;margin:18px 0 6px;border-collapse:collapse;font-size:15px}
+.dtbl th{padding:0 8px 10px;font-size:12px;font-weight:600;color:var(--muted);text-align:start;border-bottom:1px solid var(--line)}
+.dtbl td{padding:11px 8px;border-bottom:1px solid var(--line)}
+.dtbl td:not(:first-child),.dtbl th:not(:first-child){text-align:end;font-variant-numeric:tabular-nums}
+.dtbl a{color:var(--text);font-weight:600}
+@media (max-width:720px){.dtbl{font-size:14px}.dtbl th:nth-child(5),.dtbl td:nth-child(5){display:none}.dtbl th,.dtbl td{padding-left:4px;padding-right:4px}}
