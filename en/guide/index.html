@@ -10,6 +10,14 @@
 <link rel="alternate" hreflang="ru" href="https://promptestates.com/guide/">
 <link rel="alternate" hreflang="en" href="https://promptestates.com/en/guide/">
 <link rel="alternate" hreflang="ar" href="https://promptestates.com/ar/guide/">
+<link rel="alternate" hreflang="hi" href="https://promptestates.com/hi/guide/">
+<link rel="alternate" hreflang="ur" href="https://promptestates.com/ur/guide/">
+<link rel="alternate" hreflang="zh-Hans" href="https://promptestates.com/zh/guide/">
+<link rel="alternate" hreflang="de" href="https://promptestates.com/de/guide/">
+<link rel="alternate" hreflang="fr" href="https://promptestates.com/fr/guide/">
+<link rel="alternate" hreflang="it" href="https://promptestates.com/it/guide/">
+<link rel="alternate" hreflang="tr" href="https://promptestates.com/tr/guide/">
+<link rel="alternate" hreflang="fa" href="https://promptestates.com/fa/guide/">
 <link rel="alternate" hreflang="x-default" href="https://promptestates.com/en/guide/">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -18,12 +26,12 @@
 var ua=navigator.userAgent||'';
 if(/bot|crawl|spider|slurp|mediapartners|google|bing|yandex|baidu|duckduck|facebookexternalhit|twitterbot|telegrambot|whatsapp|linkedin|preview|lighthouse|headless|gptbot|claude|perplexity|chatgpt/i.test(ua))return;
 if(/[?&]nolang=1/.test(location.search))return;
-var k='pe_lang';var saved=localStorage.getItem(k);var P={"ru": "/guide/", "en": "/en/guide/", "ar": "/ar/guide/"};var cur='en';
+var k='pe_lang';var saved=localStorage.getItem(k);var P={"ru": "/guide/", "en": "/en/guide/", "ar": "/ar/guide/", "hi": "/hi/guide/", "ur": "/ur/guide/", "zh": "/zh/guide/", "de": "/de/guide/", "fr": "/fr/guide/", "it": "/it/guide/", "tr": "/tr/guide/", "fa": "/fa/guide/"};var cur='en';
 if(saved){if(cur==='ru'&&location.pathname==='/'&&saved!=='ru'&&P[saved])location.replace(P[saved]+location.hash);return;}
 var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
 var ru=['ru','uk','be','kk','ky','uz','tg','hy','az','ka'];var d='en';
 for(var i=0;i<L.length;i++){var l=String(L[i]).toLowerCase().slice(0,2);
- if(l==='ar'){d='ar';break}if(ru.indexOf(l)>-1){d='ru';break}if(l==='en'){d='en';break}}
+ if(P[l]){d=l;break}if(ru.indexOf(l)>-1){d='ru';break}if(l==='pa'||l==='bn'){d=P.hi?'hi':'en';break}}
 localStorage.setItem(k,d);
 if(d!==cur&&P[d])location.replace(P[d]+location.hash);
 }catch(e){}})();</script>
@@ -41,10 +49,10 @@ if(d!==cur&&P[d])location.replace(P[d]+location.hash);
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/fonts.css">
-<link rel="stylesheet" href="/assets/styles.css?v=7ea5ce40">
+<link rel="stylesheet" href="/assets/styles.css?v=b01c3d82">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://promptestates.com/#org", "name": "PromptEstates", "url": "https://promptestates.com/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://promptestates.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Guide", "item": "https://promptestates.com/en/guide/"}]}, {"@type": "CollectionPage", "name": "Guide to off-plan property in Dubai and the UAE", "description": "Short and practical: how buying off-plan works, what it really costs and how the areas differ.", "url": "https://promptestates.com/en/guide/", "inLanguage": "en"}]}</script>
 <script>window.PE_CONFIG={"endpoint": "https://formsubmit.co/ajax/ilnarshan@gmail.com", "brevo": "", "metrika": "", "subject": "PromptEstates: new waitlist sign-up"};</script>
-<script src="/assets/app.js?v=7ea5ce40" defer></script>
+<script src="/assets/app.js?v=b01c3d82" defer></script>
 <script>(function(){var m=location.search.match(/[?&]pe_internal=([01])/);try{if(m){m[1]==="1"?localStorage.setItem("pe_internal","1"):localStorage.removeItem("pe_internal")}}catch(e){}})();window.PE_LOCAL=!/(^|\.)promptestates\.com$/.test(location.hostname)||(function(){try{return localStorage.getItem("pe_internal")==="1"}catch(e){return false}})();window.PE_DENIED=window.PE_LOCAL||(function(){try{return localStorage.getItem("pe_consent")==="denied"}catch(e){return false}})();</script>
 <script>if(!window.PE_LOCAL){var g=document.createElement('script');g.async=1;g.src='https://www.googletagmanager.com/gtag/js?id=G-H21YBZ03N2';document.head.appendChild(g)}</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}var d=window.PE_DENIED?'denied':'granted';gtag('consent','default',{analytics_storage:d,ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-H21YBZ03N2',{content_group:'guide_index',page_language:'en',site_section:'landing'});</script>
@@ -58,7 +66,7 @@ if(d!==cur&&P[d])location.replace(P[d]+location.hash);
 <nav class="nav" aria-label="Sections"><a href="/en/#app">The app</a><a href="/en/#agent">How it works</a><a href="/en/guide/">Guide</a><a href="/en/#pricing">Pricing</a><a href="/en/#faq">FAQ</a></nav>
 <div class="header-right">
 <button type="button" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
-<nav class="langs" aria-label="Language"><a href="/guide/" hreflang="ru" lang="ru" title="Русский">RU</a><a href="/en/guide/" hreflang="en" lang="en" title="English" aria-current="page">EN</a><a href="/ar/guide/" hreflang="ar" lang="ar" title="العربية">AR</a></nav>
+<nav class="langs" aria-label="Language"><details class="lang-dd"><summary aria-label="Language"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg><span>EN</span></summary><div class="lang-menu"><a href="/guide/" hreflang="ru" lang="ru" data-lang="ru"><b>RU</b>Русский</a><a href="/en/guide/" hreflang="en" lang="en" data-lang="en" aria-current="page"><b>EN</b>English</a><a href="/ar/guide/" hreflang="ar" lang="ar" data-lang="ar"><b>AR</b>العربية</a><a href="/hi/guide/" hreflang="hi" lang="hi" data-lang="hi"><b>HI</b>हिन्दी</a><a href="/ur/guide/" hreflang="ur" lang="ur" data-lang="ur"><b>UR</b>اردو</a><a href="/zh/guide/" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh"><b>ZH</b>中文</a><a href="/de/guide/" hreflang="de" lang="de" data-lang="de"><b>DE</b>Deutsch</a><a href="/fr/guide/" hreflang="fr" lang="fr" data-lang="fr"><b>FR</b>Français</a><a href="/it/guide/" hreflang="it" lang="it" data-lang="it"><b>IT</b>Italiano</a><a href="/tr/guide/" hreflang="tr" lang="tr" data-lang="tr"><b>TR</b>Türkçe</a><a href="/fa/guide/" hreflang="fa" lang="fa" data-lang="fa"><b>FA</b>فارسی</a></div></details></nav>
 <a href="/en/#join" class="btn btn-white" data-quiz-open>Join</a>
 <button type="button" class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Menu" data-label-close="Close menu"><i></i><i></i><i></i></button>
 </div>
@@ -66,7 +74,7 @@ if(d!==cur&&P[d])location.replace(P[d]+location.hash);
 </header>
 <div class="mnav" id="mnav" hidden>
 <nav class="mnav-links" aria-label="Sections"><ul><li><a href="/en/#app">The app</a></li><li><a href="/en/#agent">How it works</a></li><li><a href="/en/#pricing">Pricing</a></li><li><a href="/en/guide/">Guide</a></li><li><a href="/en/#faq">FAQ</a></li></ul></nav>
-<div class="mnav-row"><span>Language</span><div class="langs"><a href="/guide/" hreflang="ru" lang="ru" title="Русский">RU</a><a href="/en/guide/" hreflang="en" lang="en" title="English" aria-current="page">EN</a><a href="/ar/guide/" hreflang="ar" lang="ar" title="العربية">AR</a></div></div>
+<div class="mnav-row"><span>Language</span><div class="langs"><details class="lang-dd"><summary aria-label="Language"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg><span>EN</span></summary><div class="lang-menu"><a href="/guide/" hreflang="ru" lang="ru" data-lang="ru"><b>RU</b>Русский</a><a href="/en/guide/" hreflang="en" lang="en" data-lang="en" aria-current="page"><b>EN</b>English</a><a href="/ar/guide/" hreflang="ar" lang="ar" data-lang="ar"><b>AR</b>العربية</a><a href="/hi/guide/" hreflang="hi" lang="hi" data-lang="hi"><b>HI</b>हिन्दी</a><a href="/ur/guide/" hreflang="ur" lang="ur" data-lang="ur"><b>UR</b>اردو</a><a href="/zh/guide/" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh"><b>ZH</b>中文</a><a href="/de/guide/" hreflang="de" lang="de" data-lang="de"><b>DE</b>Deutsch</a><a href="/fr/guide/" hreflang="fr" lang="fr" data-lang="fr"><b>FR</b>Français</a><a href="/it/guide/" hreflang="it" lang="it" data-lang="it"><b>IT</b>Italiano</a><a href="/tr/guide/" hreflang="tr" lang="tr" data-lang="tr"><b>TR</b>Türkçe</a><a href="/fa/guide/" hreflang="fa" lang="fa" data-lang="fa"><b>FA</b>فارسی</a></div></details></div></div>
 <div class="mnav-row"><span>Theme</span><button type="button" class="theme-toggle" aria-label="Toggle theme"><svg class="moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button></div>
 <button type="button" class="btn btn-white btn-lg mnav-cta" data-quiz-open><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg><span data-xv="cta:a">Match projects — 3 questions</span><span data-xv="cta:b">Get a shortlist from an expert</span></button>
 </div>

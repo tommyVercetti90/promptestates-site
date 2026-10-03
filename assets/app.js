@@ -6,10 +6,17 @@
   var cfg = window.PE_CONFIG || {};
 
   /* Remember a manual language choice (auto-detect runs only on the first visit) */
-  document.querySelectorAll('.langs a[hreflang]').forEach(function (a) {
+  document.querySelectorAll('.lang-menu a[data-lang]').forEach(function (a) {
     a.addEventListener('click', function () {
-      try { localStorage.setItem('pe_lang', a.getAttribute('hreflang')); } catch (_) {}
+      try { localStorage.setItem('pe_lang', a.getAttribute('data-lang')); } catch (_) {}
     });
+  });
+  /* language menu: close on outside click or Escape */
+  document.addEventListener('click', function (ev) {
+    document.querySelectorAll('.lang-dd[open]').forEach(function (d) { if (!d.contains(ev.target)) d.open = false; });
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') document.querySelectorAll('.lang-dd[open]').forEach(function (d) { d.open = false; });
   });
 
   /* Theme toggle (initial theme is set inline in <head> to avoid a flash) */

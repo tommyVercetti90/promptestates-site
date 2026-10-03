@@ -101,7 +101,7 @@ It is the Dubai Land Department registration fee — 4% of the property price. P
 Yes: property worth AED 2M+ by DLD valuation qualifies for the Golden Visa — including off-plan from an approved developer or a mortgaged home with a bank NOC. On a smaller budget there is the 2-year investor visa: since April 2026 a sole owner of a completed Dubai home faces no minimum value. PromptEstates project cards carry a Gold visa mark.
 
 ### Which languages does PromptEstates support?
-The app interface is available in 10 languages: English, Russian, Arabic, Chinese, French, Turkish, Hindi, Italian, German and Spanish. This website is in English, Russian and Arabic.
+The app interface is available in 10 languages: English, Russian, Arabic, Chinese, French, Turkish, Hindi, Italian, German and Spanish. This website is available in 11 languages.
 
 ### Why pay before launch?
 Founder pricing is only available until launch: up to 50% below the regular price, and the Founder plan gives lifetime access for a single payment. There are 100 seats and it won’t be offered after launch.
@@ -141,7 +141,7 @@ Off-plan — это покупка квартиры у застройщика д
 Да: недвижимость от 2 млн AED по оценке DLD даёт право на Golden Visa — в том числе новостройка у одобренного застройщика или объект в ипотеке с NOC банка. Если бюджет меньше, есть виза инвестора на 2 года: с апреля 2026 года для единственного владельца готовой квартиры в Дубае минимальной стоимости нет. В карточках PromptEstates есть отметка Gold visa.
 
 ### На каких языках работает PromptEstates?
-Интерфейс приложения доступен на 10 языках: английском, русском, арабском, китайском, французском, турецком, хинди, итальянском, немецком и испанском. Этот сайт — на русском, английском и арабском.
+Интерфейс приложения доступен на 10 языках: английском, русском, арабском, китайском, французском, турецком, хинди, итальянском, немецком и испанском. Этот сайт доступен на 11 языках.
 
 ### Зачем платить до запуска?
 Цена основателя действует только до запуска: до 50% ниже обычной, а тариф «Основатель» — бессрочный доступ за один платёж. Это 100 мест, после запуска его не будет.
@@ -181,7 +181,7 @@ PromptEstates خدمة تعتمد على الذكاء الاصطناعي للب�
 نعم: العقار بقيمة مليوني درهم فأكثر وفق تقييم دائرة الأراضي يؤهل للإقامة الذهبية، بما في ذلك العقار قيد الإنشاء من مطوّر معتمد أو العقار المرهون بشهادة عدم ممانعة من البنك. وبميزانية أصغر توجد تأشيرة المستثمر لمدة سنتين: منذ أبريل 2026 لا حد أدنى للقيمة لمالك وحيد لعقار جاهز في دبي. تحمل بطاقات PromptEstates علامة Gold visa.
 
 ### ما اللغات التي يدعمها PromptEstates؟
-واجهة التطبيق متاحة بعشر لغات: الإنجليزية والروسية والعربية والصينية والفرنسية والتركية والهندية والإيطالية والألمانية والإسبانية. هذا الموقع متاح بالعربية والإنجليزية والروسية.
+واجهة التطبيق متاحة بعشر لغات: الإنجليزية والروسية والعربية والصينية والفرنسية والتركية والهندية والإيطالية والألمانية والإسبانية. هذا الموقع متاح بـ 11 لغة.
 
 ### لماذا أدفع قبل الإطلاق؟
 سعر المؤسسين متاح حتى الإطلاق فقط: أقل بنسبة تصل إلى 50% من السعر العادي، وباقة «مؤسس» تمنح وصولًا مدى الحياة بدفعة واحدة. عددها 100 مقعد ولن تُعرض بعد الإطلاق.
