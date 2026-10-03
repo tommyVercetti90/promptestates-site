@@ -702,8 +702,10 @@ html:not(.js) .ring86{stroke-dashoffset:0}
 
 
 /* ================= kicker, why-grid, guide extras ================= */
-.kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:6px 12px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);font-size:13px;font-weight:500;color:var(--text-2)}
-.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.kicker::before{content:"";width:24px;height:2px;border-radius:2px;background:currentColor}
+.kicker .dot{display:none}
+[lang="ar"] .kicker{letter-spacing:0}
 .why-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .why{padding:26px 24px;border-radius:20px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
 .why b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em}
