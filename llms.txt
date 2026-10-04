@@ -2,7 +2,7 @@
 
 > AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
 
-PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue covers more than 2,000 properties from UAE developers. The app interface is available in 10 languages. The product is pre-launch (launch planned for 1 December 2026) and will be offered on a subscription with founder pricing before launch (see Pricing below); this site collects an early-access waitlist. Analytics are informational and not investment advice.
+PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue is built on Dubai Land Department open data and grows every week. The app interface is available in 10 languages. The product is pre-launch (launch planned for 1 December 2026) and will be offered on a subscription with founder pricing before launch (see Pricing below); this site collects an early-access waitlist. Analytics are informational and not investment advice.
 
 ## Pages
 - [English](https://promptestates.com/en/): PromptEstates — AI search for Dubai off-plan property
@@ -63,7 +63,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 
 ## Pricing (pre-launch founder offer, AED, one-time payment, no auto-renewal)
 
-- Search — 3 months: AED 299 (AED 447 after launch). Includes: AI search across 2,000+ projects; Price per sq ft, area trends, rental yield; Developer check; 10 PDF project reports.
+- Search — 3 months: AED 299 (AED 447 after launch). Includes: AI search across UAE off-plan projects; Price per sq ft, area trends, rental yield; Developer check; 10 PDF project reports.
 - Investor — 12 months: AED 899 (AED 1,788 after launch). Includes: Everything in Search; Unlimited PDF reports; Alerts on new launches and price drops; First-wave access.
 - Founder — lifetime: AED 2,499. Includes: Everything in Investor — forever; All future features at no extra cost; Direct line to the team; A say in the product roadmap.
 
@@ -77,7 +77,7 @@ Full refund any time before launch and for 14 days after — no questions asked.
 PromptEstates is an AI service for finding off-plan property in the UAE. You describe what you want in plain words, and the AI matches developer projects and shows market analytics for each one: price per m², area trends, rental yield forecast and payment plan.
 
 ### How many properties does PromptEstates cover?
-More than 2,000 properties from UAE developers, with prices, payment plans and developer information.
+Off-plan projects from UAE developers, with prices, payment plans and developer information. The catalogue is built on Dubai Land Department open data and grows every week.
 
 ### Which cities and emirates does it cover?
 Dubai, Abu Dhabi and other UAE emirates. You can search by a specific area — such as Dubai Marina, Business Bay or JVC — or simply describe what matters: waterfront, near the metro, for rental.
@@ -117,7 +117,7 @@ We refund in full any time before launch and within 14 days after — just write
 PromptEstates — это ИИ-сервис для поиска новостроек (off-plan недвижимости) в ОАЭ. Вы описываете запрос обычными словами, а ИИ подбирает проекты застройщиков и показывает аналитику рынка по каждому: цену за м², динамику района, прогноз доходности аренды и план платежей.
 
 ### Сколько объектов в базе PromptEstates?
-Более 2000 объектов от застройщиков ОАЭ — с ценами, планами платежей и сведениями о застройщиках.
+Новостройки застройщиков ОАЭ с ценами, планами платежей и сведениями о застройщиках. Основа каталога — открытые данные Dubai Land Department, он пополняется каждую неделю.
 
 ### Какие города и эмираты охватывает сервис?
 Дубай, Абу-Даби и другие эмираты ОАЭ. Можно искать по конкретному району — например, Dubai Marina, Business Bay или JVC — или просто описать, что важно: у воды, рядом с метро, под аренду.
@@ -157,7 +157,7 @@ Off-plan — это покупка квартиры у застройщика д
 PromptEstates خدمة تعتمد على الذكاء الاصطناعي للبحث عن العقارات قيد الإنشاء في الإمارات. تصف ما تريده بكلمات بسيطة، فيختار الذكاء الاصطناعي مشاريع المطوّرين ويعرض تحليلات السوق لكل منها: سعر المتر المربع، اتجاهات المنطقة، توقع العائد الإيجاري وخطة الدفع.
 
 ### كم عدد العقارات في PromptEstates؟
-أكثر من 2000 عقار من مطوّري الإمارات، مع الأسعار وخطط الدفع ومعلومات المطوّرين.
+مشاريع قيد الإنشاء من مطوّري الإمارات مع الأسعار وخطط الدفع ومعلومات المطوّرين. يعتمد الكتالوج على البيانات المفتوحة لدائرة الأراضي والأملاك في دبي ويتوسع كل أسبوع.
 
 ### ما المدن والإمارات التي تغطيها الخدمة؟
 دبي وأبوظبي وسائر إمارات الدولة. يمكنك البحث حسب منطقة محددة مثل دبي مارينا أو الخليج التجاري أو قرية جميرا الدائرية، أو ببساطة وصف ما يهمك: على الواجهة المائية، قرب المترو، للإيجار.
