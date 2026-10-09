@@ -1540,3 +1540,9 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
 @media (max-width:720px){.dtbl.mkt{min-width:0;font-size:13px}.dtbl.mkt td,.dtbl.mkt th{white-space:normal}
   .dtbl.mkt th:nth-child(4),.dtbl.mkt td:nth-child(4),.dtbl.mkt th:nth-child(6),.dtbl.mkt td:nth-child(6),
   .dtbl.mkt th:nth-child(8),.dtbl.mkt td:nth-child(8),.dtbl.mkt th:nth-child(9),.dtbl.mkt td:nth-child(9){display:none}}
+@media (max-width:720px){
+  .dtbl.mkt-sq th:nth-child(4),.dtbl.mkt-sq td:nth-child(4),.dtbl.mkt-sq th:nth-child(6),.dtbl.mkt-sq td:nth-child(6),
+  .dtbl.mkt-sq th:nth-child(8),.dtbl.mkt-sq td:nth-child(8){display:table-cell}
+  .dtbl.mkt-sq th:nth-child(5),.dtbl.mkt-sq td:nth-child(5),.dtbl.mkt-sq th:nth-child(6),.dtbl.mkt-sq td:nth-child(6),
+  .dtbl.mkt-sq th:nth-child(7),.dtbl.mkt-sq td:nth-child(7),.dtbl.mkt-sq th:nth-child(9),.dtbl.mkt-sq td:nth-child(9),
+  .dtbl.mkt-sq th:nth-child(10),.dtbl.mkt-sq td:nth-child(10){display:none}}
