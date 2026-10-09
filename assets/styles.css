@@ -1532,3 +1532,11 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
 .dld-top li{flex-direction:row;justify-content:space-between;align-items:center;gap:12px}
 @media (max-width:720px){.dld-tiles3{grid-template-columns:1fr 1fr}.dld-tiles3 div:first-child{grid-column:1/-1}}
 .dld-tiles2{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* market data page */
+.mkt-facts{margin:18px 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:8px}
+.dtbl-wrap{overflow-x:auto;margin:0 -4px;-webkit-overflow-scrolling:touch}
+.dtbl.mkt{min-width:760px;font-size:14px}
+.dtbl.mkt td,.dtbl.mkt th{white-space:nowrap}
+@media (max-width:720px){.dtbl.mkt{min-width:0;font-size:13px}.dtbl.mkt td,.dtbl.mkt th{white-space:normal}
+  .dtbl.mkt th:nth-child(4),.dtbl.mkt td:nth-child(4),.dtbl.mkt th:nth-child(6),.dtbl.mkt td:nth-child(6),
+  .dtbl.mkt th:nth-child(8),.dtbl.mkt td:nth-child(8),.dtbl.mkt th:nth-child(9),.dtbl.mkt td:nth-child(9){display:none}}

@@ -1,0 +1,2181 @@
+# PromptEstates
+
+> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+
+PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue is built on Dubai Land Department open data and grows every week. The app interface is available in 10 languages. The product is pre-launch (launch planned for 1 December 2026) and will be offered on a subscription with founder pricing before launch (see Pricing below); this site collects an early-access waitlist. Analytics are informational and not investment advice.
+
+## Pages
+- [English](https://promptestates.com/en/): PromptEstates — AI search for Dubai off-plan property
+- [Русский](https://promptestates.com/): PromptEstates — ИИ-поиск новостроек в Дубае и ОАЭ
+- [العربية](https://promptestates.com/ar/): PromptEstates — بحث ذكي عن عقارات دبي قيد الإنشاء
+
+## Guide (English; Russian and Arabic versions under / and /ar/)
+- [What is off-plan property in Dubai](https://promptestates.com/en/guide/off-plan/): Off-plan means buying from the developer before completion. How it works in Dubai: payment plans, escrow accounts, Oqood registration, benefits and risks.
+- [The DLD fee when buying property in Dubai](https://promptestates.com/en/guide/dld-fee/): The Dubai Land Department fee is 4% of the property price. Who pays it and when, what other costs come with buying in Dubai and how to work out the full cost.
+- [UAE Golden Visa through property](https://promptestates.com/en/guide/golden-visa/): UAE Golden Visa through AED 2M+ property: do off-plan and mortgaged homes qualify, who you can include, documents and steps. Compared with the 2-year visa.
+- [Payment plans for off-plan property in Dubai](https://promptestates.com/en/guide/payment-plans/): How developer payment plans work in Dubai: booking, instalments during construction, the balance on handover and post-handover plans. How to compare them.
+- [How to check a developer in Dubai](https://promptestates.com/en/guide/check-developer/): Checks to make before buying off-plan in Dubai: RERA registration, the escrow account, delivered projects, on-time handovers and construction status.
+- [Off-plan vs ready property in Dubai](https://promptestates.com/en/guide/off-plan-vs-ready/): Comparing off-plan and ready property in Dubai: price, payment, risks, rental income and who each option suits.
+- [The costs of buying an apartment in Dubai](https://promptestates.com/en/guide/buying-costs/): What a buyer pays in Dubai beyond the price: the 4% DLD fee, registration, agent commission and service charges. How to work out the full cost.
+- [Can foreigners buy property in Dubai?](https://promptestates.com/en/guide/foreign-ownership/): Foreigners can buy property in Dubai with full ownership in freehold areas. Which areas qualify, whether you need a visa and how ownership is registered.
+- [Rental yield in Dubai: how to calculate it](https://promptestates.com/en/guide/rental-yield/): How to calculate the yield from renting out a home in Dubai: gross and net yield, the formula, a worked example and what affects the result.
+- [The 2-year investor visa through Dubai property](https://promptestates.com/en/guide/property-visa/): A 2-year UAE residence visa through Dubai property: since April 2026 there is no minimum value for a sole owner. Conditions, family, costs and steps.
+- [Dubai: the emirate's history and where to buy property](https://promptestates.com/en/guide/emirate-dubai/): Dubai, from a pearl-diving village on the Creek to a global city: history, economy, the best areas for off-plan property and the rules for foreign buyers.
+- [Abu Dhabi: the capital's history and where to buy property](https://promptestates.com/en/guide/emirate-abu-dhabi/): Abu Dhabi is the capital and largest emirate of the UAE. History from Qasr Al Hosn to Saadiyat Island, the areas to buy in and the rules for foreigners.
+- [Sharjah: the UAE's cultural capital and where to buy](https://promptestates.com/en/guide/emirate-sharjah/): Sharjah, the UAE's cultural capital next to Dubai: history, what drives the emirate, the new Aljada and Maryam Island districts and what foreigners need to know.
+- [Ajman: the smallest emirate and where to buy](https://promptestates.com/en/guide/emirate-ajman/): Ajman, the UAE's smallest emirate, offers affordable homes by the sea. History, the Al Zorah and Ajman Corniche areas and the rules for foreign buyers.
+- [Umm Al Quwain: the quiet emirate of lagoons and where to buy](https://promptestates.com/en/guide/emirate-umm-al-quwain/): Umm Al Quwain, the UAE's quietest emirate: mangroves, lagoons and new projects on Siniya Island. History, areas and buying rules.
+- [Ras Al Khaimah: mountains, sea and where to buy](https://promptestates.com/en/guide/emirate-ras-al-khaimah/): Ras Al Khaimah: the ancient port of Julfar, Jebel Jais and Al Marjan Island with the Wynn resort. History, areas and the rules for foreign buyers.
+- [Fujairah: the Gulf of Oman emirate and where to buy](https://promptestates.com/en/guide/emirate-fujairah/): Fujairah, the only emirate entirely on the Gulf of Oman: the Hajar mountains, the UAE's oldest mosque and beaches. History, areas and buying.
+- [Off-plan handover delays in Dubai: what the DLD registry shows](https://promptestates.com/en/guide/handover-delays/): How many Dubai off-plan projects are past their planned handover date: a breakdown of the Dubai Land Department registry in 14 areas and how to protect yourself.
+- [Escrow accounts in Dubai: how off-plan buyers' money is protected](https://promptestates.com/en/guide/escrow/): How escrow works when you buy off-plan in Dubai: Law No. 8 of 2007, the role of RERA and the bank, when the developer gets paid and how to check the account.
+- [How to choose an off-plan property in Dubai: a 12-point checklist](https://promptestates.com/en/guide/off-plan-checklist/): An off-plan buyer's checklist for Dubai: developer, DLD registry, escrow, payment plan, full cost, timelines, rental income and exit options.
+- [How to buy off-plan property in Dubai: every step from booking to keys](https://promptestates.com/en/guide/how-to-buy-off-plan/): Buying off-plan in Dubai step by step: booking, SPA, Oqood registration, escrow payments, resale before handover, snagging, keys and the title deed.
+- [How to buy resale property in Dubai: a step-by-step guide](https://promptestates.com/en/guide/buying-resale/): How to buy a ready home on Dubai's secondary market: RERA agent and forms, MOU (Form F) and 10% deposit, NOC, mortgage, DLD transfer and every cost.
+- [Freehold areas in Dubai and the UAE: where foreigners can own property](https://promptestates.com/en/guide/freehold-areas/): Where foreigners can buy property outright in Dubai and other emirates: the main freehold areas, how freehold differs from leasehold and how to check an area.
+- [UAE retirement visa: how to move to Dubai after 55](https://promptestates.com/en/guide/retirement-visa/): The five-year UAE retirement visa for people aged 55+: financial conditions (savings, property or income), documents, insurance, family and renewal.
+- [UAE visa through financial investment: fund, business and bank deposit](https://promptestates.com/en/guide/investment-visa-deposit/): A UAE Golden Visa without buying property: AED 2 million in an investment fund, company capital or taxes, and how this differs from a plain bank deposit.
+- [UAE residency through investment: all the options compared](https://promptestates.com/en/guide/uae-residency-options/): Ways to get a UAE visa through investment compared: the two-year visa for a home, the Golden Visa through property, fund or business, and the retirement visa.
+- [Property revaluation for the Golden Visa: if you bought below AED 2 million](https://promptestates.com/en/guide/golden-visa-valuation/): Bought below AED 2 million and the home has gone up? The Golden Visa counts the current DLD valuation, not the purchase price. How to order a revaluation.
+- [UAE mortgages for foreigners: how much you can borrow and how](https://promptestates.com/en/guide/uae-mortgage-foreigners/): Getting a Dubai mortgage as a foreigner: down payments for residents and non-residents, Central Bank limits, term, documents, every fee and off-plan.
+- [Property taxes in the UAE: what an apartment owner pays](https://promptestates.com/en/guide/uae-property-taxes/): Which taxes and fees a property owner pays in Dubai: one-off at purchase, annual, tax on rent and on sale, VAT, inheritance and taxes in your home country.
+- [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official Dubai Land Department data. Table and CSV.
+- [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
+- [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
+- [Jumeirah Village Circle (JVC)](https://promptestates.com/en/areas/jvc/): Jumeirah Village Circle: a Dubai community of apartments, townhouses and parks. What it is like, who it suits and how to find off-plan projects.
+- [Dubai Hills Estate](https://promptestates.com/en/areas/dubai-hills/): Dubai Hills Estate is a family community with a park, a golf course and a mall. What the area is like, who it suits and how to find off-plan projects here.
+- [Dubai Creek Harbour](https://promptestates.com/en/areas/dubai-creek-harbour/): Dubai Creek Harbour is a new district on Dubai Creek with views of Downtown. What the area is like, who it suits and how to find off-plan projects here.
+- [Palm Jumeirah](https://promptestates.com/en/areas/palm-jumeirah/): Palm Jumeirah is a palm-shaped man-made island with beachfront residences and villas. What the area is like, who it suits and how to find off-plan projects.
+- [Downtown Dubai](https://promptestates.com/en/areas/downtown-dubai/): Downtown Dubai is the city centre around Burj Khalifa and Dubai Mall. What homes are built here, who the area suits and what to consider when buying off-plan.
+- [MBR City & Meydan](https://promptestates.com/en/areas/mbr-city/): Mohammed Bin Rashid City and Meydan are a large area next to Downtown: Sobha Hartland, District One, Azizi Riviera. Who it suits and what is being built.
+- [Dubai South](https://promptestates.com/en/areas/dubai-south/): Dubai South surrounds Al Maktoum airport and Expo City. Affordable apartments and villas, large projects such as Emaar South and Azizi Venice. Who it suits.
+- [Dubai Islands](https://promptestates.com/en/areas/dubai-islands/): Dubai Islands are five Nakheel islands off the Deira coast with beaches, marinas and resorts. What is built, who it suits and how it differs from Palm Jumeirah.
+- [Arjan](https://promptestates.com/en/areas/arjan/): Arjan is a Dubailand district next to Dubai Miracle Garden: mid-rise buildings, affordable studios and apartments for rent. Who builds there and who it suits.
+- [Jumeirah Village Triangle (JVT)](https://promptestates.com/en/areas/jvt/): Jumeirah Village Triangle neighbours JVC, with villas, townhouses and new residential buildings. How it differs from JVC, who builds there and who it suits.
+- [Al Furjan](https://promptestates.com/en/areas/al-furjan/): Al Furjan is a Nakheel family community between Sheikh Zayed Road and Sheikh Mohammed Bin Zayed Road, with metro access. Villas, townhouses and apartments.
+- [DAMAC Hills](https://promptestates.com/en/areas/damac-hills/): DAMAC Hills is a DAMAC community around the Trump International golf club: villas, townhouses and apartments with golf views. Who it suits and what to check.
+- [Emaar Properties](https://promptestates.com/en/developers/emaar/): Emaar is one of Dubai’s largest developers: Burj Khalifa, Downtown, Dubai Hills Estate, Dubai Creek Harbour. What it builds and what to check before buying.
+- [DAMAC Properties](https://promptestates.com/en/developers/damac/): DAMAC is a Dubai developer in the premium segment: DAMAC Hills, DAMAC Lagoons, branded residences. What it builds and what to check before buying.
+- [Nakheel](https://promptestates.com/en/developers/nakheel/): Nakheel created Palm Jumeirah and Jumeirah Village Circle and is developing Dubai Islands and Palm Jebel Ali. What it builds and what to check before buying.
+- [Sobha Realty](https://promptestates.com/en/developers/sobha/): Sobha Realty is an upper-segment developer: the Sobha Hartland community in Dubai, in-house construction and attention to finish. What to check before buying.
+- [Meraas](https://promptestates.com/en/developers/meraas/): Meraas created Bluewaters Island, City Walk and La Mer and is part of Dubai Holding. What it builds, in which segment and what to check before buying.
+- [Binghatti](https://promptestates.com/en/developers/binghatti/): Binghatti is a Dubai developer known for distinctive facades and branded towers: Bugatti, Mercedes-Benz, Jacob & Co. What to check before buying.
+- [Danube Properties](https://promptestates.com/en/developers/danube/): Danube Properties is an affordable-segment developer in Dubai, known for a payment plan with 1% monthly instalments. What it builds and what to check.
+- [Aldar Properties](https://promptestates.com/en/developers/aldar/): Aldar is Abu Dhabi’s largest developer: Yas Island and Saadiyat Island, and it now builds in Dubai too. What it builds and what to check before buying.
+- [Imtiaz Developments](https://promptestates.com/en/developers/imtiaz/): Imtiaz Developments builds residential projects in JVC, Al Furjan, Dubai Islands and Meydan. What it is known for, what it builds and what to check.
+- [Iman Developers](https://promptestates.com/en/developers/iman/): Iman Developers builds mid-rise residential buildings in JVC, Arjan and Motor City. The Oxford series, delivery record and what to check before buying.
+- [Ellington Properties](https://promptestates.com/en/developers/ellington/): Ellington Properties is a design-led Dubai developer in JVC, Palm Jumeirah, MBR City and Dubai Hills. What it is known for, what it builds and what to check.
+- [Azizi Developments](https://promptestates.com/en/developers/azizi/): Azizi Developments is one of Dubai's largest private developers: Riviera in Meydan, Azizi Venice in Dubai South, Burj Azizi. What to check before buying.
+- [Samana Developers](https://promptestates.com/en/developers/samana/): Samana Developers is a Dubai developer known for apartments with private balcony pools: Arjan, JVC, Dubailand, Dubai South. What to check before buying.
+- [Select Group](https://promptestates.com/en/developers/select-group/): Select Group develops premium waterfront projects in Dubai: Marina Gate in Dubai Marina and Peninsula in Business Bay. What to check before buying.
+- [Omniyat](https://promptestates.com/en/developers/omniyat/): Omniyat is an ultra-luxury Dubai developer: The Opus by Zaha Hadid, One at Palm Jumeirah, Dorchester Collection residences. What it builds and for whom.
+- [Object 1](https://promptestates.com/en/developers/object-1/): Object 1 builds residential projects in JVC, JVT, Dubai Sports City and Jebel Ali. The 1Wood, V1TER and Elaris projects and what to check before buying.
+
+## Dubai off-plan market data (Dubai Land Department, sales over the 12 months to 2026-10-03)
+
+Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: Real Estate Transactions and Projects registry). Medians of registered sales, not advertised prices. Full table: https://promptestates.com/en/guide/dubai-market-data/ · CSV: https://promptestates.com/data/dubai-districts-dld.csv
+
+- Al Furjan: median AED 15,201/m² over 12 months; change since 2023: +42%; median studio AED 555,000, 1-bed AED 1,107,000, 2-bed AED 1,728,000; off-plan share of sales 51%; projects under construction 49, of which past planned handover 12
+- Jumeirah Village Circle (JVC): median AED 16,223/m² over 12 months; change since 2023: +20%; median studio AED 710,000, 1-bed AED 1,103,000, 2-bed AED 1,663,000; off-plan share of sales 61%; projects under construction 167, of which past planned handover 70
+- Arjan: median AED 16,968/m² over 12 months; change since 2023: +37%; median studio AED 727,000, 1-bed AED 1,179,000, 2-bed AED 1,678,000; off-plan share of sales 64%; projects under construction 39, of which past planned handover 19
+- Dubai South: median AED 17,499/m² over 12 months; change since 2023: +60%; median studio AED 648,000, 1-bed AED 1,150,000, 2-bed AED 1,676,000; off-plan share of sales 91%; projects under construction 105, of which past planned handover 22
+- Jumeirah Village Triangle (JVT): median AED 17,979/m² over 12 months; change since 2023: +25%; median studio AED 780,000, 1-bed AED 1,245,000, 2-bed AED 1,717,000; off-plan share of sales 85%; projects under construction 40, of which past planned handover 9
+- DAMAC Hills: median AED 18,297/m² over 12 months; change since 2023: +14%; median studio AED 610,000, 1-bed AED 1,243,000, 2-bed AED 2,008,000; off-plan share of sales 51%; projects under construction 9, of which past planned handover 3
+- MBR City & Meydan: median AED 21,337/m² over 12 months; change since 2023: +0%; median studio AED 800,000, 1-bed AED 1,402,000, 2-bed AED 2,365,000; off-plan share of sales 35%; projects under construction 43, of which past planned handover 12
+- Dubai Marina: median AED 21,648/m² over 12 months; change since 2023: +32%; median studio AED 915,000, 1-bed AED 1,680,000, 2-bed AED 2,550,000; off-plan share of sales 7%; projects under construction 14, of which past planned handover 6
+- Dubai Hills Estate: median AED 25,769/m² over 12 months; change since 2023: +13%; median studio AED 970,000, 1-bed AED 1,730,000, 2-bed AED 2,690,000; off-plan share of sales 52%; projects under construction 34, of which past planned handover 6
+- Business Bay: median AED 26,838/m² over 12 months; change since 2023: +19%; median studio AED 1,123,000, 1-bed AED 2,000,000, 2-bed AED 3,093,000; off-plan share of sales 54%; projects under construction 53, of which past planned handover 19
+- Dubai Creek Harbour: median AED 27,692/m² over 12 months; change since 2023: +24%; median 1-bed AED 1,960,000, 2-bed AED 3,180,000; off-plan share of sales 67%; projects under construction 17, of which past planned handover 1
+- Dubai Islands: median AED 29,520/m² over 12 months; change since 2023: +18%; median studio AED 1,160,000, 1-bed AED 2,348,000, 2-bed AED 3,499,000; off-plan share of sales 97%; projects under construction 103, of which past planned handover 15
+- Downtown Dubai: median AED 33,742/m² over 12 months; change since 2023: +4%; median studio AED 1,780,000, 1-bed AED 2,350,000, 2-bed AED 3,900,000; off-plan share of sales 37%; projects under construction 21, of which past planned handover 7
+- Palm Jumeirah: median AED 36,916/m² over 12 months; change since 2023: +28%; median studio AED 1,372,000, 1-bed AED 3,510,000, 2-bed AED 5,809,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
+
+## Key rules for buyers (checked 2026-10-09)
+- Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
+- Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
+- 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).
+- Retirement visa (age 55+): property worth AED 1 million or more, among other options.
+- Off-plan payments go to a project escrow account regulated by RERA/DLD; the developer receives funds as construction progresses.
+
+## How to cite
+"PromptEstates, based on Dubai Land Department data" with a link to the page used. Analytics are informational and not investment advice.
+
+## Pricing (pre-launch founder offer, AED, one-time payment, no auto-renewal)
+
+- Search — 3 months: AED 299 (AED 447 after launch). Includes: AI search across UAE off-plan projects; Price per sq ft, area trends, rental yield; Developer check; 10 PDF project reports.
+- Investor — 12 months: AED 899 (AED 1,788 after launch). Includes: Everything in Search; Unlimited PDF reports; Alerts on new launches and price drops; First-wave access.
+- Founder — lifetime: AED 2,499. Includes: Everything in Investor — forever; All future features at no extra cost; Direct line to the team; A say in the product roadmap.
+
+Full refund any time before launch and for 14 days after — no questions asked. Details: https://promptestates.com/en/#pricing
+
+## FAQ (English)
+
+> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+
+### What is PromptEstates?
+PromptEstates is an AI service for finding off-plan property in the UAE. You describe what you want in plain words, and the AI matches developer projects and shows market analytics for each one: price per m², area trends, rental yield forecast and payment plan.
+
+### How many properties does PromptEstates cover?
+Off-plan projects from UAE developers, with prices, payment plans and developer information. The catalogue is built on Dubai Land Department open data and grows every week.
+
+### Which cities and emirates does it cover?
+Dubai, Abu Dhabi and other UAE emirates. You can search by a specific area — such as Dubai Marina, Business Bay or JVC — or simply describe what matters: waterfront, near the metro, for rental.
+
+### How does the AI choose projects?
+The AI matches your budget, area, handover date and goal — to live in or to rent out — against developer projects, area price per m², handover schedules and rental demand, then explains why each option made the shortlist.
+
+### How much will the service cost?
+Joining the waitlist is free. After launch it is a subscription: Search for 3 months, Investor for 12 months or Founder for life. Until launch founder pricing applies — up to 50% below the regular price (e.g. AED 899 a year instead of AED 1,788) with a full refund guarantee.
+
+### Is the analytics investment advice?
+No. PromptEstates analytics and forecasts are for information only and help you compare projects; they do not constitute investment advice.
+
+### What is off-plan property?
+Off-plan means buying a home from the developer before construction is finished. Payment usually follows a plan: a share on booking, a share during construction and the rest on handover or after it (post-handover). In Dubai, buyers’ payments for such projects go into the project’s escrow account.
+
+### What is the DLD fee when buying property in Dubai?
+It is the Dubai Land Department registration fee — 4% of the property price. PromptEstates includes it in the payment plan total, so you compare projects on the full cost rather than the advertised price.
+
+### Can buying property in the UAE get me a Golden Visa?
+Yes: property worth AED 2M+ by DLD valuation qualifies for the Golden Visa — including off-plan from an approved developer or a mortgaged home with a bank NOC. On a smaller budget there is the 2-year investor visa: since April 2026 a sole owner of a completed Dubai home faces no minimum value. PromptEstates project cards carry a Gold visa mark.
+
+### Which languages does PromptEstates support?
+The app interface is available in 10 languages: English, Russian, Arabic, Chinese, French, Turkish, Hindi, Italian, German and Spanish. This website is available in 11 languages.
+
+### Why pay before launch?
+Founder pricing is only available until launch: up to 50% below the regular price, and the Founder plan gives lifetime access for a single payment. There are 100 seats and it won’t be offered after launch.
+
+### What if the product isn’t right for me?
+We refund in full any time before launch and within 14 days after — just write to us. There is no auto-renewal.
+
+## Вопросы и ответы (Русский)
+
+> ИИ-поиск новостроек в Дубае и ОАЭ: подбор off-plan проектов по запросу, цена за м², доходность аренды, проверка застройщика. Ранний доступ.
+
+### Что такое PromptEstates?
+PromptEstates — это ИИ-сервис для поиска новостроек (off-plan недвижимости) в ОАЭ. Вы описываете запрос обычными словами, а ИИ подбирает проекты застройщиков и показывает аналитику рынка по каждому: цену за м², динамику района, прогноз доходности аренды и план платежей.
+
+### Сколько объектов в базе PromptEstates?
+Новостройки застройщиков ОАЭ с ценами, планами платежей и сведениями о застройщиках. Основа каталога — открытые данные Dubai Land Department, он пополняется каждую неделю.
+
+### Какие города и эмираты охватывает сервис?
+Дубай, Абу-Даби и другие эмираты ОАЭ. Можно искать по конкретному району — например, Dubai Marina, Business Bay или JVC — или просто описать, что важно: у воды, рядом с метро, под аренду.
+
+### Как ИИ подбирает проекты?
+ИИ сопоставляет ваш бюджет, район, срок сдачи и цель покупки — жить или сдавать — с проектами застройщиков, ценами за м² в районе, сроками сдачи и спросом на аренду, а затем объясняет, почему каждый вариант попал в подборку.
+
+### Сколько будет стоить сервис?
+Запись в лист ожидания бесплатная. После запуска — подписка: «Поиск» на 3 месяца, «Инвестор» на 12 месяцев или «Основатель» навсегда. До запуска действует цена основателя — до 50% ниже обычной (например, 899 AED за год вместо 1 788 AED) с полным возвратом.
+
+### Является ли аналитика инвестиционной рекомендацией?
+Нет. Аналитика и прогнозы PromptEstates носят информационный характер и помогают сравнивать проекты, но не являются инвестиционной рекомендацией.
+
+### Что такое off-plan недвижимость?
+Off-plan — это покупка квартиры у застройщика до завершения строительства. Обычно оплата идёт по плану платежей: часть при бронировании, часть во время стройки и остаток при сдаче или после неё (post-handover). В Дубае деньги покупателей по таким проектам поступают на эскроу-счёт проекта.
+
+### Что такое сбор DLD при покупке недвижимости в Дубае?
+Это регистрационный сбор Dubai Land Department — 4% от стоимости объекта. PromptEstates включает его в итоговую стоимость плана платежей, чтобы вы сравнивали проекты по полной цене, а не по цене из рекламы.
+
+### Можно ли получить Golden Visa при покупке недвижимости в ОАЭ?
+Да: недвижимость от 2 млн AED по оценке DLD даёт право на Golden Visa — в том числе новостройка у одобренного застройщика или объект в ипотеке с NOC банка. Если бюджет меньше, есть виза инвестора на 2 года: с апреля 2026 года для единственного владельца готовой квартиры в Дубае минимальной стоимости нет. В карточках PromptEstates есть отметка Gold visa.
+
+### На каких языках работает PromptEstates?
+Интерфейс приложения доступен на 10 языках: английском, русском, арабском, китайском, французском, турецком, хинди, итальянском, немецком и испанском. Этот сайт доступен на 11 языках.
+
+### Зачем платить до запуска?
+Цена основателя действует только до запуска: до 50% ниже обычной, а тариф «Основатель» — бессрочный доступ за один платёж. Это 100 мест, после запуска его не будет.
+
+### Что если продукт мне не подойдёт?
+Вернём деньги полностью в любой момент до запуска и в течение 14 дней после — достаточно написать нам. Автопродления нет.
+
+## الأسئلة الشائعة (العربية)
+
+> بحث ذكي عن عقارات دبي والإمارات قيد الإنشاء: مشاريع مطابقة لطلبك، سعر المتر، العائد الإيجاري والتحقق من المطوّر. سجّل للوصول المبكر.
+
+### ما هو PromptEstates؟
+PromptEstates خدمة تعتمد على الذكاء الاصطناعي للبحث عن العقارات قيد الإنشاء في الإمارات. تصف ما تريده بكلمات بسيطة، فيختار الذكاء الاصطناعي مشاريع المطوّرين ويعرض تحليلات السوق لكل منها: سعر المتر المربع، اتجاهات المنطقة، توقع العائد الإيجاري وخطة الدفع.
+
+### كم عدد العقارات في PromptEstates؟
+مشاريع قيد الإنشاء من مطوّري الإمارات مع الأسعار وخطط الدفع ومعلومات المطوّرين. يعتمد الكتالوج على البيانات المفتوحة لدائرة الأراضي والأملاك في دبي ويتوسع كل أسبوع.
+
+### ما المدن والإمارات التي تغطيها الخدمة؟
+دبي وأبوظبي وسائر إمارات الدولة. يمكنك البحث حسب منطقة محددة مثل دبي مارينا أو الخليج التجاري أو قرية جميرا الدائرية، أو ببساطة وصف ما يهمك: على الواجهة المائية، قرب المترو، للإيجار.
+
+### كيف يختار الذكاء الاصطناعي المشاريع؟
+يطابق الذكاء الاصطناعي ميزانيتك والمنطقة وموعد التسليم وهدف الشراء — للسكن أو للإيجار — مع مشاريع المطوّرين وأسعار المتر في المنطقة ومواعيد التسليم والطلب على الإيجار، ثم يشرح سبب اختيار كل خيار.
+
+### كم ستكلف الخدمة؟
+التسجيل في قائمة الانتظار مجاني. بعد الإطلاق تعمل الخدمة باشتراك: «بحث» لمدة 3 أشهر، أو «مستثمر» لمدة 12 شهرًا، أو «مؤسس» مدى الحياة. وحتى الإطلاق يسري سعر المؤسسين — أقل بنسبة تصل إلى 50% (مثل 899 درهمًا للسنة بدل 1,788 درهمًا) مع ضمان استرداد كامل.
+
+### هل تُعد التحليلات نصيحة استثمارية؟
+لا. تحليلات وتوقعات PromptEstates لأغراض إعلامية فقط وتساعدك على مقارنة المشاريع، لكنها لا تُعد نصيحة استثمارية.
+
+### ما هي العقارات قيد الإنشاء (Off-plan)؟
+الشراء على المخطط يعني شراء وحدة من المطوّر قبل اكتمال البناء. يتم الدفع عادةً وفق خطة: جزء عند الحجز، وجزء أثناء البناء، والباقي عند التسليم أو بعده. في دبي تُودَع دفعات المشترين في حساب ضمان خاص بالمشروع.
+
+### ما هي رسوم دائرة الأراضي والأملاك عند الشراء في دبي؟
+هي رسوم تسجيل دائرة الأراضي والأملاك في دبي بنسبة 4% من سعر العقار. يضيفها PromptEstates إلى إجمالي خطة الدفع لتقارن المشاريع بالتكلفة الكاملة لا بالسعر المعلن.
+
+### هل يمكن الحصول على الإقامة الذهبية عند شراء عقار في الإمارات؟
+نعم: العقار بقيمة مليوني درهم فأكثر وفق تقييم دائرة الأراضي يؤهل للإقامة الذهبية، بما في ذلك العقار قيد الإنشاء من مطوّر معتمد أو العقار المرهون بشهادة عدم ممانعة من البنك. وبميزانية أصغر توجد تأشيرة المستثمر لمدة سنتين: منذ أبريل 2026 لا حد أدنى للقيمة لمالك وحيد لعقار جاهز في دبي. تحمل بطاقات PromptEstates علامة Gold visa.
+
+### ما اللغات التي يدعمها PromptEstates؟
+واجهة التطبيق متاحة بعشر لغات: الإنجليزية والروسية والعربية والصينية والفرنسية والتركية والهندية والإيطالية والألمانية والإسبانية. هذا الموقع متاح بـ 11 لغة.
+
+### لماذا أدفع قبل الإطلاق؟
+سعر المؤسسين متاح حتى الإطلاق فقط: أقل بنسبة تصل إلى 50% من السعر العادي، وباقة «مؤسس» تمنح وصولًا مدى الحياة بدفعة واحدة. عددها 100 مقعد ولن تُعرض بعد الإطلاق.
+
+### ماذا لو لم يناسبني المنتج؟
+نعيد المبلغ كاملًا في أي وقت قبل الإطلاق وخلال 14 يومًا بعده — يكفي أن تراسلنا. لا يوجد تجديد تلقائي.
+
+
+
+# Full text of the guides
+
+
+## What is off-plan property in Dubai
+
+URL: https://promptestates.com/en/guide/off-plan/
+
+Off-plan means buying an apartment or villa directly from the developer while the project is still being built. Most new homes in Dubai are sold this way.
+
+- You pay by a payment plan: a share on booking, a share during construction and the rest on handover or after it.
+
+- Buyers’ money goes into the project’s escrow account, not to the developer’s own account.
+
+- The sale is registered with the Dubai Land Department (the Oqood system).
+
+- The main risks are delays and the developer’s reliability.
+
+### How the purchase works
+You choose a project and a unit, pay the booking amount and sign the sale and purchase agreement (SPA). You then pay according to a schedule tied to dates or construction milestones. On completion the developer hands over the keys and the title is registered with the DLD.
+
+### How buyers’ money is protected
+In Dubai a developer must open an escrow account for each project. Buyers’ payments go into it and are spent on building that project under the supervision of the regulator, RERA. The sale of an unfinished unit is recorded in the Oqood register.
+
+### Benefits and risks
+Benefits: the launch price is usually lower than for ready property, and payments are spread over time. Risks: handover can slip, and the finished home may differ from the renders. So check the developer’s track record and compare the price with the area market before you buy.
+
+### Timeline: from booking to keys
+Usually two to four years pass between launch and handover, depending on the size of the project. The handover date is stated in the contract; find out in advance what it provides for in case of delays.
+
+### Can you sell before handover?
+In many projects you can resell the unit before completion once a certain share of the price has been paid. The developer sets the assignment terms — read them in the contract before you buy.
+
+Q: How much money do you need up front?
+A: Typically the booking is 10–20% of the price plus the 4% DLD fee. The exact amount depends on the project’s payment plan.
+
+Q: Do you need a mortgage?
+A: No. Most off-plan homes are sold on a developer payment plan paid during construction and after handover.
+
+Q: What if handover is delayed?
+A: It depends on the contract. Buyers’ money sits in the project escrow account under RERA supervision, which reduces the risk.
+
+## The DLD fee when buying property in Dubai
+
+URL: https://promptestates.com/en/guide/dld-fee/
+
+The DLD fee is the registration fee charged by the Dubai Land Department. It is 4% of the property price and is paid when the sale is registered.
+
+- The rate is 4% of the purchase price.
+
+- It is usually paid by the buyer.
+
+- Small administrative registration charges apply on top.
+
+- Developers sometimes cover the fee as part of a promotion.
+
+### When and how it is paid
+For off-plan purchases the fee is usually paid up front — with the booking or the first instalment, when the sale is registered in the Oqood system. For ready property it is paid on the day the title is transferred.
+
+### A worked example
+An apartment costs AED 2,150,000. The DLD fee is AED 86,000, so the full cost including the fee is AED 2,236,000, before administrative charges. That is the figure to compare between projects.
+
+### What else to budget for
+Administrative registration charges are added to the price, and after handover there are annual service charges for maintaining the building. These vary by project, so check them before you buy.
+
+### The DLD fee on off-plan purchases
+For property under construction the sale is registered in the Oqood system, and the 4% fee is usually paid at that stage, with the first instalments. Some developers let you spread it or cover it themselves as a promotion.
+
+### How the fee affects yield
+The fee increases the amount invested, so rental yield is calculated on the full cost including it. For a home at AED 2,000,000 that is an extra AED 80,000.
+
+Q: Can you avoid paying the DLD fee?
+A: The fee is mandatory when the sale is registered. Sometimes the developer pays it as a promotion — make sure that is written into the contract.
+
+Q: Who receives the fee?
+A: The Dubai Land Department, the government body that registers property rights in Dubai.
+
+Q: Is the fee refunded on resale?
+A: No, it is a one-off registration fee. On the next sale the new buyer pays their own fee.
+
+## UAE Golden Visa through property
+
+URL: https://promptestates.com/en/guide/golden-visa/
+
+The Golden Visa is a long-term UAE residence visa with no local sponsor. You can get it by owning property worth at least AED 2 million. Below are the current 2026 conditions and a step-by-step application guide.
+
+- Threshold: property worth AED 2M+ by Land Department valuation; several properties can be combined.
+
+- Off-plan qualifies if the developer is approved and registered with DLD.
+
+- Mortgages are allowed with a NOC from a UAE bank; the AED 1M up-front payment rule no longer applies.
+
+- A long-term visa — for property investors usually 10 years — and renewable.
+
+### Who can apply
+Owners of one or more properties in the UAE with a combined value of at least AED 2 million. What counts is not the contract price but the value on the Dubai Land Department (DLD) valuation certificate at the time of application. The property must be registered in the applicant's name.
+
+### Off-plan property
+Properties under construction qualify if bought from a developer approved and registered with DLD and valued at AED 2 million or more. The application includes the Oqood contract and proof of payments or a developer statement.
+
+### Mortgages
+The property may be mortgaged, but only with a bank operating in the UAE, which issues a no-objection certificate (NOC). Dubai used to require at least AED 1 million or half of the price paid up front — as of 2026 this requirement has been removed; the property simply needs to be valued at AED 2 million or more.
+
+### Family and residence
+You can include your spouse and children. The Golden Visa does not require living in the UAE: it stays valid even if you are abroad longer than the usual six months.
+
+### How to apply: step by step
+1. Get the valuation certificate and ownership documents from DLD (for off-plan — Oqood and a developer statement; for a mortgage — the bank NOC). 2. Apply through DLD services (Cube centres) or through ICP and GDRFA. 3. Pass the medical test and get health insurance. 4. Complete biometrics and receive the visa and Emirates ID.
+
+### If you sell the property
+The visa is based on owning property worth AED 2 million. If after a sale the remaining property falls below the threshold, the basis for the visa no longer applies — check the consequences and deadlines with ICP.
+
+### Golden Visa or the 2-year visa
+If your budget is below AED 2 million or you own a completed home, look at the 2-year investor visa: since 2026 it has no minimum property value for a sole owner. See the article on the 2-year visa.
+
+### What it costs to apply
+Government fees depend on the emirate, the application channel and your family, plus the medical test, insurance and Emirates ID. Check current amounts in DLD, ICP or GDRFA services when you apply.
+
+### Valuation in other emirates
+The AED 2 million threshold is checked against the official valuation of the land department of the emirate where the property is: the DLD in Dubai, ADREC in Abu Dhabi, and the local real estate departments in Sharjah, Ajman, Ras Al Khaimah and Umm Al Quwain. If you own property in several emirates, each one is valued separately. Check the documents and valuation procedure with the emirate's department before applying.
+
+Q: Can several properties be combined?
+A: Yes. The combined DLD-assessed value of the property you own counts.
+
+Q: Does an apartment under construction qualify?
+A: Yes, if the developer is approved and registered with DLD and the property is valued at AED 2 million or more.
+
+Q: Can I buy with a mortgage?
+A: Yes, through a UAE bank, which issues a NOC. The AED 1M up-front payment rule no longer applies.
+
+Q: Do I have to live in the UAE?
+A: No. The Golden Visa stays valid even if you are abroad for more than six months.
+
+Q: Who can I include?
+A: Your spouse and children. Each family member takes a medical test and gets an Emirates ID.
+
+## Payment plans for off-plan property in Dubai
+
+URL: https://promptestates.com/en/guide/payment-plans/
+
+Off-plan property in Dubai is usually sold on a developer payment plan, typically interest-free. The schedule of instalments is called the payment plan.
+
+- 60/40 means 60% during construction and 40% on handover.
+
+- The booking is the first payment, usually 10–20% of the price.
+
+- Post-handover means part of the price is paid after you get the keys.
+
+- The 4% DLD fee is added to any plan.
+
+### How to read a plan
+The first number is the share you pay before handover; the second is paid on handover or after it. Instalments are tied either to dates or to construction milestones.
+
+### Post-handover plans
+With a post-handover plan part of the price is paid over several years after you receive the keys. This eases the burden: you can already rent the home out and pay from the income. Such units are sometimes priced higher.
+
+### How to compare plans
+Look beyond the ratio to the totals: the full cost with the DLD fee, the size of the first payment and the amount due before handover. Two projects at the same price can need very different money in the first year.
+
+### Date-based and milestone-based plans
+In some projects instalments follow the calendar — for example, once a quarter. In others they follow construction stages: foundations, structure, finishing. In that case payments move if construction slows down.
+
+### A 60/40 example
+A home at AED 1,500,000 on a 60/40 plan: AED 900,000 is paid during construction, including AED 150,000 (10%) on booking; AED 600,000 on handover. Plus the AED 60,000 DLD fee up front.
+
+Q: Is interest charged?
+A: Usually not: developer payment plans are interest-free. The terms are fixed in the contract.
+
+Q: What if you miss a payment?
+A: The consequences — penalties or termination — are set out in the contract and governed by Dubai law. Read the late-payment section before signing.
+
+Q: Can you pay off early?
+A: Often yes, sometimes with a discount. Check with the developer.
+
+## How to check a developer in Dubai
+
+URL: https://promptestates.com/en/guide/check-developer/
+
+When you buy a home that is still being built, you trust the developer with your money for years ahead. Here is what to check before you book.
+
+- The project and the developer must be registered with RERA.
+
+- The project must have an escrow account.
+
+- Look at how many projects the developer has delivered, and whether on time.
+
+- Construction status can be checked through Dubai Land Department services.
+
+### Registration and escrow
+Unfinished homes in Dubai can only be sold in projects registered with the regulator, RERA. Each such project has an escrow account that receives buyers’ payments. Ask for the project registration number and the escrow account details.
+
+### Delivery record
+Find out which projects the developer has completed and how far actual dates slipped from the promised ones. Small delays are not unusual in this market, but repeated ones are a warning sign.
+
+### Construction status
+The Dubai Land Department publishes project and construction-progress information in the Dubai REST app. Compare the stated completion percentage with the official data.
+
+### Red flags
+Be wary of pressure to book “today only”, refusal to show the project registration, requests to pay anywhere other than the escrow account, and promises of guaranteed returns without documents.
+
+### Where to look at the track record
+Beyond official DLD services, visit the developer’s completed buildings, read owners’ reviews and compare promised dates with actual ones.
+
+Q: How do you find the project registration number?
+A: Ask the developer or broker for it and check it in Dubai Land Department services.
+
+Q: Who should receive the booking payment?
+A: Only the project escrow account or the developer’s official channels — never cash or personal accounts.
+
+Q: Does a big developer mean no risk?
+A: No. Even large companies’ projects differ in timelines and terms, so each project is checked on its own.
+
+## Off-plan vs ready property in Dubai
+
+URL: https://promptestates.com/en/guide/off-plan-vs-ready/
+
+You can buy a home in Dubai from the developer before completion, or one that is already built. Each option has its own advantages.
+
+- Off-plan: a lower launch price and a developer payment plan.
+
+- Ready property: you can move in or rent it out straight away.
+
+- Off-plan carries the risk of delays.
+
+- Ready property usually needs the full amount or a mortgage.
+
+### When to choose off-plan
+When a bank-free payment plan and a price below the ready market matter to you, and you are willing to wait for handover. It suits people buying for the future.
+
+### When to choose ready property
+When you need a home now or want rental income straight away. You can view the property and judge the yield from actual rents.
+
+### How to compare fairly
+Work out the full cost with the DLD fee and compare price per m² with the area. For off-plan, factor in the waiting time during which the home earns nothing.
+
+### How the financial load is spread
+With off-plan you pay gradually: the booking, then instalments on a schedule. Ready property is usually paid for at once — from your own funds or with a mortgage where the bank finances part of the price.
+
+### Income and timing
+A ready home earns from the first month of renting. An off-plan home only starts earning after handover; by then its market price may have risen, but there is no guarantee.
+
+Q: Which is better for investment?
+A: It depends on the goal: ready property for immediate income, off-plan for a payment plan and potential price growth. Compare full cost and yield using the same method.
+
+Q: Can you get a mortgage for off-plan?
+A: Some banks lend on property under construction, but off-plan is more often bought on a developer payment plan.
+
+Q: Which is easier to resell?
+A: Ready property sells more easily; reselling off-plan before handover is possible on the developer’s terms.
+
+## The costs of buying an apartment in Dubai
+
+URL: https://promptestates.com/en/guide/buying-costs/
+
+The advertised price is not the whole amount. Buying a home in Dubai comes with mandatory fees and recurring charges.
+
+- The DLD fee is 4% of the price.
+
+- Administrative charges for registering the sale.
+
+- Agent commission — usually on the resale market.
+
+- Annual service charges after handover.
+
+### One-off costs
+The main one is the Dubai Land Department fee, 4% of the price. Administrative registration charges are added to it. When buying ready property through an agent a commission is usually paid; when buying from the developer there is most often none.
+
+### Recurring costs
+The owner pays an annual service charge for maintaining the building and grounds. It depends on the project and is calculated from the area of the home.
+
+### If you buy with a mortgage
+Add the mortgage registration fee, a property valuation and bank charges. Check them with the bank in advance.
+
+### A full-cost example
+An apartment at AED 1,800,000: the DLD fee is AED 72,000, plus administrative charges. That makes about AED 1,872,000 before service charges.
+
+### Running costs
+Besides the service charge, the owner pays for utilities. If the home is let through a management company, its fee is added too.
+
+Q: Who pays the agent’s commission?
+A: On the resale market usually the buyer; when buying from the developer, the developer usually pays it.
+
+Q: Is there a property tax in Dubai?
+A: There is no annual tax on owning a home. There is a municipality fee charged through utility bills.
+
+Q: Is rental income taxed?
+A: The UAE currently has no personal income tax on rental income. Check how such income is taxed in your country of tax residence.
+
+## Can foreigners buy property in Dubai?
+
+URL: https://promptestates.com/en/guide/foreign-ownership/
+
+Yes. Foreign nationals can buy homes in Dubai with full ownership in designated districts known as freehold areas.
+
+- Ownership is registered in freehold areas.
+
+- No residency or visa is needed to buy.
+
+- Ownership is registered by the Dubai Land Department.
+
+- As a rule the purchase can be completed remotely by power of attorney.
+
+### What freehold means
+These are areas where foreigners may own property with no time limit. They include Dubai Marina, Downtown Dubai, Business Bay, Palm Jumeirah, JVC, Dubai Hills Estate and many others.
+
+### What documents you need
+A valid passport is enough to buy. Once a ready property is fully paid for, the owner receives a Title Deed; a sale of property under construction is registered in the Oqood system.
+
+### What ownership gives you
+You can rent the property out, sell it or pass it on by inheritance. Owning a home above a certain value makes you eligible to apply for a residence visa.
+
+### Can you buy remotely?
+Yes, many buyers complete the deal remotely: the booking and contract are signed electronically, and a power of attorney can be issued for registration.
+
+### Costs for foreigners
+Terms are the same for foreigners and UAE nationals: the 4% DLD fee and registration charges. There is no separate purchase tax for foreigners.
+
+Q: Can you buy through a company?
+A: Yes, in freehold areas property can be registered to a company; the document requirements are higher.
+
+Q: Does buying give you a visa?
+A: Owning property above a certain value lets you apply for a visa, including the Golden Visa from AED 2 million.
+
+Q: Do you need a UAE bank account?
+A: Not to buy, but it is convenient for payments and receiving rental income.
+
+## Rental yield in Dubai: how to calculate it
+
+URL: https://promptestates.com/en/guide/rental-yield/
+
+Rental yield shows what share of a home’s price you earn each year by renting it out. Work it out before you buy.
+
+- Gross yield = annual rent ÷ purchase price.
+
+- Net yield accounts for service charges and vacancy.
+
+- Compare projects using the same method.
+
+- The result depends on the area, home type and rental format.
+
+### The formula and an example
+An apartment costs AED 2,000,000 and rents for AED 130,000 a year. Gross yield: 130,000 ÷ 2,000,000 = 6.5%. If service charges and upkeep take AED 25,000 a year, net yield is 105,000 ÷ 2,000,000 = 5.25%.
+
+### What to include
+Add the 4% DLD fee to the purchase price: at AED 2,000,000 the full cost is AED 2,080,000, and the yield is slightly lower. Also allow for periods when the home sits empty between tenants.
+
+### What yield depends on
+The area, the type and size of the home, and the format: long-term lets are steadier, while short-term lets can earn more but need managing.
+
+### Long-term and short-term lets
+Long-term lets give steady income and less hassle. Short-term (holiday) lets can earn more but need a permit, management and allowance for seasonality.
+
+### How to check rents
+The Dubai Land Department publishes a rental index by area. Check any forecast against it before relying on a seller’s promises.
+
+Q: What counts as a good yield?
+A: There is no absolute benchmark. Compare a project’s yield with the area average and with alternative investments.
+
+Q: Should you factor in a mortgage?
+A: Yes, if you buy with a loan: interest reduces net income. In that case yield is calculated on the equity you put in.
+
+Q: Does yield grow over time?
+A: It depends on rents and prices: if rents grow faster than the price, the yield rises.
+
+## The 2-year investor visa through Dubai property
+
+URL: https://promptestates.com/en/guide/property-visa/
+
+If you own a completed home in Dubai, it can be the basis for a 2-year UAE residence visa. In April 2026 the Dubai Land Department removed the AED 750,000 minimum property value for sole owners.
+
+- Sole owner: no minimum property value (previously AED 750,000).
+
+- Joint ownership: each applicant's share must be at least AED 400,000.
+
+- Completed property with a title deed only; off-plan does not qualify.
+
+- A 2-year visa, renewable while you own the property; family can be included.
+
+### What changed in 2026
+Since 2009 the 2-year investor visa in Dubai required property worth at least AED 750,000. At the end of April 2026 DLD removed this threshold for sole owners: completed residential property of any value now qualifies. For joint owners the minimum is AED 400,000 per applicant's share.
+
+### Property requirements
+The property must be in Dubai, completed and registered with the Land Department, and the applicant must hold a title deed or an electronic ownership certificate. A mortgaged home qualifies, but you will need bank documents and a no-objection certificate (NOC).
+
+### Family
+The owner can sponsor a spouse and children and, reportedly, parents for one year. Each family member takes a medical test and receives their own Emirates ID.
+
+### How to apply
+Apply through Dubai Land Department services — Cube centres and the online residence service for property owners (Taskeen). Then complete the medical test, biometrics and Emirates ID. Processing reportedly takes about 7–10 working days.
+
+### What it costs
+According to Middle East Briefing (May 2026), the principal applicant's visa fee is about AED 10,200, a spouse about AED 7,400 and a child under 18 about AED 6,500. Fees change, so check the exact amount when you apply.
+
+### 2-year visa or Golden Visa
+The 2-year visa suits owners of completed homes on a smaller budget, but it must be renewed every 2 years and requires a completed property. The Golden Visa requires property worth AED 2 million, but lasts much longer, accepts off-plan and does not tie you to living in the UAE.
+
+Q: Does an apartment under construction qualify?
+A: No. The 2-year visa requires a completed property with a title deed. You can apply after handover and registration.
+
+Q: Does an inexpensive studio qualify?
+A: Yes, if you are the sole owner: since April 2026 there is no minimum value.
+
+Q: What if the home is mortgaged?
+A: It qualifies, but you will need bank documents and a NOC.
+
+Q: How do I renew the visa?
+A: Every 2 years through DLD services, as long as you still own the property.
+
+## Dubai: the emirate's history and where to buy property
+
+URL: https://promptestates.com/en/guide/emirate-dubai/
+
+In half a century a pearl-diving settlement on Dubai Creek became one of the world's main business and tourism hubs — and the region's busiest off-plan property market.
+
+- In 1833 families of the Bani Yas tribe led by Maktoum bin Butti settled on Dubai Creek.
+
+- Oil was found in 1966, but Dubai bet on trade, logistics and tourism.
+
+- Foreigners were allowed to buy freehold homes in 2002.
+
+- The UAE's main off-plan market, with thousands of projects in the DLD registry.
+
+### History
+In 1833 several hundred members of the Al Bu Falasah (Bani Yas tribe), led by Maktoum bin Butti, moved to Dubai Creek. That was the start of the Al Maktoum dynasty that still rules today. The town lived on pearling and trade. In the 1950s and 60s Sheikh Rashid dredged the Creek for larger ships, and after oil was found in 1966 he invested the revenue in the port, airport and infrastructure. On 2 December 1971 Dubai became a founding member of the UAE.
+
+### Dubai today
+Jebel Ali port, the Emirates hub, free zones, the DIFC financial centre, tourism and real estate — oil is only a small part of the economy. The population has passed 4 million, most of them expatriates.
+
+### Where to buy
+For waterfront living and rentals — Dubai Marina, Palm Jumeirah, Dubai Islands and Dubai Creek Harbour. The business core — Downtown and Business Bay. Family areas with a lower entry price — JVC, Dubai Hills, Arjan. For long-term growth near the new Al Maktoum airport — Dubai South.
+
+### Rules for foreign buyers
+Since 2002 foreigners can buy freehold property in designated zones, and the 2006 property registration law put this on a legal footing. Buyers pay a 4% Dubai Land Department fee. A purchase of AED 2 million or more qualifies for the Golden Visa. For the 2-year investor visa there has been no minimum value since April 2026: a sole owner qualifies with a ready home at any price (previously AED 750,000).
+
+## Abu Dhabi: the capital's history and where to buy property
+
+URL: https://promptestates.com/en/guide/emirate-abu-dhabi/
+
+The largest and wealthiest emirate covers most of the country. Its market is calmer than Dubai's, and buyers favour Saadiyat, Yas and Al Reem islands.
+
+- About 87% of the UAE's territory is the emirate of Abu Dhabi.
+
+- The town was founded by the Bani Yas in the 18th century after they found fresh water on the island.
+
+- Sheikh Zayed bin Sultan Al Nahyan became the first President of the UAE.
+
+- Since 2019 foreigners can own homes outright in investment zones.
+
+### History
+According to tradition, in the 18th century Bani Yas hunters found fresh water on the island, and the ruling family soon moved there. A watchtower built to guard the well grew into Qasr Al Hosn, the city's oldest stone building. Oil was found offshore in 1958 and exports began in 1962. In 1966 Sheikh Zayed became ruler; in 1971 he united the emirates and became the UAE's first President.
+
+### Abu Dhabi today
+The national capital and home of the oil and gas companies and the largest sovereign wealth funds. Saadiyat Island has become a cultural district with the Louvre Abu Dhabi, while Yas Island has Ferrari World, Formula 1 and Warner Bros. World.
+
+### Where to buy
+Premium homes by the beaches and museums — Saadiyat Island. Entertainment and family communities — Yas Island. Central towers — Al Reem Island and Al Maryah Island. A waterfront between the city and the airport — Al Raha Beach. New projects — Al Hudayriyat Island. The largest developers are Aldar, Bloom, Imkan and Modon.
+
+### Rules for foreign buyers
+Foreigners buy in investment zones. Since 2019 full freehold ownership is allowed there; before that, long-term rights applied. Transactions are registered with the Abu Dhabi Real Estate Centre (ADREC). The Golden Visa for property of AED 2 million or more applies here too.
+
+## Sharjah: the UAE's cultural capital and where to buy
+
+URL: https://promptestates.com/en/guide/emirate-sharjah/
+
+Dubai's neighbour offers more affordable homes, museums and more traditional rules. Many people live in Sharjah and work in Dubai.
+
+- The emirate has coastlines on both the Arabian Gulf and the Gulf of Oman (Khor Fakkan, Kalba).
+
+- In 1932 one of the region's first airports opened here — the Al Mahatta fort.
+
+- UNESCO named Sharjah the Cultural Capital of the Arab World in 1998.
+
+- Home prices are noticeably lower than in neighbouring Dubai.
+
+### History
+Sharjah is ruled by the Al Qasimi dynasty, a major maritime power on the Gulf coast in the 18th and 19th centuries. In 1932 the Al Mahatta airfield opened as a stop for British airlines on the route to India — one of the first airports in the region. In 1971 the emirate became a founding member of the UAE.
+
+### Sharjah today
+A centre of culture and education: dozens of museums, University City and an international book fair. The emirate keeps strict rules — alcohol is banned, for example. Industry, ports and free zones provide jobs, and proximity to Dubai makes Sharjah popular with families.
+
+### Where to buy
+New master communities — Aljada (Arada) and Tilal City; waterfronts — Maryam Island, Al Mamsha and Sharjah Waterfront City. Payment plans with low down payments and prices below Dubai's are common here.
+
+### Rules for foreign buyers
+Historically foreigners bought in Sharjah on long-term usufruct rights. In recent years the emirate has allowed full ownership in specific approved projects — check the type of title for a given project before buying. Transactions are registered with the Sharjah Real Estate Registration Department.
+
+## Ajman: the smallest emirate and where to buy
+
+URL: https://promptestates.com/en/guide/emirate-ajman/
+
+A compact emirate half an hour from Dubai with some of the lowest prices for seaside homes in the UAE.
+
+- At about 260 km² it is the country's smallest emirate.
+
+- Ajman was famous for building traditional wooden dhows.
+
+- The Al Nuaimi ruling family has governed the emirate since the early 19th century.
+
+- Foreigners can buy freehold homes in designated zones.
+
+### History
+Ajman grew from a fishing village on the Gulf coast. For centuries people here built wooden dhows, fished and dived for pearls. The Al Nuaimi family has ruled the emirate since the early 19th century. In 1971 Ajman became a founding member of the UAE.
+
+### Ajman today
+A small economy based on trade, light industry and a free zone. Many residents work in Dubai and Sharjah and live here because of the lower cost of living.
+
+### Where to buy
+A resort area with a golf course and mangrove lagoons — Al Zorah. Seafront towers — Ajman Corniche. Affordable neighbourhoods — Emirates City and Al Yasmeen. Good for a budget buy-to-let, but the market is less liquid than Dubai's.
+
+### Rules for foreign buyers
+Foreigners can buy freehold property in designated zones. Transactions are registered with the Ajman Department of Land and Real Estate Regulation. Check the developer and escrow as carefully as in Dubai.
+
+## Umm Al Quwain: the quiet emirate of lagoons and where to buy
+
+URL: https://promptestates.com/en/guide/emirate-umm-al-quwain/
+
+The calmest and least populated emirate, with mangrove lagoons. The market is still forming, and large developers have arrived.
+
+- The Al Mualla family has ruled the emirate since the late 18th century.
+
+- The Ed-Dur archaeological site holds finds from the classical era.
+
+- Siniya Island is known for its mangrove forests and bird colony.
+
+- Sobha Realty started major projects here (Siniya Island).
+
+### History
+The town was founded in the late 18th century and the Al Mualla family has ruled the emirate since. People lived on fishing and pearling. Excavations at Ed-Dur show that a large trading port stood on this coast in classical antiquity. In 1971 the emirate joined the UAE.
+
+### Umm Al Quwain today
+A small population, fishing, light industry and weekend tourism — beaches, lagoons and a water park. The emirate is about an hour's drive from Dubai.
+
+### Where to buy
+A new resort island in the mangrove lagoons — Siniya Island. A waterfront and marina — UAQ Marina. A large master community — Al Salam City. It is a bet on the emirate's growth: prices are low, but liquidity is still limited.
+
+### Rules for foreign buyers
+Foreigners can buy in designated zones and approved projects. Check the type of title, the project's status and escrow before booking.
+
+## Ras Al Khaimah: mountains, sea and where to buy
+
+URL: https://promptestates.com/en/guide/emirate-ras-al-khaimah/
+
+The northernmost emirate, with mountains and beaches, is seeing a surge of buyer interest thanks to the Wynn resort on Al Marjan Island.
+
+- Ras Al Khaimah joined the UAE last, on 10 February 1972.
+
+- The medieval port of Julfar was the birthplace of the navigator Ahmad ibn Majid.
+
+- Jebel Jais is the UAE's highest peak, at about 1,900 m.
+
+- The country's first integrated resort, Wynn, is being built on Al Marjan Island.
+
+### History
+Julfar, a major medieval trading port, stood where the emirate is today. The famous 15th-century navigator Ahmad ibn Majid was born here. The emirate is ruled by the Al Qasimi dynasty. Ras Al Khaimah did not sign the 1971 agreement at once and joined the UAE on 10 February 1972 as the seventh emirate.
+
+### Ras Al Khaimah today
+Tourism (beaches, the Hajar mountains, the world's longest zipline on Jebel Jais), cement and ceramics production, and the RAKEZ free zone. The main driver of the property market is the Wynn Al Marjan Island resort, expected to open in 2027.
+
+### Where to buy
+A man-made archipelago with beaches and the Wynn resort — Al Marjan Island. Golf and a marina — Al Hamra Village. A lagoon waterfront — Mina Al Arab. Prices are still below Dubai's, but on Al Marjan they are rising fast.
+
+### Rules for foreign buyers
+Foreigners buy freehold property in designated zones, including Al Marjan Island, Al Hamra and Mina Al Arab. Transactions are registered with the Ras Al Khaimah Land Department. The Golden Visa for property of AED 2 million or more applies here too.
+
+## Fujairah: the Gulf of Oman emirate and where to buy
+
+URL: https://promptestates.com/en/guide/emirate-fujairah/
+
+The only emirate that lies entirely on the east coast, by the Gulf of Oman — mountains, diving and resorts far from city bustle.
+
+- Fujairah is the only emirate with no coastline on the Arabian Gulf.
+
+- Al Bidya Mosque is considered the oldest surviving mosque in the UAE.
+
+- Fujairah port is one of the world's largest ship-bunkering hubs.
+
+- The ruling family is Al Sharqi.
+
+### History
+For centuries the east coast lived on trade, fishing and farming in mountain oases. Al Bidya Mosque and Fujairah Fort are among the country's oldest buildings. Britain recognised Fujairah as a separate emirate only in 1952, and in 1971 it became a founding member of the UAE.
+
+### Fujairah today
+A strategic port outside the Strait of Hormuz, oil storage and bunkering, and tourism: Al Aqah beaches, diving off Dibba and the Hajar mountains.
+
+### Where to buy
+Resort property on the coast — Fujairah Beach and Al Aqah; quiet villas — Dibba. The market is small and mostly about holidays and seasonal rentals rather than quick resale.
+
+### Rules for foreign buyers
+Foreigners can buy in specific projects and zones. The market is less transparent than Dubai's: always check the type of title, the project's permits and the developer.
+
+## Off-plan handover delays in Dubai: what the DLD registry shows
+
+URL: https://promptestates.com/en/guide/handover-delays/
+
+We analysed the official Dubai Land Department registry: of 1,569 projects under construction, 412 (26%) are already past their planned completion date. Where it happens most and what it means for buyers.
+
+- The DLD registry lists 3,039 projects; 1,569 are under construction or not yet started.
+
+- 412 of them are past their planned completion date — 26%.
+
+- The highest shares are in Arjan (49%), Dubai Marina (43%) and JVC (42%).
+
+- The lowest are in Dubai Creek Harbour (6%), Dubai Islands (15%) and Dubai Hills (18%).
+
+### Where the data comes from
+The Dubai Land Department publishes a registry of all registered projects on Dubai's open data portal (data.dubai). For each project it lists the developer, completion percentage, planned start and end dates and the escrow bank. We used the export of 2 October 2026 and selected projects with the status active, not started or pending.
+
+### A passed date is not a failure yet
+The completion date in the registry is the planned one. A developer can agree an extension with RERA, and the registry is sometimes updated with a delay. So a passed date is a reason to ask questions, not proof of a problem. Look at the completion percentage: a project at 90% with a passed date will almost certainly hand over soon; one at 10% will not.
+
+### Areas where timelines slip more often
+Areas with many small developers — Arjan, JVC, Dubai Marina — have a higher share of projects past their date: many buildings there come from companies on their first or second project. Master communities of large developers (Emaar's Dubai Creek Harbour, Dubai Hills, Nakheel's Dubai Islands) keep to schedule noticeably better.
+
+### How to protect yourself
+Before booking, check the project in the DLD registry: status, completion percentage and escrow account. Compare the promised handover date with the planned date in the registry. Look at the developer's record: how many projects it has delivered and how late. Find the delay-compensation clause in the sales agreement (SPA).
+
+### What to do if handover is delayed
+Buyers' money sits in an escrow account and is released to the developer as construction progresses, so it does not disappear when a project is late. If a project is cancelled, Dubai law returns the funds to buyers through the escrow bank under RERA supervision. Keep all communication with the developer in writing and follow updates to the completion percentage.
+
+Q: What does 'past the planned date' mean in the DLD registry?
+A: It is the planned completion date the developer gave at registration. If it is in the past and the project is still under construction, the timeline has moved or the registry is not yet updated — ask the developer.
+
+Q: Will I get my money back if a project is cancelled?
+A: Yes: payments are held in an escrow account, and if RERA cancels the project the funds are returned to buyers through the bank.
+
+Q: How often is the data updated?
+A: The Dubai Land Department updates the registry regularly; we use the export of 2 October 2026.
+
+## Escrow accounts in Dubai: how off-plan buyers' money is protected
+
+URL: https://promptestates.com/en/guide/escrow/
+
+In Dubai, payments for an apartment under construction do not go to the developer directly: they go into an escrow account at a bank and are released in stages as the building rises. Here is how it works and what to check.
+
+- Escrow has been mandatory for all off-plan projects in Dubai since 2007 (Law No. 8).
+
+- The account is opened at a bank approved by the Dubai Land Department.
+
+- The developer is paid as certified construction progress is made.
+
+- The escrow account number must be in the contract and in the DLD registry.
+
+### What an escrow account is
+It is a separate bank account for the project into which buyers make their payments. The money is not freely available to the developer: the bank releases it only for building that project and only after the work is certified. The law protects buyers from money being diverted to other projects.
+
+### How the developer gets paid
+The developer reports construction progress, the project's consulting engineer certifies the completion percentage, and the bank then releases the matching share of funds. Part of the money is retained until completion and handover. That is why the completion percentage in the DLD registry is directly linked to how much the developer has already received.
+
+### What happens if a project is cancelled
+If a project never starts or is halted and RERA cancels it, the funds in the escrow account are returned to buyers through the bank. This is one of the main differences between Dubai and markets without such protection — but refunds can take time, so checking before you buy still matters.
+
+### How to check escrow before buying
+Ask the developer for the escrow account number and bank, and check them against the DLD registry. Pay only into the project's escrow account — never into personal or intermediary accounts. Make sure the project is registered with the DLD and has RERA approval to sell.
+
+### Escrow and the payment plan
+Payment-plan instalments (for example 10% on booking and then by construction milestones) also go into escrow. Post-handover payments after completion usually go to the developer directly, so spell them out carefully in the contract.
+
+Q: Can I pay the developer directly?
+A: Not for off-plan: by law, payments go into the project's escrow account. If you are asked to pay into any other account, that is a serious reason to stop.
+
+Q: Where can I see a project's escrow bank?
+A: In the contract and in the Dubai Land Department project registry (data.dubai or DLD Open Data).
+
+Q: Does escrow protect against handover delays?
+A: It protects the money, not the timeline. Look for delay compensation in the contract.
+
+## How to choose an off-plan property in Dubai: a 12-point checklist
+
+URL: https://promptestates.com/en/guide/off-plan-checklist/
+
+Twelve things to check before booking an apartment in a building under construction in Dubai. Save the list and run every project on your shortlist through it.
+
+- Checking takes 1–2 hours per project and saves months of trouble.
+
+- Half of the points can be checked with open DLD data.
+
+- Compare projects on the full cost, not the 'from' price.
+
+- Decide only after comparing at least three projects.
+
+### 1–3. Developer and project
+1) How many projects the developer has delivered and how late. 2) The project is registered with the DLD and has RERA approval to sell. 3) The completion percentage and planned handover date in the registry match what the seller promises.
+
+### 4–6. Money and protection
+4) The project has an escrow account and you pay only into it. 5) The sales agreement (SPA) covers delay compensation and termination terms. 6) You know what happens if you resell before handover: after what share of payments the developer allows assignment and at what fee.
+
+### 7–9. Full cost
+7) The price plus the 4% DLD fee, registration fees and agent commission. 8) The service charge per square foot per year — it affects net yield. 9) The payment plan: how much is due before handover and whether there are post-handover payments.
+
+### 10–12. Area and income
+10) How many units are being built in the area now — strong future competition for tenants pushes rents down. 11) Real rents from the DLD rental index, not the seller's forecast. 12) Price per square foot against the area average and against ready homes nearby.
+
+### How to use the checklist
+Make a table: projects in columns, the twelve points in rows. A project with three or more open questions is better put aside. A great area does not save a weak developer, and a low price does not make up for a bad payment plan.
+
+Q: How many projects should I compare?
+A: At least three in the same budget and area — that shows what price and payment plan are normal for the market.
+
+Q: What matters more: the area or the developer?
+A: For off-plan, the developer: timelines and quality depend on it. The area drives demand and rent after handover.
+
+Q: Can I check everything myself?
+A: Yes, most of it, using open DLD data and the developer's documents. PromptEstates gathers it in one card.
+
+## How to buy off-plan property in Dubai: every step from booking to keys
+
+URL: https://promptestates.com/en/guide/how-to-buy-off-plan/
+
+An off-plan purchase is not one transaction but a chain of 10 steps spread over 2–4 years. Here is each of them: what you sign, what you pay, what to check and where buyers most often go wrong.
+
+- At booking buyers usually pay 5–20% of the price plus the 4% Dubai Land Department fee.
+
+- The sales and purchase agreement (SPA) is signed within about 30 days of booking.
+
+- The deal is registered in the DLD Oqood system and every payment goes to the project escrow account.
+
+- After completion comes the snagging inspection, the final payment and the title deed.
+
+### Step 1. Budget and the full cost
+Count the full cost, not the advertised price: the unit price, the 4% DLD fee, the Oqood registration admin fee and, after handover, the title deed fee, the advance service charge and the DEWA deposit. Keep a reserve too: the balance on handover (often 30–60%) is due at once, and banks finance off-plan only to a limited extent and usually close to completion.
+
+### Step 2. Choosing and checking the project
+Make sure the project is registered with the Dubai Land Department and has an escrow account — both are visible in the Dubai REST app and the DLD project registry. Look at the developer's record: how many projects it has delivered and how late, plus the current completion percentage and the planned completion date. Compare the price per square metre with ready homes and other new projects in the area.
+
+### Step 3. Booking (EOI and reservation form)
+At launch developers often collect expressions of interest (EOI) with a refundable deposit. Once you pick a unit you sign a reservation form and pay a booking deposit — usually 5–10% or a fixed amount. A passport is enough; UAE residency is not required. Get in writing when the booking deposit is refundable.
+
+### Step 4. First instalment and the DLD fee
+Usually within a few weeks of booking you top up the first instalment of the plan (most often to 10–20% of the price) and pay the 4% DLD fee. The developer cannot register the deal in Oqood until the fee is paid. Some developers cover the fee as a promotion — this must be stated in the documents.
+
+### Step 5. The sales and purchase agreement (SPA)
+The SPA is the key document. Check the exact unit number and area (and the allowed deviation), the finishing specification, the payment plan, the handover date and grace period, compensation for delays, penalties for your late payments, and the termination and assignment terms. If something was promised verbally, ask for it in the contract or an annex.
+
+### Step 6. Oqood registration
+Once the SPA is signed and the fee paid, the developer registers the deal in the Dubai Land Department's Oqood system and you receive the Oqood certificate (Initial Contract of Sale). This is your protection: the deal sits in the government registry and the unit cannot be sold twice.
+
+### Step 7. Payments during construction
+The remaining instalments follow the schedule — by date or by construction milestone. Money goes only to the project escrow account named in the SPA, never to the developer's or agent's own account. Keep every receipt and statement: you will need them for a resale, a mortgage and the handover.
+
+### Step 8. Selling before handover (assignment)
+If your plans change, the unit can be assigned before handover. Developers usually allow this only after a set share of the price has been paid (often 30–40%) and issue a NOC for a fee. The new buyer replaces you in Oqood, and the DLD fee is paid again on the resale.
+
+### Step 9. Completion and snagging
+When the building receives its completion certificate, the developer sends a handover notice and the final payment statement. Before you sign the handover, inspect the unit yourself or with a snagging inspector: cracks, plumbing, air conditioning, windows, the area. Every defect goes on the snagging list and the developer must fix it.
+
+### Step 10. Keys and the title deed
+You pay the balance (in cash or with a mortgage), settle the service charge and connect DEWA. The developer hands over the keys and the DLD converts the Oqood record into a full title deed in your name. From then on you can rent the home out (the lease is registered in Ejari) or sell it as a ready property.
+
+Q: Can I buy off-plan without UAE residency?
+A: Yes. Foreigners buy in freehold areas with a passport; no visa or Emirates ID is needed for the purchase.
+
+Q: Can I buy off-plan remotely?
+A: Yes: booking, SPA and payments can be handled remotely, with documents signed electronically or by power of attorney. Pay only into the escrow account named in the contract.
+
+Q: What if the developer delays handover?
+A: Go by the SPA: it sets the grace period and compensation. Your money stays in the escrow account, and if a project is cancelled RERA returns it to buyers.
+
+Q: When can I resell before handover?
+A: Usually after paying 30–40% of the price and getting the developer's NOC; the assignment terms are in the SPA.
+
+## How to buy resale property in Dubai: a step-by-step guide
+
+URL: https://promptestates.com/en/guide/buying-resale/
+
+On the secondary market you buy a finished home from its owner, and the deal takes weeks, not years. Here is every step — from choosing an agent to the new title deed — and every cost on top of the price.
+
+- A cash deal usually takes 2–4 weeks; with a mortgage, 4–8 weeks.
+
+- The agreement (MOU, Form F) is signed with a 10% deposit held by the brokerage.
+
+- Before the transfer the seller gets a NOC from the developer confirming no dues are outstanding.
+
+- Ownership passes at a DLD Trustee office, and the new title deed is issued the same day.
+
+### Step 1. Budget and costs on top of the price
+Besides the price, budget for the 4% Dubai Land Department fee, the Trustee office registration fee (about AED 2,000 + VAT for properties under AED 500,000 and AED 4,000 + VAT above), the agent's commission (usually 2% + VAT), the title deed fee and, with a mortgage, mortgage registration (0.25% of the loan) and the bank valuation. Together this is usually 6–8% on top of the price.
+
+### Step 2. The agent and checking the property
+Work with a broker licensed by RERA (the BRN can be checked in Dubai REST); the listing should carry a Trakheesi permit. Ask for a copy of the seller's title deed and check the owner, unit number and area. You sign Form B with your agent; the seller signs Form A with theirs.
+
+### Step 3. Viewing, offer and negotiation
+Look at the building as well as the unit: common areas, parking, the service charge (published in the DLD service charge index) and any arrears. Ask whether the unit is tenanted: an existing lease passes to the new owner, and a tenant can only be asked to leave under the tenancy law. Offers are made in writing through the agent.
+
+### Step 4. MOU (Form F) and the 10% deposit
+Once the price is agreed, both sides sign a memorandum of understanding at the agent's office — RERA Form F. It sets the price, the transfer date, who pays which fees and the exit terms. The buyer hands over a deposit, usually 10% of the price, as a cheque to the seller; the brokerage holds it until the transfer. If the buyer walks away, the deposit usually goes to the seller; if the seller does, it is returned with compensation.
+
+### Step 5. Mortgage (if needed)
+Get a bank pre-approval before you sign the MOU. After the MOU the bank values the property and issues a final offer letter. Non-residents can usually borrow up to 50–60% of the value, residents more. If the seller has a mortgage, their bank issues a liability letter and the loan is paid off from the purchase money on transfer day.
+
+### Step 6. NOC from the developer
+The seller requests a No Objection Certificate from the developer or the management company confirming that no service charges are outstanding. The NOC fee is usually AED 500–5,000 and the certificate is valid for a limited time, so it is obtained close to the transfer date.
+
+### Step 7. Transfer at the Trustee office
+Both sides (in person or through a power of attorney) meet at a registered DLD Trustee office. The buyer brings manager's cheques: to the seller for the price (less the deposit), for the DLD fee and for the Trustee fee. The office checks the documents, the DLD registers the transfer and the new title deed in the buyer's name is issued electronically the same day.
+
+### Step 8. After the deal
+Collect the keys and access cards, move DEWA and any chiller account into your name and register with the building's management company. If you rent the home out, the new lease is registered in Ejari. Owning a home in Dubai can also qualify you for a property-based residence visa — see our visa article for the conditions.
+
+Q: How much do the fees add to the price?
+A: Usually 6–8%: the 4% DLD fee, the Trustee fee, the agent's 2% + VAT, the title deed and, with a mortgage, mortgage registration and valuation.
+
+Q: Who pays the DLD fee on a resale?
+A: By market practice the buyer does, but the parties can agree otherwise — it is recorded in the MOU (Form F).
+
+Q: Can I buy a home that has a tenant?
+A: Yes. The lease passes to the new owner; a tenant can only be asked to leave under the tenancy law, with 12 months' notice served through a notary.
+
+Q: Do I have to attend the transfer in person?
+A: No: you can act through a notarised power of attorney (POA) given to a representative in the UAE.
+
+## Freehold areas in Dubai and the UAE: where foreigners can own property
+
+URL: https://promptestates.com/en/guide/freehold-areas/
+
+A foreigner can own an apartment or villa in the UAE outright only in designated areas — freehold zones. Here are those areas in Dubai and the other emirates, and how to check a specific property.
+
+- In Dubai the areas open to foreign ownership were set by Regulation No. 3 of 2006 and have been expanded since.
+
+- Freehold is ownership with no time limit: you can rent the home out, sell it and pass it on.
+
+- Outside freehold zones foreigners can only hold long leases or usufruct rights (leasehold).
+
+- An area's status is shown on the title deed or in the Dubai Land Department registry.
+
+### Freehold vs leasehold
+Freehold is full ownership with no time limit of the apartment or villa, and in some projects of the land beneath it. Leasehold is the right to hold and use a property for a long term (usually up to 99 years), after which it returns to the landowner. For foreigners in Dubai the main format is freehold in designated areas; outside them deals are possible only as leasehold or usufruct.
+
+### Main freehold areas in Dubai
+City centre and business districts: Downtown Dubai, Business Bay, DIFC, City Walk. Waterfront: Dubai Marina, JBR, Palm Jumeirah, Bluewaters, Dubai Islands, Dubai Harbour, La Mer. New communities: Dubai Hills Estate, Dubai Creek Harbour, MBR City and Meydan, JVC, JVT, JLT, Arjan, Al Furjan, Dubai Sports City, Motor City, Town Square, Dubai South. Villa communities: Arabian Ranches, Emirates Hills, The Springs and The Meadows, DAMAC Hills, Jumeirah Golf Estates, Tilal Al Ghaf.
+
+### How to check a property is freehold
+For a ready property the ownership type is on the title deed; for one under construction, in the Oqood registration. The project and developer can be found in the Dubai REST app and the DLD project registry. If an agent offers a property outside the well-known areas, ask for written confirmation of the ownership type before paying a deposit.
+
+### Abu Dhabi
+In Abu Dhabi foreigners buy in investment zones: Saadiyat Island, Yas Island, Al Reem Island, Al Raha Beach, Al Maryah Island, Masdar City, Al Reef and others. Since 2019 these zones allow full freehold ownership, registered with the Abu Dhabi Real Estate Centre (ADREC).
+
+### Sharjah, Ajman and Ras Al Khaimah
+In Sharjah, since 2022 foreigners can own homes in specific projects approved by the emirate, such as Aljada and Maryam Island; elsewhere usufruct rights are available. Ajman has freehold areas in Al Zorah, Emirates City and several waterfront projects. In Ras Al Khaimah: Al Marjan Island, Al Hamra Village and Mina Al Arab. Umm Al Quwain and Fujairah have fewer zones — check the conditions with the emirate's land department.
+
+### What freehold ownership gives you
+The home is registered in your name; you can rent it out, sell it, mortgage it with a UAE bank and pass it on to heirs. Owning property can also qualify you for a residence visa: the two-year investor visa, or the Golden Visa for property worth AED 2 million or more. Since April 2026 the two-year visa has no minimum property value for the sole owner of a ready home.
+
+Q: Can a foreigner buy outside a freehold area?
+A: In Dubai only as a long lease or usufruct right (leasehold), not as ownership.
+
+Q: Do I need a residence visa to buy in a freehold area?
+A: No. A passport is enough, and the purchase can be completed remotely.
+
+Q: Can the home be inherited?
+A: Yes. To make sure it passes according to your wishes, register a will, for example with DIFC Wills.
+
+## UAE retirement visa: how to move to Dubai after 55
+
+URL: https://promptestates.com/en/guide/retirement-visa/
+
+The UAE issues a dedicated residence visa for retirees: five years, no employer or sponsor, renewable. Here is who qualifies, which financial condition you need to meet and how to apply.
+
+- Age 55 or over; the visa is issued for five years and can be renewed.
+
+- You need to meet one financial condition: savings, property or regular income.
+
+- Health insurance valid in the UAE is mandatory.
+
+- A spouse and children can be included.
+
+### Who it is for
+The retirement visa is for foreigners aged 55 or over who want to live in the UAE without a job or a local sponsor. It is open both to people who have worked in the UAE for years and are retiring, and to those moving from abroad. Employment is not required or expected.
+
+### Financial conditions
+Meeting one of them is enough. According to official UAE portals in 2026: property in the UAE worth at least AED 1 million, or savings of at least AED 1 million in a UAE bank, or a regular income (pension, annuity) of at least AED 20,000 a month; for people who have worked in the UAE for 15 years or more the income threshold is lower, around AED 15,000. Exact amounts and permitted combinations vary by emirate, so check with ICP or GDRFA when you apply.
+
+### Retirement visa through property
+If you choose the property route, the home must be in your name and registered with the emirate's land department; its value is confirmed by a valuation. Usually this means a ready property without an outstanding mortgage — check the requirements for your case. It suits people who plan to buy a home to live in anyway: the purchase becomes the basis for the visa.
+
+### Documents
+A passport valid for at least six months, a photo, proof of the financial condition (a bank deposit statement, the title deed and valuation, or a pension certificate and statements showing it is paid), and health insurance valid in the UAE. Documents issued abroad usually need to be attested and translated into Arabic.
+
+### How to apply
+In Dubai through GDRFA (the Retire in Dubai programme), or through ICP for the other emirates. The process is the usual one for residence visas: application and fees, an entry permit if you are not yet in the country, a medical test, biometrics and the Emirates ID. It usually takes a few weeks.
+
+### Family and renewal
+A spouse and children can be added; each has a medical test and gets their own Emirates ID. After five years the visa is renewed if the financial condition is still met. If you sell the property or your savings drop below the threshold, the basis for the visa no longer exists.
+
+### Retirement visa or Golden Visa
+If you are 55+ and your budget for a home is AED 1–2 million, the retirement visa is often simpler: the threshold is lower than the Golden Visa through property (AED 2 million and up). If you buy for more than AED 2 million, the Golden Visa gives a longer term (usually 10 years) and does not depend on age.
+
+Q: From what age is the retirement visa available?
+A: From 55. You do not need to have worked in the UAE — it is also issued to people moving from abroad.
+
+Q: Can I work on a retirement visa?
+A: It is not meant for employment. To work you need a work visa or another basis.
+
+Q: Does a mortgaged home qualify?
+A: The retirement visa usually expects a property without an outstanding mortgage — check with GDRFA or ICP for your case.
+
+Q: Do I have to live in the UAE full time?
+A: UAE residence visas other than the Golden Visa can lapse after a long absence (usually over six months), so keep an eye on the dates.
+
+## UAE visa through financial investment: fund, business and bank deposit
+
+URL: https://promptestates.com/en/guide/investment-visa-deposit/
+
+The Golden Visa can be obtained not only through property but also through financial investment — a deposit in an investment fund or capital in a UAE company. Here are the options, thresholds and documents, and how they differ from a regular bank deposit.
+
+- The investor Golden Visa is issued for 10 years for investments of AED 2 million or more.
+
+- Fund route: a deposit of at least AED 2 million in an accredited UAE investment fund.
+
+- Business route: a company or a share in one with capital of AED 2 million or more.
+
+- A regular bank deposit on its own does not give a Golden Visa, but can support a retirement visa (55+).
+
+### Which financial investments qualify
+According to the official UAE portal, the investor Golden Visa (usually for 10 years) is issued to people who have deposited at least AED 2 million in an investment fund in the UAE; who own a UAE company with capital of AED 2 million or a share in one worth that much; or who pay at least AED 250,000 a year in taxes and fees to the government. The investment must be your own money, not a loan.
+
+### Deposit in an investment fund
+This is the most 'financial' route: you place AED 2 million or more in a fund registered in the UAE and receive a letter from the fund confirming the amount and term. The fund must be accredited for Golden Visa purposes — check the list and the letter requirements with ICP or GDRFA. The money usually has to stay in the fund for the whole visa term: withdrawing below the threshold removes the basis for renewal.
+
+### Company capital
+If you set up a business in the UAE or buy a share, the basis is capital of AED 2 million or more, confirmed by the founding documents and trade licence. With several partners, each partner's share counts. This route suits entrepreneurs who plan to operate in the UAE anyway.
+
+### What about simply putting money in a bank
+A regular fixed deposit in a UAE bank does not count towards the Golden Visa on its own. But savings of AED 1 million or more in a UAE bank are one of the grounds for the five-year retirement visa if you are 55 or over. Before placing the money, ask the bank whether it issues a deposit confirmation for visa purposes and for how long the funds must be locked.
+
+### Documents and process
+A passport, photo, the fund's letter or the company documents (licence, articles, proof of capital), statements showing the source of funds, and health insurance. You apply through ICP, or GDRFA in Dubai; then come the medical test, biometrics and the Emirates ID. A spouse and children can be included.
+
+### Fund, business or property
+Investing AED 2 million or more in property gives the same Golden Visa, but the asset can be rented out for income and its value is confirmed by a DLD valuation. A fund is easier to manage, but returns and risks depend on its strategy. A business makes sense if you really operate in the UAE. If your budget is under AED 2 million, look at the two-year visa for a ready home.
+
+Q: Can I get a Golden Visa for a bank deposit?
+A: A regular bank deposit does not count on its own. You need AED 2 million in an accredited investment fund or company capital. Savings of AED 1 million in a bank qualify for the retirement visa (55+).
+
+Q: Can I invest borrowed money?
+A: No, for the investor Golden Visa the investment must be your own funds.
+
+Q: What if I withdraw money from the fund?
+A: If the investment drops below AED 2 million, the basis for the visa disappears and it cannot be renewed.
+
+Q: Can I combine a fund and property?
+A: Each basis is assessed on its own terms; whether different investments can be combined should be checked with ICP when you apply.
+
+## UAE residency through investment: all the options compared
+
+URL: https://promptestates.com/en/guide/uae-residency-options/
+
+The UAE has no single 'investor visa' — there are several programmes with different thresholds and conditions. We put them side by side: how much you need to invest, how long the visa lasts, whether off-plan counts and whether family can be included.
+
+- Two-year visa for a ready home in Dubai: since 2026 no minimum value for a sole owner.
+
+- Golden Visa through property — from AED 2 million, usually for 10 years, off-plan counts.
+
+- Golden Visa through a fund or business — investments from AED 2 million.
+
+- Retirement visa for 55+ — AED 1 million in savings or property, or a regular income.
+
+### Two-year investor visa through property
+The basis is a ready home in Dubai with a title deed. Since April 2026 there is no minimum property value for a sole owner; joint owners need at least AED 400,000 per share. Off-plan does not qualify until handover. The visa is renewed every two years while you own the property, and family can be included. Details in our article on the two-year visa.
+
+### Golden Visa through property
+The threshold is AED 2 million by the land department's valuation; several properties can be combined. Off-plan from approved developers and mortgaged property (with a NOC from a UAE bank) qualify. The term is usually 10 years and you do not have to live in the UAE full time. Details in our Golden Visa article.
+
+### Golden Visa through a fund or business
+AED 2 million or more in an accredited UAE investment fund, or a company or share with capital of AED 2 million or more, or AED 250,000 or more a year in taxes and fees. The term is usually 10 years too. It suits people who do not want to own property or who run a business in the UAE.
+
+### Retirement visa (55+)
+For people aged 55 or over: one condition among savings of AED 1 million in a UAE bank, property worth AED 1 million, or a regular income of AED 20,000 a month (lower for those who have worked in the UAE for 15+ years). Five years, renewable.
+
+### How to choose
+Budget under AED 2 million and a ready home — the two-year visa. Buying for AED 2 million or more, including off-plan — the Golden Visa through property. Do not want to buy a home — the Golden Visa through a fund or business. Aged 55+ with savings or a home worth AED 1 million — the retirement visa. In every case the rules change, so check with ICP, GDRFA or the DLD when you apply.
+
+### What all the options share
+A medical test, biometrics and the Emirates ID; health insurance; the right to include a spouse and children; and the basis must be kept for the whole visa term — if you sell the property or withdraw funds below the threshold, you cannot renew. None of these visas needs a local sponsor or employer.
+
+Q: Which visa is cheapest through property?
+A: The two-year visa for a ready home in Dubai: since April 2026 there is no minimum value for a sole owner.
+
+Q: Which visa works with off-plan?
+A: The Golden Visa: off-plan from an approved developer valued at AED 2 million or more qualifies. The two-year visa needs a ready home.
+
+Q: Can I get UAE citizenship through investment?
+A: No. All these programmes give residency, not citizenship.
+
+## Property revaluation for the Golden Visa: if you bought below AED 2 million
+
+URL: https://promptestates.com/en/guide/golden-visa-valuation/
+
+For a Golden Visa through property, what counts is not the price you paid but the property's value in an official valuation on the date you apply. If your home has gone up and is now worth AED 2 million or more, a revaluation can open the way to the visa.
+
+- The Golden Visa threshold is AED 2 million by the land department's valuation certificate, not the contract price.
+
+- Example: an apartment bought for AED 1.7 million is now worth about AED 2.2 million — by valuation it clears the threshold.
+
+- The valuation is done by a valuer accredited with the Dubai Land Department and ordered through DLD services.
+
+- The result is not guaranteed: the valuer relies on actual sales in the building and area.
+
+### Why the valuation matters, not the purchase price
+When you apply for a Golden Visa through property in Dubai, the property's value is confirmed by a Dubai Land Department valuation certificate. The price in the sales contract is only a starting point: if the market has risen, today's valuation can be noticeably higher. So an owner who bought below AED 2 million does not necessarily lose the right to the visa.
+
+### Example: AED 1.7 million → 2.2 million
+A client bought an apartment for AED 1,700,000. Similar apartments in the same building have recently sold for AED 2.1–2.3 million. If an accredited valuer values the apartment at AED 2,200,000, the certificate confirms a value above the threshold and the client can apply for the Golden Visa on that basis. If the valuation comes in at AED 1.95 million, the threshold is not met and another option is needed.
+
+### How to order a revaluation
+The valuation is carried out by a valuer accredited with the DLD. You apply through Dubai Land Department services — the website, the Dubai REST app or service centres. Usually you need the title deed, the owner's passport and access to the home for an inspection. It is a paid service; check the cost and timing when you order. The certificate is valid for a limited time, so apply for the visa soon after the valuation.
+
+### What the valuer looks at
+Above all, prices of actual sales of similar properties in the same building and area over recent months (DLD data). Area, floor, view, condition and finishing, and parking are also taken into account. Before ordering, look at recent sales yourself: if similar apartments sell for under AED 2 million, a revaluation is unlikely to reach the amount you need.
+
+### Mortgages, off-plan and several properties
+A mortgaged property qualifies: you need a valuation of AED 2 million or more and a no-objection letter (NOC) from a UAE bank. For a property under construction the value may be determined differently — based on the contract price and the developer's statement; check before applying. If you own several properties, their valuations can be added together to reach AED 2 million.
+
+### If the valuation falls short
+Options: buy another property and combine the values; wait for the market to rise and repeat the valuation later; or apply for the two-year investor visa — since 2026 a sole owner of a ready home in Dubai faces no minimum value. If the property is in another emirate, that emirate's land department does the valuation.
+
+Q: Can I get a Golden Visa if I bought below AED 2 million?
+A: Yes, if the property's current DLD valuation is AED 2 million or more. The value on the date of application counts, not the purchase price.
+
+Q: Who carries out the valuation?
+A: A valuer accredited with the Dubai Land Department, ordered through DLD services.
+
+Q: How long is the valuation certificate valid?
+A: For a limited time — apply for the visa soon after the valuation. Check the exact period when you order.
+
+Q: Can a mortgaged apartment be revalued?
+A: Yes. For the visa you need a valuation of AED 2 million or more and a NOC from a UAE bank.
+
+## UAE mortgages for foreigners: how much you can borrow and how
+
+URL: https://promptestates.com/en/guide/uae-mortgage-foreigners/
+
+Foreigners can take a mortgage from a UAE bank — both residents and people living abroad. Here are the Central Bank limits, the down payment, income requirements, every fee and what is different for off-plan.
+
+- A resident expat buying a first home under AED 5 million can borrow up to 80% — a down payment from 20%.
+
+- Banks usually lend non-residents 50–60% of the value.
+
+- For property under construction the limit is lower — usually no more than 50%.
+
+- Repayments on all loans must not exceed 50% of income.
+
+### Who can get a mortgage
+UAE mortgages are available both to residents with a visa and Emirates ID and to non-residents living abroad. Residents have a wider choice of banks and terms; not every bank lends to non-residents, and usually with a bigger down payment. The property must be in an area where foreigners may own property.
+
+### UAE Central Bank limits
+Central Bank rules cap the loan-to-value ratio. For resident expats: a first home up to AED 5 million — up to 80% of the value, above AED 5 million — up to 70%, second and further properties — up to 60%. For property under construction — up to 50%. Banks usually lend non-residents 50–60%. The exact percentage depends on the bank, your income and the property.
+
+### Borrower requirements
+Monthly repayments on all loans must not exceed 50% of income. The term is up to 25 years, and at the end of it the borrower should usually be no older than 65 (salaried) or 70 (self-employed). Banks look at income stability, credit history (in the UAE, the AECB report) and a minimum salary that differs from bank to bank.
+
+### Documents
+A passport; for residents, the visa and Emirates ID; a salary certificate or business income documents; six months of bank statements; and a credit report. Non-residents usually need statements and proof of income from their country of residence, sometimes a credit report from there too. After pre-approval the bank values the property and issues the final offer.
+
+### Every mortgage fee
+Besides the down payment and the usual purchase costs (the 4% DLD fee and others), budget for: mortgage registration at the DLD — 0.25% of the loan plus an admin fee; the bank's arrangement fee (usually up to 1% of the loan); the property valuation (a few thousand AED); and life and property insurance. Under Central Bank rules the early repayment fee is capped at 1% of the outstanding balance, up to AED 10,000.
+
+### Fixed or variable rate
+Banks offer a fixed rate for the first 1–5 years, after which it becomes variable and is linked to EIBOR, the UAE interbank rate. Compare not only the rate but also what it becomes after the fixed period, the fees and the early repayment terms.
+
+### Mortgages for off-plan
+Banks lend cautiously on property under construction: the limit is usually up to 50%, and they more often finance close to handover, when the property is nearly ready. So plan an off-plan payment schedule so that you cover most of it before handover from your own funds and take the mortgage for the balance when you get the keys.
+
+Q: Can a non-resident get a mortgage in the UAE?
+A: Yes, but not from every bank and usually for 50–60% of the property's value.
+
+Q: What is the minimum down payment?
+A: For a resident expat buying a first home up to AED 5 million — 20%; more for expensive homes, second homes and off-plan.
+
+Q: Can I get a Golden Visa if the home is mortgaged?
+A: Yes, if the property is valued at AED 2 million or more and a UAE bank has issued a NOC.
+
+Q: How much does early repayment cost?
+A: Under Central Bank rules — no more than 1% of the outstanding balance and no more than AED 10,000.
+
+## Property taxes in the UAE: what an apartment owner pays
+
+URL: https://promptestates.com/en/guide/uae-property-taxes/
+
+The UAE has no annual property tax, and individuals pay no tax on rental income or capital gains. But there are fees — one-off at purchase and regular ones for upkeep. Here are all of them, plus the one people often forget: taxes in the country where you are tax resident.
+
+- There is no annual property tax for private owners.
+
+- An individual's rental income and profit on sale are not taxed in the UAE.
+
+- The main one-off cost at purchase is the 4% Dubai Land Department fee.
+
+- Regular costs are the building service charge and the municipality housing fee.
+
+### One-off payments at purchase
+The main one is the Dubai Land Department fee of 4% of the price. On top come admin fees for registration (Oqood for off-plan, the Trustee office for resale) and for issuing the title deed, the agent's commission on resale (usually 2% + VAT) and, with a mortgage, mortgage registration at 0.25% of the loan. A detailed breakdown is in our article on buying costs.
+
+### An owner's annual costs
+There is no property tax, but there is the building service charge — calculated per square foot and published in the DLD index. There is also the Dubai Municipality housing fee: it is added to the DEWA bills of whoever lives in the home and for a tenant equals 5% of the annual rent. Add utilities and, optionally, insurance.
+
+### Tax on rental income
+Individuals in the UAE pay no tax on rental income. The 9% corporate tax introduced in 2023 applies to businesses; under its rules an individual's income from renting out their own property is not a business activity unless it requires a licence. If you own through a company, different rules apply — get advice from a tax specialist.
+
+### Tax on sale
+There is no capital gains tax for individuals: profit on selling an apartment in the UAE is not taxed. When selling you only pay related costs — for example the developer's NOC and the agent's commission if you used one. By market practice the 4% DLD fee is paid by the buyer.
+
+### VAT
+Sales and leases of residential property in the UAE are mostly exempt from VAT, and the first sale of a new home is zero-rated. 5% VAT applies to commercial property and to services around the deal — the agent's commission, Trustee fees and some management company services.
+
+### Inheritance
+There is no inheritance tax in the UAE. But who receives the home matters: to make sure it passes according to your wishes, a foreigner should register a will — for example with DIFC Wills or the Dubai courts. Without a will the process is longer and more complex.
+
+### Taxes in your home country
+No taxes in the UAE does not mean no taxes at all: if you are tax resident elsewhere, that country may tax rental income and gains on UAE property. Much depends on the double tax treaty and on whether you become UAE tax resident. Before buying, it is worth consulting a tax specialist in your own country.
+
+Q: Is there a property tax in Dubai?
+A: There is no annual property tax for private owners. There is the one-off 4% DLD fee at purchase, the building service charge and the municipality housing fee.
+
+Q: Do I pay tax on renting out my apartment?
+A: Not in the UAE if you rent out as an individual. But the country where you are tax resident may tax it.
+
+Q: Is selling an apartment taxed?
+A: There is no capital gains tax for individuals in the UAE.
+
+Q: Is VAT charged when buying a home?
+A: Residential sales are mostly VAT-exempt; 5% applies to the agent's commission and some related services.
+
+## Dubai off-plan market in numbers
+
+URL: https://promptestates.com/en/guide/dubai-market-data/
+
+A summary table of 14 Dubai areas built on official open data from the Dubai Land Department (DLD): actual sales transactions over the last 12 months and the registry of projects under construction. The data is refreshed with every new DLD export.
+
+- Source: Dubai Land Department open data on the data.dubai portal.
+
+- Prices are medians of registered sales over 12 months, not advertised prices.
+
+- For each area: price per m², studio, 1 and 2 bedrooms, off-plan share, projects under construction and past their handover date.
+
+- The table can be downloaded as CSV and quoted with a link to this page.
+
+### How we calculate
+We take the DLD Real Estate Transactions export and keep sales over the last 12 months. The median is the middle of the range: half of the deals are cheaper, half are more expensive, so a few expensive penthouses do not skew it. Apartment prices are medians of unit sales with the given number of bedrooms. The three-year change compares the median price per m² of the first year in the series with the current year.
+
+### Limitations
+The median also reflects what is being sold: if an area launches a lot of new, pricier off-plan stock, the median rises faster than the price of any given apartment. This is not a valuation of your home and not investment advice. Area boundaries follow DLD master projects and zones.
+
+### How to cite
+Credit the source as “PromptEstates, based on Dubai Land Department data” with the export date shown in the table. If you use the CSV, keep a link to this page.
+
+Q: Where do these numbers come from?
+A: From Dubai Land Department open data: the Real Estate Transactions export and the Projects registry on the data.dubai portal.
+
+Q: How often is the table updated?
+A: With every new DLD export; the data date is shown under the table.
+
+Q: Can I use the data in my article?
+A: Yes, with credit: “PromptEstates, based on Dubai Land Department data” and a link to this page.
+
+## Dubai Marina: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/dubai-marina/
+
+Dubai Marina is one of Dubai’s best-known residential districts: high-rise towers around a man-made canal with a promenade and yachts, minutes from JBR beach.
+
+- Waterfront residential towers, mostly apartments.
+
+- Next to JBR beach and the Marina Walk promenade.
+
+- Served by metro and tram.
+
+- In demand with tenants, including short-term rentals.
+
+### What the area is like
+The district is built around a canal about three kilometres long. It is full of restaurants, shops and walking areas, and the beach is within walking distance.
+
+### Who it suits
+People who want to live by the water in a lively place, and investors counting on rental income: demand for apartments here is consistently strong.
+
+### Transport
+The area has metro stations and a tram line linking Dubai Marina with JBR and Palm Jumeirah. Sheikh Zayed Road runs alongside.
+
+### What homes are sold here
+Mostly apartments in high-rise towers, from studios to penthouses. Free plots are scarce, so there are fewer off-plan projects than in developing areas.
+
+Q: How much does a square metre cost in Dubai Marina?
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Marina over the last 12 months is AED 21,648 per m² (data as of 2026-10-03). In 2023 the median was AED 16,181 per m².
+
+Q: How much is an apartment in Dubai Marina?
+A: Median DLD transaction prices over 12 months in Dubai Marina: studio — AED 920,000, 1 bedroom — AED 1,680,000, 2 bedrooms — AED 2,550,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Dubai Marina are off-plan?
+A: 7% of sales in Dubai Marina over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Is Dubai Marina good for renting out?
+A: The area is popular with tenants, including tourists. Compare a specific unit’s yield with the area average.
+
+Q: How far is the beach?
+A: JBR beach is within walking distance of most of the area.
+
+## Business Bay: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/business-bay/
+
+Business Bay is a central Dubai district along the Dubai Canal, next to Downtown, Burj Khalifa and Dubai Mall.
+
+- A mix of office and residential towers.
+
+- Next to Downtown Dubai and Burj Khalifa.
+
+- A promenade along the Dubai Canal.
+
+- Has a metro station.
+
+### What the area is like
+It is one of the city’s main business quarters, and many residential developments have appeared here in recent years. Most parts of Dubai are quick to reach from it.
+
+### Who it suits
+People who work in the centre and want to live nearby, and investors who value a central location and tenant demand.
+
+### Transport
+The Business Bay metro station is nearby, along with Sheikh Zayed Road and Al Khail Road. Downtown Dubai is a walk away along the canal promenade.
+
+### What homes are sold here
+Apartments in high-rise residential towers, including ones with canal and Burj Khalifa views. There are many new projects.
+
+Q: How much does a square metre cost in Business Bay?
+A: According to the Dubai Land Department (DLD), the median sale price in Business Bay over the last 12 months is AED 26,838 per m² (data as of 2026-10-03). In 2023 the median was AED 22,242 per m².
+
+Q: How much is an apartment in Business Bay?
+A: Median DLD transaction prices over 12 months in Business Bay: studio — AED 1,120,000, 1 bedroom — AED 2,000,000, 2 bedrooms — AED 3,090,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Business Bay are off-plan?
+A: 54% of sales in Business Bay over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Who is Business Bay for?
+A: People who work in the centre, and investors counting on renting to professionals.
+
+Q: Is the area noisy?
+A: It is a busy business district; homes on the canal promenade are usually quieter than those by the main roads.
+
+## JVC: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/jvc/
+
+Jumeirah Village Circle (JVC) is a residential community with low- and mid-rise buildings, parks and a wide choice of apartments, townhouses and villas.
+
+- Apartments, townhouses and villas.
+
+- Plenty of parks and green space.
+
+- A lower entry price than waterfront districts.
+
+- Many new projects from different developers.
+
+### What the area is like
+JVC is laid out as a circle of residential clusters and community parks. It has a shopping mall, schools and nurseries.
+
+### Who it suits
+Families looking for a quiet area, and investors on a moderate budget: the entry price is lower here than by the water.
+
+### Transport
+The area lies between Al Khail Road and Sheikh Mohammed Bin Zayed Road; getting around is mainly by car.
+
+### What homes are sold here
+Apartments in low- and mid-rise buildings, townhouses and villas. There are many new projects from different developers.
+
+Q: How much does a square metre cost in Jumeirah Village Circle (JVC)?
+A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Circle (JVC) over the last 12 months is AED 16,223 per m² (data as of 2026-10-03). In 2023 the median was AED 13,199 per m².
+
+Q: How much is an apartment in Jumeirah Village Circle (JVC)?
+A: Median DLD transaction prices over 12 months in Jumeirah Village Circle (JVC): studio — AED 710,000, 1 bedroom — AED 1,100,000, 2 bedrooms — AED 1,660,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Jumeirah Village Circle (JVC) are off-plan?
+A: 61% of sales in Jumeirah Village Circle (JVC) over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Why do investors choose JVC?
+A: Because of the lower entry price and rental demand from families and young professionals.
+
+Q: Are there schools in the area?
+A: Yes, there are schools, nurseries and a shopping mall.
+
+## Dubai Hills Estate: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/dubai-hills/
+
+Dubai Hills Estate is a large residential community with a park, a golf course and its own mall, between Downtown and Dubai Marina.
+
+- Apartments, townhouses and villas.
+
+- A large park and an 18-hole golf course.
+
+- Dubai Hills Mall.
+
+- Geared to families.
+
+### What the area is like
+It is a master-planned community with green spaces, schools and clinics, conveniently placed for both the city centre and the coast.
+
+### Who it suits
+Families who want greenery and amenities close to home, and people buying a home to live in for the long term.
+
+### Transport
+The area sits by Al Khail Road and Umm Suqeim Street; Downtown Dubai and Dubai Marina are an easy drive away.
+
+### What homes are sold here
+Apartments in complexes by the park and the mall, townhouses and villas, including by the golf course. The community is a joint venture of Emaar and Meraas.
+
+Q: How much does a square metre cost in Dubai Hills Estate?
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Hills Estate over the last 12 months is AED 25,769 per m² (data as of 2026-10-03). In 2023 the median was AED 22,604 per m².
+
+Q: How much is an apartment in Dubai Hills Estate?
+A: Median DLD transaction prices over 12 months in Dubai Hills Estate: studio — AED 970,000, 1 bedroom — AED 1,730,000, 2 bedrooms — AED 2,690,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Dubai Hills Estate are off-plan?
+A: 52% of sales in Dubai Hills Estate over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Who is the developer of Dubai Hills Estate?
+A: The community is a joint venture of Emaar and Meraas.
+
+Q: Is the area good for families?
+A: Yes: there is plenty of greenery, schools and a large park.
+
+## Dubai Creek Harbour: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/dubai-creek-harbour/
+
+Dubai Creek Harbour is a new district on the shore of Dubai Creek with a promenade, a marina and views of the Downtown skyline.
+
+- Waterfront residential towers.
+
+- A promenade and a yacht marina.
+
+- Next to the Ras Al Khor wildlife sanctuary.
+
+- Views of Downtown and Burj Khalifa.
+
+### What the area is like
+The district is being built as a single master plan with parks and walking areas along the water. Most homes here are new apartments.
+
+### Who it suits
+People who want to live by the water in a calmer setting than Dubai Marina, and buyers looking for new homes in a developing area.
+
+### Transport
+The area is close to Dubai International Airport and Ras Al Khor Road; Downtown Dubai is an easy drive away.
+
+### What homes are sold here
+Apartments in new waterfront residential towers, often with Downtown views. The district is developed by Emaar.
+
+Q: How much does a square metre cost in Dubai Creek Harbour?
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Creek Harbour over the last 12 months is AED 27,692 per m² (data as of 2026-10-03). In 2023 the median was AED 22,350 per m².
+
+Q: How much is an apartment in Dubai Creek Harbour?
+A: Median DLD transaction prices over 12 months in Dubai Creek Harbour: 1 bedroom — AED 1,960,000, 2 bedrooms — AED 3,180,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Dubai Creek Harbour are off-plan?
+A: 67% of sales in Dubai Creek Harbour over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Who is the developer?
+A: Dubai Creek Harbour is developed by Emaar.
+
+Q: How far is the airport?
+A: Dubai International Airport is close by — one of the area’s advantages.
+
+## Palm Jumeirah: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/palm-jumeirah/
+
+Palm Jumeirah is a palm-shaped man-made island and one of Dubai’s most recognisable addresses, with beachfront residences, villas and hotels.
+
+- Beachfront apartments and villas.
+
+- The premium end of the market.
+
+- Resort hotels and restaurants.
+
+- Many developments have their own beaches.
+
+### What the area is like
+The island is made up of a trunk lined with residential buildings and fronds lined with villas. It is home to well-known hotels and beach clubs.
+
+### Who it suits
+Buyers of premium homes by the sea, and investors counting on rentals at the top end of the market.
+
+### Transport
+A monorail runs along the island’s trunk; the island connects to the mainland near Sheikh Zayed Road, and to the outer crescent by an undersea tunnel.
+
+### What homes are sold here
+Apartments in residences on the trunk and crescent, villas on the fronds. New projects are most often branded beachfront residences.
+
+Q: How much does a square metre cost in Palm Jumeirah?
+A: According to the Dubai Land Department (DLD), the median sale price in Palm Jumeirah over the last 12 months is AED 36,916 per m² (data as of 2026-10-03). In 2023 the median was AED 28,637 per m².
+
+Q: How much is an apartment in Palm Jumeirah?
+A: Median DLD transaction prices over 12 months in Palm Jumeirah: studio — AED 1,370,000, 1 bedroom — AED 3,510,000, 2 bedrooms — AED 5,810,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Palm Jumeirah are off-plan?
+A: 31% of sales in Palm Jumeirah over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Who is the developer of the island?
+A: Palm Jumeirah was created by Nakheel.
+
+Q: Is the island good for renting out?
+A: Demand is strong in the premium segment, including holiday lets; the entry price is high too.
+
+## Downtown Dubai: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/downtown-dubai/
+
+Downtown Dubai is the city's business and tourist centre around Burj Khalifa, Dubai Mall and the Dubai Fountain. The district's main developer is Emaar.
+
+- Burj Khalifa, Dubai Mall, Dubai Opera and the fountain within walking distance.
+
+- Burj Khalifa / Dubai Mall metro station.
+
+- Mostly apartments in high-rise towers.
+
+- One of the most expensive areas per square metre.
+
+### What the area is like
+Emaar planned Downtown as the city centre: Mohammed Bin Rashid Boulevard, residential towers, hotels, restaurants and Dubai's main landmarks in a compact area.
+
+### Who it suits
+People who want to live centrally and walk, and investors interested in tourist demand for short-term rentals. The entry price is higher than in most areas.
+
+### Transport
+Burj Khalifa / Dubai Mall station on the Red Line and direct access to Sheikh Zayed Road. Many places in the area are walkable.
+
+### What homes are sold here
+Apartments from studios to penthouses in high-rise towers, including branded residences. New projects appear less often than in developing areas.
+
+Q: How much does a square metre cost in Downtown Dubai?
+A: According to the Dubai Land Department (DLD), the median sale price in Downtown Dubai over the last 12 months is AED 33,742 per m² (data as of 2026-10-03). In 2023 the median was AED 29,759 per m².
+
+Q: How much is an apartment in Downtown Dubai?
+A: Median DLD transaction prices over 12 months in Downtown Dubai: studio — AED 1,780,000, 1 bedroom — AED 2,350,000, 2 bedrooms — AED 3,900,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Downtown Dubai are off-plan?
+A: 37% of sales in Downtown Dubai over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Is Downtown good for short-term rental?
+A: The area is popular with tourists, so short-term rental demand is high. Check holiday-home rules with DET and the building's management.
+
+Q: Can you get a Golden Visa here?
+A: Yes, apartments from AED 2 million — the Golden Visa threshold — are common here.
+
+## MBR City and Meydan: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/mbr-city/
+
+Mohammed Bin Rashid Al Maktoum City (MBR City) is a large district between Downtown and Ras Al Khor. It includes Meydan, Sobha Hartland, District One and complexes on the Dubai Canal.
+
+- A 10–15-minute drive to Downtown.
+
+- Villas with lagoons, townhouses and apartments.
+
+- The Meydan racecourse and plenty of green space.
+
+- Developers include Sobha, Meydan, Azizi, Ellington and others.
+
+### What the area is like
+MBR City brings together several communities: Sobha Hartland with villas and apartments among greenery, District One with a crystal lagoon, Meydan with its racecourse and Azizi Riviera along the Dubai Canal.
+
+### Who it suits
+Families who want a villa or a large apartment close to the centre, and investors counting on the area's growth as it is built out.
+
+### Transport
+The area borders Al Khail Road and Meydan Road; Downtown and Business Bay are a 10–15-minute drive away. Most of the area has no metro.
+
+### What homes are sold here
+Villas and townhouses by lagoons and parks, as well as apartments in Sobha Hartland, Meydan and along the Dubai Canal.
+
+Q: How much does a square metre cost in MBR City & Meydan?
+A: According to the Dubai Land Department (DLD), the median sale price in MBR City & Meydan over the last 12 months is AED 21,337 per m² (data as of 2026-10-03). In 2023 the median was AED 20,956 per m².
+
+Q: How much is an apartment in MBR City & Meydan?
+A: Median DLD transaction prices over 12 months in MBR City & Meydan: studio — AED 800,000, 1 bedroom — AED 1,400,000, 2 bedrooms — AED 2,360,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in MBR City & Meydan are off-plan?
+A: 35% of sales in MBR City & Meydan over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: How does MBR City differ from Dubai Hills?
+A: Both are green and family-oriented, but MBR City is closer to Downtown and includes several different communities with lagoons.
+
+Q: Are there many off-plan projects here?
+A: Yes, the area is still being built out, with many projects under construction from different developers.
+
+## Dubai South: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/dubai-south/
+
+Dubai South is a large district in the south of Dubai around Al Maktoum International Airport (DWC) and Expo City Dubai. DWC is planned to be expanded into the city's main airport.
+
+- Al Maktoum airport and Expo City Dubai nearby.
+
+- One of the lowest entry prices in Dubai.
+
+- Large projects: Emaar South, Azizi Venice.
+
+- The area is still being actively built.
+
+### What the area is like
+Dubai South is conceived as a city around the airport: residential communities, a logistics zone and business parks. Next to it is the former Expo 2020 site, now Expo City Dubai.
+
+### Who it suits
+Investors buying for the area's future development and the airport expansion, and buyers who need a low entry price. Keep in mind it is far from central Dubai.
+
+### Transport
+The area is by Emirates Road and Sheikh Mohammed Bin Zayed Road; Expo 2020 metro station on the Route 2020 line is a few minutes away. Downtown is about a 40-minute drive.
+
+### What homes are sold here
+Apartments, townhouses and villas in large communities, including Emaar South and Azizi Venice. Many projects come with long payment plans.
+
+Q: How much does a square metre cost in Dubai South?
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai South over the last 12 months is AED 17,499 per m² (data as of 2026-10-03). In 2023 the median was AED 11,061 per m².
+
+Q: How much is an apartment in Dubai South?
+A: Median DLD transaction prices over 12 months in Dubai South: studio — AED 650,000, 1 bedroom — AED 1,150,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Dubai South are off-plan?
+A: 91% of sales in Dubai South over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Why do investors look at Dubai South?
+A: Because of the low entry price and plans to expand Al Maktoum airport, which may raise demand for housing nearby.
+
+Q: What are the risks?
+A: The area is far from the centre and still being built, so rental demand is lower than in established areas for now. Check the developer and handover dates carefully.
+
+## Dubai Islands: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/dubai-islands/
+
+Dubai Islands (formerly Deira Islands) are five man-made islands off the Deira coast developed by Nakheel. Beach resorts, marinas and waterfront residences are being built here.
+
+- Five islands off Deira, the old part of Dubai.
+
+- Master developer: Nakheel.
+
+- Beaches, marinas and resort hotels.
+
+- A noticeably lower entry price than Palm Jumeirah.
+
+### What the area is like
+The islands are linked to Deira by bridges and designed for waterfront living: beaches, promenades, yacht marinas and hotels. Most residential projects are still under construction.
+
+### Who it suits
+Buyers who want a seaside apartment for less than on Palm Jumeirah or in Dubai Marina, and investors buying at an early stage of the area's development.
+
+### Transport
+The islands are linked by bridges to Deira, and Infinity Bridge leads to Bur Dubai. DXB airport is about a 15–20-minute drive.
+
+### What homes are sold here
+Apartments and penthouses in low- and mid-rise beachfront complexes, as well as villas. Most projects are under construction.
+
+Q: How much does a square metre cost in Dubai Islands?
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Islands over the last 12 months is AED 29,520 per m² (data as of 2026-10-03). In 2023 the median was AED 25,864 per m².
+
+Q: How much is an apartment in Dubai Islands?
+A: Median DLD transaction prices over 12 months in Dubai Islands: studio — AED 1,160,000, 1 bedroom — AED 2,350,000, 2 bedrooms — AED 3,500,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Dubai Islands are off-plan?
+A: 97% of sales in Dubai Islands over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: How do Dubai Islands differ from Palm Jumeirah?
+A: The Palm is established and pricier; Dubai Islands are a new area by the old city with a lower entry price and more projects under construction.
+
+Q: Who builds here?
+A: The master developer is Nakheel; private developers such as Imtiaz also build residential projects.
+
+## Arjan: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/arjan/
+
+Arjan is a residential district within Dubailand, next to Dubai Miracle Garden and Dubai Butterfly Garden. It has many new mid-rise buildings with studios and one- and two-bedroom apartments.
+
+- Next to Dubai Miracle Garden and the Butterfly Garden.
+
+- Mid-rise residential buildings.
+
+- An affordable entry price, popular with investors.
+
+- Samana, Danube, Iman and others are building actively.
+
+### What the area is like
+Arjan lies between Al Khail Road and Umm Suqeim Road, close to JVC and Al Barsha South. There is a hospital, schools and shopping centres nearby.
+
+### Who it suits
+Investors with budgets up to AED 1–1.5 million buying for long-term rental, and buyers looking for a new apartment at a moderate price.
+
+### Transport
+Easy access to Al Khail Road and Umm Suqeim Road; Dubai Marina and Mall of the Emirates are about a 15–20-minute drive. There is no metro in the area.
+
+### What homes are sold here
+Studios and one- to three-bedroom apartments in mid-rise buildings; many projects have pools, gyms and co-working spaces, and Samana offers private balcony pools.
+
+Q: How much does a square metre cost in Arjan?
+A: According to the Dubai Land Department (DLD), the median sale price in Arjan over the last 12 months is AED 16,968 per m² (data as of 2026-10-03). In 2023 the median was AED 12,456 per m².
+
+Q: How much is an apartment in Arjan?
+A: Median DLD transaction prices over 12 months in Arjan: studio — AED 730,000, 1 bedroom — AED 1,180,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Arjan are off-plan?
+A: 64% of sales in Arjan over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: How is Arjan similar to JVC?
+A: Both are affordable and popular with investors; Arjan is younger and has more projects under construction.
+
+Q: What yields are typical here?
+A: Yields depend on the project and purchase price; compare them with neighbouring JVC and Al Barsha South in PromptEstates project cards.
+
+## JVT: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/jvt/
+
+Jumeirah Village Triangle (JVT) is a Nakheel residential community next to JVC. It has more villas and townhouses, and new projects include mid-rise apartment buildings.
+
+- Next door to JVC; master developer Nakheel.
+
+- Many villas and townhouses; quieter and greener.
+
+- New mid-rise building projects.
+
+- Object 1 and other private developers are building here.
+
+### What the area is like
+JVT is laid out as a triangle of villa clusters around parks. In recent years more and more mid-rise residential projects have appeared.
+
+### Who it suits
+Families who want a quieter life than in JVC, and investors looking for new apartments in an established area with moderate prices.
+
+### Transport
+The area is by Sheikh Mohammed Bin Zayed Road and Al Khail Road; Dubai Marina is about a 15-minute drive. There is no metro in the area.
+
+### What homes are sold here
+Ready villas and townhouses, plus new mid-rise buildings with studios and one- and two-bedroom apartments.
+
+Q: How much does a square metre cost in Jumeirah Village Triangle (JVT)?
+A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Triangle (JVT) over the last 12 months is AED 17,979 per m² (data as of 2026-10-03). In 2023 the median was AED 14,404 per m².
+
+Q: How much is an apartment in Jumeirah Village Triangle (JVT)?
+A: Median DLD transaction prices over 12 months in Jumeirah Village Triangle (JVT): studio — AED 780,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 1,720,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Jumeirah Village Triangle (JVT) are off-plan?
+A: 85% of sales in Jumeirah Village Triangle (JVT) over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: JVT or JVC?
+A: JVT is quieter with more villas; JVC is denser with apartments and has more projects. Off-plan prices are comparable.
+
+Q: Is JVT good for renting out?
+A: Yes, it is popular with families; compare demand and yield for the specific project.
+
+## Al Furjan: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/al-furjan/
+
+Al Furjan is a Nakheel residential community near Ibn Battuta Mall and Discovery Gardens. With the opening of the Route 2020 metro line the area got its own station.
+
+- Between Sheikh Zayed Road and Sheikh Mohammed Bin Zayed Road.
+
+- Al Furjan metro station on the Route 2020 line.
+
+- Villas, townhouses and new residential buildings.
+
+- Imtiaz, Azizi, Danube and others are building here.
+
+### What the area is like
+Al Furjan started as a villa and townhouse community and now has many mid-rise residential buildings. Ibn Battuta Mall, Dubai Marina and JLT are about a 15-minute drive away.
+
+### Who it suits
+Families who value the metro and a calm setting, and investors looking for liquid apartments for long-term rental at a moderate price.
+
+### Transport
+Metro stations on the Route 2020 line and access to Sheikh Zayed Road and Sheikh Mohammed Bin Zayed Road. Dubai Marina and JLT are about 15 minutes away.
+
+### What homes are sold here
+Apartments in new mid-rise buildings, as well as villas and townhouses. Many projects are handed over furnished with shared amenities.
+
+Q: How much does a square metre cost in Al Furjan?
+A: According to the Dubai Land Department (DLD), the median sale price in Al Furjan over the last 12 months is AED 15,201 per m² (data as of 2026-10-03). In 2023 the median was AED 10,867 per m².
+
+Q: How much is an apartment in Al Furjan?
+A: Median DLD transaction prices over 12 months in Al Furjan: studio — AED 560,000, 1 bedroom — AED 1,110,000, 2 bedrooms — AED 1,730,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in Al Furjan are off-plan?
+A: 51% of sales in Al Furjan over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: What makes Al Furjan convenient to live in?
+A: The metro, nearby shopping centres and a calm family setting at moderate prices.
+
+Q: Who builds here?
+A: The master developer is Nakheel; Imtiaz, Azizi, Danube and others build residential buildings.
+
+## DAMAC Hills: off-plan property and the area
+
+URL: https://promptestates.com/en/areas/damac-hills/
+
+DAMAC Hills is a gated community by developer DAMAC around the Trump International Golf Club Dubai course. It has villas, townhouses and apartments overlooking the golf course and parks.
+
+- A community by developer DAMAC.
+
+- Trump International Golf Club Dubai at its centre.
+
+- Villas, townhouses and apartments.
+
+- Parks, schools and sports facilities within the community.
+
+### What the area is like
+DAMAC Hills sits off Al Qudra Road and Hessa Street, near Arjan and Motor City. Inside the community are the golf course, parks, schools and shops.
+
+### Who it suits
+Families who want a villa or townhouse in a green gated community, and those who value golf and sport close to home. Do not confuse it with the separate DAMAC Hills 2 community.
+
+### Transport
+Access to Al Qudra Road, Hessa Street and Sheikh Mohammed Bin Zayed Road; Dubai Marina and Downtown are about a 20–25-minute drive. There is no metro.
+
+### What homes are sold here
+Villas and townhouses, plus apartments in complexes overlooking the golf course. DAMAC keeps launching new phases.
+
+Q: How much does a square metre cost in DAMAC Hills?
+A: According to the Dubai Land Department (DLD), the median sale price in DAMAC Hills over the last 12 months is AED 18,297 per m² (data as of 2026-10-03). In 2023 the median was AED 15,819 per m².
+
+Q: How much is an apartment in DAMAC Hills?
+A: Median DLD transaction prices over 12 months in DAMAC Hills: studio — AED 610,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 2,010,000. This is the median across all deals in the area, not a valuation of a specific unit.
+
+Q: What share of deals in DAMAC Hills are off-plan?
+A: 51% of sales in DAMAC Hills over the last 12 months were off-plan purchases, according to DLD data.
+
+Q: Are DAMAC Hills and DAMAC Hills 2 the same?
+A: No. DAMAC Hills is the community around the golf club off Al Qudra Road; DAMAC Hills 2 is a separate, more remote and more affordable area.
+
+Q: Is it good for families?
+A: Yes: there are schools, parks, sports facilities and shops inside.
+
+## Emaar Properties: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/emaar/
+
+Emaar Properties is one of the UAE’s largest developers, founded in 1997. It built Burj Khalifa and Dubai Mall and develops entire districts of Dubai.
+
+- Founded in 1997; listed on the Dubai Financial Market.
+
+- Built Burj Khalifa, Dubai Mall and Downtown Dubai.
+
+- Develops Dubai Hills Estate, Dubai Creek Harbour and Emaar Beachfront.
+
+- Builds apartments, townhouses and villas in master-planned communities.
+
+## DAMAC Properties: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/damac/
+
+DAMAC Properties is a Dubai developer founded in 2002, known for large villa communities and branded residences.
+
+- Founded in 2002.
+
+- Develops DAMAC Hills, DAMAC Hills 2 and DAMAC Lagoons.
+
+- Known for branded residences with fashion houses.
+
+- Apartments, villas and townhouses, often in the premium segment.
+
+## Nakheel: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/nakheel/
+
+Nakheel is the developer that created Palm Jumeirah. It is linked to the Government of Dubai and specialises in large waterfront projects.
+
+- Created Palm Jumeirah and The World islands.
+
+- Develops Jumeirah Village Circle, Dubai Islands and Palm Jebel Ali.
+
+- Linked to the Government of Dubai; part of Dubai Holding.
+
+- Villas, townhouses and apartments, with many waterfront projects.
+
+## Sobha Realty: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/sobha/
+
+Sobha Realty is a developer in the upper price segment. It designs and builds its own projects and is known for attention to finish quality.
+
+- Its main project is Sobha Hartland in Mohammed Bin Rashid City.
+
+- Designs and builds in-house.
+
+- Known for attention to finish quality.
+
+- Apartments and villas in the upper segment.
+
+## Meraas: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/meraas/
+
+Meraas is a Dubai developer and part of Dubai Holding, known for districts that combine homes with restaurants, shops and walking areas.
+
+- Part of Dubai Holding.
+
+- Created Bluewaters Island, City Walk and La Mer.
+
+- Focuses on districts with a developed urban setting.
+
+- Premium homes, often by the sea.
+
+## Binghatti: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/binghatti/
+
+Binghatti is a Dubai developer you can recognise by its unusual facades. It builds both affordable apartments and branded towers.
+
+- A Dubai developer with distinctive facade architecture.
+
+- Many projects in JVC and Business Bay.
+
+- Branded towers with Bugatti, Mercedes-Benz and Jacob & Co.
+
+- From affordable apartments to ultra-premium residences.
+
+## Danube Properties: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/danube/
+
+Danube Properties is an affordable-segment developer and part of the Danube Group, known for a payment plan where the buyer pays 1% of the price per month.
+
+- Part of the Danube Group.
+
+- Works in the affordable price segment.
+
+- Known for a payment plan with 1% monthly instalments.
+
+- Apartments are often sold furnished.
+
+## Aldar Properties: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/aldar/
+
+Aldar Properties is Abu Dhabi’s largest developer. It develops Yas Island and Saadiyat Island and has recently started building in Dubai.
+
+- Abu Dhabi’s largest developer; listed on the Abu Dhabi Securities Exchange.
+
+- Develops Yas Island and Saadiyat Island.
+
+- Also builds in Dubai.
+
+- Apartments, townhouses and villas in master-planned communities.
+
+## Imtiaz Developments: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/imtiaz/
+
+Imtiaz started in 1993 as a construction company and since 2014 has developed its own residential projects under the Imtiaz brand. Its founder and CEO is Masih Imtiaz.
+
+- Construction business since 1993, development under the Imtiaz brand since 2014.
+
+- Main areas: JVC, Al Furjan, Dubai Land Residence Complex, Dubai Islands.
+
+- Known projects: Beach Walk, Cotier House, Pearl House, Westwood.
+
+- Entered Meydan with Wynwood projects and residences with Zaha Hadid Architects.
+
+## Iman Developers: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/iman/
+
+Iman Developers was founded in 2016 and is registered with the Dubai Land Department. Its founder and CEO is Ismail Marfani.
+
+- Founded in 2016.
+
+- Builds mid-rise residential buildings in JVC, Arjan and Motor City.
+
+- Known for its Oxford series: Oxford Gardens, Oxford Terraces, Oxford Cove.
+
+- Noted among developers with fast delivery times.
+
+## Ellington Properties: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/ellington/
+
+Ellington Properties was founded in 2014 by Robert Booth, a former managing director of Emaar. The company positions itself as a design-led developer.
+
+- Founded in 2014.
+
+- Areas: JVC, Palm Jumeirah, MBR City, JLT, Downtown, Dubai Hills.
+
+- Known projects: the Belgravia series in JVC, Kensington Waters, Ellington Beach House.
+
+- Its projects have won awards for architecture and interior design.
+
+## Azizi Developments: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/azizi/
+
+Azizi Developments was founded in 2007 by Mirwais Azizi and is part of the Azizi Group. It builds large residential communities with flexible payment plans.
+
+- Founded in 2007, part of the Azizi Group.
+
+- Azizi Riviera — a residential community on the Dubai Canal in Meydan.
+
+- Azizi Venice — a large lagoon project in Dubai South.
+
+- Building Burj Azizi on Sheikh Zayed Road, announced as the world's second-tallest tower.
+
+## Samana Developers: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/samana/
+
+Samana Developers was founded by Imran Farooq. It was among the first in Dubai to make a private balcony pool a standard feature of affordable apartments.
+
+- Founder and CEO: Imran Farooq.
+
+- Signature feature: private pools on apartment balconies.
+
+- Areas: Arjan, JVC, Dubailand, Dubai Studio City, Dubai South.
+
+- Offers long payment plans, including post-handover.
+
+## Select Group: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/select-group/
+
+Select Group has worked in Dubai since 2002 and specialises in premium residential projects in waterfront locations.
+
+- Founded in 2002.
+
+- Marina Gate — a cluster of towers in Dubai Marina.
+
+- Peninsula — a residential community on the Dubai Canal in Business Bay.
+
+- Builds branded residences with hospitality operators.
+
+## Omniyat: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/omniyat/
+
+Omniyat is a private Dubai developer founded in 2005. It specialises in architecturally ambitious ultra-premium projects.
+
+- Founded in 2005.
+
+- The Opus in Business Bay was designed by Zaha Hadid Architects.
+
+- On Palm Jumeirah: One at Palm Jumeirah, ORLA, AVA.
+
+- Works with hospitality brands, including Dorchester Collection.
+
+## Object 1: projects and off-plan homes
+
+URL: https://promptestates.com/en/developers/object-1/
+
+Object One Real Estate Development is registered with the Dubai Land Department and is part of the international TSZ Group. Its managing director is Tatiana Tonu.
+
+- Part of the international TSZ Group.
+
+- Main areas: JVC and JVT, as well as Dubai Sports City, Jebel Ali, DLRC.
+
+- Projects: 1Wood Residence, V1TER Residence, Elaris Sky and Elaris Rise.
+
+- Among the most active developers in JVC and JVT.
