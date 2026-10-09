@@ -593,3 +593,12 @@
     calc();
   });
 })();
+
+// The old app on this domain installed a service worker that serves its cached shell; this site has none, so remove any.
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.getRegistrations().then(function (regs) {
+    regs.forEach(function (r) { r.unregister(); });
+    if (regs.length && window.caches) caches.keys().then(function (k) { k.forEach(function (n) { caches.delete(n); }); });
+  }).catch(function () {});
+})();
