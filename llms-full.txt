@@ -71,24 +71,24 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [Omniyat](https://promptestates.com/en/developers/omniyat/): Omniyat is an ultra-luxury Dubai developer: The Opus by Zaha Hadid, One at Palm Jumeirah, Dorchester Collection residences. What it builds and for whom.
 - [Object 1](https://promptestates.com/en/developers/object-1/): Object 1 builds residential projects in JVC, JVT, Dubai Sports City and Jebel Ali. The 1Wood, V1TER and Elaris projects and what to check before buying.
 
-## Dubai off-plan market data (Dubai Land Department, sales over the 12 months to 2026-10-03)
+## Dubai off-plan market data (Dubai Land Department, sales over the 12 months to 2026-10-08)
 
 Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: Real Estate Transactions and Projects registry). Medians of registered sales, not advertised prices. Full table: https://promptestates.com/en/guide/dubai-market-data/ · CSV: https://promptestates.com/data/dubai-districts-dld.csv
 
-- Al Furjan: median AED 15,201/m² (AED 1,412/sq ft) over 12 months; change since 2023: +42%; median studio AED 555,000, 1-bed AED 1,107,000, 2-bed AED 1,728,000; off-plan share of sales 51%; projects under construction 49, of which past planned handover 12
-- Jumeirah Village Circle (JVC): median AED 16,223/m² (AED 1,507/sq ft) over 12 months; change since 2023: +20%; median studio AED 710,000, 1-bed AED 1,103,000, 2-bed AED 1,663,000; off-plan share of sales 61%; projects under construction 167, of which past planned handover 70
-- Arjan: median AED 16,968/m² (AED 1,576/sq ft) over 12 months; change since 2023: +37%; median studio AED 727,000, 1-bed AED 1,179,000, 2-bed AED 1,678,000; off-plan share of sales 64%; projects under construction 39, of which past planned handover 19
-- Dubai South: median AED 17,499/m² (AED 1,626/sq ft) over 12 months; change since 2023: +60%; median studio AED 648,000, 1-bed AED 1,150,000, 2-bed AED 1,676,000; off-plan share of sales 91%; projects under construction 105, of which past planned handover 22
-- Jumeirah Village Triangle (JVT): median AED 17,979/m² (AED 1,670/sq ft) over 12 months; change since 2023: +25%; median studio AED 780,000, 1-bed AED 1,245,000, 2-bed AED 1,717,000; off-plan share of sales 85%; projects under construction 40, of which past planned handover 9
-- DAMAC Hills: median AED 18,297/m² (AED 1,700/sq ft) over 12 months; change since 2023: +14%; median studio AED 610,000, 1-bed AED 1,243,000, 2-bed AED 2,008,000; off-plan share of sales 51%; projects under construction 9, of which past planned handover 3
-- MBR City & Meydan: median AED 21,337/m² (AED 1,982/sq ft) over 12 months; change since 2023: +0%; median studio AED 800,000, 1-bed AED 1,402,000, 2-bed AED 2,365,000; off-plan share of sales 35%; projects under construction 43, of which past planned handover 12
-- Dubai Marina: median AED 21,648/m² (AED 2,011/sq ft) over 12 months; change since 2023: +32%; median studio AED 915,000, 1-bed AED 1,680,000, 2-bed AED 2,550,000; off-plan share of sales 7%; projects under construction 14, of which past planned handover 6
-- Dubai Hills Estate: median AED 25,769/m² (AED 2,394/sq ft) over 12 months; change since 2023: +13%; median studio AED 970,000, 1-bed AED 1,730,000, 2-bed AED 2,690,000; off-plan share of sales 52%; projects under construction 34, of which past planned handover 6
-- Business Bay: median AED 26,838/m² (AED 2,493/sq ft) over 12 months; change since 2023: +19%; median studio AED 1,123,000, 1-bed AED 2,000,000, 2-bed AED 3,093,000; off-plan share of sales 54%; projects under construction 53, of which past planned handover 19
-- Dubai Creek Harbour: median AED 27,692/m² (AED 2,573/sq ft) over 12 months; change since 2023: +24%; median 1-bed AED 1,960,000, 2-bed AED 3,180,000; off-plan share of sales 67%; projects under construction 17, of which past planned handover 1
-- Dubai Islands: median AED 29,520/m² (AED 2,743/sq ft) over 12 months; change since 2023: +18%; median studio AED 1,160,000, 1-bed AED 2,348,000, 2-bed AED 3,499,000; off-plan share of sales 97%; projects under construction 103, of which past planned handover 15
-- Downtown Dubai: median AED 33,742/m² (AED 3,135/sq ft) over 12 months; change since 2023: +4%; median studio AED 1,780,000, 1-bed AED 2,350,000, 2-bed AED 3,900,000; off-plan share of sales 37%; projects under construction 21, of which past planned handover 7
-- Palm Jumeirah: median AED 36,916/m² (AED 3,430/sq ft) over 12 months; change since 2023: +28%; median studio AED 1,372,000, 1-bed AED 3,510,000, 2-bed AED 5,809,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
+- Al Furjan: median AED 15,157/m² (AED 1,408/sq ft) over 12 months; change since 2023: +38%; median studio AED 553,000, 1-bed AED 1,100,000, 2-bed AED 1,722,000; off-plan share of sales 50%; projects under construction 49, of which past planned handover 12
+- Jumeirah Village Circle (JVC): median AED 16,104/m² (AED 1,496/sq ft) over 12 months; change since 2023: +19%; median studio AED 709,000, 1-bed AED 1,110,000, 2-bed AED 1,652,000; off-plan share of sales 61%; projects under construction 167, of which past planned handover 70
+- Arjan: median AED 16,854/m² (AED 1,566/sq ft) over 12 months; change since 2023: +36%; median studio AED 726,000, 1-bed AED 1,186,000, 2-bed AED 1,680,000; off-plan share of sales 64%; projects under construction 39, of which past planned handover 19
+- Dubai South: median AED 17,505/m² (AED 1,626/sq ft) over 12 months; change since 2023: +62%; median studio AED 648,000, 1-bed AED 1,144,000, 2-bed AED 1,683,000; off-plan share of sales 91%; projects under construction 105, of which past planned handover 22
+- Jumeirah Village Triangle (JVT): median AED 17,847/m² (AED 1,658/sq ft) over 12 months; change since 2023: +25%; median studio AED 780,000, 1-bed AED 1,239,000, 2-bed AED 1,735,000; off-plan share of sales 84%; projects under construction 40, of which past planned handover 9
+- DAMAC Hills: median AED 18,523/m² (AED 1,721/sq ft) over 12 months; change since 2023: +16%; median studio AED 610,000, 1-bed AED 1,238,000, 2-bed AED 2,031,000; off-plan share of sales 52%; projects under construction 9, of which past planned handover 3
+- MBR City & Meydan: median AED 21,326/m² (AED 1,981/sq ft) over 12 months; change since 2023: +1%; median studio AED 800,000, 1-bed AED 1,419,000, 2-bed AED 2,363,000; off-plan share of sales 33%; projects under construction 43, of which past planned handover 12
+- Dubai Marina: median AED 21,348/m² (AED 1,983/sq ft) over 12 months; change since 2023: +25%; median studio AED 900,000, 1-bed AED 1,675,000, 2-bed AED 2,525,000; off-plan share of sales 7%; projects under construction 14, of which past planned handover 6
+- Dubai Hills Estate: median AED 25,724/m² (AED 2,390/sq ft) over 12 months; change since 2023: +13%; median studio AED 970,000, 1-bed AED 1,745,000, 2-bed AED 2,685,000; off-plan share of sales 53%; projects under construction 34, of which past planned handover 6
+- Business Bay: median AED 26,910/m² (AED 2,500/sq ft) over 12 months; change since 2023: +21%; median studio AED 1,126,000, 1-bed AED 2,000,000, 2-bed AED 3,044,000; off-plan share of sales 55%; projects under construction 53, of which past planned handover 19
+- Dubai Creek Harbour: median AED 27,592/m² (AED 2,563/sq ft) over 12 months; change since 2023: +23%; median 1-bed AED 1,953,000, 2-bed AED 3,148,000; off-plan share of sales 67%; projects under construction 17, of which past planned handover 1
+- Dubai Islands: median AED 29,542/m² (AED 2,745/sq ft) over 12 months; change since 2023: +15%; median studio AED 1,176,000, 1-bed AED 2,330,000, 2-bed AED 3,499,000; off-plan share of sales 98%; projects under construction 103, of which past planned handover 15
+- Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
+- Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
 ## Key rules for buyers (checked 2026-10-09)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
@@ -1409,10 +1409,10 @@ The area has metro stations and a tram line linking Dubai Marina with JBR and Pa
 Mostly apartments in high-rise towers, from studios to penthouses. Free plots are scarce, so there are fewer off-plan projects than in developing areas.
 
 Q: How much does a square metre cost in Dubai Marina?
-A: According to the Dubai Land Department (DLD), the median sale price in Dubai Marina over the last 12 months is AED 21,648 per m² (data as of 2026-10-03). In 2023 the median was AED 16,181 per m². That is about AED 2,011 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Marina over the last 12 months is AED 21,348 per m² (data as of 2026-10-08). In 2023 the median was AED 17,039 per m². That is about AED 1,983 per square foot.
 
 Q: How much is an apartment in Dubai Marina?
-A: Median DLD transaction prices over 12 months in Dubai Marina: studio — AED 920,000, 1 bedroom — AED 1,680,000, 2 bedrooms — AED 2,550,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Dubai Marina: studio — AED 900,000, 1 bedroom — AED 1,680,000, 2 bedrooms — AED 2,520,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Dubai Marina are off-plan?
 A: 7% of sales in Dubai Marina over the last 12 months were off-plan purchases, according to DLD data.
@@ -1450,13 +1450,13 @@ The Business Bay metro station is nearby, along with Sheikh Zayed Road and Al Kh
 Apartments in high-rise residential towers, including ones with canal and Burj Khalifa views. There are many new projects.
 
 Q: How much does a square metre cost in Business Bay?
-A: According to the Dubai Land Department (DLD), the median sale price in Business Bay over the last 12 months is AED 26,838 per m² (data as of 2026-10-03). In 2023 the median was AED 22,242 per m². That is about AED 2,493 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Business Bay over the last 12 months is AED 26,910 per m² (data as of 2026-10-08). In 2023 the median was AED 22,022 per m². That is about AED 2,500 per square foot.
 
 Q: How much is an apartment in Business Bay?
-A: Median DLD transaction prices over 12 months in Business Bay: studio — AED 1,120,000, 1 bedroom — AED 2,000,000, 2 bedrooms — AED 3,090,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Business Bay: studio — AED 1,130,000, 1 bedroom — AED 2,000,000, 2 bedrooms — AED 3,040,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Business Bay are off-plan?
-A: 54% of sales in Business Bay over the last 12 months were off-plan purchases, according to DLD data.
+A: 55% of sales in Business Bay over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: Who is Business Bay for?
 A: People who work in the centre, and investors counting on renting to professionals.
@@ -1491,10 +1491,10 @@ The area lies between Al Khail Road and Sheikh Mohammed Bin Zayed Road; getting 
 Apartments in low- and mid-rise buildings, townhouses and villas. There are many new projects from different developers.
 
 Q: How much does a square metre cost in Jumeirah Village Circle (JVC)?
-A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Circle (JVC) over the last 12 months is AED 16,223 per m² (data as of 2026-10-03). In 2023 the median was AED 13,199 per m². That is about AED 1,507 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Circle (JVC) over the last 12 months is AED 16,104 per m² (data as of 2026-10-08). In 2023 the median was AED 13,280 per m². That is about AED 1,496 per square foot.
 
 Q: How much is an apartment in Jumeirah Village Circle (JVC)?
-A: Median DLD transaction prices over 12 months in Jumeirah Village Circle (JVC): studio — AED 710,000, 1 bedroom — AED 1,100,000, 2 bedrooms — AED 1,660,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Jumeirah Village Circle (JVC): studio — AED 710,000, 1 bedroom — AED 1,110,000, 2 bedrooms — AED 1,650,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Jumeirah Village Circle (JVC) are off-plan?
 A: 61% of sales in Jumeirah Village Circle (JVC) over the last 12 months were off-plan purchases, according to DLD data.
@@ -1532,13 +1532,13 @@ The area sits by Al Khail Road and Umm Suqeim Street; Downtown Dubai and Dubai M
 Apartments in complexes by the park and the mall, townhouses and villas, including by the golf course. The community is a joint venture of Emaar and Meraas.
 
 Q: How much does a square metre cost in Dubai Hills Estate?
-A: According to the Dubai Land Department (DLD), the median sale price in Dubai Hills Estate over the last 12 months is AED 25,769 per m² (data as of 2026-10-03). In 2023 the median was AED 22,604 per m². That is about AED 2,394 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Hills Estate over the last 12 months is AED 25,724 per m² (data as of 2026-10-08). In 2023 the median was AED 22,501 per m². That is about AED 2,390 per square foot.
 
 Q: How much is an apartment in Dubai Hills Estate?
-A: Median DLD transaction prices over 12 months in Dubai Hills Estate: studio — AED 970,000, 1 bedroom — AED 1,730,000, 2 bedrooms — AED 2,690,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Dubai Hills Estate: studio — AED 970,000, 1 bedroom — AED 1,740,000, 2 bedrooms — AED 2,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Dubai Hills Estate are off-plan?
-A: 52% of sales in Dubai Hills Estate over the last 12 months were off-plan purchases, according to DLD data.
+A: 53% of sales in Dubai Hills Estate over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: Who is the developer of Dubai Hills Estate?
 A: The community is a joint venture of Emaar and Meraas.
@@ -1573,10 +1573,10 @@ The area is close to Dubai International Airport and Ras Al Khor Road; Downtown 
 Apartments in new waterfront residential towers, often with Downtown views. The district is developed by Emaar.
 
 Q: How much does a square metre cost in Dubai Creek Harbour?
-A: According to the Dubai Land Department (DLD), the median sale price in Dubai Creek Harbour over the last 12 months is AED 27,692 per m² (data as of 2026-10-03). In 2023 the median was AED 22,350 per m². That is about AED 2,573 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Creek Harbour over the last 12 months is AED 27,592 per m² (data as of 2026-10-08). In 2023 the median was AED 22,490 per m². That is about AED 2,563 per square foot.
 
 Q: How much is an apartment in Dubai Creek Harbour?
-A: Median DLD transaction prices over 12 months in Dubai Creek Harbour: 1 bedroom — AED 1,960,000, 2 bedrooms — AED 3,180,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Dubai Creek Harbour: 1 bedroom — AED 1,950,000, 2 bedrooms — AED 3,150,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Dubai Creek Harbour are off-plan?
 A: 67% of sales in Dubai Creek Harbour over the last 12 months were off-plan purchases, according to DLD data.
@@ -1614,10 +1614,10 @@ A monorail runs along the island’s trunk; the island connects to the mainland 
 Apartments in residences on the trunk and crescent, villas on the fronds. New projects are most often branded beachfront residences.
 
 Q: How much does a square metre cost in Palm Jumeirah?
-A: According to the Dubai Land Department (DLD), the median sale price in Palm Jumeirah over the last 12 months is AED 36,916 per m² (data as of 2026-10-03). In 2023 the median was AED 28,637 per m². That is about AED 3,430 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Palm Jumeirah over the last 12 months is AED 38,301 per m² (data as of 2026-10-08). In 2023 the median was AED 29,529 per m². That is about AED 3,558 per square foot.
 
 Q: How much is an apartment in Palm Jumeirah?
-A: Median DLD transaction prices over 12 months in Palm Jumeirah: studio — AED 1,370,000, 1 bedroom — AED 3,510,000, 2 bedrooms — AED 5,810,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Palm Jumeirah: studio — AED 1,480,000, 1 bedroom — AED 3,380,000, 2 bedrooms — AED 6,020,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Palm Jumeirah are off-plan?
 A: 31% of sales in Palm Jumeirah over the last 12 months were off-plan purchases, according to DLD data.
@@ -1655,13 +1655,13 @@ Burj Khalifa / Dubai Mall station on the Red Line and direct access to Sheikh Za
 Apartments from studios to penthouses in high-rise towers, including branded residences. New projects appear less often than in developing areas.
 
 Q: How much does a square metre cost in Downtown Dubai?
-A: According to the Dubai Land Department (DLD), the median sale price in Downtown Dubai over the last 12 months is AED 33,742 per m² (data as of 2026-10-03). In 2023 the median was AED 29,759 per m². That is about AED 3,135 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Downtown Dubai over the last 12 months is AED 33,214 per m² (data as of 2026-10-08). In 2023 the median was AED 29,443 per m². That is about AED 3,086 per square foot.
 
 Q: How much is an apartment in Downtown Dubai?
-A: Median DLD transaction prices over 12 months in Downtown Dubai: studio — AED 1,780,000, 1 bedroom — AED 2,350,000, 2 bedrooms — AED 3,900,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Downtown Dubai: studio — AED 1,770,000, 1 bedroom — AED 2,350,000, 2 bedrooms — AED 3,920,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Downtown Dubai are off-plan?
-A: 37% of sales in Downtown Dubai over the last 12 months were off-plan purchases, according to DLD data.
+A: 35% of sales in Downtown Dubai over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: Is Downtown good for short-term rental?
 A: The area is popular with tourists, so short-term rental demand is high. Check holiday-home rules with DET and the building's management.
@@ -1696,13 +1696,13 @@ The area borders Al Khail Road and Meydan Road; Downtown and Business Bay are a 
 Villas and townhouses by lagoons and parks, as well as apartments in Sobha Hartland, Meydan and along the Dubai Canal.
 
 Q: How much does a square metre cost in MBR City & Meydan?
-A: According to the Dubai Land Department (DLD), the median sale price in MBR City & Meydan over the last 12 months is AED 21,337 per m² (data as of 2026-10-03). In 2023 the median was AED 20,956 per m². That is about AED 1,982 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in MBR City & Meydan over the last 12 months is AED 21,326 per m² (data as of 2026-10-08). In 2023 the median was AED 20,992 per m². That is about AED 1,981 per square foot.
 
 Q: How much is an apartment in MBR City & Meydan?
-A: Median DLD transaction prices over 12 months in MBR City & Meydan: studio — AED 800,000, 1 bedroom — AED 1,400,000, 2 bedrooms — AED 2,360,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in MBR City & Meydan: studio — AED 800,000, 1 bedroom — AED 1,420,000, 2 bedrooms — AED 2,360,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in MBR City & Meydan are off-plan?
-A: 35% of sales in MBR City & Meydan over the last 12 months were off-plan purchases, according to DLD data.
+A: 33% of sales in MBR City & Meydan over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: How does MBR City differ from Dubai Hills?
 A: Both are green and family-oriented, but MBR City is closer to Downtown and includes several different communities with lagoons.
@@ -1737,10 +1737,10 @@ The area is by Emirates Road and Sheikh Mohammed Bin Zayed Road; Expo 2020 metro
 Apartments, townhouses and villas in large communities, including Emaar South and Azizi Venice. Many projects come with long payment plans.
 
 Q: How much does a square metre cost in Dubai South?
-A: According to the Dubai Land Department (DLD), the median sale price in Dubai South over the last 12 months is AED 17,499 per m² (data as of 2026-10-03). In 2023 the median was AED 11,061 per m². That is about AED 1,626 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai South over the last 12 months is AED 17,505 per m² (data as of 2026-10-08). In 2023 the median was AED 10,933 per m². That is about AED 1,626 per square foot.
 
 Q: How much is an apartment in Dubai South?
-A: Median DLD transaction prices over 12 months in Dubai South: studio — AED 650,000, 1 bedroom — AED 1,150,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Dubai South: studio — AED 650,000, 1 bedroom — AED 1,140,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Dubai South are off-plan?
 A: 91% of sales in Dubai South over the last 12 months were off-plan purchases, according to DLD data.
@@ -1778,13 +1778,13 @@ The islands are linked by bridges to Deira, and Infinity Bridge leads to Bur Dub
 Apartments and penthouses in low- and mid-rise beachfront complexes, as well as villas. Most projects are under construction.
 
 Q: How much does a square metre cost in Dubai Islands?
-A: According to the Dubai Land Department (DLD), the median sale price in Dubai Islands over the last 12 months is AED 29,520 per m² (data as of 2026-10-03). In 2023 the median was AED 25,864 per m². That is about AED 2,743 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Dubai Islands over the last 12 months is AED 29,542 per m² (data as of 2026-10-08). In 2023 the median was AED 26,493 per m². That is about AED 2,745 per square foot.
 
 Q: How much is an apartment in Dubai Islands?
-A: Median DLD transaction prices over 12 months in Dubai Islands: studio — AED 1,160,000, 1 bedroom — AED 2,350,000, 2 bedrooms — AED 3,500,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Dubai Islands: studio — AED 1,180,000, 1 bedroom — AED 2,330,000, 2 bedrooms — AED 3,500,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Dubai Islands are off-plan?
-A: 97% of sales in Dubai Islands over the last 12 months were off-plan purchases, according to DLD data.
+A: 98% of sales in Dubai Islands over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: How do Dubai Islands differ from Palm Jumeirah?
 A: The Palm is established and pricier; Dubai Islands are a new area by the old city with a lower entry price and more projects under construction.
@@ -1819,10 +1819,10 @@ Easy access to Al Khail Road and Umm Suqeim Road; Dubai Marina and Mall of the E
 Studios and one- to three-bedroom apartments in mid-rise buildings; many projects have pools, gyms and co-working spaces, and Samana offers private balcony pools.
 
 Q: How much does a square metre cost in Arjan?
-A: According to the Dubai Land Department (DLD), the median sale price in Arjan over the last 12 months is AED 16,968 per m² (data as of 2026-10-03). In 2023 the median was AED 12,456 per m². That is about AED 1,576 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Arjan over the last 12 months is AED 16,854 per m² (data as of 2026-10-08). In 2023 the median was AED 12,539 per m². That is about AED 1,566 per square foot.
 
 Q: How much is an apartment in Arjan?
-A: Median DLD transaction prices over 12 months in Arjan: studio — AED 730,000, 1 bedroom — AED 1,180,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Arjan: studio — AED 730,000, 1 bedroom — AED 1,190,000, 2 bedrooms — AED 1,680,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Arjan are off-plan?
 A: 64% of sales in Arjan over the last 12 months were off-plan purchases, according to DLD data.
@@ -1860,13 +1860,13 @@ The area is by Sheikh Mohammed Bin Zayed Road and Al Khail Road; Dubai Marina is
 Ready villas and townhouses, plus new mid-rise buildings with studios and one- and two-bedroom apartments.
 
 Q: How much does a square metre cost in Jumeirah Village Triangle (JVT)?
-A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Triangle (JVT) over the last 12 months is AED 17,979 per m² (data as of 2026-10-03). In 2023 the median was AED 14,404 per m². That is about AED 1,670 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Jumeirah Village Triangle (JVT) over the last 12 months is AED 17,847 per m² (data as of 2026-10-08). In 2023 the median was AED 14,365 per m². That is about AED 1,658 per square foot.
 
 Q: How much is an apartment in Jumeirah Village Triangle (JVT)?
-A: Median DLD transaction prices over 12 months in Jumeirah Village Triangle (JVT): studio — AED 780,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 1,720,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Jumeirah Village Triangle (JVT): studio — AED 780,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 1,740,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Jumeirah Village Triangle (JVT) are off-plan?
-A: 85% of sales in Jumeirah Village Triangle (JVT) over the last 12 months were off-plan purchases, according to DLD data.
+A: 84% of sales in Jumeirah Village Triangle (JVT) over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: JVT or JVC?
 A: JVT is quieter with more villas; JVC is denser with apartments and has more projects. Off-plan prices are comparable.
@@ -1901,13 +1901,13 @@ Metro stations on the Route 2020 line and access to Sheikh Zayed Road and Sheikh
 Apartments in new mid-rise buildings, as well as villas and townhouses. Many projects are handed over furnished with shared amenities.
 
 Q: How much does a square metre cost in Al Furjan?
-A: According to the Dubai Land Department (DLD), the median sale price in Al Furjan over the last 12 months is AED 15,201 per m² (data as of 2026-10-03). In 2023 the median was AED 10,867 per m². That is about AED 1,412 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in Al Furjan over the last 12 months is AED 15,157 per m² (data as of 2026-10-08). In 2023 the median was AED 11,090 per m². That is about AED 1,408 per square foot.
 
 Q: How much is an apartment in Al Furjan?
-A: Median DLD transaction prices over 12 months in Al Furjan: studio — AED 560,000, 1 bedroom — AED 1,110,000, 2 bedrooms — AED 1,730,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in Al Furjan: studio — AED 550,000, 1 bedroom — AED 1,100,000, 2 bedrooms — AED 1,720,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in Al Furjan are off-plan?
-A: 51% of sales in Al Furjan over the last 12 months were off-plan purchases, according to DLD data.
+A: 50% of sales in Al Furjan over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: What makes Al Furjan convenient to live in?
 A: The metro, nearby shopping centres and a calm family setting at moderate prices.
@@ -1942,13 +1942,13 @@ Access to Al Qudra Road, Hessa Street and Sheikh Mohammed Bin Zayed Road; Dubai 
 Villas and townhouses, plus apartments in complexes overlooking the golf course. DAMAC keeps launching new phases.
 
 Q: How much does a square metre cost in DAMAC Hills?
-A: According to the Dubai Land Department (DLD), the median sale price in DAMAC Hills over the last 12 months is AED 18,297 per m² (data as of 2026-10-03). In 2023 the median was AED 15,819 per m². That is about AED 1,700 per square foot.
+A: According to the Dubai Land Department (DLD), the median sale price in DAMAC Hills over the last 12 months is AED 18,523 per m² (data as of 2026-10-08). In 2023 the median was AED 15,809 per m². That is about AED 1,721 per square foot.
 
 Q: How much is an apartment in DAMAC Hills?
-A: Median DLD transaction prices over 12 months in DAMAC Hills: studio — AED 610,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 2,010,000. This is the median across all deals in the area, not a valuation of a specific unit.
+A: Median DLD transaction prices over 12 months in DAMAC Hills: studio — AED 610,000, 1 bedroom — AED 1,240,000, 2 bedrooms — AED 2,030,000. This is the median across all deals in the area, not a valuation of a specific unit.
 
 Q: What share of deals in DAMAC Hills are off-plan?
-A: 51% of sales in DAMAC Hills over the last 12 months were off-plan purchases, according to DLD data.
+A: 52% of sales in DAMAC Hills over the last 12 months were off-plan purchases, according to DLD data.
 
 Q: Are DAMAC Hills and DAMAC Hills 2 the same?
 A: No. DAMAC Hills is the community around the golf club off Al Qudra Road; DAMAC Hills 2 is a separate, more remote and more affordable area.
