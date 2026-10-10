@@ -1546,3 +1546,10 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
   .dtbl.mkt-sq th:nth-child(5),.dtbl.mkt-sq td:nth-child(5),.dtbl.mkt-sq th:nth-child(6),.dtbl.mkt-sq td:nth-child(6),
   .dtbl.mkt-sq th:nth-child(7),.dtbl.mkt-sq td:nth-child(7),.dtbl.mkt-sq th:nth-child(9),.dtbl.mkt-sq td:nth-child(9),
   .dtbl.mkt-sq th:nth-child(10),.dtbl.mkt-sq td:nth-child(10){display:none}}
+
+.pj-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:18px 0}
+.pj-gallery img{width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;border-radius:12px;background:#e6edf1}
+.pj-gallery:not(.pj-plans) img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+.pj-plans img{object-fit:contain;background:#fff;border:1px solid #e1e8ec}
+.pj-amen{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:12px 0}
+.pj-amen li{background:#eef7fb;border-radius:999px;padding:6px 12px;font-size:14px}

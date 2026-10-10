@@ -90,7 +90,7 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 - Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
 - Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
-## Key rules for buyers (checked 2026-10-09)
+## Key rules for buyers (checked 2026-10-10)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
 - Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
 - 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).
