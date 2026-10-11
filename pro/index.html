@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PromptEstates Pro — Dubai market intelligence</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="pro.css">
+<script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
+</head>
+<body>
+<div id="gate" class="gate" hidden>
+  <form class="gate-box" id="gate-form">
+    <img src="/assets/logo-light.svg" alt="PromptEstates" class="gate-logo dark-only" width="120" height="69">
+    <img src="/assets/logo.svg" alt="PromptEstates" class="gate-logo light-only" width="120" height="69">
+    <h1>Pro</h1>
+    <p data-t="gateText"></p>
+    <input type="password" id="gate-pass" autocomplete="current-password" required>
+    <button type="submit" class="btn" data-t="gateBtn"></button>
+    <p class="gate-err" id="gate-err" hidden data-t="gateErr"></p>
+  </form>
+</div>
+<div id="app" hidden>
+  <header class="top">
+    <a href="#/" class="brand"><img src="/favicon.svg" alt="" width="28" height="28"><b>PromptEstates</b><span>Pro</span></a>
+    <nav class="tabs" id="tabs">
+      <a href="#/" data-route="market" data-t="navMarket"></a>
+      <a href="#/areas" data-route="areas" data-t="navAreas"></a>
+      <a href="#/projects" data-route="projects" data-t="navProjects"></a>
+      <a href="#/tx" data-route="tx" data-t="navTx"></a>
+      <a href="#/developers" data-route="developers" data-t="navDevs"></a>
+    </nav>
+    <div class="tools">
+      <button class="chip" id="unit-btn" type="button">m²</button>
+      <button class="chip" id="lang-btn" type="button">EN</button>
+      <button class="chip" id="theme-btn" type="button" aria-label="Theme">◐</button>
+    </div>
+  </header>
+  <main id="view" class="view"></main>
+  <footer class="foot" id="foot"></footer>
+</div>
+<script src="vendor/chart.umd.min.js"></script>
+<script src="pro.js"></script>
+</body>
+</html>

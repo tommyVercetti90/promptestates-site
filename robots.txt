@@ -1,37 +1,49 @@
 User-agent: *
 Allow: /
+Disallow: /pro/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /pro/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /pro/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /pro/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /pro/
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /pro/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /pro/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /pro/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /pro/
 
 User-agent: YandexBot
 Allow: /
+Disallow: /pro/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /pro/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /pro/
 
 Sitemap: https://promptestates.com/sitemap.xml
