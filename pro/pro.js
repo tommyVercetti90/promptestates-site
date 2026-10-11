@@ -531,10 +531,11 @@
   var IT = {
     ru: { h: 'Инфографика', sub: 'Рынок Дубая в картинках по данным DLD. Каждую карточку можно скачать в PNG для поста или презентации', png: 'PNG',
       k1: 'Рынок Дубая за 12 месяцев', k1s: 'Все зарегистрированные продажи DLD', sales: 'Сделок', value: 'Объём, AED', price: 'Медиана цены', yoy: 'за год', off: 'Доля off-plan',
-      rent: 'Аренда 1BR, AED/год', yld: 'Доходность 1BR', spark: 'Сделки по месяцам, 24 мес.', bn: 'млрд',
+      rent: 'Аренда {s}, AED/год', yld: 'Доходность {s}', spark: 'Сделки по месяцам, 24 мес.', bn: 'млрд',
       k2: 'Куда идут деньги', k2s: 'Топ-24 района по объёму продаж за 12 мес. Цвет — изменение цены за год',
-      k3: 'Цена против доходности', k3s: 'Районы с 300+ сделками за 12 мес. Размер — число сделок, цвет — доля off-plan', q1: 'Дешевле и доходнее', q2: 'Дороже, доходность ниже',
-      offc: 'off-plan', ready: 'вторичка', axes: '↑ доходность 1BR · → цена',
+      k3: 'Цена против доходности', k3s: 'Районы с наибольшим числом сделок за 12 мес. Размер — число сделок, цвет — доля off-plan', q1: 'Дешевле и доходнее', q2: 'Дороже, доходность ниже',
+      offc: 'off-plan', ready: 'вторичка', axes: '↑ доходность {s} · → цена', segs: { all: 'Все', apt: 'Квартиры', S: 'Студии', '1': '1-спальные', '2': '2-спальные', '3': '3-спальные', '4+': '4+ спальни', villa: 'Виллы и таунхаусы' },
+      segS: { all: '1BR', apt: '1BR', S: 'студий', '1': '1BR', '2': '2BR', '3': '3BR', '4+': '4BR+', villa: 'вилл' }, onlyU: ' — только квартиры', noData: 'Мало договоров аренды для этого типа', onlyV: ' — только виллы', noSeg: 'Фильтр не влияет на эту карточку',
       k4: 'Тепловая карта цен', k4s: 'Отклонение медианной цены месяца от медианы района за 12 мес., %. Последний столбец — за год',
       k5: 'Волна сдачи', k5s: 'Квартир и вилл в строящихся проектах по плановому году сдачи, реестр DLD', overdue: 'просрочено', later: 'позже', active: 'строится', notst: 'не начато', topH: 'Больше всего сдач',
       k6: 'Надёжность застройщиков', k6s: 'Топ-14 по продажам за 12 мес.: проекты сданные / строящиеся в срок / просроченные', fin: 'сдано', ontime: 'в срок', late: 'просрочено', lateP: '% просрочки',
@@ -542,10 +543,11 @@
       src: 'PromptEstates Pro · данные DLD до ', k: ' тыс' },
     en: { h: 'Infographics', sub: 'The Dubai market at a glance, from DLD data. Download any card as PNG for a post or a deck', png: 'PNG',
       k1: 'Dubai market, last 12 months', k1s: 'All sales registered with DLD', sales: 'Sales', value: 'Value, AED', price: 'Median price', yoy: 'YoY', off: 'Off-plan share',
-      rent: '1BR rent, AED/yr', yld: '1BR gross yield', spark: 'Monthly sales, 24 months', bn: 'bn',
+      rent: '{s} rent, AED/yr', yld: '{s} gross yield', spark: 'Monthly sales, 24 months', bn: 'bn',
       k2: 'Where the money goes', k2s: 'Top 24 areas by 12-month sales value. Colour: price change YoY',
-      k3: 'Price vs yield', k3s: 'Areas with 300+ sales in 12 months. Size: number of sales, colour: off-plan share', q1: 'Cheaper, higher yield', q2: 'Pricier, lower yield',
-      offc: 'off-plan', ready: 'ready', axes: '↑ 1BR yield · → price',
+      k3: 'Price vs yield', k3s: 'Most traded areas in 12 months. Size: number of sales, colour: off-plan share', q1: 'Cheaper, higher yield', q2: 'Pricier, lower yield',
+      offc: 'off-plan', ready: 'ready', axes: '↑ {s} yield · → price', segs: { all: 'All', apt: 'Apartments', S: 'Studios', '1': '1-bed', '2': '2-bed', '3': '3-bed', '4+': '4+ bed', villa: 'Villas & townhouses' },
+      segS: { all: '1BR', apt: '1BR', S: 'studio', '1': '1BR', '2': '2BR', '3': '3BR', '4+': '4BR+', villa: 'villa' }, onlyU: ' — apartments only', noData: 'Not enough rent contracts for this type', onlyV: ' — villas only', noSeg: 'The filter does not apply to this card',
       k4: 'Price heatmap', k4s: 'Monthly median price vs the area 12-month median, %. Last column: YoY',
       k5: 'Handover wave', k5s: 'Units in active projects by planned handover year, DLD registry', overdue: 'overdue', later: 'later', active: 'under construction', notst: 'not started', topH: 'Most handovers',
       k6: 'Developer reliability', k6s: 'Top 14 by 12-month sales: projects completed / on schedule / overdue', fin: 'completed', ontime: 'on schedule', late: 'overdue', lateP: '% overdue',
@@ -553,7 +555,8 @@
       src: 'PromptEstates Pro · DLD data to ', k: 'k' }
   };
   var it = function (k) { return (IT[lang] || IT.en)[k]; };
-  var P, META, W = 720;
+  var P, META, W = 720, SEG = store('pro_seg') || 'all';
+  var segT = function (k) { return it(k).replace('{s}', it('segS')[SEG]); };
   function pal() {
     var g = function (v, d) { var c = css(v); return /^#[0-9a-f]{3,6}$/i.test(c) ? c : d; };
     return { bg: g('--surface', '#11161a'), bg2: g('--surface-2', '#161c21'), text: g('--text', '#f2f5f7'), muted: g('--muted', '#8b979f'), line: css('--line-2') || '#333',
@@ -578,10 +581,11 @@
     str.split(' ').forEach(function (w) { var l = (out[out.length - 1] + ' ' + w).trim(); if (l.length > n && out[out.length - 1]) out.push(w); else out[out.length - 1] = l; });
     return out;
   }
-  function card(id, h, title, sub, body) {
+  function card(id, h, title, sub, body, noSeg) {
+    if (SEG !== 'all' && !noSeg) title += ' · ' + it('segs')[SEG];
     return '<div class="ig"><button class="chip ig-png" type="button" data-png="' + id + '">↓ ' + it('png') + '</button>' +
       '<svg id="' + id + '" viewBox="0 0 ' + W + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" font-family="Onest, -apple-system, Segoe UI, Roboto, sans-serif">' +
-      box(0, 0, W, h, P.bg, 18) + tx(32, 50, title, { size: 28, w: 700 }) +
+      box(0, 0, W, h, P.bg, 18) + tx(32, 50, title, { size: title.length > 40 ? 21 : title.length > 32 ? 24 : 28, w: 700 }) +
       wrapText(sub, 86).slice(0, 2).map(function (l, i) { return tx(32, 78 + i * 19, l, { size: 14, fill: P.muted }); }).join('') + body +
       tx(32, h - 22, it('src') + META.tx_date, { size: 12, fill: P.muted }) + tx(W - 32, h - 22, 'promptestates.com', { size: 13, w: 700, fill: P.accent, anchor: 'end' }) + '</svg></div>';
   }
@@ -618,10 +622,10 @@
   function igPoster(m, areas) {
     var s = m.all, l12 = s.slice(-12), p12 = s.slice(-24, -12), med = function (rows, i) { return median(rows.map(function (r) { return r[i]; }).filter(Boolean)); };
     var ppm = med(l12, 3), ppmP = med(p12, 3), n12 = sum(l12, 1), nP = sum(p12, 1);
-    var rent1 = median(areas.filter(function (a) { return a.n12 >= 300; }).map(function (a) { return a.rent['1']; }).filter(Boolean));
+    var rent1 = median(areas.filter(function (a) { return a.n12 >= (SEG === 'all' ? 300 : 40); }).map(function (a) { return a.rent['1']; }).filter(Boolean));
     var tiles = [[it('sales'), fmt(n12), nP ? 100 * (n12 / nP - 1) : null], [it('value'), fmt(sum(l12, 2) / 1e3) + ' ' + it('bn'), null],
       [it('price') + ', AED/' + uLabel(), fmt(ppmv(ppm)), ppmP ? 100 * (ppm / ppmP - 1) : null], [it('off'), fmt(100 * sum(l12, 6) / n12) + '%', null],
-      [it('rent'), fmt(rent1), null], [it('yld'), fmt(median(areas.map(function (a) { return a.yld['1']; }).filter(Boolean)), 1) + '%', null]];
+      [segT('rent'), fmt(rent1), null], [segT('yld'), fmt(median(areas.map(function (a) { return a.yld['1']; }).filter(Boolean)), 1) + '%', null]];
     var tw = (W - 64 - 32) / 3, b = '';
     tiles.forEach(function (x, i) {
       var x0 = 32 + (i % 3) * (tw + 16), y0 = 116 + Math.floor(i / 3) * 132;
@@ -653,7 +657,8 @@
   }
 
   function igScatter(areas) {
-    var pts = areas.filter(function (a) { return a.n12 >= 300 && a.yld['1'] && a.ppm12; });
+    var pts = areas.filter(function (a) { return a.yld['1'] && a.ppm12 && a.n12 >= (SEG === 'all' ? 300 : 40); }).sort(function (a, b) { return b.n12 - a.n12; }).slice(0, 45);
+    if (pts.length < 4) return card('ig-yield', 300, it('k3'), it('k3s'), tx(W / 2, 170, it('noData'), { size: 16, fill: P.muted, anchor: 'middle' }));
     var X0 = 84, X1 = W - 32, Y0 = 122, Y1 = 500, b = '';
     var xs = pts.map(function (a) { return ppmv(a.ppm12); }), ys = pts.map(function (a) { return a.yld['1']; });
     var xmn = Math.min.apply(null, xs), xmx = Math.max.apply(null, xs), ymn = Math.min.apply(null, ys), ymx = Math.max.apply(null, ys);
@@ -676,7 +681,7 @@
       placed.push([lx, ly]);
       b += tx(right ? x + r + 3 : x - r - 3, sy(a.yld['1']) + 4, trunc(aname(a), 22), { size: 11, w: 600, anchor: right ? 'start' : 'end' });
     });
-    b += legend(32, 552, [[P.accent, it('offc')], [P.warn, it('ready')]]) + tx(W - 32, 552, it('axes') + ', AED/' + uLabel(), { size: 12, fill: P.muted, anchor: 'end' });
+    b += legend(32, 552, [[P.accent, it('offc')], [P.warn, it('ready')]]) + tx(W - 32, 552, segT('axes') + ', AED/' + uLabel(), { size: 12, fill: P.muted, anchor: 'end' });
     return card('ig-yield', 600, it('k3'), it('k3s'), b);
   }
 
@@ -705,7 +710,7 @@
     keys.forEach(function (k) { agg[k] = { a: 0, n: 0 }; });
     projects.forEach(function (p) {
       var act = p.status === 'ACTIVE', ns = ['NOT_STARTED', 'PENDING', 'CONDITIONAL_ACTIVATING'].indexOf(p.status) >= 0;
-      var u = p.units || p.villas || 0, y = +(p.end || '').slice(0, 4);
+      var u = SEG === 'all' ? (p.units || p.villas || 0) : SEG === 'villa' ? (p.villas || 0) : (p.units || 0), y = +(p.end || '').slice(0, 4);
       if ((!act && !ns) || !u || !y) return;
       var k = p.overdue || y < Y ? 'late' : y > Y + 4 ? 'later' : y;
       agg[k][act ? 'a' : 'n'] += u;
@@ -725,7 +730,7 @@
       b += tx(RX, y + 12, trunc(names[r[0]], 26), { size: 12, w: 600 }) + box(RX, y + 19, 150 * r[1] / amx, 8, P.accent, 4) + tx(RX + 158, y + 28, kfmt(r[1]), { size: 11, fill: P.muted });
     });
     b += legend(32, 516, [[P.accent, it('active')], [mix(P.bg2, P.accent, .4), it('notst')], [P.bad, it('overdue')]]);
-    return card('ig-pipeline', 562, it('k5'), it('k5s'), b);
+    return card('ig-pipeline', 562, it('k5'), it('k5s') + (SEG === 'all' ? '' : SEG === 'villa' ? it('onlyV') : it('onlyU')), b, SEG !== 'all' && SEG !== 'villa' && SEG !== 'apt');
   }
 
   function igDevs(devs) {
@@ -738,7 +743,7 @@
       b += tx(BX + BW + 12, y + 19, d.finished + ' / ' + (d.active - d.overdue) + ' / ' + d.overdue, { size: 12, fill: P.muted }) +
         tx(W - 32, y + 19, lp + '%', { size: 14, w: 700, anchor: 'end', fill: lp >= 25 ? P.bad : lp >= 10 ? P.warn : P.good });
     });
-    return card('ig-devs', 144 + top.length * 34 + 52, it('k6'), it('k6s'), b);
+    return card('ig-devs', 144 + top.length * 34 + 52, it('k6'), it('k6s'), b, true);
   }
 
   function igOffplan(m) {
@@ -765,7 +770,7 @@
       var c = document.createElement('canvas'); c.width = vb.width * k; c.height = vb.height * k;
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
       c.toBlob(function (bl) {
-        var a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'promptestates-' + id.replace('ig-', '') + '-' + META.tx_date + '.png';
+        var a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'promptestates-' + id.replace('ig-', '') + (SEG === 'all' ? '' : '-' + SEG.replace('+', 'plus')) + '-' + META.tx_date + '.png';
         document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
       });
     };
@@ -774,11 +779,22 @@
 
   function vInfo() {
     page('<div class="loading">' + t('loading') + '</div>');
-    Promise.all([get('market.json'), get('areas.json'), get('projects.json'), get('developers.json'), get('meta.json')]).then(function (d) {
+    Promise.all([get('market.json'), get('areas.json'), get('projects.json'), get('developers.json'), get('meta.json'), get('segments.json')]).then(function (d) {
       P = pal(); META = d[4];
-      page('<h1 class="page">' + it('h') + '</h1><p class="sub">' + it('sub') + '</p><div class="ig-grid">' +
+      var sg = d[5][SEG] || d[5].all, base = {}, mk = { all: sg.series, areas: {} };
+      d[1].forEach(function (a) { base[a.id] = a; });
+      var ar = sg.areas.filter(function (r) { return base[r.id]; }).map(function (r) {
+        mk.areas[r.id] = d[5].months.map(function (mo, i) { return [mo, null, null, r.m[i]]; });
+        return { id: r.id, name: base[r.id].name, community: base[r.id].community, n12: r.n12, v12: r.v12, ppm12: r.ppm12, yoy: r.yoy, off12: r.off12,
+                 rent: { '1': r.rent }, yld: { '1': r.yld && r.yld <= 12 ? r.yld : null } };  // >12% gross = sale/rent mix mismatch, not a real yield
+      });
+      d[0] = mk; d[1] = ar;
+      page('<h1 class="page">' + it('h') + '</h1><p class="sub">' + it('sub') + '</p><div class="filters ig-seg">' +
+        ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) { return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + '" data-seg="' + k + '">' + it('segs')[k] + '</button>'; }).join('') +
+        '</div><div class="ig-grid">' +
         [igPoster(d[0], d[1]), igTreemap(d[1]), igScatter(d[1]), igHeat(d[0], d[1]), igPipeline(d[2], d[1]), igOffplan(d[0]), igDevs(d[3])].join('') + '</div>');
       view.querySelectorAll('[data-png]').forEach(function (bt) { bt.onclick = function () { savePng(bt.dataset.png); }; });
+      view.querySelectorAll('[data-seg]').forEach(function (bt) { bt.onclick = function () { SEG = bt.dataset.seg; store('pro_seg', SEG); vInfo(); }; });
     });
   }
 

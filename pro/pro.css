@@ -98,3 +98,4 @@ td.wrap{white-space:normal;min-width:180px}
 .ig svg{display:block;width:100%;height:auto}
 .ig-png{position:absolute;top:14px;right:14px;background:var(--surface)}
 @media (max-width:640px){.ig-grid{grid-template-columns:1fr}.ig-png{top:8px;right:8px;height:28px}}
+.ig-seg .chip{height:36px;padding:0 14px}
