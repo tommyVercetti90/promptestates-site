@@ -29,7 +29,7 @@
       seeTx: 'Все сделки района', prev: 'Назад', next: 'Дальше', page: 'стр.', of: 'из', none: 'Ничего не найдено', loading: 'Загрузка…',
       source: 'Источник: Dubai Land Department (data.dubai) — сделки на {tx}, аренда на {rent} ({rs}), реестр проектов на {reg}. Медианы, не оценка конкретного объекта.',
       studio: 'Студия', br: 'сп.', villa: 'Вилла', ph: 'Пентхаус', apt: 'Кв.', land: 'Земля', bld: 'Здание', ppmShort: 'за', perYear: '/год',
-      devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
+      devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', navInfo: 'Инфографика', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
       askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
       askEx: ['Где самая высокая доходность 1-спальных?', 'Сравни JVC и Arjan', 'Какие проекты Binghatti просрочены?', 'Сколько реально стоит 1-спальная 67 м² в Azizi Venice 14?'],
       memoBtn: 'ИИ-меморандум', memoH: 'Инвест-меморандум', memoWait: 'Готовлю меморандум по данным DLD… (до 30 сек.)', print: 'Печать / PDF',
@@ -57,7 +57,7 @@
       seeTx: 'All transactions in the area', prev: 'Prev', next: 'Next', page: 'page', of: 'of', none: 'Nothing found', loading: 'Loading…',
       source: 'Source: Dubai Land Department (data.dubai) — transactions as of {tx}, rents as of {rent} ({rs}), project registry as of {reg}. Medians, not a valuation of any unit.',
       studio: 'Studio', br: 'BR', villa: 'Villa', ph: 'Penthouse', apt: 'Apt', land: 'Land', bld: 'Building', ppmShort: 'per', perYear: '/yr',
-      devProjects: 'Developer projects', navAsk: 'Ask the market', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
+      devProjects: 'Developer projects', navAsk: 'Ask the market', navInfo: 'Infographics', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
       askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
       askEx: ['Where are 1-bed yields highest?', 'Compare JVC and Arjan', 'Which Binghatti projects are overdue?', 'What is a fair price for a 67 m² 1-bed in Azizi Venice 14?'],
       memoBtn: 'AI memo', memoH: 'Investment memo', memoWait: 'Writing the memo from DLD data… (up to 30 s)', print: 'Print / PDF',
@@ -527,6 +527,261 @@
     });
   }
 
+  // ------------------------------------------------------------------ infographics (SVG cards, exportable as PNG)
+  var IT = {
+    ru: { h: 'Инфографика', sub: 'Рынок Дубая в картинках по данным DLD. Каждую карточку можно скачать в PNG для поста или презентации', png: 'PNG',
+      k1: 'Рынок Дубая за 12 месяцев', k1s: 'Все зарегистрированные продажи DLD', sales: 'Сделок', value: 'Объём, AED', price: 'Медиана цены', yoy: 'за год', off: 'Доля off-plan',
+      rent: 'Аренда 1BR, AED/год', yld: 'Доходность 1BR', spark: 'Сделки по месяцам, 24 мес.', bn: 'млрд',
+      k2: 'Куда идут деньги', k2s: 'Топ-24 района по объёму продаж за 12 мес. Цвет — изменение цены за год',
+      k3: 'Цена против доходности', k3s: 'Районы с 300+ сделками за 12 мес. Размер — число сделок, цвет — доля off-plan', q1: 'Дешевле и доходнее', q2: 'Дороже, доходность ниже',
+      offc: 'off-plan', ready: 'вторичка', axes: '↑ доходность 1BR · → цена',
+      k4: 'Тепловая карта цен', k4s: 'Отклонение медианной цены месяца от медианы района за 12 мес., %. Последний столбец — за год',
+      k5: 'Волна сдачи', k5s: 'Квартир и вилл в строящихся проектах по плановому году сдачи, реестр DLD', overdue: 'просрочено', later: 'позже', active: 'строится', notst: 'не начато', topH: 'Больше всего сдач',
+      k6: 'Надёжность застройщиков', k6s: 'Топ-14 по продажам за 12 мес.: проекты сданные / строящиеся в срок / просроченные', fin: 'сдано', ontime: 'в срок', late: 'просрочено', lateP: '% просрочки',
+      k7: 'Off-plan против вторички', k7s: 'Сделки по месяцам и наценка off-plan к готовому жилью (медиана цены за м²)', prem: 'наценка off-plan', share: 'доля off-plan за 12 мес.',
+      src: 'PromptEstates Pro · данные DLD до ', k: ' тыс' },
+    en: { h: 'Infographics', sub: 'The Dubai market at a glance, from DLD data. Download any card as PNG for a post or a deck', png: 'PNG',
+      k1: 'Dubai market, last 12 months', k1s: 'All sales registered with DLD', sales: 'Sales', value: 'Value, AED', price: 'Median price', yoy: 'YoY', off: 'Off-plan share',
+      rent: '1BR rent, AED/yr', yld: '1BR gross yield', spark: 'Monthly sales, 24 months', bn: 'bn',
+      k2: 'Where the money goes', k2s: 'Top 24 areas by 12-month sales value. Colour: price change YoY',
+      k3: 'Price vs yield', k3s: 'Areas with 300+ sales in 12 months. Size: number of sales, colour: off-plan share', q1: 'Cheaper, higher yield', q2: 'Pricier, lower yield',
+      offc: 'off-plan', ready: 'ready', axes: '↑ 1BR yield · → price',
+      k4: 'Price heatmap', k4s: 'Monthly median price vs the area 12-month median, %. Last column: YoY',
+      k5: 'Handover wave', k5s: 'Units in active projects by planned handover year, DLD registry', overdue: 'overdue', later: 'later', active: 'under construction', notst: 'not started', topH: 'Most handovers',
+      k6: 'Developer reliability', k6s: 'Top 14 by 12-month sales: projects completed / on schedule / overdue', fin: 'completed', ontime: 'on schedule', late: 'overdue', lateP: '% overdue',
+      k7: 'Off-plan vs ready', k7s: 'Monthly sales and the off-plan premium over ready homes (median price per m²)', prem: 'off-plan premium', share: 'off-plan share, 12 months',
+      src: 'PromptEstates Pro · DLD data to ', k: 'k' }
+  };
+  var it = function (k) { return (IT[lang] || IT.en)[k]; };
+  var P, META, W = 720;
+  function pal() {
+    var g = function (v, d) { var c = css(v); return /^#[0-9a-f]{3,6}$/i.test(c) ? c : d; };
+    return { bg: g('--surface', '#11161a'), bg2: g('--surface-2', '#161c21'), text: g('--text', '#f2f5f7'), muted: g('--muted', '#8b979f'), line: css('--line-2') || '#333',
+      accent: g('--accent', '#6bbfe0'), brand: g('--brand', '#114154'), good: g('--good', '#5fd49a'), bad: g('--bad', '#f07a6a'), warn: g('--warn', '#f0b35a') };
+  }
+  function hex(c) { c = c.replace('#', ''); if (c.length === 3) c = c.replace(/./g, '$&$&'); return [0, 2, 4].map(function (i) { return parseInt(c.substr(i, 2), 16); }); }
+  function mix(a, b, k) { var x = hex(a), y = hex(b); k = Math.max(0, Math.min(1, k || 0)); return '#' + x.map(function (v, i) { return ('0' + Math.round(v + (y[i] - v) * k).toString(16)).slice(-2); }).join(''); }
+  function trunc(x, n) { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; }
+  function kfmt(v) { return v >= 1000 ? fmt(v / 1000, v >= 1e4 ? 0 : 1) + it('k') : fmt(v); }
+  function mlabel(mo, short) { var d = new Date(mo + '-01T00:00:00'); return d.toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US', short ? { month: 'short' } : { month: 'short', year: '2-digit' }); }
+  function tx(x, y, str, o) {
+    o = o || {};
+    return '<text x="' + x + '" y="' + y + '" font-size="' + (o.size || 14) + '"' + (o.w ? ' font-weight="' + o.w + '"' : '') + ' fill="' + (o.fill || P.text) + '"' +
+      (o.anchor ? ' text-anchor="' + o.anchor + '"' : '') + (o.extra || '') + '>' + esc(str) + '</text>';
+  }
+  function box(x, y, w, h, fill, rx) { return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) + '"' + (rx ? ' rx="' + rx + '"' : '') + ' fill="' + fill + '"/>'; }
+  function legend(x, y, items) {
+    return items.map(function (i) { var o = box(x, y - 10, 12, 12, i[0], 3) + tx(x + 18, y, i[1], { size: 12, fill: P.muted }); x += 34 + i[1].length * 7; return o; }).join('');
+  }
+  function wrapText(str, n) {
+    var out = [''];
+    str.split(' ').forEach(function (w) { var l = (out[out.length - 1] + ' ' + w).trim(); if (l.length > n && out[out.length - 1]) out.push(w); else out[out.length - 1] = l; });
+    return out;
+  }
+  function card(id, h, title, sub, body) {
+    return '<div class="ig"><button class="chip ig-png" type="button" data-png="' + id + '">↓ ' + it('png') + '</button>' +
+      '<svg id="' + id + '" viewBox="0 0 ' + W + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" font-family="Onest, -apple-system, Segoe UI, Roboto, sans-serif">' +
+      box(0, 0, W, h, P.bg, 18) + tx(32, 50, title, { size: 28, w: 700 }) +
+      wrapText(sub, 86).slice(0, 2).map(function (l, i) { return tx(32, 78 + i * 19, l, { size: 14, fill: P.muted }); }).join('') + body +
+      tx(32, h - 22, it('src') + META.tx_date, { size: 12, fill: P.muted }) + tx(W - 32, h - 22, 'promptestates.com', { size: 13, w: 700, fill: P.accent, anchor: 'end' }) + '</svg></div>';
+  }
+  function niceTicks(mn, mx, n) {
+    var step = Math.pow(10, Math.floor(Math.log10((mx - mn) / n))), e = (mx - mn) / n / step, out = [];
+    step *= e >= 7.5 ? 10 : e >= 3.5 ? 5 : e >= 1.5 ? 2 : 1;
+    for (var v = Math.ceil(mn / step) * step; v <= mx + 1e-9; v += step) out.push(v);
+    return out;
+  }
+  function squarify(items, x, y, w, h) {
+    var total = items.reduce(function (s, i) { return s + i.v; }, 0), k = w * h / total, out = [];
+    var rest = items.map(function (i) { return { it: i, a: i.v * k }; });
+    while (rest.length) {
+      var side = Math.min(w, h), row = [], best = Infinity;
+      while (rest.length) {
+        var cand = row.concat([rest[0]]), sm = 0, mx = 0, mn = Infinity;
+        cand.forEach(function (r) { sm += r.a; mx = Math.max(mx, r.a); mn = Math.min(mn, r.a); });
+        var worst = Math.max(side * side * mx / (sm * sm), sm * sm / (side * side * mn));
+        if (worst > best) break;
+        best = worst; row = cand; rest.shift();
+      }
+      var rs = row.reduce(function (s, r) { return s + r.a; }, 0), th = rs / side, off = 0;
+      row.forEach(function (r) {
+        var len = r.a / th;
+        out.push(w >= h ? { it: r.it, x: x, y: y + off, w: th, h: len } : { it: r.it, x: x + off, y: y, w: len, h: th });
+        off += len;
+      });
+      if (w >= h) { x += th; w -= th; } else { y += th; h -= th; }
+    }
+    return out;
+  }
+  var aname = function (a) { return a.community || a.name; };
+
+  function igPoster(m, areas) {
+    var s = m.all, l12 = s.slice(-12), p12 = s.slice(-24, -12), med = function (rows, i) { return median(rows.map(function (r) { return r[i]; }).filter(Boolean)); };
+    var ppm = med(l12, 3), ppmP = med(p12, 3), n12 = sum(l12, 1), nP = sum(p12, 1);
+    var rent1 = median(areas.filter(function (a) { return a.n12 >= 300; }).map(function (a) { return a.rent['1']; }).filter(Boolean));
+    var tiles = [[it('sales'), fmt(n12), nP ? 100 * (n12 / nP - 1) : null], [it('value'), fmt(sum(l12, 2) / 1e3) + ' ' + it('bn'), null],
+      [it('price') + ', AED/' + uLabel(), fmt(ppmv(ppm)), ppmP ? 100 * (ppm / ppmP - 1) : null], [it('off'), fmt(100 * sum(l12, 6) / n12) + '%', null],
+      [it('rent'), fmt(rent1), null], [it('yld'), fmt(median(areas.map(function (a) { return a.yld['1']; }).filter(Boolean)), 1) + '%', null]];
+    var tw = (W - 64 - 32) / 3, b = '';
+    tiles.forEach(function (x, i) {
+      var x0 = 32 + (i % 3) * (tw + 16), y0 = 116 + Math.floor(i / 3) * 132;
+      b += box(x0, y0, tw, 118, P.bg2, 12) + tx(x0 + 16, y0 + 28, x[0], { size: 13, fill: P.muted }) + tx(x0 + 16, y0 + 72, x[1], { size: 30, w: 700 }) +
+        (x[2] != null ? tx(x0 + 16, y0 + 100, (x[2] >= 0 ? '▲ +' : '▼ ') + fmt(x[2], 1) + '% ' + it('yoy'), { size: 13, w: 600, fill: x[2] >= 0 ? P.good : P.bad }) : '');
+    });
+    var s24 = s.slice(-24), mx = Math.max.apply(null, s24.map(function (r) { return r[1]; })), bw = (W - 64) / s24.length;
+    b += tx(32, 404, it('spark'), { size: 13, w: 600, fill: P.muted });
+    s24.forEach(function (r, i) { var hh = 66 * r[1] / mx; b += box(32 + i * bw + 2, 480 - hh, bw - 4, hh, i >= s24.length - 12 ? P.accent : mix(P.bg2, P.accent, .4), 3); });
+    b += tx(32, 498, mlabel(s24[0][0]), { size: 11, fill: P.muted }) + tx(W - 32, 498, mlabel(s24[s24.length - 1][0]), { size: 11, fill: P.muted, anchor: 'end' });
+    return card('ig-market', 550, it('k1'), it('k1s'), b);
+  }
+
+  function igTreemap(areas) {
+    var col = function (y) { return y == null ? P.brand : y >= 0 ? mix(P.brand, P.good, y / 20) : mix(P.brand, P.bad, -y / 12); };
+    var top = areas.filter(function (a) { return a.v12 > 0; }).sort(function (a, b) { return b.v12 - a.v12; }).slice(0, 24), b = '';
+    squarify(top.map(function (a) { return { a: a, v: a.v12 }; }), 32, 116, W - 64, 376).forEach(function (r) {
+      var a = r.it.a;
+      b += box(r.x + 1.5, r.y + 1.5, r.w - 3, r.h - 3, col(a.yoy), 6);
+      if (r.w > 60 && r.h > 32) {
+        b += tx(r.x + 9, r.y + 21, trunc(aname(a), Math.floor((r.w - 14) / 7.6)), { size: 13, w: 700, fill: '#fff' });
+        if (r.h > 52) b += tx(r.x + 9, r.y + 40, fmt(a.v12 / 1e3, 1) + ' ' + it('bn'), { size: 12, fill: '#fff', extra: ' fill-opacity=".85"' });
+        if (r.h > 72 && a.yoy != null) b += tx(r.x + 9, r.y + 58, (a.yoy >= 0 ? '+' : '') + fmt(a.yoy, 1) + '%', { size: 12, w: 700, fill: '#fff' });
+      }
+    });
+    b += tx(32, 522, it('yoy') + ', AED/' + uLabel() + ':', { size: 12, fill: P.muted });
+    [-12, -6, 0, 10, 20].forEach(function (v, i) { var x = 160 + i * 64; b += box(x, 509, 58, 18, col(v), 4) + tx(x + 29, 522, (v > 0 ? '+' : '') + v + '%', { size: 11, fill: '#fff', anchor: 'middle' }); });
+    return card('ig-money', 580, it('k2'), it('k2s'), b);
+  }
+
+  function igScatter(areas) {
+    var pts = areas.filter(function (a) { return a.n12 >= 300 && a.yld['1'] && a.ppm12; });
+    var X0 = 84, X1 = W - 32, Y0 = 122, Y1 = 500, b = '';
+    var xs = pts.map(function (a) { return ppmv(a.ppm12); }), ys = pts.map(function (a) { return a.yld['1']; });
+    var xmn = Math.min.apply(null, xs), xmx = Math.max.apply(null, xs), ymn = Math.min.apply(null, ys), ymx = Math.max.apply(null, ys);
+    var px = (xmx - xmn) * .06, py = (ymx - ymn) * .1; xmn -= px; xmx += px; ymn -= py; ymx += py;
+    var sx = function (v) { return X0 + (v - xmn) / (xmx - xmn) * (X1 - X0); }, sy = function (v) { return Y1 - (v - ymn) / (ymx - ymn) * (Y1 - Y0); };
+    var nMax = Math.max.apply(null, pts.map(function (a) { return a.n12; })), rad = function (a) { return 4 + 20 * Math.sqrt(a.n12 / nMax); };
+    var mxv = median(xs), myv = median(ys);
+    b += box(X0, Y0, sx(mxv) - X0, sy(myv) - Y0, mix(P.bg, P.good, .1));
+    niceTicks(xmn, xmx, 5).forEach(function (v) { b += '<line x1="' + sx(v) + '" x2="' + sx(v) + '" y1="' + Y0 + '" y2="' + Y1 + '" stroke="' + P.line + '"/>' + tx(sx(v), Y1 + 20, fmt(v), { size: 11, fill: P.muted, anchor: 'middle' }); });
+    niceTicks(ymn, ymx, 5).forEach(function (v) { b += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + sy(v) + '" y2="' + sy(v) + '" stroke="' + P.line + '"/>' + tx(X0 - 8, sy(v) + 4, fmt(v, 1) + '%', { size: 11, fill: P.muted, anchor: 'end' }); });
+    b += tx(X0 + 10, Y0 + 20, it('q1'), { size: 13, w: 700, fill: P.good }) + tx(X1 - 10, Y1 - 10, it('q2'), { size: 13, w: 700, fill: P.muted, anchor: 'end' });
+    pts.slice().sort(function (a, b) { return b.n12 - a.n12; }).forEach(function (a) {
+      b += '<circle cx="' + sx(ppmv(a.ppm12)) + '" cy="' + sy(a.yld['1']) + '" r="' + rad(a) + '" fill="' + mix(P.warn, P.accent, (a.off12 || 0) / 100) + '" fill-opacity=".8" stroke="' + P.bg + '"/>';
+    });
+    var lab = pts.slice().sort(function (a, b) { return b.n12 - a.n12; }).slice(0, 12).concat(pts.slice().sort(function (a, b) { return b.yld['1'] - a.yld['1']; }).slice(0, 3));
+    var placed = [];
+    lab.filter(function (a, i) { return lab.indexOf(a) === i; }).forEach(function (a) {
+      var x = sx(ppmv(a.ppm12)), r = rad(a), right = x < X1 - 140, ly = sy(a.yld['1']) + 4, lx = right ? x + r + 3 : x - r - 3 - 130;
+      if (placed.some(function (q) { return Math.abs(q[1] - ly) < 14 && Math.abs(q[0] - lx) < 135; })) return;
+      placed.push([lx, ly]);
+      b += tx(right ? x + r + 3 : x - r - 3, sy(a.yld['1']) + 4, trunc(aname(a), 22), { size: 11, w: 600, anchor: right ? 'start' : 'end' });
+    });
+    b += legend(32, 552, [[P.accent, it('offc')], [P.warn, it('ready')]]) + tx(W - 32, 552, it('axes') + ', AED/' + uLabel(), { size: 12, fill: P.muted, anchor: 'end' });
+    return card('ig-yield', 600, it('k3'), it('k3s'), b);
+  }
+
+  function igHeat(m, areas) {
+    var months = m.all.slice(-12).map(function (r) { return r[0]; }), top = areas.slice().sort(function (a, b) { return b.n12 - a.n12; }).slice(0, 14);
+    var LX = 202, cw = (W - 32 - LX - 8) / 13, ch = 28, Y = 140, b = '';
+    var cx = function (j) { return LX + j * cw + (j === 12 ? 8 : 0); };
+    months.forEach(function (mo, j) { b += tx(cx(j) + cw / 2, Y - 10, mlabel(mo, true).replace('.', ''), { size: 11, fill: P.muted, anchor: 'middle' }); });
+    b += tx(cx(12) + cw / 2, Y - 10, it('yoy'), { size: 11, w: 700, fill: P.muted, anchor: 'middle' });
+    top.forEach(function (a, i) {
+      var rows = {}; (m.areas[a.id] || []).forEach(function (r) { rows[r[0]] = r[3]; });
+      var vals = months.map(function (mo) { return rows[mo] || null; }), med = median(vals.filter(Boolean)), y = Y + i * ch;
+      b += tx(32, y + 18, trunc(aname(a), 24), { size: 12, w: 600 });
+      vals.concat([a.yoy]).forEach(function (v, j) {
+        var d = j === 12 ? v : v && med ? 100 * (v / med - 1) : null, k = j === 12 ? 25 : 14, rd = d == null ? null : Math.round(d);
+        var c = d == null ? P.bg2 : d >= 0 ? mix(P.bg2, P.good, .8 * d / k) : mix(P.bg2, P.bad, -.8 * d / k);
+        b += box(cx(j) + 1, y + 1, cw - 2, ch - 2, c, 4) + tx(cx(j) + cw / 2, y + 18, rd == null ? '—' : rd > 0 ? '+' + rd : String(rd), { size: 11, anchor: 'middle', w: j === 12 ? 700 : 400 });
+      });
+    });
+    return card('ig-heat', Y + top.length * ch + 52, it('k4'), it('k4s'), b);
+  }
+
+  function igPipeline(projects, areas) {
+    var Y = +META.tx_date.slice(0, 4), keys = ['late', Y, Y + 1, Y + 2, Y + 3, Y + 4, 'later'], agg = {}, byArea = {}, names = {}, b = '';
+    areas.forEach(function (a) { names[a.id] = aname(a); });
+    keys.forEach(function (k) { agg[k] = { a: 0, n: 0 }; });
+    projects.forEach(function (p) {
+      var act = p.status === 'ACTIVE', ns = ['NOT_STARTED', 'PENDING', 'CONDITIONAL_ACTIVATING'].indexOf(p.status) >= 0;
+      var u = p.units || p.villas || 0, y = +(p.end || '').slice(0, 4);
+      if ((!act && !ns) || !u || !y) return;
+      var k = p.overdue || y < Y ? 'late' : y > Y + 4 ? 'later' : y;
+      agg[k][act ? 'a' : 'n'] += u;
+      if (k !== 'late' && y <= Y + 2 && names[p.area]) byArea[p.area] = (byArea[p.area] || 0) + u;
+    });
+    var mx = Math.max.apply(null, keys.map(function (k) { return agg[k].a + agg[k].n; })), X0 = 32, Y0 = 140, Y1 = 470, bw = 410 / keys.length;
+    keys.forEach(function (k, i) {
+      var g = agg[k], ha = (Y1 - Y0) * g.a / mx, hn = (Y1 - Y0) * g.n / mx, x = X0 + i * bw + 5, w = bw - 10, late = k === 'late';
+      b += box(x, Y1 - ha, w, ha, late ? P.bad : P.accent, 3) + box(x, Y1 - ha - hn, w, hn, mix(P.bg2, late ? P.bad : P.accent, .4), 3) +
+        tx(x + w / 2, Y1 - ha - hn - 8, kfmt(g.a + g.n), { size: 12, w: 700, anchor: 'middle' }) +
+        tx(x + w / 2, Y1 + 18, late ? it('overdue') : k === 'later' ? it('later') : String(k), { size: 11, w: 600, anchor: 'middle', fill: late ? P.bad : P.muted });
+    });
+    var RX = 476, top = Object.keys(byArea).map(function (id) { return [id, byArea[id]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 8), amx = top.length ? top[0][1] : 1;
+    b += tx(RX, Y0 - 4, it('topH') + ' ' + Y + '–' + (Y + 2), { size: 13, w: 700 });
+    top.forEach(function (r, i) {
+      var y = Y0 + 14 + i * 40;
+      b += tx(RX, y + 12, trunc(names[r[0]], 26), { size: 12, w: 600 }) + box(RX, y + 19, 150 * r[1] / amx, 8, P.accent, 4) + tx(RX + 158, y + 28, kfmt(r[1]), { size: 11, fill: P.muted });
+    });
+    b += legend(32, 516, [[P.accent, it('active')], [mix(P.bg2, P.accent, .4), it('notst')], [P.bad, it('overdue')]]);
+    return card('ig-pipeline', 562, it('k5'), it('k5s'), b);
+  }
+
+  function igDevs(devs) {
+    var top = devs.filter(function (d) { return d.active >= 3; }).sort(function (a, b) { return b.n12 - a.n12; }).slice(0, 14), BX = 246, BW = 300, b = '';
+    b += legend(32, 128, [[P.good, it('fin')], [P.accent, it('ontime')], [P.bad, it('late')]]) + tx(W - 32, 128, it('lateP'), { size: 12, fill: P.muted, anchor: 'end' });
+    top.forEach(function (d, i) {
+      var y = 144 + i * 34, tot = d.finished + d.active || 1, x = BX, lp = d.active ? Math.round(100 * d.overdue / d.active) : 0;
+      b += tx(32, y + 18, trunc(d.name, 28), { size: 12, w: 600 });
+      [[d.finished, P.good], [d.active - d.overdue, P.accent], [d.overdue, P.bad]].forEach(function (sg) { var w = BW * sg[0] / tot; b += box(x, y + 5, w, 18, sg[1]); x += w; });
+      b += tx(BX + BW + 12, y + 19, d.finished + ' / ' + (d.active - d.overdue) + ' / ' + d.overdue, { size: 12, fill: P.muted }) +
+        tx(W - 32, y + 19, lp + '%', { size: 14, w: 700, anchor: 'end', fill: lp >= 25 ? P.bad : lp >= 10 ? P.warn : P.good });
+    });
+    return card('ig-devs', 144 + top.length * 34 + 52, it('k6'), it('k6s'), b);
+  }
+
+  function igOffplan(m) {
+    var s = m.all, l12 = s.slice(-12), s24 = s.slice(-24), share = sum(l12, 6) / sum(l12, 1), b = '';
+    var prem = median(l12.filter(function (r) { return r[7] && r[8]; }).map(function (r) { return 100 * (r[7] / r[8] - 1); }));
+    var cx = 130, cy = 236, R = 80, C = 2 * Math.PI * R;
+    b += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="none" stroke="' + P.warn + '" stroke-width="24"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="none" stroke="' + P.accent + '" stroke-width="24" stroke-dasharray="' + (C * share) + ' ' + C + '" transform="rotate(-90 ' + cx + ' ' + cy + ')"/>' +
+      tx(cx, cy + 12, fmt(100 * share) + '%', { size: 36, w: 800, anchor: 'middle' }) + tx(cx, cy + R + 36, it('share'), { size: 12, fill: P.muted, anchor: 'middle' }) +
+      (prem != null ? tx(cx, cy + R + 76, (prem >= 0 ? '+' : '') + fmt(prem, 1) + '%', { size: 26, w: 700, anchor: 'middle', fill: P.accent }) + tx(cx, cy + R + 96, it('prem'), { size: 12, fill: P.muted, anchor: 'middle' }) : '');
+    var X0 = 276, X1 = W - 32, Y0 = 130, Y1 = 400, bw = (X1 - X0) / s24.length, mx = Math.max.apply(null, s24.map(function (r) { return r[1]; }));
+    s24.forEach(function (r, i) {
+      var ho = (Y1 - Y0) * r[6] / mx, hr = (Y1 - Y0) * (r[1] - r[6]) / mx, x = X0 + i * bw + 1.5;
+      b += box(x, Y1 - ho, bw - 3, ho, P.accent, 2) + box(x, Y1 - ho - hr, bw - 3, hr, P.warn, 2);
+    });
+    b += tx(X0, Y1 + 18, mlabel(s24[0][0]), { size: 11, fill: P.muted }) + tx(X1, Y1 + 18, mlabel(s24[s24.length - 1][0]), { size: 11, fill: P.muted, anchor: 'end' }) +
+      legend(X0, 446, [[P.accent, it('offc')], [P.warn, it('ready')]]);
+    return card('ig-offplan', 500, it('k7'), it('k7s'), b);
+  }
+
+  function savePng(id) {
+    var svg = document.getElementById(id), vb = svg.viewBox.baseVal, img = new Image(), k = 2;
+    img.onload = function () {
+      var c = document.createElement('canvas'); c.width = vb.width * k; c.height = vb.height * k;
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(function (bl) {
+        var a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = 'promptestates-' + id.replace('ig-', '') + '-' + META.tx_date + '.png';
+        document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+      });
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+  }
+
+  function vInfo() {
+    page('<div class="loading">' + t('loading') + '</div>');
+    Promise.all([get('market.json'), get('areas.json'), get('projects.json'), get('developers.json'), get('meta.json')]).then(function (d) {
+      P = pal(); META = d[4];
+      page('<h1 class="page">' + it('h') + '</h1><p class="sub">' + it('sub') + '</p><div class="ig-grid">' +
+        [igPoster(d[0], d[1]), igTreemap(d[1]), igScatter(d[1]), igHeat(d[0], d[1]), igPipeline(d[2], d[1]), igOffplan(d[0]), igDevs(d[3])].join('') + '</div>');
+      view.querySelectorAll('[data-png]').forEach(function (bt) { bt.onclick = function () { savePng(bt.dataset.png); }; });
+    });
+  }
+
   // ------------------------------------------------------------------ router & chrome
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
@@ -535,7 +790,7 @@
       var map = { area: 'areas', project: 'projects', developer: 'developers' };
       a.classList.toggle('on', a.dataset.route === (map[r] || r));
     });
-    ({ market: vMarket, ask: vAsk, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    ({ market: vMarket, ask: vAsk, info: vInfo, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
