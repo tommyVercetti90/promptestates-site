@@ -29,7 +29,12 @@
       seeTx: 'Все сделки района', prev: 'Назад', next: 'Дальше', page: 'стр.', of: 'из', none: 'Ничего не найдено', loading: 'Загрузка…',
       source: 'Источник: Dubai Land Department (data.dubai) — сделки на {tx}, аренда на {rent} ({rs}), реестр проектов на {reg}. Медианы, не оценка конкретного объекта.',
       studio: 'Студия', br: 'сп.', villa: 'Вилла', ph: 'Пентхаус', apt: 'Кв.', land: 'Земля', bld: 'Здание', ppmShort: 'за', perYear: '/год',
-      devProjects: 'Проекты застройщика', expectedYield: '* В доме ещё нет договоров аренды: аренда и доходность — по медиане района за 12 месяцев.', master: 'Мастер-проект', medianPrice: 'Медиана цены', medianSize: 'Медиана площади', medianRent: 'Аренда/год'
+      devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
+      askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
+      askEx: ['Где самая высокая доходность 1-спальных?', 'Сравни JVC и Arjan', 'Какие проекты Binghatti просрочены?', 'Сколько реально стоит 1-спальная 67 м² в Azizi Venice 14?'],
+      memoBtn: 'ИИ-меморандум', memoH: 'Инвест-меморандум', memoWait: 'Готовлю меморандум по данным DLD… (до 30 сек.)', print: 'Печать / PDF',
+      fairH: 'Справедливая цена', fairSub: 'По похожим сделкам за 6 месяцев: те же комнаты, площадь ±20%', asking: 'Цена продавца, AED', calc: 'Рассчитать',
+      fairRange: 'Диапазон рынка', fairMid: 'Медиана', comps: 'Сделок-аналогов', vsMarket: 'К медиане рынка', fewComps: 'Мало похожих сделок за 6 месяцев', scopeProj: 'по этому проекту', scopeArea: 'по району', expectedYield: '* В доме ещё нет договоров аренды: аренда и доходность — по медиане района за 12 месяцев.', master: 'Мастер-проект', medianPrice: 'Медиана цены', medianSize: 'Медиана площади', medianRent: 'Аренда/год'
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
@@ -52,7 +57,12 @@
       seeTx: 'All transactions in the area', prev: 'Prev', next: 'Next', page: 'page', of: 'of', none: 'Nothing found', loading: 'Loading…',
       source: 'Source: Dubai Land Department (data.dubai) — transactions as of {tx}, rents as of {rent} ({rs}), project registry as of {reg}. Medians, not a valuation of any unit.',
       studio: 'Studio', br: 'BR', villa: 'Villa', ph: 'Penthouse', apt: 'Apt', land: 'Land', bld: 'Building', ppmShort: 'per', perYear: '/yr',
-      devProjects: 'Developer projects', expectedYield: '* No rent contracts in this building yet: rent and yield use the area median over 12 months.', master: 'Master project', medianPrice: 'Median price', medianSize: 'Median size', medianRent: 'Rent/yr'
+      devProjects: 'Developer projects', navAsk: 'Ask the market', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
+      askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
+      askEx: ['Where are 1-bed yields highest?', 'Compare JVC and Arjan', 'Which Binghatti projects are overdue?', 'What is a fair price for a 67 m² 1-bed in Azizi Venice 14?'],
+      memoBtn: 'AI memo', memoH: 'Investment memo', memoWait: 'Writing the memo from DLD data… (up to 30 s)', print: 'Print / PDF',
+      fairH: 'Fair price', fairSub: 'From comparable sales in the last 6 months: same beds, size ±20%', asking: 'Asking price, AED', calc: 'Calculate',
+      fairRange: 'Market range', fairMid: 'Median', comps: 'Comparable sales', vsMarket: 'Vs market median', fewComps: 'Too few comparable sales in 6 months', scopeProj: 'in this project', scopeArea: 'in the area', expectedYield: '* No rent contracts in this building yet: rent and yield use the area median over 12 months.', master: 'Master project', medianPrice: 'Median price', medianSize: 'Median size', medianRent: 'Rent/yr'
     }
   };
   var lang = store('pro_lang') || ((navigator.language || 'en').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
@@ -124,6 +134,82 @@
     return { set: function (r) { rows = r; state.page = 0; render(); } };
   }
 
+  // ------------------------------------------------------------------ AI layer (pro_api)
+  var API = store('pro_api') || 'https://api.promptestates.com';
+  function api(path, body) {
+    return fetch(API + path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Pro-Key': store('pro_ok') || '' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.detail || r.status); return j; }); });
+  }
+  function md(src) {
+    var lines = esc(src).split('\n'), out = [], i = 0;
+    var inline = function (x) {
+      return x.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\((#\/[^)\s]+)\)/g, '<a href="$2">$1</a>').replace(/`([^`]+)`/g, '<code>$1</code>');
+    };
+    var row = function (x) { return x.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return c.trim(); }); };
+    while (i < lines.length) {
+      var l = lines[i];
+      if (/^\s*\|/.test(l) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
+        var head = row(l), body = []; i += 2;
+        while (i < lines.length && /^\s*\|/.test(lines[i])) { body.push(row(lines[i])); i++; }
+        out.push('<div class="tw"><table><thead><tr>' + head.map(function (h) { return '<th>' + inline(h) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+          body.map(function (r) { return '<tr>' + r.map(function (c) { return '<td class="' + (/^[-+]?[\d\s.,%]+$/.test(c) ? 'num' : '') + '">' + inline(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>');
+        continue;
+      }
+      if (/^\s*[-*•]\s/.test(l)) { var ul = []; while (i < lines.length && /^\s*[-*•]\s/.test(lines[i])) { ul.push('<li>' + inline(lines[i].replace(/^\s*[-*•]\s/, '')) + '</li>'); i++; } out.push('<ul>' + ul.join('') + '</ul>'); continue; }
+      if (/^\s*\d+[.)]\s/.test(l)) { var ol = []; while (i < lines.length && /^\s*\d+[.)]\s/.test(lines[i])) { ol.push('<li>' + inline(lines[i].replace(/^\s*\d+[.)]\s/, '')) + '</li>'); i++; } out.push('<ol>' + ol.join('') + '</ol>'); continue; }
+      if (/^#{1,4}\s/.test(l)) out.push('<h3>' + inline(l.replace(/^#+\s*/, '')) + '</h3>');
+      else if (l.trim()) out.push('<p>' + inline(l) + '</p>');
+      i++;
+    }
+    return '<div class="md">' + out.join('') + '</div>';
+  }
+  var askHistory = [];
+  function askBox(compact) {
+    return '<form class="ask" id="ask-form"><input id="ask-q" autocomplete="off" placeholder="' + esc(t('askPh')) + '"><button class="btn" type="submit">' + t('askBtn') + '</button></form>' +
+      (compact ? '' : '<div class="ask-ex">' + t('askEx').map(function (q) { return '<button type="button" class="chip">' + esc(q) + '</button>'; }).join('') + '</div>') +
+      '<div id="ask-out"></div>';
+  }
+  function wireAsk() {
+    var f = $('#ask-form'); if (!f) return;
+    var run = function (q) {
+      if (!q) return;
+      $('#ask-q').value = q;
+      var out = $('#ask-out');
+      out.insertAdjacentHTML('afterbegin', '<div class="panel ask-a"><p class="ask-q">' + esc(q) + '</p><div class="loading">' + t('askWait') + '</div></div>');
+      var box = out.firstChild;
+      api('/api/ask', { question: q, lang: lang, history: askHistory.slice(-6) }).then(function (r) {
+        box.querySelector('.loading').outerHTML = md(r.answer);
+        askHistory.push({ role: 'user', content: q }, { role: 'assistant', content: r.answer });
+      }).catch(function () { box.querySelector('.loading').outerHTML = '<p class="note">' + t('askErr') + '</p>'; });
+    };
+    f.onsubmit = function (e) { e.preventDefault(); run($('#ask-q').value.trim()); };
+    document.querySelectorAll('.ask-ex .chip').forEach(function (b) { b.onclick = function () { run(b.textContent); }; });
+  }
+  function vAsk() {
+    page('<h1 class="page">' + t('askH') + '</h1><p class="sub">' + t('askSub') + '</p>' + askBox(false));
+    wireAsk();
+  }
+
+  // fair price from comparable sales (client-side, no AI)
+  function fairPrice(p, beds, size, asking) {
+    var since = new Date(Date.now() - 183 * 864e5).toISOString().slice(0, 10);
+    var ok = function (b, s, d) { return b === beds && d >= since && (!size || Math.abs(s - size) <= 0.2 * size); };
+    var done = function (list, scope) {
+      if (list.length < 5) return { error: t('fewComps') };
+      var ppm = list.map(function (c) { return c.ppm; }).sort(function (a, b) { return a - b; });
+      var q = function (f) { var i = (ppm.length - 1) * f, lo = Math.floor(i); return ppm[lo] + (ppm[Math.min(lo + 1, ppm.length - 1)] - ppm[lo]) * (i - lo); };
+      var sz = size || median(list.map(function (c) { return c.size; }));
+      var r = { n: list.length, scope: scope, low: q(.25) * sz, mid: q(.5) * sz, high: q(.75) * sz, ppm: q(.5) };
+      if (asking) r.vs = 100 * (asking / r.mid - 1);
+      return r;
+    };
+    var comps = (p.recent || []).filter(function (r) { return ok(r[1], r[2], r[0]); }).map(function (r) { return { size: r[2], ppm: r[4] }; });
+    if (comps.length >= 5 || !p.area) return Promise.resolve(done(comps, t('scopeProj')));
+    return get('t/' + p.area + '.json').then(function (rows) {
+      return done(rows.filter(function (r) { return ok(r[2], r[3], r[0]); }).map(function (r) { return { size: r[3], ppm: r[5] }; }), t('scopeArea'));
+    });
+  }
+
   // ------------------------------------------------------------------ views
   var view = $('#view');
   function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; view.innerHTML = html; window.scrollTo(0, 0); }
@@ -169,7 +255,7 @@
       var ppm12 = median(l12.map(function (r) { return r[3]; }).filter(Boolean)), ppmP = median(p12.map(function (r) { return r[3]; }).filter(Boolean));
       var n12 = sum(l12, 1), off = sum(l12, 6), v12 = sum(l12, 2) * 1e6, rent12 = median(l12.map(function (r) { return r[9]; }).filter(Boolean));
       var ylds = areas.map(function (a) { return a.yld['1']; }).filter(Boolean);
-      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p><div class="kpis">' +
+      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p>' + askBox(true) + '<div class="kpis">' +
         kpi(t('sales12'), fmt(n12)) + kpi(t('value12'), aed(v12)) +
         kpi(t('ppm') + ' ' + uLabel(), 'AED ' + fmt(ppmv(ppm12)), pctTag(ppmP ? 100 * (ppm12 / ppmP - 1) : null) + ' <i>' + t('yoy') + '</i>') +
         kpi(t('off12'), fmt(100 * off / n12) + '%') + kpi(t('rent'), 'AED ' + fmt(rent12)) +
@@ -180,6 +266,7 @@
         '<h2>' + t('topAreas') + '</h2><div id="tbl"></div>');
       marketCharts(s, $('#c1'), $('#c2'), $('#c3'));
       table($('#tbl'), areaCols(), areas.slice(0, 25), { sort: 'n12', per: 25 });
+      wireAsk();
     });
   }
 
@@ -360,11 +447,36 @@
         '<div class="kpis">' + kpi(t('sales12'), fmt(p.n12)) + kpi(t('ppm') + ' ' + uLabel(), p.ppm12 ? 'AED ' + fmt(ppmv(p.ppm12)) : '—') +
         kpi(t('off12'), p.off12 == null ? '—' : p.off12 + '%') + kpi(t('pct'), p.pct == null ? '—' : fmt(p.pct) + '%') +
         kpi(t('grossYield') + ' 1BR' + (expected ? '*' : ''), p.yld && p.yld['1'] ? fmt(p.yld['1'], 1) + '%' : '—') + kpi(t('last'), esc(p.last || '—')) + '</div>' +
+        '<div class="actions"><button class="btn" id="memo-btn" type="button">✦ ' + t('memoBtn') + '</button></div><div id="memo"></div>' +
         '<div class="panel"><h2>' + t('registry') + '</h2>' + (p.pct != null ? '<div class="progress"><i style="width:' + p.pct + '%"></i></div>' : '') +
         '<dl class="meta-list">' + meta.map(function (m) { return '<div><dt>' + esc(m[0]) + '</dt><dd>' + m[1] + '</dd></div>'; }).join('') + '</dl></div>' +
         (p.series ? '<div class="panel"><h2>' + t('priceHist') + '</h2><p class="hint">AED/' + uLabel() + '</p><div class="chart"><canvas id="c1"></canvas></div></div>' : '') +
         (p.rooms ? '<div class="panel"><h2>' + t('byRooms') + '</h2>' + (expected ? '<p class="hint">' + t('expectedYield') + '</p>' : '') + '<div id="rooms"></div></div>' : '') +
-        (p.recent ? '<h2>' + t('recent') + '</h2><div id="tbl"></div>' : ''));
+        (p.recent ? '<div class="panel"><h2>' + t('fairH') + '</h2><p class="hint">' + t('fairSub') + '</p><form class="filters" id="fair-form">' +
+          '<select id="fb">' + ['S', '1', '2', '3', '4', '5+'].map(function (k) { return '<option value="' + k + '"' + (k === '1' ? ' selected' : '') + '>' + roomsLabel(k) + '</option>'; }).join('') + '</select>' +
+          '<input type="number" id="fs" placeholder="' + t('size') + ', ' + uLabel() + '"><input type="number" id="fa" placeholder="' + t('asking') + '">' +
+          '<button class="btn" type="submit">' + t('calc') + '</button></form><div id="fair-out"></div></div>' +
+          '<h2>' + t('recent') + '</h2><div id="tbl"></div>' : ''));
+      if ($('#fair-form')) $('#fair-form').onsubmit = function (e) {
+        e.preventDefault();
+        var size = +$('#fs').value || null; if (size && unit !== 'm2') size = size / SQFT;
+        fairPrice(p, $('#fb').value, size, +$('#fa').value || null).then(function (r) {
+          var k = function (v) { return fmt(Math.round(v / 1e3) * 1e3); };
+          $('#fair-out').innerHTML = r.error ? '<p class="note">' + r.error + '</p>' : '<div class="kpis">' +
+            kpi(t('fairRange') + ', AED', k(r.low) + ' – ' + k(r.high)) +
+            kpi(t('fairMid') + ', AED', k(r.mid), '<i>' + fmt(ppmv(r.ppm)) + ' AED/' + uLabel() + '</i>') +
+            kpi(t('comps'), fmt(r.n), '<i>' + esc(r.scope) + '</i>') +
+            (r.vs != null ? kpi(t('vsMarket'), '<span class="' + (r.vs > 5 ? 'down' : r.vs < -5 ? 'up' : '') + '">' + (r.vs >= 0 ? '+' : '') + fmt(r.vs, 1) + '%</span>') : '') + '</div>';
+        });
+      };
+      $('#memo-btn').onclick = function () {
+        var box = $('#memo'), btn = this; btn.disabled = true;
+        box.innerHTML = '<div class="panel"><div class="loading">' + t('memoWait') + '</div></div>';
+        api('/api/memo', { project: p.id, lang: lang }).then(function (r) {
+          box.innerHTML = '<div class="panel memo"><div class="memo-head"><h2>' + t('memoH') + ': ' + esc(p.name) + '</h2><button class="chip" id="memo-print" type="button">' + t('print') + '</button></div>' + md(r.memo) + '</div>';
+          $('#memo-print').onclick = function () { document.body.classList.add('printing-memo'); window.print(); document.body.classList.remove('printing-memo'); };
+        }).catch(function () { box.innerHTML = '<div class="panel"><p class="note">' + t('askErr') + '</p></div>'; btn.disabled = false; });
+      };
       if (p.series) {
         chart($('#c1'), { data: { labels: p.series.map(function (r) { return r[0]; }), datasets: [
           { type: 'line', label: t('price'), data: p.series.map(function (r) { return ppmv(r[2]); }), borderColor: css('--accent'), tension: .3, pointRadius: 2, yAxisID: 'y1' },
@@ -423,7 +535,7 @@
       var map = { area: 'areas', project: 'projects', developer: 'developers' };
       a.classList.toggle('on', a.dataset.route === (map[r] || r));
     });
-    ({ market: vMarket, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    ({ market: vMarket, ask: vAsk, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
