@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f6f8" media="(prefers-color-scheme: light)">
 <meta name="robots" content="noindex, nofollow">
 <title>PromptEstates Pro — Dubai market intelligence</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,13 +38,38 @@
       <a href="#/developers" data-route="developers" data-t="navDevs"></a>
     </nav>
     <div class="tools">
-      <button class="chip" id="unit-btn" type="button">m²</button>
-      <button class="chip" id="lang-btn" type="button">EN</button>
-      <button class="chip" id="theme-btn" type="button" aria-label="Theme">◐</button>
+      <div class="seg" role="group" aria-label="Units"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div>
+      <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
+      <div class="seg" role="group" aria-label="Theme"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div>
     </div>
   </header>
-  <main id="view" class="view"></main>
+  <main id="view" class="view" aria-live="polite"></main>
   <footer class="foot" id="foot"></footer>
+  <nav class="tabbar" id="tabbar" aria-label="Sections">
+    <a href="#/" data-route="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span data-t="navMarket"></span></a>
+    <a href="#/areas" data-route="areas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span data-t="navAreas"></span></a>
+    <a href="#/projects" data-route="projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-3v19M12 9l8 3v9M2 21h20M7 8h2M7 12h2M7 16h2M15 15h2"/></svg><span data-t="navProjects"></span></a>
+    <a href="#/ask" data-route="ask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span data-t="tabAsk"></span></a>
+    <button type="button" id="more-btn" data-route="more" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span data-t="navMore"></span></button>
+  </nav>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-bg" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheet-h">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <div class="sheet-head"><h2 id="sheet-h" data-t="navMore"></h2><button type="button" class="link-btn" data-close data-t="done"></button></div>
+      <div class="group">
+        <a href="#/info" data-close><span data-t="navInfo"></span></a>
+        <a href="#/tx" data-close><span data-t="navTx"></span></a>
+        <a href="#/developers" data-close><span data-t="navDevs"></span></a>
+      </div>
+      <p class="group-h" data-t="settings"></p>
+      <div class="group settings">
+        <div class="row"><span data-t="unitsL"></span><div class="seg"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div></div>
+        <div class="row"><span data-t="langL"></span><div class="seg"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div></div>
+        <div class="row"><span data-t="themeL"></span><div class="seg"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div></div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="vendor/chart.umd.min.js"></script>
 <script src="pro.js"></script>

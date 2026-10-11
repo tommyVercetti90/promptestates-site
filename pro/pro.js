@@ -10,6 +10,7 @@
   var T = {
     ru: {
       gateText: 'Аналитика рынка недвижимости Дубая на данных DLD. Введите пароль доступа.', gateBtn: 'Войти', gateErr: 'Неверный пароль',
+      tabAsk: 'Спросить', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
       navMarket: 'Рынок', navAreas: 'Районы', navProjects: 'Проекты', navTx: 'Сделки', navDevs: 'Застройщики',
       marketH: 'Рынок недвижимости Дубая', marketSub: 'Зарегистрированные сделки продажи и договоры аренды DLD',
       sales12: 'Сделок за 12 мес.', value12: 'Объём за 12 мес.', ppm: 'Медиана за', yoy: 'к прошлому году', off12: 'Доля off-plan',
@@ -38,6 +39,7 @@
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
+      tabAsk: 'Ask', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
       navMarket: 'Market', navAreas: 'Areas', navProjects: 'Projects', navTx: 'Transactions', navDevs: 'Developers',
       marketH: 'Dubai property market', marketSub: 'Registered DLD sales transactions and Ejari rent contracts',
       sales12: 'Sales, 12 months', value12: 'Value, 12 months', ppm: 'Median per', yoy: 'YoY', off12: 'Off-plan share',
@@ -76,7 +78,8 @@
   var area = function (v) { return unit === 'm2' ? v : v * SQFT; };
   var ppmv = function (v) { return v == null ? null : (unit === 'm2' ? v : v / SQFT); };
   var uLabel = function () { return unit === 'm2' ? 'м²'.replace('м', lang === 'ru' ? 'м' : 'm') : 'sq ft'; };
-  var aed = function (v) { if (v == null) return '—'; if (v >= 1e9) return fmt(v / 1e9, 2) + ' ' + t('bn'); if (v >= 1e6) return fmt(v / 1e6, 2) + ' ' + t('m'); return fmt(v); };
+  var aed = function (v) { if (v == null) return '—'; if (v >= 1e9) return fmt(v / 1e9, v >= 1e11 ? 0 : 1) + ' ' + t('bn'); if (v >= 1e6) return fmt(v / 1e6, v >= 1e8 ? 0 : 1) + ' ' + t('m'); return fmt(v); };
+  var fdate = function (d) { if (!d || !/^\d{4}-\d{2}-\d{2}/.test(d)) return d || '—'; return new Date(d.slice(0, 10) + 'T00:00:00').toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); };
   var pctTag = function (v) { if (v == null) return ''; return '<i class="' + (v >= 0 ? 'up' : 'down') + '">' + (v >= 0 ? '+' : '') + fmt(v, 1) + '%</i>'; };
   var roomsLabel = function (r) { return r === 'S' ? t('studio') : r === 'PH' ? t('ph') : r === 'V' ? t('villa') : r ? r + ' ' + t('br') : '—'; };
   var cache = {};
@@ -89,15 +92,22 @@
   var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
   function chart(el, cfg) {
     Chart.defaults.locale = lang === 'ru' ? 'ru-RU' : 'en-US';
+    Chart.defaults.font.family = css('--font') || 'system-ui';
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) Chart.defaults.animation = false;
     var c = new Chart(el, cfg);
     charts.push(c);
     return c;
+  }
+  function xTicks() {
+    return { color: css('--muted'), maxRotation: 0, autoSkipPadding: 16,
+      callback: function (v) { var l = this.getLabelForValue(v); return /^\d{4}-\d{2}$/.test(l) ? mlabel(l) : l; } };
   }
   function baseOpts(extra) {
     var grid = css('--line'), tick = css('--muted');
     var o = { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
       plugins: { legend: { labels: { color: tick, boxWidth: 12 } } },
-      scales: { x: { grid: { color: grid }, ticks: { color: tick, maxRotation: 0, autoSkipPadding: 12 } },
+      scales: { x: { grid: { display: false }, ticks: xTicks() },
                 y: { grid: { color: grid }, ticks: { color: tick } } } };
     return Object.assign(o, extra || {});
   }
@@ -126,7 +136,16 @@
         '<button data-p="1"' + (state.page < pages - 1 ? '' : ' disabled') + '>' + t('next') + '</button></div>';
       host.innerHTML = h;
       host.querySelectorAll('th').forEach(function (th) {
+        th.tabIndex = 0;
+        th.setAttribute('aria-sort', state.key === th.dataset.k ? (state.asc ? 'ascending' : 'descending') : 'none');
         th.onclick = function () { var k = th.dataset.k; if (state.key === k) state.asc = !state.asc; else { state.key = k; state.asc = false; } render(); };
+        th.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); th.onclick(); } };
+      });
+      host.querySelectorAll('tbody tr').forEach(function (tr) {
+        var a = tr.querySelector('a[href^="#/"]');
+        if (!a) return;
+        tr.classList.add('tap');
+        tr.onclick = function (e) { if (!e.target.closest('a')) location.hash = a.getAttribute('href'); };
       });
       host.querySelectorAll('.pager button').forEach(function (b) { b.onclick = function () { state.page += +b.dataset.p; render(); host.scrollIntoView({ block: 'nearest' }); }; });
     }
@@ -213,7 +232,14 @@
   // ------------------------------------------------------------------ views
   var view = $('#view');
   function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; view.innerHTML = html; window.scrollTo(0, 0); }
-  function kpi(label, value, extra) { return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>'; }
+  function kpi(label, value, extra) {
+    value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ (млрд|млн|bn|m)$/, '<small class="u-suf">$1</small>');
+    return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>';
+  }
+  function skeleton() {
+    return '<div class="skel" aria-busy="true"><span class="sr">' + t('loadingA') + '</span><div class="sk sk-h"></div><div class="sk sk-s"></div><div class="kpis">' +
+      '<div class="sk sk-k"></div>'.repeat(6) + '</div><div class="sk sk-c"></div></div>';
+  }
   function lastN(series, n) { return series.slice(-n); }
   function sum(series, i) { return series.reduce(function (s, r) { return s + (r[i] || 0); }, 0); }
 
@@ -223,7 +249,7 @@
     chart(hostVol, { data: { labels: labels, datasets: [
       { type: 'bar', label: t('sales'), data: s.map(function (r) { return r[1]; }), backgroundColor: css('--accent') + '66', yAxisID: 'y' },
       { type: 'line', label: t('price') + ', AED/' + uLabel(), data: s.map(function (r) { return ppmv(r[3]); }), borderColor: css('--accent'), backgroundColor: css('--accent'), tension: .3, pointRadius: 0, yAxisID: 'y1' }
-    ] }, options: baseOpts({ scales: { x: { grid: { color: css('--line') }, ticks: { color: css('--muted'), maxRotation: 0, autoSkipPadding: 14 } },
+    ] }, options: baseOpts({ scales: { x: { grid: { display: false }, ticks: xTicks() },
       y: { position: 'left', grid: { color: css('--line') }, ticks: { color: css('--muted') } }, y1: { position: 'right', grid: { display: false }, ticks: { color: css('--muted') } } } }) });
     if (hostOff) chart(hostOff, { type: 'line', data: { labels: labels, datasets: [
       { label: t('offplan'), data: s.map(function (r) { return ppmv(r[7]); }), borderColor: css('--accent'), tension: .3, pointRadius: 0 },
@@ -249,7 +275,7 @@
   }
 
   function vMarket() {
-    page('<div class="loading">' + t('loading') + '</div>');
+    page(skeleton());
     Promise.all([get('market.json'), get('areas.json')]).then(function (d) {
       var m = d[0], areas = d[1], s = m.all, l12 = lastN(s, 12), p12 = s.slice(-24, -12);
       var ppm12 = median(l12.map(function (r) { return r[3]; }).filter(Boolean)), ppmP = median(p12.map(function (r) { return r[3]; }).filter(Boolean));
@@ -327,13 +353,13 @@
       { k: 'dev', h: t('developer'), wrap: 1, f: function (p) { return p.devId ? '<a href="#/developer/' + p.devId + '">' + esc(p.dev) + '</a>' : '—'; } },
       { k: 'status', h: t('status'), f: statusTag },
       { k: 'pct', h: t('pct'), num: 1, f: function (p) { return p.pct == null ? '—' : '<span class="bar"><i style="width:' + p.pct + '%"></i></span>' + fmt(p.pct) + '%'; } },
-      { k: 'end', h: t('handover'), f: function (p) { return esc((p.end || p.done || '').slice(0, 7)) || '—'; } },
+      { k: 'end', h: t('handover'), f: function (p) { var d = (p.end || p.done || '').slice(0, 7); return d ? esc(mlabel(d)) : '—'; } },
       { k: 'units', h: t('units'), num: 1, f: function (p) { return fmt(p.units || p.villas); } },
       { k: 'n12', h: t('sales12'), num: 1, f: function (p) { return fmt(p.n12); } },
       { k: 'ppm12', h: 'AED/' + uLabel(), num: 1, f: function (p) { return fmt(ppmv(p.ppm12)); } },
       { k: 'y1', h: t('yld1'), num: 1, v: function (p) { return p.yld && p.yld['1']; }, f: function (p) { return p.yld && p.yld['1'] ? fmt(p.yld['1'], 1) + '%' : '—'; } }
     ];
-    if (areaNames) cols.splice(1, 0, { k: 'area', h: t('area'), v: function (p) { return areaNames[p.area] || ''; }, f: function (p) { return p.area ? '<a href="#/area/' + p.area + '">' + esc(areaNames[p.area] || p.area) + '</a>' : '—'; } });
+    if (areaNames) cols.splice(1, 0, { k: 'area', h: t('area'), v: function (p) { return areaNames[p.area] || ''; }, f: function (p) { var full = areaNames[p.area] || p.area || ''; return p.area ? '<a href="#/area/' + p.area + '" title="' + esc(full) + '">' + esc(full.replace(/ \(.*\)$/, '')) + '</a>' : '—'; } });
     return cols;
   }
 
@@ -426,7 +452,7 @@
   }
 
   function vProject(id) {
-    page('<div class="loading">' + t('loading') + '</div>');
+    page(skeleton());
     Promise.all([get('p/' + id + '.json').catch(function () { return null; }), get('projects.json'), get('meta.json'), get('areas.json')]).then(function (d) {
       var p = d[0] || d[1].filter(function (x) { return x.id === id; })[0], names = d[2].areas;
       if (!p) { page('<div class="empty">' + t('none') + '</div>'); return; }
@@ -441,12 +467,12 @@
       }
       var meta = [[t('area'), p.area ? '<a href="#/area/' + p.area + '">' + esc(names[p.area] || p.area) + '</a>' : '—'], [t('master'), esc(p.master || '—')],
         [t('developer'), p.devId ? '<a href="#/developer/' + p.devId + '">' + esc(p.dev) + '</a>' : '—'], [t('status'), statusTag(p)],
-        [t('start'), esc(p.start || '—')], [t('handover'), esc(p.end || p.done || '—')], [t('units'), fmt(p.units || p.villas)], [t('escrow'), esc(p.escrow || '—')]];
+        [t('start'), esc(fdate(p.start))], [t('handover'), esc(fdate(p.end || p.done))], [t('units'), fmt(p.units || p.villas)], [t('escrow'), esc(p.escrow || '—')]];
       page('<div class="crumbs"><a href="#/projects">' + t('navProjects') + '</a> /</div><h1 class="page">' + esc(p.name) + '</h1>' +
         (p.ar ? '<p class="sub" dir="rtl" style="text-align:start">' + esc(p.ar) + '</p>' : '<p class="sub"></p>') +
         '<div class="kpis">' + kpi(t('sales12'), fmt(p.n12)) + kpi(t('ppm') + ' ' + uLabel(), p.ppm12 ? 'AED ' + fmt(ppmv(p.ppm12)) : '—') +
         kpi(t('off12'), p.off12 == null ? '—' : p.off12 + '%') + kpi(t('pct'), p.pct == null ? '—' : fmt(p.pct) + '%') +
-        kpi(t('grossYield') + ' 1BR' + (expected ? '*' : ''), p.yld && p.yld['1'] ? fmt(p.yld['1'], 1) + '%' : '—') + kpi(t('last'), esc(p.last || '—')) + '</div>' +
+        kpi(t('grossYield') + ' 1BR' + (expected ? '*' : ''), p.yld && p.yld['1'] ? fmt(p.yld['1'], 1) + '%' : '—') + kpi(t('last'), esc(fdate(p.last))) + '</div>' +
         '<div class="actions"><button class="btn" id="memo-btn" type="button">✦ ' + t('memoBtn') + '</button></div><div id="memo"></div>' +
         '<div class="panel"><h2>' + t('registry') + '</h2>' + (p.pct != null ? '<div class="progress"><i style="width:' + p.pct + '%"></i></div>' : '') +
         '<dl class="meta-list">' + meta.map(function (m) { return '<div><dt>' + esc(m[0]) + '</dt><dd>' + m[1] + '</dd></div>'; }).join('') + '</dl></div>' +
@@ -481,7 +507,7 @@
         chart($('#c1'), { data: { labels: p.series.map(function (r) { return r[0]; }), datasets: [
           { type: 'line', label: t('price'), data: p.series.map(function (r) { return ppmv(r[2]); }), borderColor: css('--accent'), tension: .3, pointRadius: 2, yAxisID: 'y1' },
           { type: 'bar', label: t('sales'), data: p.series.map(function (r) { return r[1]; }), backgroundColor: css('--accent') + '44', yAxisID: 'y' }
-        ] }, options: baseOpts({ scales: { x: { ticks: { color: css('--muted') }, grid: { color: css('--line') } }, y: { position: 'right', grid: { display: false }, ticks: { color: css('--muted') } }, y1: { position: 'left', grid: { color: css('--line') }, ticks: { color: css('--muted') } } } }) });
+        ] }, options: baseOpts({ scales: { x: { ticks: xTicks(), grid: { display: false } }, y: { position: 'right', grid: { display: false }, ticks: { color: css('--muted') } }, y1: { position: 'left', grid: { color: css('--line') }, ticks: { color: css('--muted') } } } }) });
       }
       if (p.rooms) roomsTable($('#rooms'), p.rooms, p.rent, p.yld);
       if (p.recent) table($('#tbl'), [
@@ -778,7 +804,7 @@
   }
 
   function vInfo() {
-    page('<div class="loading">' + t('loading') + '</div>');
+    page(skeleton());
     Promise.all([get('market.json'), get('areas.json'), get('projects.json'), get('developers.json'), get('meta.json'), get('segments.json')]).then(function (d) {
       P = pal(); META = d[4];
       var sg = d[5][SEG] || d[5].all, base = {}, mk = { all: sg.series, areas: {} };
@@ -802,18 +828,20 @@
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
     var r = h[0] || 'market';
-    document.querySelectorAll('#tabs a').forEach(function (a) {
-      var map = { area: 'areas', project: 'projects', developer: 'developers' };
-      a.classList.toggle('on', a.dataset.route === (map[r] || r));
-    });
+    var cur = { area: 'areas', project: 'projects', developer: 'developers' }[r] || r;
+    var bar = { info: 'more', tx: 'more', developers: 'more' }[cur] || cur;
+    document.querySelectorAll('#tabs a').forEach(function (a) { var on = a.dataset.route === cur; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     ({ market: vMarket, ask: vAsk, info: vInfo, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
-    $('#lang-btn').textContent = lang === 'ru' ? 'EN' : 'RU';
-    $('#unit-btn').textContent = unit === 'm2' ? (lang === 'ru' ? 'м² → sq ft' : 'm² → sq ft') : (lang === 'ru' ? 'sq ft → м²' : 'sq ft → m²');
+    var th = document.documentElement.getAttribute('data-theme');
+    document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.unit === unit); if (b.dataset.unit === 'm2') b.textContent = lang === 'ru' ? 'м²' : 'm²'; });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.themeSet === th); });
     get('meta.json').then(function (m) {
       $('#foot').textContent = t('source').replace('{tx}', m.tx_date).replace('{rent}', m.rent_date).replace('{rs}', m.rent_sample).replace('{reg}', m.registry_date);
     });
@@ -822,12 +850,24 @@
     $('#gate').hidden = true; $('#app').hidden = false;
     chrome(); route();
     window.addEventListener('hashchange', route);
-    $('#lang-btn').onclick = function () { lang = lang === 'ru' ? 'en' : 'ru'; store('pro_lang', lang); chrome(); route(); };
-    $('#unit-btn').onclick = function () { unit = unit === 'm2' ? 'sqft' : 'm2'; store('pro_unit', unit); chrome(); route(); };
-    $('#theme-btn').onclick = function () {
-      var th = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', th); store('pe_theme', th); route();
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-unit],[data-lang],[data-theme-set]');
+      if (!b) return;
+      if (b.dataset.unit && b.dataset.unit !== unit) { unit = b.dataset.unit; store('pro_unit', unit); }
+      else if (b.dataset.lang && b.dataset.lang !== lang) { lang = b.dataset.lang; store('pro_lang', lang); }
+      else if (b.dataset.themeSet) { document.documentElement.setAttribute('data-theme', b.dataset.themeSet); store('pe_theme', b.dataset.themeSet); }
+      else return;
+      chrome(); route();
+    });
+    // "More" sheet (iOS-style): secondary sections + settings on phones
+    var sheet = $('#sheet'), opener;
+    var closeSheet = function () { sheet.classList.remove('open'); setTimeout(function () { sheet.hidden = true; }, 220); if (opener) opener.focus(); };
+    $('#more-btn').onclick = function () {
+      opener = this; sheet.hidden = false;
+      requestAnimationFrame(function () { sheet.classList.add('open'); $('.sheet-head [data-close]').focus(); });
     };
+    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeSheet(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
   }
   function sha256(s) {
     return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (b) {
