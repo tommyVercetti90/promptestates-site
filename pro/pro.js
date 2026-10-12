@@ -23,6 +23,11 @@
       siH: 'Вход в PromptEstates', siSub: 'Тот же аккаунт, что в приложении PromptEstates', siGoogle: 'Продолжить с Google', siApple: 'Продолжить с Apple', siOr: 'или',
       siEmail: 'Email', siPass: 'Пароль (от 6 символов)', siSignIn: 'Войти', siSignUp: 'Создать аккаунт', siToSignUp: 'Нет аккаунта? Создать', siToSignIn: 'Уже есть аккаунт? Войти',
       siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siErr: 'Не получилось войти. Проверьте email и пароль',
+      siErrs: { 'auth/popup-blocked': 'Браузер заблокировал окно входа — открываем вход на этой странице…', 'auth/operation-not-supported-in-this-environment': 'Этот браузер не поддерживает окно входа — открываем вход на этой странице…',
+        'auth/unauthorized-domain': 'Вход с этого адреса не разрешён. Откройте promptestates.com/pro', 'auth/operation-not-allowed': 'Этот способ входа пока не включён. Войдите через Google или email',
+        'auth/invalid-oauth-client-id': 'Вход через Apple в браузере пока не настроен. Войдите через Google или email', 'auth/account-exists-with-different-credential': 'Этот email уже привязан к другому способу входа — войдите им',
+        'auth/network-request-failed': 'Нет связи с сервером входа. Проверьте интернет', 'auth/too-many-requests': 'Слишком много попыток. Подождите минуту',
+        'auth/wrong-password': 'Неверный пароль', 'auth/invalid-credential': 'Неверный email или пароль', 'auth/user-not-found': 'Аккаунт не найден — нажмите «Создать»', 'auth/email-already-in-use': 'Этот email уже зарегистрирован — войдите', 'auth/weak-password': 'Пароль должен быть от 6 символов', 'auth/invalid-email': 'Проверьте email' },
       prH: 'PromptEstates Pro', prSub: 'Вся аналитика рынка Дубая по данным DLD — в одном месте', prMonth: 'Месяц', prYear: 'Год', prPerM: '/ мес', prPerY: '/ год', prSave: 'выгода 34%',
       prCta: 'Оформить Pro', prCurrent: 'Ваш тариф', prFree: 'Бесплатно', prFreeL: ['Обзор рынка Дубая', 'Карта районов', 'Данные DLD каждую неделю'],
       prProL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'Инфографика в PNG для постов и презентаций', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту', 'Калькулятор справедливой цены', 'Выгрузка сделок в CSV'],
@@ -63,6 +68,11 @@
       siH: 'Sign in to PromptEstates', siSub: 'Same account as in the PromptEstates app', siGoogle: 'Continue with Google', siApple: 'Continue with Apple', siOr: 'or',
       siEmail: 'Email', siPass: 'Password (6+ characters)', siSignIn: 'Sign in', siSignUp: 'Create account', siToSignUp: 'No account? Create one', siToSignIn: 'Have an account? Sign in',
       siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siErr: 'Could not sign in. Check your email and password',
+      siErrs: { 'auth/popup-blocked': 'The browser blocked the sign-in window — continuing on this page…', 'auth/operation-not-supported-in-this-environment': 'This browser does not support the sign-in window — continuing on this page…',
+        'auth/unauthorized-domain': 'Sign-in is not allowed from this address. Open promptestates.com/pro', 'auth/operation-not-allowed': 'This sign-in method is not enabled yet. Use Google or email',
+        'auth/invalid-oauth-client-id': 'Sign in with Apple is not set up for the web yet. Use Google or email', 'auth/account-exists-with-different-credential': 'This email is linked to another sign-in method — use that one',
+        'auth/network-request-failed': 'No connection to the sign-in service. Check your internet', 'auth/too-many-requests': 'Too many attempts. Wait a minute',
+        'auth/wrong-password': 'Wrong password', 'auth/invalid-credential': 'Wrong email or password', 'auth/user-not-found': 'No account found — choose “Create account”', 'auth/email-already-in-use': 'This email is already registered — sign in', 'auth/weak-password': 'Password must be 6+ characters', 'auth/invalid-email': 'Check the email' },
       prH: 'PromptEstates Pro', prSub: 'All Dubai market analytics from DLD data in one place', prMonth: 'Monthly', prYear: 'Yearly', prPerM: '/ mo', prPerY: '/ yr', prSave: 'save 34%',
       prCta: 'Get Pro', prCurrent: 'Your plan', prFree: 'Free', prFreeL: ['Dubai market overview', 'Area map', 'Weekly DLD data'],
       prProL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'Infographics as PNG for posts and decks', 'AI analyst: ask in plain words', 'AI memo for any project', 'Fair price calculator', 'Transactions CSV export'],
@@ -1259,7 +1269,12 @@
   }
   function closeSignIn() { var m = $('#signin'); m.classList.remove('open'); setTimeout(function () { m.hidden = true; }, 200); }
   function wireSignIn() {
-    var err = function (e) { var el = $('#si-err'); el.textContent = (e && e.code === 'auth/popup-closed-by-user') ? '' : t('siErr'); el.hidden = !el.textContent; };
+    var err = function (e) {
+      var code = (e && e.code) || '', el = $('#si-err');
+      if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') { el.hidden = true; return; }
+      el.textContent = (t('siErrs')[code] || t('siErr')) + (code && !t('siErrs')[code] ? ' (' + code.replace('auth/', '') + ')' : '');
+      el.hidden = false;
+    };
     var done = function () { closeSignIn(); var f = afterSignIn; afterSignIn = null; if (f) setTimeout(f, 400); };
     $('#signin').addEventListener('click', function (e) { if (e.target.closest('[data-sclose]')) closeSignIn(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#signin').hidden) closeSignIn(); });
@@ -1267,7 +1282,13 @@
       b.onclick = function () {
         var p = b.dataset.provider === 'google' ? new firebase.auth.GoogleAuthProvider() : new firebase.auth.OAuthProvider('apple.com');
         if (b.dataset.provider === 'apple') { p.addScope('email'); p.addScope('name'); }
-        firebase.auth().signInWithPopup(p).then(done).catch(err);
+        firebase.auth().signInWithPopup(p).then(done).catch(function (e) {
+          // in-app browsers (Telegram, Instagram) and strict popup blockers: fall back to a full-page redirect
+          if (e && (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment')) {
+            err(e); try { sessionStorage.setItem('pe_after_signin', location.hash); } catch (x) {}
+            firebase.auth().signInWithRedirect(p).catch(err);
+          } else err(e);
+        });
       };
     });
     $('#si-mode').onclick = function () {
@@ -1302,6 +1323,9 @@
     var guard = setTimeout(function () { if (first) { first = false; paintAccount(); start(); } }, 4000);
     if (!window.firebase) { clearTimeout(guard); first = false; start(); return; }
     firebase.initializeApp(FIREBASE);
+    firebase.auth().getRedirectResult().then(function (r) {
+      if (r && r.user) { var h = null; try { h = sessionStorage.getItem('pe_after_signin'); sessionStorage.removeItem('pe_after_signin'); } catch (x) {} if (h) location.hash = h; }
+    }).catch(function (e) { if (e && e.code) { toast((t('siErrs')[e.code] || t('siErr')) + ' (' + e.code.replace('auth/', '') + ')'); } });
     fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
     wireSignIn();
     var paid = /checkout=success/.test(location.search);
