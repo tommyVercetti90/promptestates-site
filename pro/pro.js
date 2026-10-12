@@ -11,6 +11,9 @@
                    appId: '1:321328766090:web:40be29995e21224225a173' };
   var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json'];
   var FREE_ROUTES = ['market', 'map', 'pricing', 'account'];
+  // Inside the PromptEstates app (WebView): the app injects window.PE_APP = {token, lang, platform} with the user's
+  // Firebase ID token. Same account and plan, but no sign-in UI and no prices or checkout (purchases are web-only).
+  var APP = window.PE_APP || (/[?&]app=1/.test(location.search) ? {} : null);
   var USER = null, ACCOUNT = { plan: BILLING_LIVE ? 'free' : 'pro' };
   var isPro = function () { return ACCOUNT.plan === 'pro'; };
   var store = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
@@ -32,7 +35,7 @@
       prCta: 'Оформить Pro', prCurrent: 'Ваш тариф', prFree: 'Бесплатно', prFreeL: ['Обзор рынка Дубая', 'Карта районов', 'Данные DLD каждую неделю'],
       prProL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'Инфографика в PNG для постов и презентаций', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту', 'Калькулятор справедливой цены', 'Выгрузка сделок в CSV'],
       prNote: 'Оплата через Stripe. Отмена в любой момент в личном кабинете', prSoon: 'Оплата скоро откроется',
-      lockH: 'Раздел доступен в Pro', lockSub: 'Оформите подписку, чтобы открыть все данные DLD, ИИ-аналитика и инфографику', lockSee: 'Смотреть тарифы', lockSeg: 'Фильтры по типу жилья — в Pro',
+      lockH: 'Раздел доступен в Pro', lockSub: 'Оформите подписку, чтобы открыть все данные DLD, ИИ-аналитика и инфографику', lockSee: 'Смотреть тарифы', lockApp: 'Подписка оформляется на сайте promptestates.com — после этого Pro откроется и здесь, в том же аккаунте.', lockSeg: 'Фильтры по типу жилья — в Pro',
       acH: 'Аккаунт', acPlan: 'Тариф', acRenew: 'Продлится', acEnds: 'Доступ до', acManage: 'Управлять подпиской', acOut: 'Выйти', acUpgrade: 'Перейти на Pro',
       acStatus: { active: 'активна', trialing: 'пробный период', past_due: 'проблема с оплатой', canceled: 'отменена', incomplete: 'не завершена' },
       okPaid: 'Подписка оформлена — добро пожаловать в Pro!', waitPaid: 'Подтверждаем оплату…', apiDown: 'Сервис временно недоступен, попробуйте позже', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
@@ -77,7 +80,7 @@
       prCta: 'Get Pro', prCurrent: 'Your plan', prFree: 'Free', prFreeL: ['Dubai market overview', 'Area map', 'Weekly DLD data'],
       prProL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'Infographics as PNG for posts and decks', 'AI analyst: ask in plain words', 'AI memo for any project', 'Fair price calculator', 'Transactions CSV export'],
       prNote: 'Payments by Stripe. Cancel anytime from your account', prSoon: 'Checkout opens soon',
-      lockH: 'This section is part of Pro', lockSub: 'Subscribe to unlock all DLD data, the AI analyst and infographics', lockSee: 'See plans', lockSeg: 'Property-type filters are part of Pro',
+      lockH: 'This section is part of Pro', lockSub: 'Subscribe to unlock all DLD data, the AI analyst and infographics', lockSee: 'See plans', lockApp: 'Subscribe on the promptestates.com website — Pro then unlocks here too, on the same account.', lockSeg: 'Property-type filters are part of Pro',
       acH: 'Account', acPlan: 'Plan', acRenew: 'Renews', acEnds: 'Access until', acManage: 'Manage subscription', acOut: 'Sign out', acUpgrade: 'Upgrade to Pro',
       acStatus: { active: 'active', trialing: 'trial', past_due: 'payment issue', canceled: 'canceled', incomplete: 'incomplete' },
       okPaid: 'You are on Pro — welcome!', waitPaid: 'Confirming your payment…', apiDown: 'Service is temporarily unavailable, try again later', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
@@ -108,7 +111,7 @@
       fairRange: 'Market range', fairMid: 'Median', comps: 'Comparable sales', vsMarket: 'Vs market median', fewComps: 'Too few comparable sales in 6 months', scopeProj: 'in this project', scopeArea: 'in the area', expectedYield: '* No rent contracts in this building yet: rent and yield use the area median over 12 months.', master: 'Master project', medianPrice: 'Median price', medianSize: 'Median size', medianRent: 'Rent/yr'
     }
   };
-  var lang = store('pro_lang') || ((navigator.language || 'en').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
+  var lang = store('pro_lang') || (APP && APP.lang) || ((navigator.language || 'en').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
   var unit = store('pro_unit') || (lang === 'ru' ? 'm2' : 'sqft');
   var t = function (k) { return (T[lang] && T[lang][k]) || T.en[k] || k; };
 
@@ -203,8 +206,9 @@
     return authHeaders().then(function (hd) {
       hd['Content-Type'] = 'application/json';
       return fetch(API + path, { method: method || 'POST', headers: hd, body: method === 'GET' ? undefined : JSON.stringify(body || {}) });
-    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.detail || r.status); e.status = r.status; throw e; } return j; }); });
+    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.detail || r.status); e.status = r.status; if (r.status === 401) toApp({ type: 'token' }); throw e; } return j; }); });
   }
+  function toApp(msg) { if (APP && window.ReactNativeWebView) window.ReactNativeWebView.postMessage(JSON.stringify(msg)); }
   function md(src) {
     var lines = esc(src).split('\n'), out = [], i = 0;
     var inline = function (x) {
@@ -947,7 +951,7 @@
         '<input type="range" id="m-slider" min="0" max="' + months.length + '" value="' + months.length + '" aria-label="' + mt('tl') + '"></div></div>' +
         '<div class="glass map-card" id="mcard" hidden></div></div>' +
         '<div class="panel"><h2>' + mt('top') + ' · ' + mt('metrics')[MAPM] + '</h2><div id="mtop" class="mtop"></div></div>');
-      view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { if (b.classList.contains('locked')) { location.hash = '#/pricing'; return; } SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
+      view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { if (b.classList.contains('locked')) { if (APP) toast(t('lockSeg')); else location.hash = '#/pricing'; return; } SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
       view.querySelectorAll('[data-metric]').forEach(function (b) { b.onclick = function () { MAPM = b.dataset.metric; store('pro_mapm', MAPM); vMap(); }; });
       if (!rows.length) { $('#map').outerHTML = '<div class="empty">' + mt('none') + '</div>'; return; }
 
@@ -1241,15 +1245,16 @@
       '<div class="row"><span>Email</span><b>' + esc(a.email || (USER && USER.email) || '—') + '</b></div>' +
       '<div class="row"><span>' + t('acPlan') + '</span><b>' + (isPro() ? 'Pro' : t('prFree')) + (st ? ' · ' + esc(st) : '') + '</b></div>' +
       (a.period_end ? '<div class="row"><span>' + t(a.status === 'canceled' ? 'acEnds' : 'acRenew') + '</span><b>' + esc(end) + '</b></div>' : '') + '</div>' +
-      '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
-      (USER ? '<button type="button" class="chip" id="ac-out">' + t('acOut') + '</button>' : '') + '</div>');
+      (APP ? (isPro() ? '' : '<p class="sub">' + t('lockApp') + '</p>') : '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
+      (USER ? '<button type="button" class="chip" id="ac-out">' + t('acOut') + '</button>' : '') + '</div>'));
     if ($('#ac-portal')) $('#ac-portal').onclick = function () { api('/api/billing/portal').then(function (r) { location.href = r.url; }).catch(function () { toast(t('apiDown')); }); };
     if ($('#ac-out')) $('#ac-out').onclick = function () { firebase.auth().signOut(); location.hash = '#/'; };
   }
   function vLocked(r) {
     page('<div class="lock"><div class="lock-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>' +
       '<h1 class="page">' + t('lockH') + '</h1><p class="sub">' + t('lockSub') + '</p><ul class="lock-list">' + t('prProL').slice(0, 5).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-      '<div class="actions center"><a class="btn" href="#/pricing">' + t('lockSee') + '</a>' + (USER ? '' : '<button type="button" class="chip" id="lk-in">' + t('signIn') + '</button>') + '</div></div>');
+      (APP ? '<p class="sub">' + t('lockApp') + '</p>' + (USER ? '' : '<div class="actions center"><button type="button" class="btn" id="lk-in">' + t('signIn') + '</button></div>') + '</div>'
+        : '<div class="actions center"><a class="btn" href="#/pricing">' + t('lockSee') + '</a>' + (USER ? '' : '<button type="button" class="chip" id="lk-in">' + t('signIn') + '</button>') + '</div></div>'));
     if ($('#lk-in')) $('#lk-in').onclick = function () { openSignIn(); };
   }
   function toast(msg) {
@@ -1259,6 +1264,7 @@
   }
   var siMode = 'in';
   function openSignIn(then) {
+    if (APP) { toApp({ type: 'signin' }); return; }
     afterSignIn = then || null;
     var m = $('#signin'); m.hidden = false; $('#si-err').hidden = true;
     setTimeout(function () { m.classList.add('open'); $('#si-email').focus(); }, 16);
@@ -1313,7 +1319,23 @@
     el.setAttribute('aria-label', USER ? t('navAccount') : t('signIn'));
     el.onclick = function (e) { if (!USER) { e.preventDefault(); openSignIn(); } };
   }
+  function jwtEmail(tk) {
+    try { return JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))))).email || ''; } catch (e) { return ''; }
+  }
+  function startApp() {
+    document.documentElement.classList.add('in-app');
+    var setUser = function (tk) { APP.token = tk || ''; USER = tk ? { email: jwtEmail(tk), getIdToken: function () { return Promise.resolve(APP.token); } } : null; };
+    // the app pushes a fresh token every 45 min and after a 401; re-render only when the signed-in state changes
+    window.PE_APP_SET_TOKEN = function (tk) {
+      var was = !!USER; setUser(tk);
+      if (was !== !!USER) refreshAccount().then(function () { chrome(); route(); });
+    };
+    setUser(APP.token);
+    fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
+    refreshAccount().then(start);
+  }
   function startLive() {
+    if (APP) { startApp(); return; }
     var first = true;
     // never leave a blank page if Firebase is blocked or slow: open as a guest, auth state catches up later
     var guard = setTimeout(function () { if (first) { first = false; paintAccount(); start(); } }, 4000);
@@ -1427,6 +1449,7 @@
     document.querySelectorAll('#tabs a').forEach(function (a) { var on = a.dataset.route === cur; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (BILLING_LIVE && !isPro() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
+    if (APP && r === 'pricing') { if (isPro()) location.replace('#/'); else vLocked(r); return; }
     ({ pricing: vPricing, account: vAccount, market: vMarket, ask: vAsk, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
