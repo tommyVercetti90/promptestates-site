@@ -4,13 +4,33 @@
   'use strict';
   var PASS_HASH = 'a8fd3e8aa693b3325bfaea2787459e0abe86f7fd54c2ab062be65e522def6a27';
   var SQFT = 10.7639;
+  // Subscriptions: Firebase Auth (same accounts as the PromptEstates app) + Stripe via pro_api.
+  // Keep false until pro_api runs with Stripe keys; the prototype password gate stays active meanwhile.
+  var BILLING_LIVE = false;
+  var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: 'promptestates-ai.firebaseapp.com', projectId: 'promptestates-ai',
+                   appId: '1:321328766090:web:40be29995e21224225a173' };
+  var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json'];
+  var FREE_ROUTES = ['market', 'map', 'pricing', 'account'];
+  var USER = null, ACCOUNT = { plan: BILLING_LIVE ? 'free' : 'pro' };
+  var isPro = function () { return ACCOUNT.plan === 'pro'; };
   var store = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
 
   // ------------------------------------------------------------------ i18n
   var T = {
     ru: {
       gateText: 'Аналитика рынка недвижимости Дубая на данных DLD. Введите пароль доступа.', gateBtn: 'Войти', gateErr: 'Неверный пароль',
-      tabAsk: 'Спросить', navMap: 'Карта', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
+      tabAsk: 'Спросить', navMap: 'Карта', navAccount: 'Аккаунт', signIn: 'Войти',
+      siH: 'Вход в PromptEstates', siSub: 'Тот же аккаунт, что в приложении PromptEstates', siGoogle: 'Продолжить с Google', siApple: 'Продолжить с Apple', siOr: 'или',
+      siEmail: 'Email', siPass: 'Пароль (от 6 символов)', siSignIn: 'Войти', siSignUp: 'Создать аккаунт', siToSignUp: 'Нет аккаунта? Создать', siToSignIn: 'Уже есть аккаунт? Войти',
+      siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siErr: 'Не получилось войти. Проверьте email и пароль',
+      prH: 'PromptEstates Pro', prSub: 'Вся аналитика рынка Дубая по данным DLD — в одном месте', prMonth: 'Месяц', prYear: 'Год', prPerM: '/ мес', prPerY: '/ год', prSave: 'выгода 34%',
+      prCta: 'Оформить Pro', prCurrent: 'Ваш тариф', prFree: 'Бесплатно', prFreeL: ['Обзор рынка Дубая', 'Карта районов', 'Данные DLD каждую неделю'],
+      prProL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'Инфографика в PNG для постов и презентаций', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту', 'Калькулятор справедливой цены', 'Выгрузка сделок в CSV'],
+      prNote: 'Оплата через Stripe. Отмена в любой момент в личном кабинете', prSoon: 'Оплата скоро откроется',
+      lockH: 'Раздел доступен в Pro', lockSub: 'Оформите подписку, чтобы открыть все данные DLD, ИИ-аналитика и инфографику', lockSee: 'Смотреть тарифы', lockSeg: 'Фильтры по типу жилья — в Pro',
+      acH: 'Аккаунт', acPlan: 'Тариф', acRenew: 'Продлится', acEnds: 'Доступ до', acManage: 'Управлять подпиской', acOut: 'Выйти', acUpgrade: 'Перейти на Pro',
+      acStatus: { active: 'активна', trialing: 'пробный период', past_due: 'проблема с оплатой', canceled: 'отменена', incomplete: 'не завершена' },
+      okPaid: 'Подписка оформлена — добро пожаловать в Pro!', waitPaid: 'Подтверждаем оплату…', apiDown: 'Сервис временно недоступен, попробуйте позже', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
       navMarket: 'Рынок', navAreas: 'Районы', navProjects: 'Проекты', navTx: 'Сделки', navDevs: 'Застройщики',
       marketH: 'Рынок недвижимости Дубая', marketSub: 'Зарегистрированные сделки продажи и договоры аренды DLD',
       sales12: 'Сделок за 12 мес.', value12: 'Объём за 12 мес.', ppm: 'Медиана за', yoy: 'к прошлому году', off12: 'Доля off-plan',
@@ -39,7 +59,18 @@
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
-      tabAsk: 'Ask', navMap: 'Map', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
+      tabAsk: 'Ask', navMap: 'Map', navAccount: 'Account', signIn: 'Sign in',
+      siH: 'Sign in to PromptEstates', siSub: 'Same account as in the PromptEstates app', siGoogle: 'Continue with Google', siApple: 'Continue with Apple', siOr: 'or',
+      siEmail: 'Email', siPass: 'Password (6+ characters)', siSignIn: 'Sign in', siSignUp: 'Create account', siToSignUp: 'No account? Create one', siToSignIn: 'Have an account? Sign in',
+      siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siErr: 'Could not sign in. Check your email and password',
+      prH: 'PromptEstates Pro', prSub: 'All Dubai market analytics from DLD data in one place', prMonth: 'Monthly', prYear: 'Yearly', prPerM: '/ mo', prPerY: '/ yr', prSave: 'save 34%',
+      prCta: 'Get Pro', prCurrent: 'Your plan', prFree: 'Free', prFreeL: ['Dubai market overview', 'Area map', 'Weekly DLD data'],
+      prProL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'Infographics as PNG for posts and decks', 'AI analyst: ask in plain words', 'AI memo for any project', 'Fair price calculator', 'Transactions CSV export'],
+      prNote: 'Payments by Stripe. Cancel anytime from your account', prSoon: 'Checkout opens soon',
+      lockH: 'This section is part of Pro', lockSub: 'Subscribe to unlock all DLD data, the AI analyst and infographics', lockSee: 'See plans', lockSeg: 'Property-type filters are part of Pro',
+      acH: 'Account', acPlan: 'Plan', acRenew: 'Renews', acEnds: 'Access until', acManage: 'Manage subscription', acOut: 'Sign out', acUpgrade: 'Upgrade to Pro',
+      acStatus: { active: 'active', trialing: 'trial', past_due: 'payment issue', canceled: 'canceled', incomplete: 'incomplete' },
+      okPaid: 'You are on Pro — welcome!', waitPaid: 'Confirming your payment…', apiDown: 'Service is temporarily unavailable, try again later', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
       navMarket: 'Market', navAreas: 'Areas', navProjects: 'Projects', navTx: 'Transactions', navDevs: 'Developers',
       marketH: 'Dubai property market', marketSub: 'Registered DLD sales transactions and Ejari rent contracts',
       sales12: 'Sales, 12 months', value12: 'Value, 12 months', ppm: 'Median per', yoy: 'YoY', off12: 'Off-plan share',
@@ -83,8 +114,12 @@
   var pctTag = function (v) { if (v == null) return ''; return '<i class="' + (v >= 0 ? 'up' : 'down') + '">' + (v >= 0 ? '+' : '') + fmt(v, 1) + '%</i>'; };
   var roomsLabel = function (r) { return r === 'S' ? t('studio') : r === 'PH' ? t('ph') : r === 'V' ? t('villa') : r ? r + ' ' + t('br') : '—'; };
   var cache = {};
+  var API = store('pro_api') || 'https://api.promptestates.com';
+  function authHeaders() { return USER ? USER.getIdToken().then(function (tk) { return { Authorization: 'Bearer ' + tk }; }) : Promise.resolve({}); }
   var get = function (path) {
-    if (!cache[path]) cache[path] = fetch('data/' + path).then(function (r) { if (!r.ok) throw new Error(path); return r.json(); });
+    if (!cache[path]) cache[path] = (BILLING_LIVE && FREE_FILES.indexOf(path) < 0
+      ? authHeaders().then(function (hd) { return fetch(API + '/api/data/' + path, { headers: hd }); })
+      : fetch('data/' + path)).then(function (r) { if (!r.ok) throw new Error(path); return r.json(); });
     return cache[path];
   };
   var median = function (xs) { if (!xs.length) return null; var s = xs.slice().sort(function (a, b) { return a - b; }), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -154,10 +189,11 @@
   }
 
   // ------------------------------------------------------------------ AI layer (pro_api)
-  var API = store('pro_api') || 'https://api.promptestates.com';
-  function api(path, body) {
-    return fetch(API + path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Pro-Key': store('pro_ok') || '' }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.detail || r.status); return j; }); });
+  function api(path, body, method) {
+    return authHeaders().then(function (hd) {
+      hd['Content-Type'] = 'application/json';
+      return fetch(API + path, { method: method || 'POST', headers: hd, body: method === 'GET' ? undefined : JSON.stringify(body || {}) });
+    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.detail || r.status); e.status = r.status; throw e; } return j; }); });
   }
   function md(src) {
     var lines = esc(src).split('\n'), out = [], i = 0;
@@ -847,19 +883,24 @@
   }
   function vMap() {
     page(skeleton());
-    Promise.all([get('areas.json'), get('segments.json'), get('geo.json')]).then(function (d) {
-      var base = {}, geo = d[2], sg = d[1][SEG] || d[1].all;
+    if (!isPro()) SEG = 'all';
+    Promise.all([get('areas.json'), SEG === 'all' ? Promise.resolve(null) : get('segments.json'), get('geo.json')]).then(function (d) {
+      var base = {}, geo = d[2];
+      var sg = d[1] ? (d[1][SEG] || d[1].all) : { areas: d[0].map(function (a) { return { id: a.id, n12: a.n12, ppm12: a.ppm12, yoy: a.yoy, off12: a.off12, yld: a.yld['1'] }; }) };
       d[0].forEach(function (a) { base[a.id] = a; });
       var rows = sg.areas.filter(function (r) { return geo[r.id] && base[r.id]; }).map(function (r) {
         return { id: r.id, name: aname(base[r.id]), dld: base[r.id].name, ll: geo[r.id], n12: r.n12, ppm12: r.ppm12, yoy: r.yoy, off12: r.off12, yld: r.yld && r.yld <= 12 ? r.yld : null };
       });
-      var segBtns = ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) { return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + '" data-mseg="' + k + '">' + it('segs')[k] + '</button>'; }).join('');
+      var segBtns = ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) {
+        var locked = !isPro() && k !== 'all';
+        return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + (locked ? ' locked' : '') + '" data-mseg="' + k + '"' + (locked ? ' title="' + esc(t('lockSeg')) + '"' : '') + '>' + it('segs')[k] + '</button>';
+      }).join('');
       var mBtns = Object.keys(mt('metrics')).map(function (k) { return '<button type="button" data-metric="' + k + '" aria-pressed="' + (k === MAPM) + '">' + mt('metrics')[k] + '</button>'; }).join('');
       page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
         '<div class="map-ctl"><div class="seg seg-wide" role="group">' + mBtns + '</div></div><div class="filters ig-seg">' + segBtns + '</div>' +
         '<div class="map-wrap"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div><div class="map-legend" id="legend"></div><div class="map-card" id="mcard" hidden></div></div>' +
         '<div class="panel"><h2>' + mt('top') + ' · ' + mt('metrics')[MAPM] + '</h2><div id="mtop" class="mtop"></div></div>');
-      view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
+      view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { if (b.classList.contains('locked')) { location.hash = '#/pricing'; return; } SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
       view.querySelectorAll('[data-metric]').forEach(function (b) { b.onclick = function () { MAPM = b.dataset.metric; store('pro_mapm', MAPM); vMap(); }; });
       if (!rows.length) { $('#map').outerHTML = '<div class="empty">' + mt('none') + '</div>'; return; }
       var dark = document.documentElement.getAttribute('data-theme') !== 'light';
@@ -919,6 +960,128 @@
     });
   }
 
+  // ------------------------------------------------------------------ subscription: pricing, account, paywall, sign-in
+  var PLANS = { display: { month: '$49', year: '$390' } }, afterSignIn = null;
+  function vPricing() {
+    var cur = isPro();
+    page('<div class="pricing"><h1 class="page">' + t('prH') + '</h1><p class="sub">' + t('prSub') + '</p>' +
+      '<div class="seg seg-wide interval" role="group"><button type="button" data-int="month" aria-pressed="false">' + t('prMonth') + '</button><button type="button" data-int="year" aria-pressed="true">' + t('prYear') + ' · ' + t('prSave') + '</button></div>' +
+      '<div class="plans"><div class="plan"><h2>' + t('prFree') + '</h2><p class="price">$0</p><ul>' + t('prFreeL').map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      (!cur && USER ? '<p class="cur">' + t('prCurrent') + '</p>' : '') + '</div>' +
+      '<div class="plan plan-pro"><h2>Pro</h2><p class="price"><b id="pr-price"></b><span id="pr-per"></span></p><ul>' + t('prProL').map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      (cur ? '<p class="cur">' + t('prCurrent') + '</p>' : '<button type="button" class="btn" id="pr-cta">' + t('prCta') + '</button>') + '</div></div>' +
+      '<p class="note center">' + t('prNote') + '</p></div>');
+    var interval = 'year';
+    var paint = function () {
+      view.querySelectorAll('[data-int]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.int === interval); });
+      $('#pr-price').textContent = PLANS.display[interval]; $('#pr-per').textContent = ' ' + t(interval === 'year' ? 'prPerY' : 'prPerM');
+    };
+    view.querySelectorAll('[data-int]').forEach(function (b) { b.onclick = function () { interval = b.dataset.int; paint(); }; });
+    paint();
+    if ($('#pr-cta')) $('#pr-cta').onclick = function () {
+      var go = function () {
+        var btn = $('#pr-cta'); if (btn) btn.disabled = true;
+        api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
+          .catch(function (e) { if (btn) btn.disabled = false; toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
+      };
+      if (!BILLING_LIVE) { toast(t('prSoon')); return; }
+      if (USER) go(); else openSignIn(go);
+    };
+  }
+  function vAccount() {
+    if (BILLING_LIVE && !USER) { page('<div class="lock"><h1 class="page">' + t('acH') + '</h1><p class="sub">' + t('siSub') + '</p><button type="button" class="btn" id="ac-in">' + t('signIn') + '</button></div>'); $('#ac-in').onclick = function () { openSignIn(); }; return; }
+    var a = ACCOUNT, st = a.status ? (t('acStatus')[a.status] || a.status) : '';
+    var end = a.period_end ? fdate(new Date(a.period_end * 1000).toISOString()) : '—';
+    page('<h1 class="page">' + t('acH') + '</h1><div class="group-card">' +
+      '<div class="row"><span>Email</span><b>' + esc(a.email || (USER && USER.email) || '—') + '</b></div>' +
+      '<div class="row"><span>' + t('acPlan') + '</span><b>' + (isPro() ? 'Pro' : t('prFree')) + (st ? ' · ' + esc(st) : '') + '</b></div>' +
+      (a.period_end ? '<div class="row"><span>' + t(a.status === 'canceled' ? 'acEnds' : 'acRenew') + '</span><b>' + esc(end) + '</b></div>' : '') + '</div>' +
+      '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
+      (USER ? '<button type="button" class="chip" id="ac-out">' + t('acOut') + '</button>' : '') + '</div>');
+    if ($('#ac-portal')) $('#ac-portal').onclick = function () { api('/api/billing/portal').then(function (r) { location.href = r.url; }).catch(function () { toast(t('apiDown')); }); };
+    if ($('#ac-out')) $('#ac-out').onclick = function () { firebase.auth().signOut(); location.hash = '#/'; };
+  }
+  function vLocked(r) {
+    page('<div class="lock"><div class="lock-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>' +
+      '<h1 class="page">' + t('lockH') + '</h1><p class="sub">' + t('lockSub') + '</p><ul class="lock-list">' + t('prProL').slice(0, 5).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      '<div class="actions center"><a class="btn" href="#/pricing">' + t('lockSee') + '</a>' + (USER ? '' : '<button type="button" class="chip" id="lk-in">' + t('signIn') + '</button>') + '</div></div>');
+    if ($('#lk-in')) $('#lk-in').onclick = function () { openSignIn(); };
+  }
+  function toast(msg) {
+    var el = $('#toast');
+    if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+    el.textContent = msg; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('show'); }, 3500);
+  }
+  var siMode = 'in';
+  function openSignIn(then) {
+    afterSignIn = then || null;
+    var m = $('#signin'); m.hidden = false; $('#si-err').hidden = true;
+    setTimeout(function () { m.classList.add('open'); $('#si-email').focus(); }, 16);
+  }
+  function closeSignIn() { var m = $('#signin'); m.classList.remove('open'); setTimeout(function () { m.hidden = true; }, 200); }
+  function wireSignIn() {
+    var err = function (e) { var el = $('#si-err'); el.textContent = (e && e.code === 'auth/popup-closed-by-user') ? '' : t('siErr'); el.hidden = !el.textContent; };
+    var done = function () { closeSignIn(); var f = afterSignIn; afterSignIn = null; if (f) setTimeout(f, 400); };
+    $('#signin').addEventListener('click', function (e) { if (e.target.closest('[data-sclose]')) closeSignIn(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#signin').hidden) closeSignIn(); });
+    document.querySelectorAll('[data-provider]').forEach(function (b) {
+      b.onclick = function () {
+        var p = b.dataset.provider === 'google' ? new firebase.auth.GoogleAuthProvider() : new firebase.auth.OAuthProvider('apple.com');
+        if (b.dataset.provider === 'apple') { p.addScope('email'); p.addScope('name'); }
+        firebase.auth().signInWithPopup(p).then(done).catch(err);
+      };
+    });
+    $('#si-mode').onclick = function () {
+      siMode = siMode === 'in' ? 'up' : 'in';
+      $('#si-submit').textContent = t(siMode === 'in' ? 'siSignIn' : 'siSignUp'); this.textContent = t(siMode === 'in' ? 'siToSignUp' : 'siToSignIn');
+      $('#si-pass').setAttribute('autocomplete', siMode === 'in' ? 'current-password' : 'new-password');
+    };
+    $('#si-reset').onclick = function () {
+      var em = $('#si-email').value.trim(); if (!em) { $('#si-email').focus(); return; }
+      firebase.auth().sendPasswordResetEmail(em).then(function () { toast(t('siResetSent')); }).catch(err);
+    };
+    $('#signin-form').onsubmit = function (e) {
+      e.preventDefault();
+      var em = $('#si-email').value.trim(), pw = $('#si-pass').value;
+      (siMode === 'in' ? firebase.auth().signInWithEmailAndPassword(em, pw) : firebase.auth().createUserWithEmailAndPassword(em, pw)).then(done).catch(err);
+    };
+  }
+  function refreshAccount() {
+    return api('/api/me', null, 'GET').then(function (a) { ACCOUNT = a; }).catch(function () { ACCOUNT = { plan: 'free', email: USER && USER.email }; })
+      .then(function () { cache = {}; paintAccount(); });
+  }
+  function paintAccount() {
+    var el = $('#acct'); if (!el) return;
+    el.hidden = !BILLING_LIVE;
+    el.innerHTML = USER ? '<span class="av">' + esc(((USER.email || USER.displayName || '?')[0] || '?').toUpperCase()) + '</span>' + (isPro() ? '<span class="badge">Pro</span>' : '') : '<span>' + t('signIn') + '</span>';
+    el.setAttribute('aria-label', USER ? t('navAccount') : t('signIn'));
+    el.onclick = function (e) { if (!USER) { e.preventDefault(); openSignIn(); } };
+  }
+  function startLive() {
+    var first = true;
+    // never leave a blank page if Firebase is blocked or slow: open as a guest, auth state catches up later
+    var guard = setTimeout(function () { if (first) { first = false; paintAccount(); start(); } }, 4000);
+    if (!window.firebase) { clearTimeout(guard); first = false; start(); return; }
+    firebase.initializeApp(FIREBASE);
+    fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
+    wireSignIn();
+    var paid = /checkout=success/.test(location.search);
+    firebase.auth().onAuthStateChanged(function (u) {
+      USER = u; clearTimeout(guard);
+      refreshAccount().then(function () {
+        if (first) { first = false; start(); } else { chrome(); route(); }
+        if (paid && USER) {
+          paid = false; history.replaceState(null, '', location.pathname + location.hash);
+          if (isPro()) { toast(t('okPaid')); return; }
+          toast(t('waitPaid'));
+          var tries = 0, poll = setInterval(function () {   // the Stripe webhook usually lands within seconds
+            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { toast(t('okPaid')); route(); } } });
+          }, 2000);
+        }
+      });
+    });
+  }
+
   // ------------------------------------------------------------------ router & chrome
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
@@ -927,12 +1090,15 @@
     var bar = { info: 'more', map: 'more', tx: 'more', developers: 'more' }[cur] || cur;
     document.querySelectorAll('#tabs a').forEach(function (a) { var on = a.dataset.route === cur; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    ({ market: vMarket, ask: vAsk, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    if (BILLING_LIVE && !isPro() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
+    ({ pricing: vPricing, account: vAccount, market: vMarket, ask: vAsk, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
+    document.querySelectorAll('[data-ph]').forEach(function (el) { el.placeholder = t(el.dataset.ph); });
+    paintAccount();
     var th = document.documentElement.getAttribute('data-theme');
     document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.unit === unit); if (b.dataset.unit === 'm2') b.textContent = lang === 'ru' ? 'м²' : 'm²'; });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
@@ -959,7 +1125,7 @@
     var closeSheet = function () { sheet.classList.remove('open'); setTimeout(function () { sheet.hidden = true; }, 220); if (opener) opener.focus(); };
     $('#more-btn').onclick = function () {
       opener = this; sheet.hidden = false;
-      requestAnimationFrame(function () { sheet.classList.add('open'); $('.sheet-head [data-close]').focus(); });
+      setTimeout(function () { sheet.classList.add('open'); $('.sheet-head [data-close]').focus(); }, 16);
     };
     sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeSheet(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
@@ -970,6 +1136,7 @@
     });
   }
   // gate (prototype access control; real auth moves to app.promptestates.com with subscriptions)
+  if (BILLING_LIVE) { startLive(); return; }
   if (store('pro_ok') === PASS_HASH) { start(); return; }
   $('#gate').hidden = false;
   document.querySelectorAll('#gate [data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
