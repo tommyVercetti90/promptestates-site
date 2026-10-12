@@ -22,7 +22,7 @@
   var T = {
     ru: {
       gateText: 'Аналитика рынка недвижимости Дубая на данных DLD. Введите пароль доступа.', gateBtn: 'Войти', gateErr: 'Неверный пароль',
-      tabAsk: 'Спросить', navMap: 'Карта', tourL: 'Обучение', navAccount: 'Аккаунт', signIn: 'Войти',
+      tabAsk: 'Спросить', navMap: 'Карта', tourL: 'Обучение', navAccount: 'Аккаунт', signIn: 'Войти', haveSub: 'Уже есть подписка?',
       siH: 'Вход в PromptEstates', siSub: 'Тот же аккаунт, что в приложении PromptEstates', siGoogle: 'Продолжить с Google', siApple: 'Продолжить с Apple', siOr: 'или',
       siEmail: 'Email', siPass: 'Пароль (от 6 символов)', siSignIn: 'Войти', siSignUp: 'Создать аккаунт', siToSignUp: 'Нет аккаунта? Создать', siToSignIn: 'Уже есть аккаунт? Войти',
       siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siErr: 'Не получилось войти. Проверьте email и пароль',
@@ -67,7 +67,7 @@
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
-      tabAsk: 'Ask', navMap: 'Map', tourL: 'Tour', navAccount: 'Account', signIn: 'Sign in',
+      tabAsk: 'Ask', navMap: 'Map', tourL: 'Tour', navAccount: 'Account', signIn: 'Sign in', haveSub: 'Already subscribed?',
       siH: 'Sign in to PromptEstates', siSub: 'Same account as in the PromptEstates app', siGoogle: 'Continue with Google', siApple: 'Continue with Apple', siOr: 'or',
       siEmail: 'Email', siPass: 'Password (6+ characters)', siSignIn: 'Sign in', siSignUp: 'Create account', siToSignUp: 'No account? Create one', siToSignIn: 'Have an account? Sign in',
       siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siErr: 'Could not sign in. Check your email and password',
@@ -1204,7 +1204,8 @@
       page('<div class="pricing">' +
         '<section class="pr-hero"><p class="eyebrow">' + L.eyebrow + '</p><h1>' + esc(L.h) + '</h1><p class="lead">' + esc(L.sub) + '</p>' +
         '<div class="pr-stats">' + L.stats.map(function (s) { return '<div><b>' + fmt(m[s[0]]) + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('') + '</div>' +
-        '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p></section>' +
+        '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p>' +
+        (USER || APP ? '' : '<p class="pr-have">' + t('haveSub') + ' <button type="button" class="link-btn" id="pr-in">' + t('signIn') + '</button></p>') + '</section>' +
         '<div class="plans plans-3">' +
           '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>$0</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
           (!cur ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
@@ -1233,11 +1234,13 @@
         if (USER) run(); else openSignIn(run);
       };
       view.querySelectorAll('[data-buy]').forEach(function (b) { b.onclick = function () { interval = b.dataset.buy; go(); }; });
+      if ($('#pr-in')) $('#pr-in').onclick = function () { openSignIn(); };
       if ($('#pr-cta2')) $('#pr-cta2').onclick = function () { interval = 'year'; go(); };
       if ($('#pr-cta3')) $('#pr-cta3').onclick = function () { interval = 'month'; go(); };
     });
   }
   function vAccount() {
+    if (BILLING_LIVE && !USER && !APP) { location.replace('#/pricing'); return; }
     if (BILLING_LIVE && !USER) { page('<div class="lock"><h1 class="page">' + t('acH') + '</h1><p class="sub">' + t('siSub') + '</p><button type="button" class="btn" id="ac-in">' + t('signIn') + '</button></div>'); $('#ac-in').onclick = function () { openSignIn(); }; return; }
     var a = ACCOUNT, st = a.status ? (t('acStatus')[a.status] || a.status) : '';
     var end = a.period_end ? fdate(new Date(a.period_end * 1000).toISOString()) : '—';
@@ -1248,7 +1251,7 @@
       (APP ? (isPro() ? '' : '<p class="sub">' + t('lockApp') + '</p>') : '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
       (USER ? '<button type="button" class="chip" id="ac-out">' + t('acOut') + '</button>' : '') + '</div>'));
     if ($('#ac-portal')) $('#ac-portal').onclick = function () { api('/api/billing/portal').then(function (r) { location.href = r.url; }).catch(function () { toast(t('apiDown')); }); };
-    if ($('#ac-out')) $('#ac-out').onclick = function () { firebase.auth().signOut(); location.hash = '#/'; };
+    if ($('#ac-out')) $('#ac-out').onclick = function () { firebase.auth().signOut(); location.hash = '#/pricing'; };
   }
   function vLocked(r) {
     page('<div class="lock"><div class="lock-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>' +
@@ -1317,7 +1320,7 @@
     el.hidden = !BILLING_LIVE;
     el.innerHTML = USER ? '<span class="av">' + esc(((USER.email || USER.displayName || '?')[0] || '?').toUpperCase()) + '</span>' + (isPro() ? '<span class="badge">Pro</span>' : '') : '<span>' + t('signIn') + '</span>';
     el.setAttribute('aria-label', USER ? t('navAccount') : t('signIn'));
-    el.onclick = function (e) { if (!USER) { e.preventDefault(); openSignIn(); } };
+    el.onclick = function (e) { if (!USER) { e.preventDefault(); if (APP) openSignIn(); else location.hash = '#/pricing'; } };
   }
   function jwtEmail(tk) {
     try { return JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))))).email || ''; } catch (e) { return ''; }
@@ -1346,11 +1349,13 @@
     }).catch(function (e) { if (e && e.code) { toast((t('siErrs')[e.code] || t('siErr')) + ' (' + e.code.replace('auth/', '') + ')'); } });
     fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
     wireSignIn();
-    var paid = /checkout=success/.test(location.search);
+    var paid = /checkout=success/.test(location.search), signedIn = null;
     firebase.auth().onAuthStateChanged(function (u) {
       USER = u; clearTimeout(guard);
       refreshAccount().then(function () {
+        var wasIn = signedIn; signedIn = !!USER;
         if (first) { first = false; start(); } else { chrome(); route(); }
+        if (!wasIn && USER && !isPro() && !afterSignIn && !paid) location.hash = '#/pricing';
         if (paid && USER) {
           paid = false; history.replaceState(null, '', location.pathname + location.hash);
           if (isPro()) { toast(t('okPaid')); return; }

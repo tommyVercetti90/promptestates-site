@@ -331,3 +331,6 @@ tr.tap:active{background:var(--surface-2)}
 .tour-btns{display:flex;align-items:center;gap:8px}.tour-btns span{flex:1}.tour-btns .btn{height:40px;padding:0 18px}.tour-btns .chip{height:40px}
 .tour-skip{font-size:14px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.tour-hole,.tour-card{transition:none}}
+
+.pr-have{margin-top:10px;font-size:14px;color:var(--muted,#6b7280)}
+.pr-have .link-btn{font-weight:600}
