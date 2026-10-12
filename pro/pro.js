@@ -1142,31 +1142,90 @@
 
   // ------------------------------------------------------------------ subscription: pricing, account, paywall, sign-in
   var PLANS = { display: { month: '$49', year: '$390' } }, afterSignIn = null;
+  var PR = {
+    ru: { eyebrow: 'PromptEstates Pro', h: 'Аналитика рынка Дубая, которой пользуются профессионалы', sub: 'Все сделки Земельного департамента Дубая, аренда, реестр проектов и ИИ-аналитик — в одном дашборде. Решения на данных, а не на рекламе застройщиков.',
+      stats: [['sales', 'сделок DLD в базе'], ['rents', 'договоров аренды'], ['projects', 'проектов в реестре'], ['n_areas', 'районов на карте']],
+      upd: 'Данные DLD на {d} · обновление каждую неделю', month: 'Месяц', year: 'Год', save: '−34%', perM: '/ мес', perY: '/ год', yearNote: '≈ {m} в месяц при оплате за год',
+      popular: 'Выбор инвесторов', cta: 'Получить Pro', ctaFree: 'Начать бесплатно', current: 'Ваш тариф', free: 'Бесплатно',
+      freeL: ['Обзор рынка Дубая', 'Карта районов (все типы жилья)', 'Ежемесячная динамика цен и сделок'],
+      proL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту за 30 секунд', 'Справедливая цена по реальным сделкам', 'Инфографика в PNG и выгрузка сделок в CSV'],
+      cmpH: 'Free или Pro', cmpRows: [['Обзор рынка и карта', 1, 1], ['Фильтры: студии, 1–4 спальни, виллы', 0, 1], ['Районы: цены, аренда, доходность', 0, 1], ['3 353 проекта: готовность, сдача, эскроу', 0, 1], ['Все сделки за 24 месяца + CSV', 0, 1], ['Надёжность застройщиков и просрочки', 0, 1], ['ИИ-аналитик и ИИ-меморандумы', 0, 1], ['Справедливая цена по аналогам', 0, 1], ['Инфографика в PNG для постов', 0, 1]],
+      featH: 'Что внутри Pro', feats: [['map', '3D-карта рынка', 'Цена, доходность, рост и off-plan по районам, слои метро и волны сдачи, таймлапс за 3 года'], ['ai', 'ИИ-аналитик', '«Где самая высокая доходность 1-спальных до 1 млн?» — ответ по реальным сделкам, со ссылками'],
+        ['memo', 'Инвест-меморандум', 'Разбор проекта: цена против района, застройщик, риск сдачи, аренда — готов к отправке клиенту'], ['fair', 'Справедливая цена', 'Сколько реально стоит юнит по аналогам за 6 месяцев и насколько продавец завышает цену'],
+        ['risk', 'Риски застройщиков', 'Доля просроченных проектов, средняя готовность и эскроу-банк по каждому застройщику'], ['png', 'Инфографика', 'Готовые карточки для Telegram, LinkedIn и презентаций с вашими фильтрами']],
+      trustH: 'Без рисков', trust: [['Отмена в один клик', 'В личном кабинете Stripe, без писем и звонков'], ['Безопасная оплата', 'Карты, Apple Pay и Google Pay через Stripe'], ['Официальные данные', 'Только открытые данные Dubai Land Department'], ['Один аккаунт', 'Тот же вход, что в приложении PromptEstates']],
+      faqH: 'Вопросы', faq: [['Откуда данные?', 'Из открытых данных Dubai Land Department: зарегистрированные сделки, договоры аренды Ejari и реестр проектов. Мы не используем цены из рекламы.'],
+        ['Как часто обновляется?', 'Каждую неделю после новой выгрузки DLD. Дата данных указана внизу каждой страницы.'], ['Чем годовой тариф лучше?', 'Он на 34% дешевле помесячной оплаты: $390 вместо $588 в год.'],
+        ['Можно ли отменить?', 'Да, в любой момент в личном кабинете. Доступ сохранится до конца оплаченного периода.'], ['Это инвестиционный совет?', 'Нет. Это аналитика по фактическим сделкам; решение о покупке остаётся за вами.']],
+      finalH: 'Покупайте недвижимость в Дубае по данным, а не по обещаниям', note: 'Оплата через Stripe. Цены в USD.' },
+    en: { eyebrow: 'PromptEstates Pro', h: 'Dubai market intelligence built for professionals', sub: 'Every Dubai Land Department sale, rents, the project registry and an AI analyst in one dashboard. Decide on data, not developer marketing.',
+      stats: [['sales', 'DLD sales in the database'], ['rents', 'rent contracts'], ['projects', 'registry projects'], ['n_areas', 'areas on the map']],
+      upd: 'DLD data to {d} · updated weekly', month: 'Monthly', year: 'Yearly', save: '−34%', perM: '/ mo', perY: '/ yr', yearNote: '≈ {m} per month billed yearly',
+      popular: 'Investors’ choice', cta: 'Get Pro', ctaFree: 'Start free', current: 'Your plan', free: 'Free',
+      freeL: ['Dubai market overview', 'Area map (all property types)', 'Monthly price and sales trends'],
+      proL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'AI analyst: ask in plain words', 'AI memo for any project in 30 seconds', 'Fair price from actual sales', 'PNG infographics and CSV export'],
+      cmpH: 'Free or Pro', cmpRows: [['Market overview and map', 1, 1], ['Filters: studios, 1–4 bed, villas', 0, 1], ['Areas: prices, rents, yields', 0, 1], ['3,353 projects: progress, handover, escrow', 0, 1], ['Every sale for 24 months + CSV', 0, 1], ['Developer reliability and delays', 0, 1], ['AI analyst and AI memos', 0, 1], ['Fair price from comparables', 0, 1], ['PNG infographics for posts', 0, 1]],
+      featH: 'Inside Pro', feats: [['map', '3D market map', 'Price, yield, growth and off-plan by area, metro and handover layers, a 3-year timelapse'], ['ai', 'AI analyst', '“Where are 1-bed yields highest under AED 1M?” — answered from actual sales, with links'],
+        ['memo', 'Investment memo', 'Project breakdown: price vs area, developer, delivery risk, rents — ready to send to a client'], ['fair', 'Fair price', 'What a unit is really worth from 6 months of comparables and how much the seller is over asking'],
+        ['risk', 'Developer risk', 'Share of overdue projects, average completion and escrow bank for every developer'], ['png', 'Infographics', 'Ready-made cards for Telegram, LinkedIn and decks with your filters']],
+      trustH: 'No risk', trust: [['Cancel in one click', 'From your Stripe portal, no emails or calls'], ['Secure payments', 'Cards, Apple Pay and Google Pay via Stripe'], ['Official data', 'Dubai Land Department open data only'], ['One account', 'Same sign-in as the PromptEstates app']],
+      faqH: 'FAQ', faq: [['Where does the data come from?', 'Dubai Land Department open data: registered sales, Ejari rent contracts and the project registry. No listing prices.'],
+        ['How often is it updated?', 'Weekly, after each new DLD export. The data date is shown at the bottom of every page.'], ['Why yearly?', 'It is 34% cheaper than monthly: $390 instead of $588 a year.'],
+        ['Can I cancel?', 'Yes, anytime from your account. Access stays until the end of the paid period.'], ['Is this investment advice?', 'No. It is analytics from actual transactions; the buying decision is yours.']],
+      finalH: 'Buy Dubai property on data, not promises', note: 'Payments by Stripe. Prices in USD.' }
+  };
+  var ICONS = {
+    map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>', ai: '<path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/>',
+    memo: '<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>', fair: '<path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/>',
+    risk: '<path d="M12 3 3 20h18zM12 10v4M12 17v.5"/>', png: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6M15.5 8.5h.01"/>'
+  };
   function vPricing() {
-    var cur = isPro();
-    page('<div class="pricing"><h1 class="page">' + t('prH') + '</h1><p class="sub">' + t('prSub') + '</p>' +
-      '<div class="seg seg-wide interval" role="group"><button type="button" data-int="month" aria-pressed="false">' + t('prMonth') + '</button><button type="button" data-int="year" aria-pressed="true">' + t('prYear') + ' · ' + t('prSave') + '</button></div>' +
-      '<div class="plans"><div class="plan"><h2>' + t('prFree') + '</h2><p class="price">$0</p><ul>' + t('prFreeL').map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-      (!cur && USER ? '<p class="cur">' + t('prCurrent') + '</p>' : '') + '</div>' +
-      '<div class="plan plan-pro"><h2>Pro</h2><p class="price"><b id="pr-price"></b><span id="pr-per"></span></p><ul>' + t('prProL').map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-      (cur ? '<p class="cur">' + t('prCurrent') + '</p>' : '<button type="button" class="btn" id="pr-cta">' + t('prCta') + '</button>') + '</div></div>' +
-      '<p class="note center">' + t('prNote') + '</p></div>');
-    var interval = 'year';
-    var paint = function () {
-      view.querySelectorAll('[data-int]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.int === interval); });
-      $('#pr-price').textContent = PLANS.display[interval]; $('#pr-per').textContent = ' ' + t(interval === 'year' ? 'prPerY' : 'prPerM');
-    };
-    view.querySelectorAll('[data-int]').forEach(function (b) { b.onclick = function () { interval = b.dataset.int; paint(); }; });
-    paint();
-    if ($('#pr-cta')) $('#pr-cta').onclick = function () {
-      var go = function () {
-        var btn = $('#pr-cta'); if (btn) btn.disabled = true;
-        api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
-          .catch(function (e) { if (btn) btn.disabled = false; toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
+    var L = PR[lang] || PR.en, cur = isPro(), interval = 'year';
+    get('meta.json').then(function (m) {
+      var pm = function (s) { return parseFloat(String(s).replace(/[^\d.]/g, '')) || 0; };
+      var monthly = PLANS.display.month, yearly = PLANS.display.year, perMonthYearly = '$' + fmt(pm(yearly) / 12, 1);
+      var ico = function (k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[k] + '</svg>'; };
+      var check = '<svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>', dash = '<span class="dash" aria-hidden="true">—</span>';
+      page('<div class="pricing">' +
+        '<section class="pr-hero"><p class="eyebrow">' + L.eyebrow + '</p><h1>' + esc(L.h) + '</h1><p class="lead">' + esc(L.sub) + '</p>' +
+        '<div class="pr-stats">' + L.stats.map(function (s) { return '<div><b>' + fmt(m[s[0]]) + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('') + '</div>' +
+        '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p></section>' +
+        '<div class="seg seg-wide interval" role="group"><button type="button" data-int="month" aria-pressed="false">' + L.month + '</button><button type="button" data-int="year" aria-pressed="true">' + L.year + ' <em>' + L.save + '</em></button></div>' +
+        '<div class="plans">' +
+          '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>$0</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
+          (!cur ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
+          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + '</span><h2>Pro</h2><p class="price"><s id="pr-old"></s> <b id="pr-price"></b><span id="pr-per"></span></p><p class="pnote" id="pr-note"></p><ul>' +
+          L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
+          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn" id="pr-cta">' + L.cta + ' →</button>') + '</div>' +
+        '</div><p class="note center">' + esc(L.note) + '</p>' +
+        '<section class="pr-sec"><h2>' + L.featH + '</h2><div class="feats">' + L.feats.map(function (f) { return '<div class="feat"><i>' + ico(f[0]) + '</i><h3>' + esc(f[1]) + '</h3><p>' + esc(f[2]) + '</p></div>'; }).join('') + '</div></section>' +
+        '<section class="pr-sec"><h2>' + L.cmpH + '</h2><div class="tw cmp"><table><thead><tr><th></th><th class="c">' + L.free + '</th><th class="c pro">Pro</th></tr></thead><tbody>' +
+          L.cmpRows.map(function (r) { return '<tr><td class="wrap">' + esc(r[0]) + '</td><td class="c">' + (r[1] ? check : dash) + '</td><td class="c pro">' + (r[2] ? check : dash) + '</td></tr>'; }).join('') + '</tbody></table></div></section>' +
+        '<section class="pr-sec"><h2>' + L.trustH + '</h2><div class="trust">' + L.trust.map(function (x) { return '<div><b>' + esc(x[0]) + '</b><span>' + esc(x[1]) + '</span></div>'; }).join('') + '</div></section>' +
+        '<section class="pr-sec"><h2>' + L.faqH + '</h2><div class="faq">' + L.faq.map(function (q) { return '<details><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join('') + '</div></section>' +
+        (cur ? '' : '<section class="pr-final"><h2>' + esc(L.finalH) + '</h2><button type="button" class="btn" id="pr-cta2">' + L.cta + ' →</button></section>') +
+        '</div>' + (cur ? '' : '<div class="pr-sticky"><span id="pr-sticky-price"></span><button type="button" class="btn" id="pr-cta3">' + L.cta + '</button></div>'));
+      var paint = function () {
+        view.querySelectorAll('[data-int]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.int === interval); });
+        var y = interval === 'year';
+        $('#pr-price').textContent = y ? yearly : monthly; $('#pr-per').textContent = ' ' + (y ? L.perY : L.perM);
+        $('#pr-old').textContent = y ? '$' + fmt(pm(monthly) * 12) : '';
+        $('#pr-note').textContent = y ? L.yearNote.replace('{m}', perMonthYearly) : ' ';
+        if ($('#pr-sticky-price')) $('#pr-sticky-price').innerHTML = '<b>' + (y ? yearly : monthly) + '</b> ' + (y ? L.perY : L.perM);
       };
-      if (!BILLING_LIVE) { toast(t('prSoon')); return; }
-      if (USER) go(); else openSignIn(go);
-    };
+      view.querySelectorAll('[data-int]').forEach(function (b) { b.onclick = function () { interval = b.dataset.int; paint(); }; });
+      paint();
+      var go = function () {
+        if (!BILLING_LIVE) { toast(t('prSoon')); return; }
+        var run = function () {
+          view.querySelectorAll('#pr-cta,#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
+          api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
+            .catch(function (e) { view.querySelectorAll('#pr-cta,#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = false; }); toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
+        };
+        if (USER) run(); else openSignIn(run);
+      };
+      ['#pr-cta', '#pr-cta2', '#pr-cta3'].forEach(function (id) { if ($(id)) $(id).onclick = go; });
+    });
   }
   function vAccount() {
     if (BILLING_LIVE && !USER) { page('<div class="lock"><h1 class="page">' + t('acH') + '</h1><p class="sub">' + t('siSub') + '</p><button type="button" class="btn" id="ac-in">' + t('signIn') + '</button></div>'); $('#ac-in').onclick = function () { openSignIn(); }; return; }
