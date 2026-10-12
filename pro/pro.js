@@ -10,7 +10,7 @@
   var T = {
     ru: {
       gateText: 'Аналитика рынка недвижимости Дубая на данных DLD. Введите пароль доступа.', gateBtn: 'Войти', gateErr: 'Неверный пароль',
-      tabAsk: 'Спросить', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
+      tabAsk: 'Спросить', navMap: 'Карта', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
       navMarket: 'Рынок', navAreas: 'Районы', navProjects: 'Проекты', navTx: 'Сделки', navDevs: 'Застройщики',
       marketH: 'Рынок недвижимости Дубая', marketSub: 'Зарегистрированные сделки продажи и договоры аренды DLD',
       sales12: 'Сделок за 12 мес.', value12: 'Объём за 12 мес.', ppm: 'Медиана за', yoy: 'к прошлому году', off12: 'Доля off-plan',
@@ -39,7 +39,7 @@
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
-      tabAsk: 'Ask', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
+      tabAsk: 'Ask', navMap: 'Map', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
       navMarket: 'Market', navAreas: 'Areas', navProjects: 'Projects', navTx: 'Transactions', navDevs: 'Developers',
       marketH: 'Dubai property market', marketSub: 'Registered DLD sales transactions and Ejari rent contracts',
       sales12: 'Sales, 12 months', value12: 'Value, 12 months', ppm: 'Median per', yoy: 'YoY', off12: 'Off-plan share',
@@ -231,7 +231,8 @@
 
   // ------------------------------------------------------------------ views
   var view = $('#view');
-  function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; view.innerHTML = html; window.scrollTo(0, 0); }
+  var lmap = null;
+  function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; window.scrollTo(0, 0); }
   function kpi(label, value, extra) {
     value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ (млрд|млн|bn|m)$/, '<small class="u-suf">$1</small>');
     return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>';
@@ -824,15 +825,109 @@
     });
   }
 
+  // ------------------------------------------------------------------ map (Leaflet + CARTO tiles, areas as bubbles)
+  var MT = {
+    ru: { h: 'Карта рынка', sub: 'Районы Дубая по данным DLD за 12 месяцев. Размер круга — число сделок, цвет — выбранный показатель',
+      metrics: { ppm: 'Цена за м²', yoy: 'Рост за год', yld: 'Доходность', n12: 'Сделки', off: 'Доля off-plan' },
+      top: 'Топ-10', open: 'Открыть район', sales: 'сделок', low: 'ниже', high: 'выше', off: 'off-plan', yld: 'доходность', yoy: 'за год', none: 'Нет данных для этого типа жилья', attr: 'Координаты районов: OpenStreetMap' },
+    en: { h: 'Market map', sub: 'Dubai areas from DLD data, last 12 months. Bubble size: number of sales, colour: selected metric',
+      metrics: { ppm: 'Price per m²', yoy: 'YoY change', yld: 'Gross yield', n12: 'Sales', off: 'Off-plan share' },
+      top: 'Top 10', open: 'Open area', sales: 'sales', low: 'low', high: 'high', off: 'off-plan', yld: 'yield', yoy: 'YoY', none: 'No data for this property type', attr: 'Area locations: OpenStreetMap' }
+  };
+  var mt = function (k) { return (MT[lang] || MT.en)[k]; };
+  var MAPM = store('pro_mapm') || 'ppm';
+  function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
+  function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
+  function rampColor(k, diverging) {
+    // perceptual ramps: sequential teal→cyan→amber, diverging red→grey→green
+    var stops = diverging ? ['#e5534b', '#d98f5c', '#8a949c', '#62b88a', '#2fbf71'] : ['#1d4e63', '#2f8fb5', '#6bbfe0', '#f0c65a', '#f07a4a'];
+    k = Math.max(0, Math.min(1, k)) * (stops.length - 1);
+    var i = Math.min(Math.floor(k), stops.length - 2);
+    return mix(stops[i], stops[i + 1], k - i);
+  }
+  function vMap() {
+    page(skeleton());
+    Promise.all([get('areas.json'), get('segments.json'), get('geo.json')]).then(function (d) {
+      var base = {}, geo = d[2], sg = d[1][SEG] || d[1].all;
+      d[0].forEach(function (a) { base[a.id] = a; });
+      var rows = sg.areas.filter(function (r) { return geo[r.id] && base[r.id]; }).map(function (r) {
+        return { id: r.id, name: aname(base[r.id]), dld: base[r.id].name, ll: geo[r.id], n12: r.n12, ppm12: r.ppm12, yoy: r.yoy, off12: r.off12, yld: r.yld && r.yld <= 12 ? r.yld : null };
+      });
+      var segBtns = ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) { return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + '" data-mseg="' + k + '">' + it('segs')[k] + '</button>'; }).join('');
+      var mBtns = Object.keys(mt('metrics')).map(function (k) { return '<button type="button" data-metric="' + k + '" aria-pressed="' + (k === MAPM) + '">' + mt('metrics')[k] + '</button>'; }).join('');
+      page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
+        '<div class="map-ctl"><div class="seg seg-wide" role="group">' + mBtns + '</div></div><div class="filters ig-seg">' + segBtns + '</div>' +
+        '<div class="map-wrap"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div><div class="map-legend" id="legend"></div><div class="map-card" id="mcard" hidden></div></div>' +
+        '<div class="panel"><h2>' + mt('top') + ' · ' + mt('metrics')[MAPM] + '</h2><div id="mtop" class="mtop"></div></div>');
+      view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
+      view.querySelectorAll('[data-metric]').forEach(function (b) { b.onclick = function () { MAPM = b.dataset.metric; store('pro_mapm', MAPM); vMap(); }; });
+      if (!rows.length) { $('#map').outerHTML = '<div class="empty">' + mt('none') + '</div>'; return; }
+      var dark = document.documentElement.getAttribute('data-theme') !== 'light';
+      lmap = L.map('map', { zoomControl: false, attributionControl: true, scrollWheelZoom: true, minZoom: 9, maxZoom: 16 }).setView([25.12, 55.25], 11);
+      L.control.zoom({ position: 'topright' }).addTo(lmap);
+      // OSM raster tiles, restyled per theme in CSS (.tiles-dark / .tiles-light); swap for a keyed provider (MapTiler/Stadia) at scale
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { maxZoom: 19, className: dark ? 'tiles-dark' : 'tiles-light', attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · DLD' }).addTo(lmap);
+      var vals = rows.map(function (r) { return mapVal(r, MAPM); }).filter(function (v) { return v != null; }).sort(function (a, b) { return a - b; });
+      var q = function (f) { return vals.length ? vals[Math.floor((vals.length - 1) * f)] : 0; };
+      var lo = q(.05), hi = q(.95), div = MAPM === 'yoy';
+      if (div) { var mxa = Math.max(Math.abs(lo), Math.abs(hi)) || 1; lo = -mxa; hi = mxa; }
+      var colorOf = function (v) { return v == null ? '#7a858c' : rampColor((v - lo) / ((hi - lo) || 1), div); };
+      var nMax = Math.max.apply(null, rows.map(function (r) { return r.n12; }));
+      var bounds = [], byId = {};
+      rows.sort(function (a, b) { return b.n12 - a.n12; }).forEach(function (r, i) {
+        var v = mapVal(r, MAPM), c = colorOf(v);
+        var mk = L.circleMarker(r.ll, { radius: 6 + 26 * Math.sqrt(r.n12 / nMax), color: dark ? 'rgba(255,255,255,.55)' : 'rgba(255,255,255,.95)', weight: 1.2,
+          fillColor: c, fillOpacity: .78, className: 'bub' }).addTo(lmap);
+        if (i < 14) mk.bindTooltip(esc(r.name), { permanent: true, direction: 'right', offset: [8, 0], className: 'mlabel' });
+        else mk.bindTooltip('<b>' + esc(r.name) + '</b><br>' + mapFmt(v, MAPM) + ' · ' + fmt(r.n12) + ' ' + mt('sales'), { direction: 'top', offset: [0, -6], className: 'mtip' });
+        mk.on('click', function () { showCard(r); });
+        byId[r.id] = mk; bounds.push(r.ll);
+      });
+      // permanent labels conflict with hover tooltips in Leaflet: re-bind hover after permanent
+      rows.slice(0, 14).forEach(function (r) {
+        var mk = byId[r.id], v = mapVal(r, MAPM);
+        mk.on('mouseover', function () { mk.setStyle({ weight: 3 }); }); mk.on('mouseout', function () { mk.setStyle({ weight: 1.2 }); });
+        mk.getTooltip().setContent(esc(r.name) + ' <small>' + mapFmt(v, MAPM) + '</small>');
+      });
+      lmap.setView([25.115, 55.235], innerWidth < 700 ? 10 : 11);
+      var zoomCls = function () { $('#map').classList.toggle('far', lmap.getZoom() < 11); };
+      lmap.on('zoomend', zoomCls); zoomCls();
+      // legend
+      var stops = [0, .25, .5, .75, 1].map(function (k) { return rampColor(k, div); }).join(',');
+      $('#legend').innerHTML = '<span>' + esc(mt('metrics')[MAPM]) + (MAPM === 'ppm' ? ' (' + uLabel() + ')' : '') + '</span><i style="background:linear-gradient(90deg,' + stops + ')"></i><div><em>' +
+        mapFmt(lo, MAPM).replace('AED ', '') + '</em><em>' + mapFmt(hi, MAPM).replace('AED ', '') + '</em></div>';
+      function showCard(r) {
+        var c = $('#mcard');
+        c.hidden = false;
+        c.innerHTML = '<button type="button" class="mclose" aria-label="Close">×</button><h3>' + esc(r.name) + '</h3><p class="muted">' + esc(r.dld) + '</p><dl>' +
+          [[mt('metrics').ppm, mapFmt(ppmv(r.ppm12), 'ppm') + '/' + uLabel()], [mt('yoy'), mapFmt(r.yoy, 'yoy')], [mt('metrics').yld, mapFmt(r.yld, 'yld')],
+           [mt('metrics').n12, fmt(r.n12)], [mt('metrics').off, mapFmt(r.off12, 'off')]].map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') +
+          '</dl><a class="btn" href="#/area/' + r.id + '">' + mt('open') + ' →</a>';
+        c.querySelector('.mclose').onclick = function () { c.hidden = true; };
+        lmap.flyTo(r.ll, Math.max(lmap.getZoom(), 12), { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : .6 });
+      }
+      // top 10 list
+      var top = rows.filter(function (r) { return mapVal(r, MAPM) != null && r.n12 >= (SEG === 'all' ? 100 : 25); }).sort(function (a, b) { return mapVal(b, MAPM) - mapVal(a, MAPM); }).slice(0, 10);
+      $('#mtop').innerHTML = top.map(function (r, i) {
+        var v = mapVal(r, MAPM);
+        return '<button type="button" data-id="' + r.id + '"><b>' + (i + 1) + '</b><span>' + esc(r.name) + '</span><i style="background:' + colorOf(v) + '"></i><em>' + mapFmt(v, MAPM) + '</em></button>';
+      }).join('');
+      $('#mtop').querySelectorAll('button').forEach(function (b) {
+        b.onclick = function () { var r = rows.filter(function (x) { return x.id === b.dataset.id; })[0]; showCard(r); byId[r.id].openTooltip(); $('#map').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+      });
+    });
+  }
+
   // ------------------------------------------------------------------ router & chrome
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
     var r = h[0] || 'market';
     var cur = { area: 'areas', project: 'projects', developer: 'developers' }[r] || r;
-    var bar = { info: 'more', tx: 'more', developers: 'more' }[cur] || cur;
+    var bar = { info: 'more', map: 'more', tx: 'more', developers: 'more' }[cur] || cur;
     document.querySelectorAll('#tabs a').forEach(function (a) { var on = a.dataset.route === cur; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    ({ market: vMarket, ask: vAsk, info: vInfo, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    ({ market: vMarket, ask: vAsk, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {

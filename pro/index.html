@@ -10,7 +10,8 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="/assets/fonts.css">
-<link rel="stylesheet" href="pro.css?v=e911fec99f">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="pro.css?v=c8bbea68e3">
 <script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
@@ -30,7 +31,8 @@
     <a href="#/" class="brand"><img src="/favicon.svg" alt="" width="28" height="28"><b>PromptEstates</b><span>Pro</span></a>
     <nav class="tabs" id="tabs">
       <a href="#/" data-route="market" data-t="navMarket"></a>
-      <a href="#/ask" data-route="ask" data-t="navAsk"></a>
+      <a href="#/ask" data-route="ask" data-t="tabAsk"></a>
+      <a href="#/map" data-route="map" data-t="navMap"></a>
       <a href="#/info" data-route="info" data-t="navInfo"></a>
       <a href="#/areas" data-route="areas" data-t="navAreas"></a>
       <a href="#/projects" data-route="projects" data-t="navProjects"></a>
@@ -58,6 +60,7 @@
       <div class="sheet-grip" aria-hidden="true"></div>
       <div class="sheet-head"><h2 id="sheet-h" data-t="navMore"></h2><button type="button" class="link-btn" data-close data-t="done"></button></div>
       <div class="group">
+        <a href="#/map" data-close><span data-t="navMap"></span></a>
         <a href="#/info" data-close><span data-t="navInfo"></span></a>
         <a href="#/tx" data-close><span data-t="navTx"></span></a>
         <a href="#/developers" data-close><span data-t="navDevs"></span></a>
@@ -72,6 +75,7 @@
   </div>
 </div>
 <script src="vendor/chart.umd.min.js"></script>
-<script src="pro.js?v=a7c31165eb"></script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="pro.js?v=822b14b2bc"></script>
 </body>
 </html>
