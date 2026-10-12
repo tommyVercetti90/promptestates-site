@@ -861,82 +861,208 @@
     });
   }
 
-  // ------------------------------------------------------------------ map (Leaflet + CARTO tiles, areas as bubbles)
+  // ------------------------------------------------------------------ map: MapLibre GL, OpenFreeMap vector tiles, 3D layers + timelapse
   var MT = {
-    ru: { h: 'Карта рынка', sub: 'Районы Дубая по данным DLD за 12 месяцев. Размер круга — число сделок, цвет — выбранный показатель',
+    ru: { h: 'Карта рынка', sub: 'Районы Дубая по данным DLD. Высота столбца — число сделок, цвет — выбранный показатель. Наклоните карту правой кнопкой мыши или двумя пальцами',
       metrics: { ppm: 'Цена за м²', yoy: 'Рост за год', yld: 'Доходность', n12: 'Сделки', off: 'Доля off-plan' },
-      top: 'Топ-10', open: 'Открыть район', sales: 'сделок', low: 'ниже', high: 'выше', off: 'off-plan', yld: 'доходность', yoy: 'за год', none: 'Нет данных для этого типа жилья', attr: 'Координаты районов: OpenStreetMap' },
-    en: { h: 'Market map', sub: 'Dubai areas from DLD data, last 12 months. Bubble size: number of sales, colour: selected metric',
+      layers: 'Слои', lCols: '3D-столбцы рынка', lHeat: 'Тепловая карта сделок', lPipe: 'Волна сдачи 2026–2028', lMetro: 'Метро и трамвай', lLabels: 'Названия районов',
+      top: 'Топ-10', open: 'Открыть район', sales: 'сделок', yoy: 'за год', units: 'юнитов к сдаче', overdue: 'просрочено', none: 'Нет данных для этого типа жилья',
+      play: 'Воспроизвести', pause: 'Пауза', y12: '12 мес.', tl: 'Таймлапс сделок', reset: 'Сбросить вид', d3: '3D', d2: '2D', noGl: 'Браузер не поддерживает WebGL — карта недоступна' },
+    en: { h: 'Market map', sub: 'Dubai areas from DLD data. Column height: number of sales, colour: selected metric. Tilt with right-click drag or two fingers',
       metrics: { ppm: 'Price per m²', yoy: 'YoY change', yld: 'Gross yield', n12: 'Sales', off: 'Off-plan share' },
-      top: 'Top 10', open: 'Open area', sales: 'sales', low: 'low', high: 'high', off: 'off-plan', yld: 'yield', yoy: 'YoY', none: 'No data for this property type', attr: 'Area locations: OpenStreetMap' }
+      layers: 'Layers', lCols: '3D market columns', lHeat: 'Sales heatmap', lPipe: 'Handover wave 2026–2028', lMetro: 'Metro & tram', lLabels: 'Area names',
+      top: 'Top 10', open: 'Open area', sales: 'sales', yoy: 'YoY', units: 'units due', overdue: 'overdue', none: 'No data for this property type',
+      play: 'Play', pause: 'Pause', y12: '12 mo', tl: 'Sales timelapse', reset: 'Reset view', d3: '3D', d2: '2D', noGl: 'This browser has no WebGL, the map is unavailable' }
   };
   var mt = function (k) { return (MT[lang] || MT.en)[k]; };
   var MAPM = store('pro_mapm') || 'ppm';
+  var LAYERS = (function () { try { return JSON.parse(store('pro_layers')) || null; } catch (e) { return null; } })() || { cols: true, heat: true, pipe: false, metro: true, labels: true };
   function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
   function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
   function rampColor(k, diverging) {
-    // perceptual ramps: sequential teal→cyan→amber, diverging red→grey→green
-    var stops = diverging ? ['#e5534b', '#d98f5c', '#8a949c', '#62b88a', '#2fbf71'] : ['#1d4e63', '#2f8fb5', '#6bbfe0', '#f0c65a', '#f07a4a'];
+    var stops = diverging ? ['#e5534b', '#d98f5c', '#8a949c', '#62b88a', '#2fbf71'] : ['#2a6f97', '#2fa3c9', '#6bd0e8', '#f5c85b', '#ff7a45'];
     k = Math.max(0, Math.min(1, k)) * (stops.length - 1);
     var i = Math.min(Math.floor(k), stops.length - 2);
     return mix(stops[i], stops[i + 1], k - i);
   }
+  function ring(ll, rMeters, n) {
+    var lat = ll[0], lon = ll[1], pts = [], dLat = rMeters / 111320, dLon = rMeters / (111320 * Math.cos(lat * Math.PI / 180));
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; pts.push([lon + dLon * Math.cos(a), lat + dLat * Math.sin(a)]); }
+    return [pts];
+  }
+  var mapTimer = null;
   function vMap() {
+    if (mapTimer) { clearInterval(mapTimer); mapTimer = null; }
     page(skeleton());
     if (!isPro()) SEG = 'all';
-    Promise.all([get('areas.json'), SEG === 'all' ? Promise.resolve(null) : get('segments.json'), get('geo.json')]).then(function (d) {
-      var base = {}, geo = d[2];
-      var sg = d[1] ? (d[1][SEG] || d[1].all) : { areas: d[0].map(function (a) { return { id: a.id, n12: a.n12, ppm12: a.ppm12, yoy: a.yoy, off12: a.off12, yld: a.yld['1'] }; }) };
+    var cv = document.createElement('canvas');
+    if (!window.maplibregl || !(cv.getContext('webgl2') || cv.getContext('webgl'))) { page('<div class="empty">' + mt('noGl') + '</div>'); return; }
+    Promise.all([get('areas.json'), SEG === 'all' ? Promise.resolve(null) : get('segments.json'), get('geo.json'), get('market.json'), fetch('data/metro.geojson').then(function (r) { return r.json(); }).catch(function () { return null; }),
+                 isPro() ? get('projects.json').catch(function () { return []; }) : Promise.resolve([])]).then(function (d) {
+      var base = {}, geo = d[2], market = d[3], metro = d[4], projects = d[5];
       d[0].forEach(function (a) { base[a.id] = a; });
+      var sg = d[1] ? (d[1][SEG] || d[1].all) : { areas: d[0].map(function (a) { return { id: a.id, n12: a.n12, ppm12: a.ppm12, yoy: a.yoy, off12: a.off12, yld: a.yld['1'] }; }) };
       var rows = sg.areas.filter(function (r) { return geo[r.id] && base[r.id]; }).map(function (r) {
         return { id: r.id, name: aname(base[r.id]), dld: base[r.id].name, ll: geo[r.id], n12: r.n12, ppm12: r.ppm12, yoy: r.yoy, off12: r.off12, yld: r.yld && r.yld <= 12 ? r.yld : null };
-      });
+      }).sort(function (a, b) { return b.n12 - a.n12; });
+      var months = market.all.map(function (r) { return r[0]; });
       var segBtns = ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) {
         var locked = !isPro() && k !== 'all';
-        return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + (locked ? ' locked' : '') + '" data-mseg="' + k + '"' + (locked ? ' title="' + esc(t('lockSeg')) + '"' : '') + '>' + it('segs')[k] + '</button>';
+        return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + (locked ? ' locked' : '') + '" data-mseg="' + k + '">' + it('segs')[k] + '</button>';
       }).join('');
       var mBtns = Object.keys(mt('metrics')).map(function (k) { return '<button type="button" data-metric="' + k + '" aria-pressed="' + (k === MAPM) + '">' + mt('metrics')[k] + '</button>'; }).join('');
+      var lay = [['cols', 'lCols'], ['heat', 'lHeat'], ['pipe', 'lPipe'], ['metro', 'lMetro'], ['labels', 'lLabels']].map(function (x) {
+        var locked = x[0] === 'pipe' && !isPro();
+        return '<label class="lay' + (locked ? ' locked' : '') + '"><input type="checkbox" data-layer="' + x[0] + '"' + (LAYERS[x[0]] && !locked ? ' checked' : '') + (locked ? ' disabled' : '') + '><i class="li-' + x[0] + '"></i><span>' + mt(x[1]) + '</span></label>';
+      }).join('');
       page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
         '<div class="map-ctl"><div class="seg seg-wide" role="group">' + mBtns + '</div></div><div class="filters ig-seg">' + segBtns + '</div>' +
-        '<div class="map-wrap"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div><div class="map-legend" id="legend"></div><div class="map-card" id="mcard" hidden></div></div>' +
+        '<div class="map-wrap map3"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div>' +
+        '<div class="glass map-layers"><b>' + mt('layers') + '</b>' + lay + '</div>' +
+        '<div class="glass map-tools"><button type="button" id="m-dim" aria-pressed="true">' + mt('d3') + '</button><button type="button" id="m-reset" aria-label="' + mt('reset') + '">⟲</button></div>' +
+        '<div class="glass map-legend" id="legend"></div>' +
+        '<div class="glass map-time"><button type="button" id="m-play" aria-label="' + mt('play') + '">▶</button><div class="tl"><span id="m-month">' + mt('tl') + ' · ' + mt('y12') + '</span>' +
+        '<input type="range" id="m-slider" min="0" max="' + months.length + '" value="' + months.length + '" aria-label="' + mt('tl') + '"></div></div>' +
+        '<div class="glass map-card" id="mcard" hidden></div></div>' +
         '<div class="panel"><h2>' + mt('top') + ' · ' + mt('metrics')[MAPM] + '</h2><div id="mtop" class="mtop"></div></div>');
       view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { if (b.classList.contains('locked')) { location.hash = '#/pricing'; return; } SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
       view.querySelectorAll('[data-metric]').forEach(function (b) { b.onclick = function () { MAPM = b.dataset.metric; store('pro_mapm', MAPM); vMap(); }; });
       if (!rows.length) { $('#map').outerHTML = '<div class="empty">' + mt('none') + '</div>'; return; }
-      var dark = document.documentElement.getAttribute('data-theme') !== 'light';
-      lmap = L.map('map', { zoomControl: false, attributionControl: true, scrollWheelZoom: true, minZoom: 9, maxZoom: 16 }).setView([25.12, 55.25], 11);
-      L.control.zoom({ position: 'topright' }).addTo(lmap);
-      // OSM raster tiles, restyled per theme in CSS (.tiles-dark / .tiles-light); swap for a keyed provider (MapTiler/Stadia) at scale
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { maxZoom: 19, className: dark ? 'tiles-dark' : 'tiles-light', attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · DLD' }).addTo(lmap);
+
+      // colour scale (5–95th percentile, symmetric for YoY)
       var vals = rows.map(function (r) { return mapVal(r, MAPM); }).filter(function (v) { return v != null; }).sort(function (a, b) { return a - b; });
       var q = function (f) { return vals.length ? vals[Math.floor((vals.length - 1) * f)] : 0; };
       var lo = q(.05), hi = q(.95), div = MAPM === 'yoy';
       if (div) { var mxa = Math.max(Math.abs(lo), Math.abs(hi)) || 1; lo = -mxa; hi = mxa; }
       var colorOf = function (v) { return v == null ? '#7a858c' : rampColor((v - lo) / ((hi - lo) || 1), div); };
-      var nMax = Math.max.apply(null, rows.map(function (r) { return r.n12; }));
-      var bounds = [], byId = {};
-      rows.sort(function (a, b) { return b.n12 - a.n12; }).forEach(function (r, i) {
-        var v = mapVal(r, MAPM), c = colorOf(v);
-        var mk = L.circleMarker(r.ll, { radius: 6 + 26 * Math.sqrt(r.n12 / nMax), color: dark ? 'rgba(255,255,255,.55)' : 'rgba(255,255,255,.95)', weight: 1.2,
-          fillColor: c, fillOpacity: .78, className: 'bub' }).addTo(lmap);
-        if (i < 14) mk.bindTooltip(esc(r.name), { permanent: true, direction: 'right', offset: [8, 0], className: 'mlabel' });
-        else mk.bindTooltip('<b>' + esc(r.name) + '</b><br>' + mapFmt(v, MAPM) + ' · ' + fmt(r.n12) + ' ' + mt('sales'), { direction: 'top', offset: [0, -6], className: 'mtip' });
-        mk.on('click', function () { showCard(r); });
-        byId[r.id] = mk; bounds.push(r.ll);
+      var nMax = rows[0].n12;
+      // monthly sales per area for the timelapse (all property types)
+      var monthly = {};
+      rows.forEach(function (r) { var m = {}; (market.areas[r.id] || []).forEach(function (x) { m[x[0]] = x[1]; }); monthly[r.id] = m; });
+      var mMax = 1;
+      rows.forEach(function (r) { months.forEach(function (mo) { mMax = Math.max(mMax, monthly[r.id][mo] || 0); }); });
+
+      var dark = document.documentElement.getAttribute('data-theme') !== 'light';
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var map = lmap = new maplibregl.Map({ container: 'map', style: 'https://tiles.openfreemap.org/styles/' + (dark ? 'dark' : 'positron'),
+        center: [55.24, 25.13], zoom: reduce ? 10.6 : 9.2, pitch: reduce ? 50 : 0, bearing: reduce ? -17 : 0, maxPitch: 70, attributionControl: false, antialias: true, preserveDrawingBuffer: true });
+      lmap.remove = (function (rm) { return function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } rm.call(map); }; })(map.remove);
+      map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'DLD · <a href="https://openfreemap.org">OpenFreeMap</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }), 'bottom-right');
+      map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+
+      function features(monthIdx) {
+        var mo = monthIdx < months.length ? months[monthIdx] : null;
+        return { cols: { type: 'FeatureCollection', features: rows.map(function (r) {
+            var v = mapVal(r, MAPM), n = mo ? (monthly[r.id][mo] || 0) : r.n12, k = mo ? n / mMax : n / nMax;
+            return { type: 'Feature', properties: { id: r.id, color: colorOf(v), h: 60 + 5200 * Math.sqrt(k) * Math.sqrt(k) },
+                     geometry: { type: 'Polygon', coordinates: ring(r.ll, 330 + 520 * Math.sqrt(r.n12 / nMax), 28) } };
+          }) },
+          heat: { type: 'FeatureCollection', features: rows.map(function (r) {
+            var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
+            return { type: 'Feature', properties: { w: n }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
+          }) } };
+      }
+      // handover wave: units in active / not started projects due within 3 years
+      var Y = +(months[months.length - 1] || '2026').slice(0, 4), pipe = {};
+      projects.forEach(function (p) {
+        var y = +(p.end || '').slice(0, 4), u = p.units || p.villas || 0;
+        if (!u || !y || y < Y || y > Y + 2 || ['ACTIVE', 'NOT_STARTED', 'PENDING'].indexOf(p.status) < 0 || !geo[p.area]) return;
+        var P = pipe[p.area] || (pipe[p.area] = { u: 0, late: 0 }); P.u += u; if (p.overdue) P.late += u;
       });
-      // permanent labels conflict with hover tooltips in Leaflet: re-bind hover after permanent
-      rows.slice(0, 14).forEach(function (r) {
-        var mk = byId[r.id], v = mapVal(r, MAPM);
-        mk.on('mouseover', function () { mk.setStyle({ weight: 3 }); }); mk.on('mouseout', function () { mk.setStyle({ weight: 1.2 }); });
-        mk.getTooltip().setContent(esc(r.name) + ' <small>' + mapFmt(v, MAPM) + '</small>');
+      var pMax = Math.max.apply(null, Object.keys(pipe).map(function (k) { return pipe[k].u; }).concat([1]));
+      var pipeFC = { type: 'FeatureCollection', features: Object.keys(pipe).map(function (id) {
+        return { type: 'Feature', properties: { id: id, u: pipe[id].u, r: 6 + 34 * Math.sqrt(pipe[id].u / pMax), late: pipe[id].late / pipe[id].u,
+          name: base[id] ? aname(base[id]) : id }, geometry: { type: 'Point', coordinates: [geo[id][1], geo[id][0]] } };
+      }) };
+      var labelsFC = { type: 'FeatureCollection', features: rows.slice(0, 30).map(function (r) {
+        return { type: 'Feature', properties: { name: r.name, rank: rows.indexOf(r) }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
+      }) };
+
+      map.on('load', function () {
+        // English-only base labels, quieter base map
+        map.getStyle().layers.forEach(function (l) {
+          if (l.type === 'symbol' && l.layout && l.layout['text-field']) map.setLayoutProperty(l.id, 'text-field', ['coalesce', ['get', 'name:latin'], ['get', 'name_en'], ['get', 'name']]);
+          if (l.type === 'symbol' && /poi|housenumber/.test(l.id)) map.setLayoutProperty(l.id, 'visibility', 'none');
+        });
+        var f = features(months.length);
+        map.addSource('heat', { type: 'geojson', data: f.heat });
+        map.addLayer({ id: 'heat', type: 'heatmap', source: 'heat', maxzoom: 15, paint: {
+          'heatmap-weight': ['get', 'w'], 'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 9, 1.1, 13, 2.2],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 9, 28, 12, 70, 14, 120], 'heatmap-opacity': dark ? .75 : .6,
+          'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', .15, 'rgba(17,65,84,.55)', .35, '#1f7fa6', .55, '#6bbfe0', .75, '#f5c85b', 1, '#ff7a45'] } });
+        if (metro) {
+          map.addSource('metro', { type: 'geojson', data: metro });
+          var lc = ['match', ['get', 'line'], 'red', '#ff3b47', 'green', '#34c759', '#a78bfa'];
+          map.addLayer({ id: 'metro-glow', type: 'line', source: 'metro', filter: ['!=', ['geometry-type'], 'Point'], paint: { 'line-color': lc, 'line-width': 9, 'line-opacity': .22, 'line-blur': 6 } });
+          map.addLayer({ id: 'metro', type: 'line', source: 'metro', filter: ['!=', ['geometry-type'], 'Point'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': lc, 'line-width': ['interpolate', ['linear'], ['zoom'], 9, 1.6, 13, 3.5] } });
+          map.addLayer({ id: 'metro-st', type: 'circle', source: 'metro', filter: ['==', ['geometry-type'], 'Point'], minzoom: 11, paint: { 'circle-radius': 3.2, 'circle-color': dark ? '#0a0d0f' : '#fff', 'circle-stroke-width': 2, 'circle-stroke-color': lc } });
+        }
+        map.addSource('cols', { type: 'geojson', data: f.cols });
+        map.addLayer({ id: 'cols', type: 'fill-extrusion', source: 'cols', paint: {
+          'fill-extrusion-color': ['get', 'color'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-base': 0, 'fill-extrusion-opacity': .88, 'fill-extrusion-vertical-gradient': true } });
+        map.addSource('pipe', { type: 'geojson', data: pipeFC });
+        map.addLayer({ id: 'pipe', type: 'circle', source: 'pipe', paint: {
+          'circle-radius': ['get', 'r'], 'circle-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-opacity': .28,
+          'circle-stroke-width': 1.5, 'circle-stroke-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-pitch-alignment': 'map' } });
+        map.addSource('labels', { type: 'geojson', data: labelsFC });
+        map.addLayer({ id: 'labels', type: 'symbol', source: 'labels', layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 9, 11, 13, 14],
+          'text-offset': [0, -1.4], 'text-anchor': 'bottom', 'symbol-sort-key': ['get', 'rank'], 'text-allow-overlap': false },
+          paint: { 'text-color': dark ? '#f2f5f7' : '#0d1418', 'text-halo-color': dark ? 'rgba(10,13,15,.9)' : 'rgba(255,255,255,.95)', 'text-halo-width': 1.6 } });
+        applyLayers();
+        if (!reduce) map.flyTo({ center: [55.235, 25.12], zoom: innerWidth < 700 ? 10.1 : 10.8, pitch: 55, bearing: -17, duration: 2600, essential: true });
+
+        var pop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: 'mpop' });
+        var byId = {}; rows.forEach(function (r) { byId[r.id] = r; });
+        map.on('mousemove', 'cols', function (e) {
+          var r = byId[e.features[0].properties.id]; map.getCanvas().style.cursor = 'pointer';
+          pop.setLngLat(e.lngLat).setHTML('<b>' + esc(r.name) + '</b><br>' + mapFmt(mapVal(r, MAPM), MAPM) + ' · ' + fmt(r.n12) + ' ' + mt('sales')).addTo(map);
+        });
+        map.on('mouseleave', 'cols', function () { map.getCanvas().style.cursor = ''; pop.remove(); });
+        map.on('click', 'cols', function (e) { showCard(byId[e.features[0].properties.id]); });
+        map.on('mousemove', 'pipe', function (e) {
+          if (map.getLayoutProperty('cols', 'visibility') !== 'none' && map.queryRenderedFeatures(e.point, { layers: ['cols'] }).length) return;
+          var p = e.features[0].properties; map.getCanvas().style.cursor = 'pointer';
+          pop.setLngLat(e.lngLat).setHTML('<b>' + esc(p.name) + '</b><br>' + fmt(p.u) + ' ' + mt('units') + (p.late > 0 ? ' · ' + fmt(100 * p.late) + '% ' + mt('overdue') : '')).addTo(map);
+        });
+        map.on('mouseleave', 'pipe', function () { map.getCanvas().style.cursor = ''; pop.remove(); });
       });
-      lmap.setView([25.115, 55.235], innerWidth < 700 ? 10 : 11);
-      var zoomCls = function () { $('#map').classList.toggle('far', lmap.getZoom() < 11); };
-      lmap.on('zoomend', zoomCls); zoomCls();
+
+      function applyLayers() {
+        if (!map.getLayer('cols')) return;
+        var vis = function (id, on) { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); };
+        vis('cols', LAYERS.cols); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
+        ['metro', 'metro-glow', 'metro-st'].forEach(function (id) { vis(id, LAYERS.metro); });
+        $('#legend').hidden = !LAYERS.cols;
+      }
+      view.querySelectorAll('[data-layer]').forEach(function (cb) {
+        cb.onchange = function () { LAYERS[cb.dataset.layer] = cb.checked; store('pro_layers', JSON.stringify(LAYERS)); applyLayers(); };
+      });
+      // 2D / 3D and reset
+      $('#m-dim').onclick = function () {
+        var to3 = map.getPitch() < 10; this.setAttribute('aria-pressed', to3); this.textContent = to3 ? mt('d3') : mt('d2');
+        map.easeTo({ pitch: to3 ? 55 : 0, bearing: to3 ? -17 : 0, duration: reduce ? 0 : 800 });
+      };
+      $('#m-reset').onclick = function () { map.flyTo({ center: [55.235, 25.12], zoom: 10.8, pitch: 55, bearing: -17, duration: reduce ? 0 : 1200 }); };
+      // timelapse
+      var slider = $('#m-slider'), label = $('#m-month'), playBtn = $('#m-play');
+      var setMonth = function (i) {
+        slider.value = i;
+        label.textContent = mt('tl') + ' · ' + (i >= months.length ? mt('y12') : mlabel(months[i]));
+        if (!map.getSource('cols')) return;
+        var f = features(i); map.getSource('cols').setData(f.cols); map.getSource('heat').setData(f.heat);
+      };
+      slider.oninput = function () { stop(); setMonth(+slider.value); };
+      var stop = function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', mt('play')); };
+      playBtn.onclick = function () {
+        if (mapTimer) { stop(); return; }
+        var i = +slider.value >= months.length ? 0 : +slider.value;
+        playBtn.textContent = '❚❚'; playBtn.setAttribute('aria-label', mt('pause'));
+        setMonth(i);
+        mapTimer = setInterval(function () { i++; if (i > months.length) { stop(); return; } setMonth(i); }, 450);
+      };
       // legend
       var stops = [0, .25, .5, .75, 1].map(function (k) { return rampColor(k, div); }).join(',');
-      $('#legend').innerHTML = '<span>' + esc(mt('metrics')[MAPM]) + (MAPM === 'ppm' ? ' (' + uLabel() + ')' : '') + '</span><i style="background:linear-gradient(90deg,' + stops + ')"></i><div><em>' +
+      $('#legend').innerHTML = '<span>' + esc(MAPM === 'ppm' ? 'AED/' + uLabel() : mt('metrics')[MAPM]) + '</span><i style="background:linear-gradient(90deg,' + stops + ')"></i><div><em>' +
         mapFmt(lo, MAPM).replace('AED ', '') + '</em><em>' + mapFmt(hi, MAPM).replace('AED ', '') + '</em></div>';
       function showCard(r) {
         var c = $('#mcard');
@@ -946,16 +1072,15 @@
            [mt('metrics').n12, fmt(r.n12)], [mt('metrics').off, mapFmt(r.off12, 'off')]].map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') +
           '</dl><a class="btn" href="#/area/' + r.id + '">' + mt('open') + ' →</a>';
         c.querySelector('.mclose').onclick = function () { c.hidden = true; };
-        lmap.flyTo(r.ll, Math.max(lmap.getZoom(), 12), { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : .6 });
+        map.flyTo({ center: [r.ll[1], r.ll[0]], zoom: Math.max(map.getZoom(), 12.4), pitch: 58, duration: reduce ? 0 : 1400, essential: true });
       }
-      // top 10 list
       var top = rows.filter(function (r) { return mapVal(r, MAPM) != null && r.n12 >= (SEG === 'all' ? 100 : 25); }).sort(function (a, b) { return mapVal(b, MAPM) - mapVal(a, MAPM); }).slice(0, 10);
       $('#mtop').innerHTML = top.map(function (r, i) {
         var v = mapVal(r, MAPM);
         return '<button type="button" data-id="' + r.id + '"><b>' + (i + 1) + '</b><span>' + esc(r.name) + '</span><i style="background:' + colorOf(v) + '"></i><em>' + mapFmt(v, MAPM) + '</em></button>';
       }).join('');
       $('#mtop').querySelectorAll('button').forEach(function (b) {
-        b.onclick = function () { var r = rows.filter(function (x) { return x.id === b.dataset.id; })[0]; showCard(r); byId[r.id].openTooltip(); $('#map').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+        b.onclick = function () { showCard(rows.filter(function (x) { return x.id === b.dataset.id; })[0]); $('#map').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); };
       });
     });
   }
