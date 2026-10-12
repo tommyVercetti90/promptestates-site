@@ -318,3 +318,16 @@ tr.tap:active{background:var(--surface-2)}
 /* fullscreen map: the block (with layers panel, legend, timelapse) fills the screen */
 .map-wrap:fullscreen{border-radius:0;border:0}.map-wrap:fullscreen .map{height:100vh;min-height:0}
 .map-wrap:-webkit-full-screen{border-radius:0;border:0}.map-wrap:-webkit-full-screen .map{height:100vh;min-height:0}
+.plans.plans-3{grid-template-columns:repeat(3,minmax(0,1fr))}@media (max-width:900px){.plans.plans-3{grid-template-columns:1fr}}
+
+/* onboarding tour */
+.tour-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--text);font-weight:800;cursor:pointer;flex:none}
+@media (max-width:1024px){.tour-btn{margin-inline-start:auto}.tour-btn+.acct{margin-inline-start:8px}}
+.tour{position:fixed;inset:0;z-index:100}
+.tour-hole{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(3,8,12,.68),0 0 0 2px var(--accent),0 0 24px 4px color-mix(in srgb,var(--accent) 45%,transparent);transition:left .3s,top .3s,width .3s,height .3s,opacity .2s;pointer-events:none}
+.tour-card{position:fixed;max-width:calc(100vw - 24px);padding:16px 16px 14px;border-radius:16px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 20px 50px rgba(0,0,0,.45);transition:left .3s,top .3s}
+.tour-step{margin:0 0 4px;font-size:12px;font-weight:700;color:var(--accent)}
+.tour-card h3{margin:0 0 6px;font-size:18px}.tour-text{margin:0 0 14px;color:var(--text-2);font-size:14px;line-height:1.5}
+.tour-btns{display:flex;align-items:center;gap:8px}.tour-btns span{flex:1}.tour-btns .btn{height:40px;padding:0 18px}.tour-btns .chip{height:40px}
+.tour-skip{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.tour-hole,.tour-card{transition:none}}

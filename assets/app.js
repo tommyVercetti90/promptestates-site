@@ -592,27 +592,16 @@
     ['price', 'plan', 'booking'].forEach(function (k) { inp(k).addEventListener('input', calc); });
     calc();
   });
+  /* ---------- clicks to the Pro dashboard ---------- */
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a[href^="/pro/"]');
+    if (a && true) track('pro_click', { to: a.getAttribute('href') });
+  });
 })();
 
 // The old app on this domain installed a service worker that serves its cached shell; this site has none, so remove any.
 (function () {
   if (!('serviceWorker' in navigator)) return;
-  /* ---------- pricing: monthly / yearly switch ---------- */
-  document.querySelectorAll('[data-bill]').forEach(function (sw) {
-    var card = sw.parentNode.querySelector('[data-bill-card]');
-    sw.querySelectorAll('[data-bill-set]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var k = btn.getAttribute('data-bill-set') === 'month' ? 'data-m' : 'data-y';
-        sw.querySelectorAll('[data-bill-set]').forEach(function (x) { x.setAttribute('aria-pressed', x === btn); });
-        if (card) card.querySelectorAll('[data-m][data-y]').forEach(function (el) { el.innerHTML = el.getAttribute(k) || ''; });
-      });
-    });
-  });
-  /* ---------- clicks to the Pro dashboard ---------- */
-  document.addEventListener('click', function (ev) {
-    var a = ev.target.closest('a[href^="/pro/"]');
-    if (a && typeof track === 'function') track('pro_click', { to: a.getAttribute('href') });
-  });
   navigator.serviceWorker.getRegistrations().then(function (regs) {
     regs.forEach(function (r) { r.unregister(); });
     if (regs.length && window.caches) caches.keys().then(function (k) { k.forEach(function (n) { caches.delete(n); }); });

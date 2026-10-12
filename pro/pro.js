@@ -19,7 +19,7 @@
   var T = {
     ru: {
       gateText: 'Аналитика рынка недвижимости Дубая на данных DLD. Введите пароль доступа.', gateBtn: 'Войти', gateErr: 'Неверный пароль',
-      tabAsk: 'Спросить', navMap: 'Карта', navAccount: 'Аккаунт', signIn: 'Войти',
+      tabAsk: 'Спросить', navMap: 'Карта', tourL: 'Обучение', navAccount: 'Аккаунт', signIn: 'Войти',
       siH: 'Вход в PromptEstates', siSub: 'Тот же аккаунт, что в приложении PromptEstates', siGoogle: 'Продолжить с Google', siApple: 'Продолжить с Apple', siOr: 'или',
       siEmail: 'Email', siPass: 'Пароль (от 6 символов)', siSignIn: 'Войти', siSignUp: 'Создать аккаунт', siToSignUp: 'Нет аккаунта? Создать', siToSignIn: 'Уже есть аккаунт? Войти',
       siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siErr: 'Не получилось войти. Проверьте email и пароль',
@@ -64,7 +64,7 @@
     },
     en: {
       gateText: 'Dubai real estate intelligence on Dubai Land Department data. Enter your access password.', gateBtn: 'Sign in', gateErr: 'Wrong password',
-      tabAsk: 'Ask', navMap: 'Map', navAccount: 'Account', signIn: 'Sign in',
+      tabAsk: 'Ask', navMap: 'Map', tourL: 'Tour', navAccount: 'Account', signIn: 'Sign in',
       siH: 'Sign in to PromptEstates', siSub: 'Same account as in the PromptEstates app', siGoogle: 'Continue with Google', siApple: 'Continue with Apple', siOr: 'or',
       siEmail: 'Email', siPass: 'Password (6+ characters)', siSignIn: 'Sign in', siSignUp: 'Create account', siToSignUp: 'No account? Create one', siToSignIn: 'Have an account? Sign in',
       siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siErr: 'Could not sign in. Check your email and password',
@@ -1191,7 +1191,7 @@
     risk: '<path d="M12 3 3 20h18zM12 10v4M12 17v.5"/>', png: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6M15.5 8.5h.01"/>'
   };
   function vPricing() {
-    var L = PR[lang] || PR.en, cur = isPro(), interval = 'year';
+    var L = PR[lang] || PR.en, cur = isPro();
     get('meta.json').then(function (m) {
       var pm = function (s) { return parseFloat(String(s).replace(/[^\d.]/g, '')) || 0; };
       var monthly = PLANS.display.month, yearly = PLANS.display.year, perMonthYearly = '$' + fmt(pm(yearly) / 12, 1);
@@ -1201,13 +1201,15 @@
         '<section class="pr-hero"><p class="eyebrow">' + L.eyebrow + '</p><h1>' + esc(L.h) + '</h1><p class="lead">' + esc(L.sub) + '</p>' +
         '<div class="pr-stats">' + L.stats.map(function (s) { return '<div><b>' + fmt(m[s[0]]) + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('') + '</div>' +
         '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p></section>' +
-        '<div class="seg seg-wide interval" role="group"><button type="button" data-int="month" aria-pressed="false">' + L.month + '</button><button type="button" data-int="year" aria-pressed="true">' + L.year + ' <em>' + L.save + '</em></button></div>' +
-        '<div class="plans">' +
+        '<div class="plans plans-3">' +
           '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>$0</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
           (!cur ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
-          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + '</span><h2>Pro</h2><p class="price"><s id="pr-old"></s> <b id="pr-price"></b><span id="pr-per"></span></p><p class="pnote" id="pr-note"></p><ul>' +
+          '<div class="plan"><h2>Pro · ' + L.month + '</h2><p class="price"><b>' + monthly + '</b><span> ' + L.perM + '</span></p><p class="pnote">&nbsp;</p><ul>' +
           L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
-          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn" id="pr-cta">' + L.cta + ' →</button>') + '</div>' +
+          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn btn-ghost" data-buy="month">' + L.cta + ' →</button>') + '</div>' +
+          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + ' · ' + L.save + '</span><h2>Pro · ' + L.year + '</h2><p class="price"><s>$' + fmt(pm(monthly) * 12) + '</s> <b>' + yearly + '</b><span> ' + L.perY + '</span></p><p class="pnote">' + esc(L.yearNote.replace('{m}', perMonthYearly)) + '</p><ul>' +
+          L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
+          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn" data-buy="year">' + L.cta + ' →</button>') + '</div>' +
         '</div><p class="note center">' + esc(L.note) + '</p>' +
         '<section class="pr-sec"><h2>' + L.featH + '</h2><div class="feats">' + L.feats.map(function (f) { return '<div class="feat"><i>' + ico(f[0]) + '</i><h3>' + esc(f[1]) + '</h3><p>' + esc(f[2]) + '</p></div>'; }).join('') + '</div></section>' +
         '<section class="pr-sec"><h2>' + L.cmpH + '</h2><div class="tw cmp"><table><thead><tr><th></th><th class="c">' + L.free + '</th><th class="c pro">Pro</th></tr></thead><tbody>' +
@@ -1215,27 +1217,20 @@
         '<section class="pr-sec"><h2>' + L.trustH + '</h2><div class="trust">' + L.trust.map(function (x) { return '<div><b>' + esc(x[0]) + '</b><span>' + esc(x[1]) + '</span></div>'; }).join('') + '</div></section>' +
         '<section class="pr-sec"><h2>' + L.faqH + '</h2><div class="faq">' + L.faq.map(function (q) { return '<details><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join('') + '</div></section>' +
         (cur ? '' : '<section class="pr-final"><h2>' + esc(L.finalH) + '</h2><button type="button" class="btn" id="pr-cta2">' + L.cta + ' →</button></section>') +
-        '</div>' + (cur ? '' : '<div class="pr-sticky"><span id="pr-sticky-price"></span><button type="button" class="btn" id="pr-cta3">' + L.cta + '</button></div>'));
-      var paint = function () {
-        view.querySelectorAll('[data-int]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.int === interval); });
-        var y = interval === 'year';
-        $('#pr-price').textContent = y ? yearly : monthly; $('#pr-per').textContent = ' ' + (y ? L.perY : L.perM);
-        $('#pr-old').textContent = y ? '$' + fmt(pm(monthly) * 12) : '';
-        $('#pr-note').textContent = y ? L.yearNote.replace('{m}', perMonthYearly) : ' ';
-        if ($('#pr-sticky-price')) $('#pr-sticky-price').innerHTML = '<b>' + (y ? yearly : monthly) + '</b> ' + (y ? L.perY : L.perM);
-      };
-      view.querySelectorAll('[data-int]').forEach(function (b) { b.onclick = function () { interval = b.dataset.int; paint(); }; });
-      paint();
+        '</div>' + (cur ? '' : '<div class="pr-sticky"><span id="pr-sticky-price"><b>' + monthly + '</b> ' + L.perM + '</span><button type="button" class="btn" id="pr-cta3">' + L.cta + '</button></div>'));
+      var interval = 'year';
       var go = function () {
         if (!BILLING_LIVE) { toast(t('prSoon')); return; }
         var run = function () {
-          view.querySelectorAll('#pr-cta,#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
+          view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
           api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
-            .catch(function (e) { view.querySelectorAll('#pr-cta,#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = false; }); toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
+            .catch(function (e) { view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = false; }); toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
         };
         if (USER) run(); else openSignIn(run);
       };
-      ['#pr-cta', '#pr-cta2', '#pr-cta3'].forEach(function (id) { if ($(id)) $(id).onclick = go; });
+      view.querySelectorAll('[data-buy]').forEach(function (b) { b.onclick = function () { interval = b.dataset.buy; go(); }; });
+      if ($('#pr-cta2')) $('#pr-cta2').onclick = function () { interval = 'year'; go(); };
+      if ($('#pr-cta3')) $('#pr-cta3').onclick = function () { interval = 'month'; go(); };
     });
   }
   function vAccount() {
@@ -1346,6 +1341,83 @@
     });
   }
 
+  // ------------------------------------------------------------------ onboarding tour (spotlight + coach marks)
+  var TOUR = {
+    ru: { next: 'Далее', back: 'Назад', skip: 'Пропустить', done: 'Готово', of: 'из', replay: 'Обучение',
+      steps: [
+        { route: '', sel: ['#tabs', '#tabbar'], t: 'Разделы дашборда', d: 'Рынок, карта, районы, проекты, сделки и застройщики — всё по официальным данным Dubai Land Department.' },
+        { route: '', sel: ['.kpis'], t: 'Главные цифры за 12 месяцев', d: 'Сколько сделок, на какую сумму, медиана цены, доля off-plan, аренда и доходность. Цифры обновляются каждую неделю.' },
+        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Единицы, язык и тема', d: 'Переключайте м² и sq ft, русский и английский, светлую и тёмную тему.' },
+        { route: 'map', sel: ['#mpanel'], t: 'Вид карты и слои', d: 'Выберите стиль, отображение (столбцы, пузыри, 2D) и включите слои: тепловую карту, метро, 3D-здания, волну сдачи.' },
+        { route: 'map', sel: ['.map-time'], t: 'Таймлапс сделок', d: 'Нажмите ▶ — и посмотрите, как рынок двигался по месяцам с 2023 года.' },
+        { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro открывает всё', d: 'ИИ-аналитик, все проекты и сделки, фильтры по типу жилья, меморандумы и справедливая цена. Войдите тем же аккаунтом, что в приложении.' }
+      ] },
+    en: { next: 'Next', back: 'Back', skip: 'Skip', done: 'Done', of: 'of', replay: 'Tour',
+      steps: [
+        { route: '', sel: ['#tabs', '#tabbar'], t: 'Dashboard sections', d: 'Market, map, areas, projects, transactions and developers — all from official Dubai Land Department data.' },
+        { route: '', sel: ['.kpis'], t: 'Key numbers for 12 months', d: 'Sales count and value, median price, off-plan share, rents and yields. Updated every week.' },
+        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Units, language and theme', d: 'Switch between m² and sq ft, Russian and English, light and dark.' },
+        { route: 'map', sel: ['#mpanel'], t: 'Map view and layers', d: 'Pick a style and a display (columns, bubbles, 2D) and turn on layers: heatmap, metro, 3D buildings, handover wave.' },
+        { route: 'map', sel: ['.map-time'], t: 'Sales timelapse', d: 'Press ▶ to watch how the market moved month by month since 2023.' },
+        { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro unlocks everything', d: 'The AI analyst, every project and transaction, property-type filters, memos and fair price. Sign in with your PromptEstates app account.' }
+      ] }
+  };
+  var tour = null;
+  function visibleEl(sels) {
+    for (var i = 0; i < sels.length; i++) {
+      var el = document.querySelector(sels[i]);
+      if (el && el.offsetParent !== null) { var r = el.getBoundingClientRect(); if (r.width && r.height) return el; }
+    }
+    return null;
+  }
+  function startTour() {
+    if (tour) return;
+    var L = TOUR[lang] || TOUR.en, i = 0;
+    var ov = document.createElement('div'); ov.className = 'tour'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
+    ov.innerHTML = '<div class="tour-hole"></div><div class="tour-card" role="document"><p class="tour-step"></p><h3></h3><p class="tour-text"></p>' +
+      '<div class="tour-btns"><button type="button" class="link-btn tour-skip">' + L.skip + '</button><span></span><button type="button" class="chip tour-back">' + L.back + '</button><button type="button" class="btn tour-next"></button></div></div>';
+    document.body.appendChild(ov);
+    var hole = ov.querySelector('.tour-hole'), card = ov.querySelector('.tour-card');
+    tour = { close: function () { window.removeEventListener('resize', place); window.removeEventListener('scroll', place, true); document.removeEventListener('keydown', key); ov.remove(); tour = null; try { localStorage.setItem('pe_tour_done', '1'); } catch (e) {} } };
+    function place() {
+      var s = L.steps[i], el = visibleEl(s.sel);
+      if (!el) { hole.style.opacity = 0; card.style.left = '50%'; card.style.top = '50%'; card.style.transform = 'translate(-50%,-50%)'; return; }
+      var r = el.getBoundingClientRect(), pad = 8, vw = innerWidth, vh = innerHeight;
+      hole.style.opacity = 1;
+      hole.style.left = Math.max(4, r.left - pad) + 'px'; hole.style.top = Math.max(4, r.top - pad) + 'px';
+      hole.style.width = Math.min(vw - 8, r.width + pad * 2) + 'px'; hole.style.height = Math.min(vh - 8, r.height + pad * 2) + 'px';
+      var cw = Math.min(360, vw - 24), ch = card.offsetHeight || 180, below = r.bottom + pad + 12, above = r.top - pad - 12 - ch;
+      var top = below + ch < vh ? below : above > 8 ? above : Math.max(8, vh - ch - 12);
+      var left = Math.min(Math.max(12, r.left + r.width / 2 - cw / 2), vw - cw - 12);
+      card.style.transform = 'none'; card.style.width = cw + 'px'; card.style.left = left + 'px'; card.style.top = top + 'px';
+    }
+    function show() {
+      var s = L.steps[i], here = (location.hash.replace(/^#\/?/, '').split('/')[0] || '');
+      ov.querySelector('.tour-step').textContent = (i + 1) + ' ' + L.of + ' ' + L.steps.length;
+      ov.querySelector('h3').textContent = s.t; ov.querySelector('.tour-text').textContent = s.d;
+      ov.querySelector('.tour-back').hidden = i === 0;
+      ov.querySelector('.tour-next').textContent = i === L.steps.length - 1 ? L.done : L.next;
+      var go = function () {
+        var el = visibleEl(s.sel);
+        if (el) el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        setTimeout(place, 350); setTimeout(place, 900);
+      };
+      if (here !== s.route && !(s.route === '' && here === 'market')) { location.hash = '#/' + s.route; setTimeout(go, 1400); } else go();
+      ov.querySelector('.tour-next').focus();
+    }
+    function key(e) { if (e.key === 'Escape') tour.close(); else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft' && i > 0) { i--; show(); } }
+    function next() { if (i < L.steps.length - 1) { i++; show(); } else tour.close(); }
+    ov.querySelector('.tour-next').onclick = next;
+    ov.querySelector('.tour-back').onclick = function () { if (i > 0) { i--; show(); } };
+    ov.querySelector('.tour-skip').onclick = function () { tour.close(); };
+    window.addEventListener('resize', place); window.addEventListener('scroll', place, true); document.addEventListener('keydown', key);
+    show();
+  }
+  function maybeTour() {
+    var seen = false; try { seen = localStorage.getItem('pe_tour_done') === '1'; } catch (e) { seen = true; }
+    if (!seen) setTimeout(function () { if (!document.querySelector('.modal:not([hidden])')) startTour(); }, 1800);
+  }
+
   // ------------------------------------------------------------------ router & chrome
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
@@ -1375,6 +1447,8 @@
     $('#gate').hidden = true; $('#app').hidden = false;
     chrome(); route();
     window.addEventListener('hashchange', route);
+    var hb = document.getElementById('tour-btn'); if (hb) hb.onclick = startTour;
+    maybeTour();
     document.addEventListener('click', function (e) {
       var b = e.target.closest('[data-unit],[data-lang],[data-theme-set]');
       if (!b) return;
@@ -1391,7 +1465,7 @@
       opener = this; sheet.hidden = false;
       setTimeout(function () { sheet.classList.add('open'); $('.sheet-head [data-close]').focus(); }, 16);
     };
-    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeSheet(); });
+    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-tour]')) setTimeout(startTour, 400); if (e.target.closest('[data-close]')) closeSheet(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
   }
   function sha256(s) {

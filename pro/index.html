@@ -11,7 +11,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
-<link rel="stylesheet" href="pro.css?v=4aff32c324">
+<link rel="stylesheet" href="pro.css?v=a5716eff15">
 <script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
@@ -44,6 +44,7 @@
       <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
       <div class="seg" role="group" aria-label="Theme"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div>
     </div>
+    <button type="button" class="tour-btn" id="tour-btn" aria-label="Обучение / Tour" title="?">?</button>
     <a href="#/account" class="acct" id="acct" hidden></a>
   </header>
   <main id="view" class="view" aria-live="polite"></main>
@@ -83,6 +84,7 @@
         <a href="#/tx" data-close><span data-t="navTx"></span></a>
         <a href="#/developers" data-close><span data-t="navDevs"></span></a>
         <a href="#/account" data-close><span data-t="navAccount"></span></a>
+        <a href="#/" data-close data-tour><span data-t="tourL"></span></a>
       </div>
       <p class="group-h" data-t="settings"></p>
       <div class="group settings">
@@ -97,6 +99,6 @@
 <script src="vendor/maplibre/maplibre-gl.js"></script>
 <script src="vendor/firebase/firebase-app-compat.js"></script>
 <script src="vendor/firebase/firebase-auth-compat.js"></script>
-<script src="pro.js?v=c164244a2b"></script>
+<script src="pro.js?v=92c93cfae1"></script>
 </body>
 </html>
