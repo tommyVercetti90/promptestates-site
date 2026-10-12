@@ -280,7 +280,7 @@
   var lmap = null;
   function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; window.scrollTo(0, 0); }
   function kpi(label, value, extra) {
-    value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ (млрд|млн|bn|m)$/, '<small class="u-suf">$1</small>');
+    value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ ((?:млрд|млн|bn|m)(?: AED)?)$/, '<small class="u-suf">$1</small>');
     return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>';
   }
   function skeleton() {
@@ -973,6 +973,7 @@
       lmap.remove = (function (rm) { return function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } rm.call(map); }; })(map.remove);
       map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'DLD · <a href="https://openfreemap.org">OpenFreeMap</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }), 'bottom-right');
       map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+      if (document.fullscreenEnabled || document.webkitFullscreenEnabled) map.addControl(new maplibregl.FullscreenControl({ container: document.querySelector('.map-wrap') }), 'top-right');
 
       function features(monthIdx) {
         var mo = monthIdx < months.length ? months[monthIdx] : null;

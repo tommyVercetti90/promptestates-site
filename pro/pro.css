@@ -309,3 +309,12 @@ tr.tap:active{background:var(--surface-2)}
   .pr-sticky{display:flex;align-items:center;justify-content:space-between;gap:12px;position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:25;padding:10px 12px 10px 16px;border-radius:16px;
     background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line-2);box-shadow:0 10px 30px rgba(0,0,0,.25)}
   .pr-sticky .btn{height:44px}.pricing{padding-bottom:70px}}
+
+/* KPI tiles: fill the row, scale the number to the tile width */
+.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.kpi{container-type:inline-size;min-width:0}
+.kpi b{font-size:clamp(18px,13.5cqi,26px)}
+.kpi b .u-suf{font-size:.55em}
+/* fullscreen map: the block (with layers panel, legend, timelapse) fills the screen */
+.map-wrap:fullscreen{border-radius:0;border:0}.map-wrap:fullscreen .map{height:100vh;min-height:0}
+.map-wrap:-webkit-full-screen{border-radius:0;border:0}.map-wrap:-webkit-full-screen .map{height:100vh;min-height:0}
