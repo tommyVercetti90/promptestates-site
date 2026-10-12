@@ -6,7 +6,7 @@
   var SQFT = 10.7639;
   // Subscriptions: Firebase Auth (same accounts as the PromptEstates app) + Stripe via pro_api.
   // Keep false until pro_api runs with Stripe keys; the prototype password gate stays active meanwhile.
-  var BILLING_LIVE = false;
+  var BILLING_LIVE = true;
   var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: 'promptestates-ai.firebaseapp.com', projectId: 'promptestates-ai',
                    appId: '1:321328766090:web:40be29995e21224225a173' };
   var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json'];
@@ -318,7 +318,7 @@
       var ppm12 = median(l12.map(function (r) { return r[3]; }).filter(Boolean)), ppmP = median(p12.map(function (r) { return r[3]; }).filter(Boolean));
       var n12 = sum(l12, 1), off = sum(l12, 6), v12 = sum(l12, 2) * 1e6, rent12 = median(l12.map(function (r) { return r[9]; }).filter(Boolean));
       var ylds = areas.map(function (a) { return a.yld['1']; }).filter(Boolean);
-      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p>' + askBox(true) + '<div class="kpis">' +
+      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p>' + (isPro() ? askBox(true) : '') + '<div class="kpis">' +
         kpi(t('sales12'), fmt(n12)) + kpi(t('value12'), aed(v12)) +
         kpi(t('ppm') + ' ' + uLabel(), 'AED ' + fmt(ppmv(ppm12)), pctTag(ppmP ? 100 * (ppm12 / ppmP - 1) : null) + ' <i>' + t('yoy') + '</i>') +
         kpi(t('off12'), fmt(100 * off / n12) + '%') + kpi(t('rent'), 'AED ' + fmt(rent12)) +

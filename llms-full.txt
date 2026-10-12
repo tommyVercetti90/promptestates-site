@@ -1,8 +1,8 @@
 # PromptEstates
 
-> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from $49.
 
-PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue is built on Dubai Land Department open data and grows every week. The app interface is available in 10 languages. The product is pre-launch (launch planned for 1 December 2026) and will be offered on a subscription with founder pricing before launch (see Pricing below); this site collects an early-access waitlist. Analytics are informational and not investment advice.
+PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue is built on Dubai Land Department open data and grows every week. The app interface is available in 10 languages. PromptEstates Pro (https://promptestates.com/pro/) is the analytics dashboard on DLD data: market overview and 3D area map for free; the Pro subscription adds every area, project and transaction, developer reliability, property-type filters, an AI analyst, AI investment memos, fair-price estimates and exports (see Pricing below). One account works in the dashboard and the app. Analytics are informational and not investment advice.
 
 ## Pages
 - [English](https://promptestates.com/en/): PromptEstates — AI search for Dubai off-plan property
@@ -100,17 +100,16 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 ## How to cite
 "PromptEstates, based on Dubai Land Department data" with a link to the page used. Analytics are informational and not investment advice.
 
-## Pricing (pre-launch founder offer, AED, one-time payment, no auto-renewal)
+## Pricing (USD, subscription, cancel anytime)
 
-- Search — 3 months: AED 299 (AED 447 after launch). Includes: AI search across UAE off-plan projects; Price per sq ft, area trends, rental yield; Developer check; 10 PDF project reports.
-- Investor — 12 months: AED 899 (AED 1,788 after launch). Includes: Everything in Search; Unlimited PDF reports; Alerts on new launches and price drops; First-wave access.
-- Founder — lifetime: AED 2,499. Includes: Everything in Investor — forever; All future features at no extra cost; Direct line to the team; A say in the product roadmap.
+- Free: $0. Includes: Dubai market overview; Interactive 3D area map; Monthly DLD price and sales trends.
+- Pro: $49 per month or $390 per year. Includes: Every area, 3,353 projects, transactions and developers; Filters: studios, 1–4 bed, villas; AI analyst: ask in plain words; AI project memo in 30 seconds; Fair price from actual sales; PNG infographics and CSV export.
 
-Full refund any time before launch and for 14 days after — no questions asked. Details: https://promptestates.com/en/#pricing
+Cancel in one click — access stays until the end of the paid period. Details: https://promptestates.com/en/#pricing and https://promptestates.com/pro/#/pricing
 
 ## FAQ (English)
 
-> AI search for off-plan property in Dubai and the UAE: matched projects, price per m², rental yield and developer checks. Join the early-access list.
+> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from $49.
 
 ### What is PromptEstates?
 PromptEstates is an AI service for finding off-plan property in the UAE. You describe what you want in plain words, and the AI matches developer projects and shows market analytics for each one: price per m², area trends, rental yield forecast and payment plan.
@@ -124,8 +123,8 @@ Dubai, Abu Dhabi and other UAE emirates. You can search by a specific area — s
 ### How does the AI choose projects?
 The AI matches your budget, area, handover date and goal — to live in or to rent out — against developer projects, area price per m², handover schedules and rental demand, then explains why each option made the shortlist.
 
-### How much will the service cost?
-Joining the waitlist is free. After launch it is a subscription: Search for 3 months, Investor for 12 months or Founder for life. Until launch founder pricing applies — up to 50% below the regular price (e.g. AED 899 a year instead of AED 1,788) with a full refund guarantee.
+### How much does PromptEstates cost?
+The Dubai market overview and the area map are free. Pro costs $49 a month or $390 a year (34% less) and unlocks every area, project and transaction, the AI analyst and memos. Cancel in one click.
 
 ### Is the analytics investment advice?
 No. PromptEstates analytics and forecasts are for information only and help you compare projects; they do not constitute investment advice.
@@ -142,15 +141,18 @@ Yes: property worth AED 2M+ by DLD valuation qualifies for the Golden Visa — i
 ### Which languages does PromptEstates support?
 The app interface is available in 10 languages: English, Russian, Arabic, Chinese, French, Turkish, Hindi, Italian, German and Spanish. This website is available in 11 languages.
 
-### Why pay before launch?
-Founder pricing is only available until launch: up to 50% below the regular price, and the Founder plan gives lifetime access for a single payment. There are 100 seats and it won’t be offered after launch.
+### What is the difference between Free and Pro?
+Free gives you the Dubai market overview and the interactive area map. Pro unlocks every area and project, 24 months of transactions, developer reliability, property-type filters, the AI analyst, AI memos, fair price and exports.
 
-### What if the product isn’t right for me?
-We refund in full any time before launch and within 14 days after — just write to us. There is no auto-renewal.
+### Can I cancel?
+Yes, anytime from your Stripe portal — no emails or calls. Access stays until the end of the paid period and auto-renewal stops immediately.
+
+### Does the subscription work in the app too?
+Yes. PromptEstates has one account for the dashboard and the app: sign in with Google, Apple or email and the subscription works everywhere.
 
 ## Вопросы и ответы (Русский)
 
-> ИИ-поиск новостроек в Дубае и ОАЭ: подбор off-plan проектов по запросу, цена за м², доходность аренды, проверка застройщика. Ранний доступ.
+> ИИ-поиск новостроек и аналитика рынка Дубая по данным DLD: цена за м², доходность аренды, проверка застройщика. Бесплатно, Pro от $49.
 
 ### Что такое PromptEstates?
 PromptEstates — это ИИ-сервис для поиска новостроек (off-plan недвижимости) в ОАЭ. Вы описываете запрос обычными словами, а ИИ подбирает проекты застройщиков и показывает аналитику рынка по каждому: цену за м², динамику района, прогноз доходности аренды и план платежей.
@@ -164,8 +166,8 @@ PromptEstates — это ИИ-сервис для поиска новостро�
 ### Как ИИ подбирает проекты?
 ИИ сопоставляет ваш бюджет, район, срок сдачи и цель покупки — жить или сдавать — с проектами застройщиков, ценами за м² в районе, сроками сдачи и спросом на аренду, а затем объясняет, почему каждый вариант попал в подборку.
 
-### Сколько будет стоить сервис?
-Запись в лист ожидания бесплатная. После запуска — подписка: «Поиск» на 3 месяца, «Инвестор» на 12 месяцев или «Основатель» навсегда. До запуска действует цена основателя — до 50% ниже обычной (например, 899 AED за год вместо 1 788 AED) с полным возвратом.
+### Сколько стоит PromptEstates?
+Обзор рынка Дубая и карта районов — бесплатно. Подписка Pro стоит $49 в месяц или $390 в год (на 34% дешевле) и открывает все районы, проекты, сделки, ИИ-аналитика и меморандумы. Отмена в один клик.
 
 ### Является ли аналитика инвестиционной рекомендацией?
 Нет. Аналитика и прогнозы PromptEstates носят информационный характер и помогают сравнивать проекты, но не являются инвестиционной рекомендацией.
@@ -182,15 +184,18 @@ Off-plan — это покупка квартиры у застройщика д
 ### На каких языках работает PromptEstates?
 Интерфейс приложения доступен на 10 языках: английском, русском, арабском, китайском, французском, турецком, хинди, итальянском, немецком и испанском. Этот сайт доступен на 11 языках.
 
-### Зачем платить до запуска?
-Цена основателя действует только до запуска: до 50% ниже обычной, а тариф «Основатель» — бессрочный доступ за один платёж. Это 100 мест, после запуска его не будет.
+### Чем бесплатный тариф отличается от Pro?
+Бесплатно доступны обзор рынка Дубая и интерактивная карта районов. Pro открывает все районы и проекты, сделки за 24 месяца, надёжность застройщиков, фильтры по типу жилья, ИИ-аналитика, ИИ-меморандумы, справедливую цену и выгрузки.
 
-### Что если продукт мне не подойдёт?
-Вернём деньги полностью в любой момент до запуска и в течение 14 дней после — достаточно написать нам. Автопродления нет.
+### Можно ли отменить подписку?
+Да, в любой момент в личном кабинете Stripe — без писем и звонков. Доступ сохранится до конца оплаченного периода, автопродление отключается сразу.
+
+### Подписка работает и в приложении?
+Да. У PromptEstates один аккаунт для дашборда и приложения: входите через Google, Apple или email — и подписка действует везде.
 
 ## الأسئلة الشائعة (العربية)
 
-> بحث ذكي عن عقارات دبي والإمارات قيد الإنشاء: مشاريع مطابقة لطلبك، سعر المتر، العائد الإيجاري والتحقق من المطوّر. سجّل للوصول المبكر.
+> بحث ذكي وتحليلات سوق دبي من بيانات DLD: سعر المتر، العائد الإيجاري، التحقق من المطوّر. خطة مجانية وPro من 49 دولاراً.
 
 ### ما هو PromptEstates؟
 PromptEstates خدمة تعتمد على الذكاء الاصطناعي للبحث عن العقارات قيد الإنشاء في الإمارات. تصف ما تريده بكلمات بسيطة، فيختار الذكاء الاصطناعي مشاريع المطوّرين ويعرض تحليلات السوق لكل منها: سعر المتر المربع، اتجاهات المنطقة، توقع العائد الإيجاري وخطة الدفع.
@@ -204,8 +209,8 @@ PromptEstates خدمة تعتمد على الذكاء الاصطناعي للب�
 ### كيف يختار الذكاء الاصطناعي المشاريع؟
 يطابق الذكاء الاصطناعي ميزانيتك والمنطقة وموعد التسليم وهدف الشراء — للسكن أو للإيجار — مع مشاريع المطوّرين وأسعار المتر في المنطقة ومواعيد التسليم والطلب على الإيجار، ثم يشرح سبب اختيار كل خيار.
 
-### كم ستكلف الخدمة؟
-التسجيل في قائمة الانتظار مجاني. بعد الإطلاق تعمل الخدمة باشتراك: «بحث» لمدة 3 أشهر، أو «مستثمر» لمدة 12 شهرًا، أو «مؤسس» مدى الحياة. وحتى الإطلاق يسري سعر المؤسسين — أقل بنسبة تصل إلى 50% (مثل 899 درهمًا للسنة بدل 1,788 درهمًا) مع ضمان استرداد كامل.
+### كم تكلفة PromptEstates؟
+النظرة العامة على سوق دبي وخريطة المناطق مجانية. اشتراك Pro بسعر 49 دولاراً شهرياً أو 390 دولاراً سنوياً (أقل بنسبة 34%) ويفتح كل المناطق والمشاريع والصفقات ومحلل الذكاء الاصطناعي والمذكرات. إلغاء بنقرة واحدة.
 
 ### هل تُعد التحليلات نصيحة استثمارية؟
 لا. تحليلات وتوقعات PromptEstates لأغراض إعلامية فقط وتساعدك على مقارنة المشاريع، لكنها لا تُعد نصيحة استثمارية.
@@ -222,11 +227,14 @@ PromptEstates خدمة تعتمد على الذكاء الاصطناعي للب�
 ### ما اللغات التي يدعمها PromptEstates؟
 واجهة التطبيق متاحة بعشر لغات: الإنجليزية والروسية والعربية والصينية والفرنسية والتركية والهندية والإيطالية والألمانية والإسبانية. هذا الموقع متاح بـ 11 لغة.
 
-### لماذا أدفع قبل الإطلاق؟
-سعر المؤسسين متاح حتى الإطلاق فقط: أقل بنسبة تصل إلى 50% من السعر العادي، وباقة «مؤسس» تمنح وصولًا مدى الحياة بدفعة واحدة. عددها 100 مقعد ولن تُعرض بعد الإطلاق.
+### ما الفرق بين الخطة المجانية وPro؟
+تتيح الخطة المجانية نظرة عامة على سوق دبي وخريطة المناطق التفاعلية. أما Pro فيفتح كل المناطق والمشاريع وصفقات 24 شهراً وموثوقية المطورين وفلاتر نوع العقار ومحلل الذكاء الاصطناعي والمذكرات والسعر العادل والتصدير.
 
-### ماذا لو لم يناسبني المنتج؟
-نعيد المبلغ كاملًا في أي وقت قبل الإطلاق وخلال 14 يومًا بعده — يكفي أن تراسلنا. لا يوجد تجديد تلقائي.
+### هل يمكنني الإلغاء؟
+نعم، في أي وقت من بوابة Stripe دون رسائل أو مكالمات. يبقى الوصول حتى نهاية الفترة المدفوعة ويتوقف التجديد التلقائي فوراً.
+
+### هل يعمل الاشتراك في التطبيق أيضاً؟
+نعم. لدى PromptEstates حساب واحد للوحة والتطبيق: سجّل الدخول عبر Google أو Apple أو البريد الإلكتروني ويعمل الاشتراك في كل مكان.
 
 
 
