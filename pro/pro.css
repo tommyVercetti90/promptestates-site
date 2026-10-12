@@ -248,3 +248,22 @@ tr.tap:active{background:var(--surface-2)}
 .map3 .maplibregl-ctrl-bottom-right{bottom:76px}
 .maplibregl-ctrl-attrib{background:color-mix(in srgb,var(--surface) 80%,transparent)!important;color:var(--muted)!important}.maplibregl-ctrl-attrib a{color:var(--muted)!important}
 :root:not([data-theme="light"]) .maplibregl-ctrl-attrib-button{filter:invert(1)}
+
+/* map view picker */
+.map-layers{max-height:calc(100% - 110px);overflow:auto;width:250px}
+.mp-head{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:32px;padding:0;border:0;background:none;color:var(--text);font-weight:700;font-size:15px;cursor:pointer}
+.mp-head i{width:8px;height:8px;border:solid var(--muted);border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .2s;margin-inline-end:4px}
+.map-layers.collapsed .mp-head i{transform:rotate(-135deg)}.map-layers.collapsed .mp-body{display:none}
+.mp-body{display:flex;flex-direction:column;gap:2px}.mp-body>b{margin-top:10px}
+.sws{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.sw{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0;border:0;background:none;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer}
+.sw i{display:block;width:100%;aspect-ratio:1;border-radius:10px;border:2px solid transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.sw[aria-pressed="true"]{color:var(--text)}.sw[aria-pressed="true"] i{border-color:var(--accent)}
+.sw-dark i{background:linear-gradient(135deg,#111820 40%,#2a3a46 41% 46%,#111820 47%),#111820}
+.sw-light i{background:linear-gradient(135deg,#eef1f3 40%,#c9d2d8 41% 46%,#eef1f3 47%),#eef1f3}
+.sw-streets i{background:linear-gradient(135deg,#f3efe6 30%,#f6c96b 31% 36%,#f3efe6 37% 60%,#a9d3ea 61%),#f3efe6}
+.sw-night i{background:radial-gradient(circle at 35% 40%,#6bd0e8 0 12%,transparent 30%),radial-gradient(circle at 70% 70%,#ff7a45 0 10%,transparent 28%),#03050a}
+.mp-modes{display:flex}.mp-modes button{flex:1;min-width:0;padding:0 6px;font-size:12px}
+@media (max-width:1024px){.map-layers{width:220px}}
+.map3 .map-legend{left:auto;right:12px;bottom:112px}
+.li-bld{background:linear-gradient(0deg,#8a949c 0 40%,transparent 40%),linear-gradient(90deg,transparent 30%,#c9d2d8 30% 70%,transparent 70%)}

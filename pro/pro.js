@@ -867,16 +867,21 @@
       metrics: { ppm: 'Цена за м²', yoy: 'Рост за год', yld: 'Доходность', n12: 'Сделки', off: 'Доля off-plan' },
       layers: 'Слои', lCols: '3D-столбцы рынка', lHeat: 'Тепловая карта сделок', lPipe: 'Волна сдачи 2026–2028', lMetro: 'Метро и трамвай', lLabels: 'Названия районов',
       top: 'Топ-10', open: 'Открыть район', sales: 'сделок', yoy: 'за год', units: 'юнитов к сдаче', overdue: 'просрочено', none: 'Нет данных для этого типа жилья',
-      play: 'Воспроизвести', pause: 'Пауза', y12: '12 мес.', tl: 'Таймлапс сделок', reset: 'Сбросить вид', d3: '3D', d2: '2D', noGl: 'Браузер не поддерживает WebGL — карта недоступна' },
+      play: 'Воспроизвести', pause: 'Пауза', viewH: 'Вид карты', styleH: 'Стиль', modeH: 'Отображение', lBld: '3D-здания',
+      styles: { dark: 'Тёмная', light: 'Светлая', streets: 'Улицы', night: 'Ночь' }, modes: { cols: 'Столбцы', bubbles: 'Пузыри', flat: '2D' }, lMarket: 'Рынок районов', y12: '12 мес.', tl: 'Таймлапс сделок', reset: 'Сбросить вид', d3: '3D', d2: '2D', noGl: 'Браузер не поддерживает WebGL — карта недоступна' },
     en: { h: 'Market map', sub: 'Dubai areas from DLD data. Column height: number of sales, colour: selected metric. Tilt with right-click drag or two fingers',
       metrics: { ppm: 'Price per m²', yoy: 'YoY change', yld: 'Gross yield', n12: 'Sales', off: 'Off-plan share' },
       layers: 'Layers', lCols: '3D market columns', lHeat: 'Sales heatmap', lPipe: 'Handover wave 2026–2028', lMetro: 'Metro & tram', lLabels: 'Area names',
       top: 'Top 10', open: 'Open area', sales: 'sales', yoy: 'YoY', units: 'units due', overdue: 'overdue', none: 'No data for this property type',
-      play: 'Play', pause: 'Pause', y12: '12 mo', tl: 'Sales timelapse', reset: 'Reset view', d3: '3D', d2: '2D', noGl: 'This browser has no WebGL, the map is unavailable' }
+      play: 'Play', pause: 'Pause', viewH: 'Map view', styleH: 'Style', modeH: 'Display', lBld: '3D buildings',
+      styles: { dark: 'Dark', light: 'Light', streets: 'Streets', night: 'Night' }, modes: { cols: 'Columns', bubbles: 'Bubbles', flat: '2D' }, lMarket: 'Area market', y12: '12 mo', tl: 'Sales timelapse', reset: 'Reset view', d3: '3D', d2: '2D', noGl: 'This browser has no WebGL, the map is unavailable' }
   };
   var mt = function (k) { return (MT[lang] || MT.en)[k]; };
   var MAPM = store('pro_mapm') || 'ppm';
   var LAYERS = (function () { try { return JSON.parse(store('pro_layers')) || null; } catch (e) { return null; } })() || { cols: true, heat: true, pipe: false, metro: true, labels: true };
+  if (LAYERS.bld == null) LAYERS.bld = true;
+  var MAPSTYLE = store('pro_mapstyle') || 'auto', MAPVIEW = store('pro_mapview') || 'cols', MAPCAM = null;
+  var STYLE_URL = { dark: 'dark', night: 'dark', light: 'positron', streets: 'liberty' };
   function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
   function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
   function rampColor(k, diverging) {
@@ -911,14 +916,21 @@
         return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + (locked ? ' locked' : '') + '" data-mseg="' + k + '">' + it('segs')[k] + '</button>';
       }).join('');
       var mBtns = Object.keys(mt('metrics')).map(function (k) { return '<button type="button" data-metric="' + k + '" aria-pressed="' + (k === MAPM) + '">' + mt('metrics')[k] + '</button>'; }).join('');
-      var lay = [['cols', 'lCols'], ['heat', 'lHeat'], ['pipe', 'lPipe'], ['metro', 'lMetro'], ['labels', 'lLabels']].map(function (x) {
+      var styleKey = MAPSTYLE === 'auto' ? (document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark') : MAPSTYLE;
+      var stylesHtml = ['dark', 'light', 'streets', 'night'].map(function (k) {
+        return '<button type="button" class="sw sw-' + k + '" data-mstyle="' + k + '" aria-pressed="' + (k === styleKey) + '"><i></i><span>' + mt('styles')[k] + '</span></button>';
+      }).join('');
+      var modesHtml = ['cols', 'bubbles', 'flat'].map(function (k) { return '<button type="button" data-mview="' + k + '" aria-pressed="' + (k === MAPVIEW) + '">' + mt('modes')[k] + '</button>'; }).join('');
+      var lay = [['cols', 'lMarket'], ['heat', 'lHeat'], ['pipe', 'lPipe'], ['metro', 'lMetro'], ['bld', 'lBld'], ['labels', 'lLabels']].map(function (x) {
         var locked = x[0] === 'pipe' && !isPro();
         return '<label class="lay' + (locked ? ' locked' : '') + '"><input type="checkbox" data-layer="' + x[0] + '"' + (LAYERS[x[0]] && !locked ? ' checked' : '') + (locked ? ' disabled' : '') + '><i class="li-' + x[0] + '"></i><span>' + mt(x[1]) + '</span></label>';
       }).join('');
       page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
         '<div class="map-ctl"><div class="seg seg-wide" role="group">' + mBtns + '</div></div><div class="filters ig-seg">' + segBtns + '</div>' +
         '<div class="map-wrap map3"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div>' +
-        '<div class="glass map-layers"><b>' + mt('layers') + '</b>' + lay + '</div>' +
+        '<div class="glass map-layers' + (innerWidth < 700 ? ' collapsed' : '') + '" id="mpanel"><button type="button" class="mp-head" id="mp-toggle" aria-expanded="' + (innerWidth >= 700) + '">' + mt('viewH') + '<i></i></button>' +
+        '<div class="mp-body"><b>' + mt('styleH') + '</b><div class="sws">' + stylesHtml + '</div><b>' + mt('modeH') + '</b><div class="seg mp-modes">' + modesHtml + '</div>' +
+        '<b>' + mt('layers') + '</b>' + lay + '</div></div>' +
         '<div class="glass map-tools"><button type="button" id="m-dim" aria-pressed="true">' + mt('d3') + '</button><button type="button" id="m-reset" aria-label="' + mt('reset') + '">⟲</button></div>' +
         '<div class="glass map-legend" id="legend"></div>' +
         '<div class="glass map-time"><button type="button" id="m-play" aria-label="' + mt('play') + '">▶</button><div class="tl"><span id="m-month">' + mt('tl') + ' · ' + mt('y12') + '</span>' +
@@ -942,10 +954,12 @@
       var mMax = 1;
       rows.forEach(function (r) { months.forEach(function (mo) { mMax = Math.max(mMax, monthly[r.id][mo] || 0); }); });
 
-      var dark = document.documentElement.getAttribute('data-theme') !== 'light';
-      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var map = lmap = new maplibregl.Map({ container: 'map', style: 'https://tiles.openfreemap.org/styles/' + (dark ? 'dark' : 'positron'),
-        center: [55.24, 25.13], zoom: reduce ? 10.6 : 9.2, pitch: reduce ? 50 : 0, bearing: reduce ? -17 : 0, maxPitch: 70, attributionControl: false, antialias: true, preserveDrawingBuffer: true });
+      var dark = styleKey === 'dark' || styleKey === 'night', night = styleKey === 'night';
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, cam = MAPCAM; MAPCAM = null;
+      var flatPitch = MAPVIEW === 'flat' ? 0 : null;
+      var map = lmap = new maplibregl.Map({ container: 'map', style: 'https://tiles.openfreemap.org/styles/' + STYLE_URL[styleKey],
+        center: cam ? cam.center : [55.24, 25.13], zoom: cam ? cam.zoom : reduce ? 10.6 : 9.2, pitch: cam ? (flatPitch != null ? 0 : cam.pitch) : reduce ? (flatPitch != null ? 0 : 50) : 0,
+        bearing: cam ? cam.bearing : reduce ? -17 : 0, maxPitch: 70, attributionControl: false, antialias: true, preserveDrawingBuffer: true });
       lmap.remove = (function (rm) { return function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } rm.call(map); }; })(map.remove);
       map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'DLD · <a href="https://openfreemap.org">OpenFreeMap</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }), 'bottom-right');
       map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
@@ -956,6 +970,10 @@
             var v = mapVal(r, MAPM), n = mo ? (monthly[r.id][mo] || 0) : r.n12, k = mo ? n / mMax : n / nMax;
             return { type: 'Feature', properties: { id: r.id, color: colorOf(v), h: 60 + 5200 * Math.sqrt(k) * Math.sqrt(k) },
                      geometry: { type: 'Polygon', coordinates: ring(r.ll, 330 + 520 * Math.sqrt(r.n12 / nMax), 28) } };
+          }) },
+          bub: { type: 'FeatureCollection', features: rows.map(function (r) {
+            var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
+            return { type: 'Feature', properties: { id: r.id, color: colorOf(mapVal(r, MAPM)), r: 4 + 30 * Math.sqrt(n) }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
           }) },
           heat: { type: 'FeatureCollection', features: rows.map(function (r) {
             var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
@@ -984,11 +1002,20 @@
           if (l.type === 'symbol' && l.layout && l.layout['text-field']) map.setLayoutProperty(l.id, 'text-field', ['coalesce', ['get', 'name:latin'], ['get', 'name_en'], ['get', 'name']]);
           if (l.type === 'symbol' && /poi|housenumber/.test(l.id)) map.setLayoutProperty(l.id, 'visibility', 'none');
         });
+        if (night) map.getStyle().layers.forEach(function (l) {
+          if (l.type === 'background') map.setPaintProperty(l.id, 'background-color', '#03050a');
+          else if (/water/.test(l.id) && l.type === 'fill') map.setPaintProperty(l.id, 'fill-color', '#04101a');
+          else if (l.type === 'line' && /road|highway|motorway|trunk|primary/.test(l.id)) map.setPaintProperty(l.id, 'line-color', '#1c3a4a');
+        });
+        // 3D buildings: Liberty ships its own extrusion layer, the dark/light styles get ours
+        if (!map.getLayer('building-3d')) map.addLayer({ id: 'bld3d', type: 'fill-extrusion', source: 'openmaptiles', 'source-layer': 'building', minzoom: 13.5, paint: {
+          'fill-extrusion-color': night ? '#0f2230' : dark ? '#1d2731' : '#d6dce1', 'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 8],
+          'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0], 'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 13.5, 0, 14.5, .8] } });
         var f = features(months.length);
         map.addSource('heat', { type: 'geojson', data: f.heat });
         map.addLayer({ id: 'heat', type: 'heatmap', source: 'heat', maxzoom: 15, paint: {
           'heatmap-weight': ['get', 'w'], 'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 9, 1.1, 13, 2.2],
-          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 9, 28, 12, 70, 14, 120], 'heatmap-opacity': dark ? .75 : .6,
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 9, 28, 12, 70, 14, 120], 'heatmap-opacity': night ? .95 : dark ? .75 : .6,
           'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', .15, 'rgba(17,65,84,.55)', .35, '#1f7fa6', .55, '#6bbfe0', .75, '#f5c85b', 1, '#ff7a45'] } });
         if (metro) {
           map.addSource('metro', { type: 'geojson', data: metro });
@@ -999,7 +1026,12 @@
         }
         map.addSource('cols', { type: 'geojson', data: f.cols });
         map.addLayer({ id: 'cols', type: 'fill-extrusion', source: 'cols', paint: {
-          'fill-extrusion-color': ['get', 'color'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-base': 0, 'fill-extrusion-opacity': .88, 'fill-extrusion-vertical-gradient': true } });
+          'fill-extrusion-color': ['get', 'color'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-base': 0, 'fill-extrusion-opacity': night ? .95 : .88, 'fill-extrusion-vertical-gradient': true } });
+        map.addLayer({ id: 'flat', type: 'fill', source: 'cols', paint: { 'fill-color': ['get', 'color'], 'fill-opacity': .78, 'fill-outline-color': dark ? 'rgba(255,255,255,.5)' : '#fff' } });
+        map.addSource('bub', { type: 'geojson', data: f.bub });
+        if (night) map.addLayer({ id: 'bub-glow', type: 'circle', source: 'bub', paint: { 'circle-radius': ['*', ['get', 'r'], 1.9], 'circle-color': ['get', 'color'], 'circle-opacity': .18, 'circle-blur': 1 } });
+        map.addLayer({ id: 'bub', type: 'circle', source: 'bub', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, ['*', ['get', 'r'], .7], 13, ['*', ['get', 'r'], 1.6]],
+          'circle-color': ['get', 'color'], 'circle-opacity': .82, 'circle-stroke-width': 1.2, 'circle-stroke-color': dark ? 'rgba(255,255,255,.6)' : '#fff' } });
         map.addSource('pipe', { type: 'geojson', data: pipeFC });
         map.addLayer({ id: 'pipe', type: 'circle', source: 'pipe', paint: {
           'circle-radius': ['get', 'r'], 'circle-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-opacity': .28,
@@ -1007,20 +1039,22 @@
         map.addSource('labels', { type: 'geojson', data: labelsFC });
         map.addLayer({ id: 'labels', type: 'symbol', source: 'labels', layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 9, 11, 13, 14],
           'text-offset': [0, -1.4], 'text-anchor': 'bottom', 'symbol-sort-key': ['get', 'rank'], 'text-allow-overlap': false },
-          paint: { 'text-color': dark ? '#f2f5f7' : '#0d1418', 'text-halo-color': dark ? 'rgba(10,13,15,.9)' : 'rgba(255,255,255,.95)', 'text-halo-width': 1.6 } });
+          paint: { 'text-color': dark ? '#f2f5f7' : '#0d1418', 'text-halo-color': dark ? 'rgba(5,7,10,.9)' : 'rgba(255,255,255,.95)', 'text-halo-width': 1.6 } });
         applyLayers();
-        if (!reduce) map.flyTo({ center: [55.235, 25.12], zoom: innerWidth < 700 ? 10.1 : 10.8, pitch: 55, bearing: -17, duration: 2600, essential: true });
+        if (!reduce && !cam) map.flyTo({ center: [55.235, 25.12], zoom: innerWidth < 700 ? 10.1 : 10.8, pitch: flatPitch != null ? 0 : 55, bearing: flatPitch != null ? 0 : -17, duration: 2600, essential: true });
 
         var pop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: 'mpop' });
         var byId = {}; rows.forEach(function (r) { byId[r.id] = r; });
-        map.on('mousemove', 'cols', function (e) {
-          var r = byId[e.features[0].properties.id]; map.getCanvas().style.cursor = 'pointer';
-          pop.setLngLat(e.lngLat).setHTML('<b>' + esc(r.name) + '</b><br>' + mapFmt(mapVal(r, MAPM), MAPM) + ' · ' + fmt(r.n12) + ' ' + mt('sales')).addTo(map);
+        ['cols', 'flat', 'bub'].forEach(function (lid) {
+          map.on('mousemove', lid, function (e) {
+            var r = byId[e.features[0].properties.id]; map.getCanvas().style.cursor = 'pointer';
+            pop.setLngLat(e.lngLat).setHTML('<b>' + esc(r.name) + '</b><br>' + mapFmt(mapVal(r, MAPM), MAPM) + ' · ' + fmt(r.n12) + ' ' + mt('sales')).addTo(map);
+          });
+          map.on('mouseleave', lid, function () { map.getCanvas().style.cursor = ''; pop.remove(); });
+          map.on('click', lid, function (e) { showCard(byId[e.features[0].properties.id]); });
         });
-        map.on('mouseleave', 'cols', function () { map.getCanvas().style.cursor = ''; pop.remove(); });
-        map.on('click', 'cols', function (e) { showCard(byId[e.features[0].properties.id]); });
         map.on('mousemove', 'pipe', function (e) {
-          if (map.getLayoutProperty('cols', 'visibility') !== 'none' && map.queryRenderedFeatures(e.point, { layers: ['cols'] }).length) return;
+          if (map.queryRenderedFeatures(e.point, { layers: ['cols', 'flat', 'bub'].filter(function (l) { return map.getLayoutProperty(l, 'visibility') !== 'none'; }) }).length) return;
           var p = e.features[0].properties; map.getCanvas().style.cursor = 'pointer';
           pop.setLngLat(e.lngLat).setHTML('<b>' + esc(p.name) + '</b><br>' + fmt(p.u) + ' ' + mt('units') + (p.late > 0 ? ' · ' + fmt(100 * p.late) + '% ' + mt('overdue') : '')).addTo(map);
         });
@@ -1030,13 +1064,34 @@
       function applyLayers() {
         if (!map.getLayer('cols')) return;
         var vis = function (id, on) { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); };
-        vis('cols', LAYERS.cols); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
+        vis('cols', LAYERS.cols && MAPVIEW === 'cols'); vis('flat', LAYERS.cols && MAPVIEW === 'flat');
+        vis('bub', LAYERS.cols && MAPVIEW === 'bubbles'); vis('bub-glow', LAYERS.cols && MAPVIEW === 'bubbles');
+        vis('bld3d', LAYERS.bld); vis('building-3d', LAYERS.bld); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
         ['metro', 'metro-glow', 'metro-st'].forEach(function (id) { vis(id, LAYERS.metro); });
         $('#legend').hidden = !LAYERS.cols;
+        $('#m-dim').hidden = MAPVIEW === 'flat';
       }
       view.querySelectorAll('[data-layer]').forEach(function (cb) {
         cb.onchange = function () { LAYERS[cb.dataset.layer] = cb.checked; store('pro_layers', JSON.stringify(LAYERS)); applyLayers(); };
       });
+      view.querySelectorAll('[data-mstyle]').forEach(function (b) {
+        b.onclick = function () {
+          if (b.getAttribute('aria-pressed') === 'true') return;
+          MAPSTYLE = b.dataset.mstyle; store('pro_mapstyle', MAPSTYLE);
+          MAPCAM = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: map.getBearing() };
+          vMap();
+        };
+      });
+      view.querySelectorAll('[data-mview]').forEach(function (b) {
+        b.onclick = function () {
+          MAPVIEW = b.dataset.mview; store('pro_mapview', MAPVIEW);
+          view.querySelectorAll('[data-mview]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+          applyLayers();
+          if (MAPVIEW === 'flat') map.easeTo({ pitch: 0, bearing: 0, duration: reduce ? 0 : 700 });
+          else if (map.getPitch() < 10) map.easeTo({ pitch: MAPVIEW === 'cols' ? 55 : 35, bearing: -17, duration: reduce ? 0 : 700 });
+        };
+      });
+      $('#mp-toggle').onclick = function () { var c = $('#mpanel').classList.toggle('collapsed'); this.setAttribute('aria-expanded', !c); };
       // 2D / 3D and reset
       $('#m-dim').onclick = function () {
         var to3 = map.getPitch() < 10; this.setAttribute('aria-pressed', to3); this.textContent = to3 ? mt('d3') : mt('d2');
@@ -1049,7 +1104,7 @@
         slider.value = i;
         label.textContent = mt('tl') + ' · ' + (i >= months.length ? mt('y12') : mlabel(months[i]));
         if (!map.getSource('cols')) return;
-        var f = features(i); map.getSource('cols').setData(f.cols); map.getSource('heat').setData(f.heat);
+        var f = features(i); map.getSource('cols').setData(f.cols); map.getSource('heat').setData(f.heat); if (map.getSource('bub')) map.getSource('bub').setData(f.bub);
       };
       slider.oninput = function () { stop(); setMonth(+slider.value); };
       var stop = function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', mt('play')); };
