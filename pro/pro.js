@@ -1370,7 +1370,7 @@
 
   // ------------------------------------------------------------------ onboarding tour (spotlight + coach marks)
   var TOUR = {
-    ru: { next: 'Далее', back: 'Назад', skip: 'Пропустить', done: 'Готово', of: 'из', replay: 'Обучение',
+    ru: { next: 'Далее', back: 'Назад', skip: 'Пропустить', done: 'Готово', of: 'из', replay: 'Обучение', start: 'Начать тур', hi: 'Добро пожаловать в PromptEstates Pro', hiSub: 'Рынок Дубая по официальным данным DLD — в одном окне. Покажем главное за 30 секунд.',
       steps: [
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Разделы дашборда', d: 'Рынок, карта, районы, проекты, сделки и застройщики — всё по официальным данным Dubai Land Department.' },
         { route: '', sel: ['.kpis'], t: 'Главные цифры за 12 месяцев', d: 'Сколько сделок, на какую сумму, медиана цены, доля off-plan, аренда и доходность. Цифры обновляются каждую неделю.' },
@@ -1379,7 +1379,7 @@
         { route: 'map', sel: ['.map-time'], t: 'Таймлапс сделок', d: 'Нажмите ▶ — и посмотрите, как рынок двигался по месяцам с 2023 года.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro открывает всё', d: 'ИИ-аналитик, все проекты и сделки, фильтры по типу жилья, меморандумы и справедливая цена. Войдите тем же аккаунтом, что в приложении.' }
       ] },
-    en: { next: 'Next', back: 'Back', skip: 'Skip', done: 'Done', of: 'of', replay: 'Tour',
+    en: { next: 'Next', back: 'Back', skip: 'Skip', done: 'Done', of: 'of', replay: 'Tour', start: 'Start the tour', hi: 'Welcome to PromptEstates Pro', hiSub: 'The Dubai market from official DLD data, in one window. Here are the essentials in 30 seconds.',
       steps: [
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Dashboard sections', d: 'Market, map, areas, projects, transactions and developers — all from official Dubai Land Department data.' },
         { route: '', sel: ['.kpis'], t: 'Key numbers for 12 months', d: 'Sales count and value, median price, off-plan share, rents and yields. Updated every week.' },
@@ -1393,52 +1393,108 @@
   function visibleEl(sels) {
     for (var i = 0; i < sels.length; i++) {
       var el = document.querySelector(sels[i]);
-      if (el && el.offsetParent !== null) { var r = el.getBoundingClientRect(); if (r.width && r.height) return el; }
+      if (el && (el.offsetParent !== null || getComputedStyle(el).position === 'fixed')) { var r = el.getBoundingClientRect(); if (r.width && r.height) return el; }
     }
     return null;
   }
   function startTour() {
     if (tour) return;
-    var L = TOUR[lang] || TOUR.en, i = 0;
-    var ov = document.createElement('div'); ov.className = 'tour'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
-    ov.innerHTML = '<div class="tour-hole"></div><div class="tour-card" role="document"><p class="tour-step"></p><h3></h3><p class="tour-text"></p>' +
+    var L = TOUR[lang] || TOUR.en, i = -1, n = L.steps.length;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobile = function () { return innerWidth <= 640; };
+    var dots = ''; for (var k = 0; k < n; k++) dots += '<i></i>';
+    var ov = document.createElement('div'); ov.className = 'tour is-intro'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', L.hi);
+    ov.innerHTML = '<div class="tour-hole"></div>' +
+      '<div class="tour-intro" role="document"><div class="ti-media"><video src="/shots/app-tour.mp4" autoplay muted loop playsinline preload="auto"></video><span class="ti-badge">DLD · live</span></div>' +
+      '<div class="ti-body"><h2>' + esc(L.hi) + '</h2><p>' + esc(L.hiSub) + '</p><div class="ti-stats"></div>' +
+      '<div class="tour-btns"><button type="button" class="link-btn tour-skip">' + L.skip + '</button><span></span><button type="button" class="btn tour-go">' + L.start + '</button></div></div></div>' +
+      '<div class="tour-card" role="document" hidden><div class="tour-dots" aria-hidden="true">' + dots + '</div><p class="tour-step"></p><h3></h3><p class="tour-text"></p>' +
       '<div class="tour-btns"><button type="button" class="link-btn tour-skip">' + L.skip + '</button><span></span><button type="button" class="chip tour-back">' + L.back + '</button><button type="button" class="btn tour-next"></button></div></div>';
     document.body.appendChild(ov);
-    var hole = ov.querySelector('.tour-hole'), card = ov.querySelector('.tour-card');
-    tour = { close: function () { window.removeEventListener('resize', place); window.removeEventListener('scroll', place, true); document.removeEventListener('keydown', key); ov.remove(); tour = null; try { localStorage.setItem('pe_tour_done', '1'); } catch (e) {} } };
+    var hole = ov.querySelector('.tour-hole'), card = ov.querySelector('.tour-card'), intro = ov.querySelector('.tour-intro');
+    tour = { close: function () {
+      window.removeEventListener('resize', place); window.removeEventListener('scroll', place, true); document.removeEventListener('keydown', key);
+      tour = null; try { localStorage.setItem('pe_tour_done', '1'); } catch (e) {}
+      ov.classList.add('is-out'); setTimeout(function () { ov.remove(); }, reduce ? 0 : 220);
+    } };
+
+    // live numbers from the market KPIs, counted up from zero
+    var stats = ov.querySelector('.ti-stats');
+    Array.prototype.slice.call(document.querySelectorAll('.kpis .kpi'), 0, 3).forEach(function (el) {
+      var lab = el.querySelector('span'), val = el.querySelector('b'); if (!lab || !val) return;
+      var txt = Array.prototype.map.call(val.childNodes, function (x) { return x.textContent.trim(); }).filter(Boolean).join(' ').replace(/\s+/g, ' '), m = txt.match(/\d[\d\s.,]*/);
+      var d = document.createElement('div'); d.className = 'ti-stat'; d.innerHTML = '<b></b><span></span>';
+      d.querySelector('span').textContent = lab.textContent; stats.appendChild(d);
+      var out = d.querySelector('b');
+      if (!m || reduce) { out.textContent = txt; return; }
+      var raw = m[0].replace(/[\s.,]+$/, ''), ds = lang === 'ru' ? ',' : '.';
+      var num = parseFloat(raw.replace(lang === 'ru' ? /\s/g : /,/g, '').replace(ds, '.')), dec = (raw.split(ds)[1] || '').length;
+      if (!isFinite(num)) { out.textContent = txt; return; }
+      var pre = txt.slice(0, m.index), post = txt.slice(m.index + raw.length), t0 = performance.now();
+      var nf = new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : 'en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      (function step() {
+        var p = Math.min(1, (performance.now() - t0) / 1600), e = 1 - Math.pow(1 - p, 3);
+        out.textContent = p < 1 ? pre + nf.format(num * e) + post : txt;
+        if (p < 1 && document.body.contains(out)) requestAnimationFrame(step);
+      })();
+    });
+
     function place() {
-      var s = L.steps[i], el = visibleEl(s.sel);
-      if (!el) { hole.style.opacity = 0; card.style.left = '50%'; card.style.top = '50%'; card.style.transform = 'translate(-50%,-50%)'; return; }
-      var r = el.getBoundingClientRect(), pad = 8, vw = innerWidth, vh = innerHeight;
-      hole.style.opacity = 1;
-      hole.style.left = Math.max(4, r.left - pad) + 'px'; hole.style.top = Math.max(4, r.top - pad) + 'px';
-      hole.style.width = Math.min(vw - 8, r.width + pad * 2) + 'px'; hole.style.height = Math.min(vh - 8, r.height + pad * 2) + 'px';
-      var cw = Math.min(360, vw - 24), ch = card.offsetHeight || 180, below = r.bottom + pad + 12, above = r.top - pad - 12 - ch;
-      var top = below + ch < vh ? below : above > 8 ? above : Math.max(8, vh - ch - 12);
-      var left = Math.min(Math.max(12, r.left + r.width / 2 - cw / 2), vw - cw - 12);
-      card.style.transform = 'none'; card.style.width = cw + 'px'; card.style.left = left + 'px'; card.style.top = top + 'px';
+      if (i < 0) return;
+      var s = L.steps[i], el = visibleEl(s.sel), vw = innerWidth, vh = innerHeight;
+      if (!el) {
+        hole.style.opacity = 0; ov.classList.add('no-target'); card.classList.remove('at-top');
+        if (mobile()) { card.style.left = card.style.top = card.style.width = card.style.transform = ''; return; }
+        card.style.left = '50%'; card.style.top = '50%'; card.style.transform = 'translate(-50%,-50%)'; return;
+      }
+      var r = el.getBoundingClientRect(), pad = 8;
+      var hl = Math.max(4, r.left - pad), ht = Math.max(4, r.top - pad), hw = Math.min(vw - 8, r.width + pad * 2), hh = Math.min(vh - 8, r.height + pad * 2);
+      if (mobile()) {
+        // bottom sheet; flips to the top when the target sits low (e.g. the tab bar)
+        var low = r.top + r.height / 2 > vh * 0.55;
+        card.classList.toggle('at-top', low);
+        card.style.left = card.style.top = card.style.width = card.style.transform = '';
+        var sh = card.offsetHeight + 24;
+        if (!low) hh = Math.max(36, Math.min(hh, vh - sh - ht));
+        else if (ht < sh) { hh = Math.max(36, hh - (sh - ht)); ht = sh; }
+      } else {
+        var cw = Math.min(360, vw - 24), ch = card.offsetHeight || 180, below = r.bottom + pad + 14, above = r.top - pad - 14 - ch;
+        var top = below + ch < vh ? below : above > 8 ? above : Math.max(8, vh - ch - 12);
+        var left = Math.min(Math.max(12, r.left + r.width / 2 - cw / 2), vw - cw - 12);
+        card.style.transform = 'none'; card.style.width = cw + 'px'; card.style.left = left + 'px'; card.style.top = top + 'px';
+      }
+      ov.classList.remove('no-target'); hole.style.opacity = 1; hole.style.left = hl + 'px'; hole.style.top = ht + 'px'; hole.style.width = hw + 'px'; hole.style.height = hh + 'px';
     }
     function show() {
       var s = L.steps[i], here = (location.hash.replace(/^#\/?/, '').split('/')[0] || '');
-      ov.querySelector('.tour-step').textContent = (i + 1) + ' ' + L.of + ' ' + L.steps.length;
+      ov.querySelector('.tour-step').textContent = (i + 1) + ' ' + L.of + ' ' + n;
       ov.querySelector('h3').textContent = s.t; ov.querySelector('.tour-text').textContent = s.d;
       ov.querySelector('.tour-back').hidden = i === 0;
-      ov.querySelector('.tour-next').textContent = i === L.steps.length - 1 ? L.done : L.next;
+      ov.querySelector('.tour-next').textContent = i === n - 1 ? L.done : L.next;
+      ov.querySelectorAll('.tour-dots i').forEach(function (d, j) { d.className = j === i ? 'on' : j < i ? 'done' : ''; });
+      card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
       var go = function () {
         var el = visibleEl(s.sel);
-        if (el) el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        if (el && getComputedStyle(el).position !== 'fixed') el.scrollIntoView({ block: mobile() ? 'start' : 'center', behavior: reduce ? 'auto' : 'smooth' });
         setTimeout(place, 350); setTimeout(place, 900);
       };
       if (here !== s.route && !(s.route === '' && here === 'market')) { location.hash = '#/' + s.route; setTimeout(go, 1400); } else go();
+      place();
       ov.querySelector('.tour-next').focus();
     }
-    function key(e) { if (e.key === 'Escape') tour.close(); else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft' && i > 0) { i--; show(); } }
-    function next() { if (i < L.steps.length - 1) { i++; show(); } else tour.close(); }
+    function begin() { ov.classList.remove('is-intro'); intro.remove(); card.hidden = false; i = 0; show(); }
+    function key(e) {
+      if (e.key === 'Escape') tour.close();
+      else if (i < 0) { if (e.key === 'Enter') { e.preventDefault(); begin(); } }
+      else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft' && i > 0) { i--; show(); }
+    }
+    function next() { if (i < n - 1) { i++; show(); } else tour.close(); }
+    ov.querySelector('.tour-go').onclick = begin;
     ov.querySelector('.tour-next').onclick = next;
     ov.querySelector('.tour-back').onclick = function () { if (i > 0) { i--; show(); } };
-    ov.querySelector('.tour-skip').onclick = function () { tour.close(); };
+    ov.querySelectorAll('.tour-skip').forEach(function (b) { b.onclick = function () { tour.close(); }; });
     window.addEventListener('resize', place); window.addEventListener('scroll', place, true); document.addEventListener('keydown', key);
-    show();
+    ov.querySelector('.tour-go').focus();
   }
   function maybeTour() {
     var seen = false; try { seen = localStorage.getItem('pe_tour_done') === '1'; } catch (e) { seen = true; }

@@ -1562,3 +1562,22 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
 .tiers.tiers-2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:880px;margin-inline:auto}
 @media (max-width:760px){.tiers.tiers-2{grid-template-columns:1fr}}
 .tiers.tiers-3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1100px;margin-inline:auto}@media (max-width:980px){.tiers.tiers-3{grid-template-columns:1fr}}
+
+/* ---------- CTA: solid brand block (replaces the aurora gradient) ---------- */
+.cta .aurora{display:none}
+.cta-frame{background:#114154;box-shadow:none}
+.cta-frame h2{color:#fff}
+.cta .perks,.cta .perks li{color:rgba(255,255,255,.86)}
+.cta .perks svg{stroke:#6bbfe0}
+.cta-side{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:260px}
+.cta-side .btn{justify-content:center}
+.cta-side .btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.cta-side .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+/* ---------- app demo video ---------- */
+.app-video{margin:24px 0 0;border-radius:20px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);background:var(--surface)}
+.app-video video{display:block;width:100%;height:auto;aspect-ratio:1280/540;object-fit:cover}
+
+/* ---------- real app screenshots inside feature frames ---------- */
+.feature .frame:has(.app-shot){min-height:0;padding:48px 14px 14px}
+.app-shot{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 0 0 1px var(--line);background:#f3f6f8}

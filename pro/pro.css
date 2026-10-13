@@ -323,14 +323,51 @@ tr.tap:active{background:var(--surface-2)}
 /* onboarding tour */
 .tour-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--text);font-weight:800;cursor:pointer;flex:none}
 @media (max-width:1024px){.tour-btn{margin-inline-start:auto}.tour-btn+.acct{margin-inline-start:8px}}
-.tour{position:fixed;inset:0;z-index:100}
-.tour-hole{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(3,8,12,.68),0 0 0 2px var(--accent),0 0 24px 4px color-mix(in srgb,var(--accent) 45%,transparent);transition:left .3s,top .3s,width .3s,height .3s,opacity .2s;pointer-events:none}
-.tour-card{position:fixed;max-width:calc(100vw - 24px);padding:16px 16px 14px;border-radius:16px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 20px 50px rgba(0,0,0,.45);transition:left .3s,top .3s}
+.tour{position:fixed;inset:0;z-index:100;animation:tourIn .25s ease both}
+.tour.is-out{animation:tourOut .2s ease both}
+@keyframes tourIn{from{opacity:0}}
+@keyframes tourOut{to{opacity:0}}
+.tour.is-intro{display:grid;place-items:center;padding:16px;background:rgba(3,10,16,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.tour.is-intro .tour-hole{display:none}
+.tour.no-target{background:rgba(3,8,12,.68)}
+.tour-intro{width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;border-radius:24px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 30px 80px rgba(0,0,0,.5);animation:introPop .55s cubic-bezier(.2,.9,.25,1.15) both}
+@keyframes introPop{from{opacity:0;translate:0 24px;scale:.96}}
+.ti-media{position:relative;aspect-ratio:1280/540;overflow:hidden;background:#114154}
+.ti-media video{display:block;width:100%;height:100%;object-fit:cover}
+.ti-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--surface));pointer-events:none}
+.ti-badge{position:absolute;top:12px;inset-inline-start:12px;z-index:1;display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(17,65,84,.88);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em}
+.ti-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#5fd49a;animation:livePulse 1.6s ease-in-out infinite}
+@keyframes livePulse{50%{opacity:.3}}
+.ti-body{padding:6px 20px 18px}
+.ti-body h2{margin:0 0 6px;font-size:22px;line-height:1.2}
+.ti-body p{margin:0 0 16px;color:var(--text-2);font-size:14px;line-height:1.5}
+.ti-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.ti-stats:empty{display:none}
+.ti-stat{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:color-mix(in srgb,var(--accent) 7%,transparent);animation:introPop .5s .15s cubic-bezier(.2,.9,.25,1.15) both}
+.ti-stat:nth-child(2){animation-delay:.25s}.ti-stat:nth-child(3){animation-delay:.35s}
+.ti-stat b{display:block;font-size:18px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ti-stat span{display:block;margin-top:2px;font-size:11px;color:var(--muted)}
+.tour-hole{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(3,8,12,.68),0 0 0 2px var(--accent),0 0 24px 4px color-mix(in srgb,var(--accent) 45%,transparent);transition:left .35s,top .35s,width .35s,height .35s,opacity .2s;pointer-events:none;animation:holePulse 2.2s ease-in-out infinite}
+@keyframes holePulse{50%{box-shadow:0 0 0 9999px rgba(3,8,12,.68),0 0 0 3px var(--accent),0 0 38px 10px color-mix(in srgb,var(--accent) 55%,transparent)}}
+.tour-card{position:fixed;max-width:calc(100vw - 24px);padding:16px 16px 14px;border-radius:18px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 20px 50px rgba(0,0,0,.45);transition:left .35s,top .35s}
+.tour-card.pop{animation:cardPop .38s cubic-bezier(.2,.9,.25,1.2) both}
+@keyframes cardPop{from{opacity:0;translate:0 10px;scale:.97}}
 .tour-step{margin:0 0 4px;font-size:12px;font-weight:700;color:var(--accent)}
 .tour-card h3{margin:0 0 6px;font-size:18px}.tour-text{margin:0 0 14px;color:var(--text-2);font-size:14px;line-height:1.5}
-.tour-btns{display:flex;align-items:center;gap:8px}.tour-btns span{flex:1}.tour-btns .btn{height:40px;padding:0 18px}.tour-btns .chip{height:40px}
+.tour-btns{display:flex;align-items:center;gap:8px}.tour-btns>span{flex:1}.tour-btns .btn{height:40px;padding:0 18px}.tour-btns .chip{height:40px}
 .tour-skip{font-size:14px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){.tour-hole,.tour-card{transition:none}}
+.tour-dots{display:flex;gap:5px;margin-bottom:10px}
+.tour-dots i{width:6px;height:6px;border-radius:999px;background:var(--line-2);transition:width .3s,background .3s}
+.tour-dots i.on{width:20px;background:var(--accent)}
+.tour-dots i.done{background:color-mix(in srgb,var(--accent) 50%,transparent)}
+@media (max-width:640px){
+  .tour-card{left:12px;right:12px;top:auto;bottom:calc(12px + env(safe-area-inset-bottom));width:auto;max-width:none;transform:none;border-radius:20px;padding:16px}
+  .tour-card.at-top{top:calc(12px + env(safe-area-inset-top));bottom:auto}
+  .tour-btns .btn{flex:1}
+  .ti-body{padding:4px 16px 16px}.ti-body h2{font-size:19px}
+  .ti-stats{gap:6px}.ti-stat{padding:8px 9px}.ti-stat b{font-size:14px;white-space:normal;overflow:visible}.ti-stat span{font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){.tour,.tour-intro,.tour-card.pop,.ti-stat,.tour-hole,.ti-badge::before{animation:none}.tour-hole,.tour-card{transition:none}}
 
 .pr-have{margin-top:10px;font-size:14px;color:var(--muted,#6b7280)}
 .pr-have .link-btn{font-weight:600}
