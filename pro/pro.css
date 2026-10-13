@@ -429,3 +429,11 @@ html.ask-full .chat-scroll{max-height:none;min-height:0;flex:1}
 html.ask-full .chat-scroll>*,html.ask-full .chat-chips,html.ask-full .chat-input,html.ask-full .chat-note,html.ask-full .chat-top{width:100%;max-width:920px;margin-inline:auto}
 html.ask-full .chat-scroll>.chat-hello{margin:auto}
 @media (max-width:860px){html.ask-full .chat-app{border-radius:0}}
+
+/* Abu Dhabi map */
+.ad-chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.ad-map{height:min(520px,62vh);border-radius:14px;overflow:hidden;background:var(--surface-2)}
+.ad-legend{margin-top:8px}
+.ad-pop{display:flex;flex-direction:column;gap:3px;font-size:12px;color:#0d1418}
+.ad-pop b{font-size:13px}
+.ad-pop a{margin-top:6px;font-weight:600;color:#1f7fa6}

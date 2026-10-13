@@ -59,6 +59,8 @@
       source: 'Источник: Dubai Land Department (data.dubai) — сделки на {tx}, аренда на {rent} ({rs}), реестр проектов на {reg}. Медианы, не оценка конкретного объекта.',
       studio: 'Студия', br: 'сп.', villa: 'Вилла', ph: 'Пентхаус', apt: 'Кв.', land: 'Земля', bld: 'Здание', ppmShort: 'за', perYear: '/год',
       devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', navInfo: 'Инфографика', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
+      adMap: 'Карта районов', adMapHint: 'Размер — число сделок за 12 месяцев, цвет — выбранный показатель', adPpm: 'Цена м², квартиры', adPpmV: 'Цена м², виллы', adPpmNote: 'Цена за м² — средняя по отчёту ADREC за {p}',
+      adM: { yoy_value: 'Рост за год', off12: 'Доля off-plan', y1: 'Доходность 1BR', ppm: 'Цена м² квартир' }, adOpen: 'Открыть район',
       navAD: 'Абу-Даби', adH: 'Рынок Абу-Даби', adSub: 'Продажи жилья за 12 месяцев по данным Abu Dhabi Real Estate Centre (ADREC)', adAvg: 'Средняя цена сделки', adYoy: 'объём к прошлому году',
       adQ: 'Продажи по кварталам', adQs: 'Объём, млрд AED, и число сделок', adPart: 'неполный', adDist: 'Районы Абу-Даби', adMore: 'Остальные районы ({n}), цены и аренда по типам жилья — в Pro',
       adNote: 'ADREC публикует средние цены за объект и аренду за год, а не цены за м², поэтому с Дубаем сравнивайте активность, рост и доходность.', adPrices: 'Средние цены и аренда', adApt: 'Квартира', adVilla: 'Вилла',
@@ -110,6 +112,8 @@
       source: 'Source: Dubai Land Department (data.dubai) — transactions as of {tx}, rents as of {rent} ({rs}), project registry as of {reg}. Medians, not a valuation of any unit.',
       studio: 'Studio', br: 'BR', villa: 'Villa', ph: 'Penthouse', apt: 'Apt', land: 'Land', bld: 'Building', ppmShort: 'per', perYear: '/yr',
       devProjects: 'Developer projects', navAsk: 'Ask the market', navInfo: 'Infographics', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
+      adMap: 'District map', adMapHint: 'Size: sales over 12 months; colour: the selected metric', adPpm: 'Price per m², apartments', adPpmV: 'Price per m², villas', adPpmNote: 'Price per m² is the ADREC report average for {p}',
+      adM: { yoy_value: 'YoY growth', off12: 'Off-plan share', y1: '1-bed yield', ppm: 'Apartment price per m²' }, adOpen: 'Open district',
       navAD: 'Abu Dhabi', adH: 'Abu Dhabi market', adSub: 'Residential sales over 12 months from Abu Dhabi Real Estate Centre (ADREC) data', adAvg: 'Average deal price', adYoy: 'value YoY',
       adQ: 'Sales by quarter', adQs: 'Value, AED bn, and number of sales', adPart: 'partial', adDist: 'Abu Dhabi districts', adMore: 'All other districts ({n}), prices and rents by unit type — in Pro',
       adNote: 'ADREC publishes average prices per unit and annual rents, not prices per m², so compare activity, growth and yields with Dubai.', adPrices: 'Average prices and rents', adApt: 'Apartment', adVilla: 'Villa',
@@ -438,10 +442,52 @@
       { k: 'n12', h: t('sales12'), num: 1, f: function (a) { return fmt(a.n12); } },
       { k: 'v12', h: t('value12'), num: 1, f: function (a) { return aed(a.v12 * 1e6); } },
       { k: 'avg_aed', h: t('adAvg'), num: 1, f: function (a) { return a.avg_aed ? aed(a.avg_aed) : '—'; } },
+      { k: 'ppm_a', h: t('adPpm').replace('м²', uLabel()).replace('m²', uLabel()), num: 1, v: function (a) { return a.ppm && a.ppm.apt ? a.ppm.apt[0] : null; }, f: function (a) { return a.ppm && a.ppm.apt ? fmt(ppmv(a.ppm.apt[0])) : '—'; } },
       { k: 'off12', h: t('off12'), num: 1, f: function (a) { return a.off12 == null ? '—' : a.off12 + '%'; } },
       { k: 'yoy_value', h: t('yoy'), num: 1, f: function (a) { return a.yoy_value == null ? '—' : pctTag(a.yoy_value); } },
       { k: 'y1', h: t('grossYield') + ' 1BR', num: 1, v: function (a) { return a.yld.A1; }, f: function (a) { return a.yld.A1 ? fmt(a.yld.A1, 1) + '%' : '—'; } }
     ];
+  }
+  var ADM = store('pro_adm') || 'yoy_value';
+  function adVal(a, m) { return m === 'y1' ? a.yld.A1 : m === 'ppm' ? (a.ppm && a.ppm.apt ? a.ppm.apt[0] : null) : a[m]; }
+  function adFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(ppmv(v)) + '/' + uLabel() : m === 'yoy_value' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : fmt(v, m === 'y1' ? 1 : 0) + '%'; }
+  function adMapInit(areas) {
+    var host = $('#admap'); if (!host) return;
+    if (lmap) { lmap.remove(); lmap = null; }
+    var cv = document.createElement('canvas');
+    if (!window.maplibregl || !(cv.getContext('webgl2') || cv.getContext('webgl'))) { host.outerHTML = '<div class="empty">' + mt('noGl') + '</div>'; return; }
+    var pts = areas.filter(function (a) { return a.ll && a.n12 > 0; });
+    var vals = pts.map(function (a) { return adVal(a, ADM); }).filter(function (v) { return v != null; }).sort(function (a, b) { return a - b; });
+    var q = function (f) { return vals.length ? vals[Math.floor((vals.length - 1) * f)] : 0; };
+    var lo = q(.05), hi = q(.95), div = ADM === 'yoy_value';
+    if (div) { var mx = Math.min(150, Math.max(Math.abs(lo), Math.abs(hi))) || 1; lo = -mx; hi = mx; }
+    var nMax = Math.max.apply(null, pts.map(function (a) { return a.n12; }));
+    var fc = { type: 'FeatureCollection', features: pts.map(function (a) {
+      var v = adVal(a, ADM);
+      return { type: 'Feature', geometry: { type: 'Point', coordinates: [a.ll[1], a.ll[0]] },
+        properties: { name: adName(a.name), slug: adSlug(a.name), n: a.n12, r: 5 + 30 * Math.sqrt(a.n12 / nMax), c: v == null ? '#7a858c' : rampColor(Math.max(0, Math.min(1, (v - lo) / ((hi - lo) || 1))), div),
+          v: adFmt(v, ADM), val: aed(a.v12 * 1e6), avg: a.avg_aed ? aed(a.avg_aed) : '—', off: a.off12 == null ? '—' : a.off12 + '%' } };
+    }) };
+    var dark = document.documentElement.getAttribute('data-theme') !== 'light';
+    var map = lmap = new maplibregl.Map({ container: 'admap', style: 'https://tiles.openfreemap.org/styles/' + (dark ? 'dark' : 'positron'),
+      center: [54.5, 24.45], zoom: 9.3, attributionControl: false, preserveDrawingBuffer: true, cooperativeGestures: matchMedia('(pointer: coarse)').matches });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+    map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'ADREC · <a href="https://openfreemap.org">OpenFreeMap</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }), 'bottom-right');
+    map.on('load', function () {
+      map.addSource('ad', { type: 'geojson', data: fc });
+      map.addLayer({ id: 'ad-c', type: 'circle', source: 'ad', paint: { 'circle-radius': ['get', 'r'], 'circle-color': ['get', 'c'], 'circle-opacity': .78,
+        'circle-stroke-width': 1.2, 'circle-stroke-color': dark ? 'rgba(255,255,255,.55)' : 'rgba(0,0,0,.35)' } });
+      map.addLayer({ id: 'ad-l', type: 'symbol', source: 'ad', filter: ['>=', ['get', 'n'], 300], layout: { 'text-field': ['get', 'name'], 'text-size': 11, 'text-offset': [0, 1.6], 'text-font': ['Noto Sans Regular'] },
+        paint: { 'text-color': dark ? '#e8f1f5' : '#14313c', 'text-halo-color': dark ? 'rgba(0,0,0,.7)' : 'rgba(255,255,255,.85)', 'text-halo-width': 1.2 } });
+      map.on('mouseenter', 'ad-c', function () { map.getCanvas().style.cursor = 'pointer'; });
+      map.on('mouseleave', 'ad-c', function () { map.getCanvas().style.cursor = ''; });
+      map.on('click', 'ad-c', function (e) {
+        var p = e.features[0].properties;
+        new maplibregl.Popup({ closeButton: true, maxWidth: '260px' }).setLngLat(e.lngLat).setHTML('<div class="ad-pop"><b>' + esc(p.name) + '</b><span>' + t('sales12') + ': ' + fmt(p.n) + '</span><span>' + t('value12') + ': ' + esc(p.val) + '</span>' +
+          '<span>' + t('adAvg') + ': ' + esc(p.avg) + '</span><span>' + t('off12') + ': ' + esc(p.off) + '</span><span>' + esc(t('adM')[ADM]) + ': <b>' + esc(p.v) + '</b></span><a href="#/adarea/' + p.slug + '">' + t('adOpen') + ' →</a></div>').addTo(map);
+      });
+    });
+    var leg = $('#adleg'); if (leg) leg.textContent = t('adM')[ADM] + ': ' + adFmt(lo, ADM) + ' … ' + adFmt(hi, ADM) + (ADM === 'ppm' ? ' · ' + t('adPpmNote').replace('{p}', 'H1 2026') : '');
   }
   function vAD() {
     page(skeleton());
@@ -455,11 +501,16 @@
         kpi(t('sales12'), fmt(meta.sales_12m)) + kpi(t('value12'), aed(meta.value_12m_aed_m * 1e6), pctTag(yoy) + ' <i>' + t('adYoy') + '</i>') +
         kpi(t('adAvg'), aed(meta.value_12m_aed_m * 1e6 / meta.sales_12m)) + kpi(t('off12'), fmt(off) + '%') + kpi(t('navAreas'), fmt(meta.districts)) + '</div>' +
         '<div class="panel"><h2>' + t('adQ') + '</h2><p class="hint">' + t('adQs') + '</p><div class="chart"><canvas id="c1"></canvas></div></div>' +
-        '<div class="panel"><h2>' + t('adDist') + '</h2><p class="hint">' + t('adNote') + '</p><div class="filters"><input type="search" id="q" placeholder="' + t('search') + '"></div><div id="tbl"></div>' +
+        '<div class="panel"><h2>' + t('adMap') + '</h2><p class="hint">' + t('adMapHint') + '</p><div class="ad-chips" id="adm">' +
+          Object.keys(t('adM')).map(function (k) { return '<button type="button" class="chip" data-adm="' + k + '" aria-pressed="' + (k === ADM) + '">' + t('adM')[k] + '</button>'; }).join('') +
+          '</div><div class="ad-map" id="admap"></div><p class="hint ad-legend" id="adleg"></p></div>' +
+        '<div class="panel"><h2>' + t('adDist') + '</h2><p class="hint">' + t('adNote') + ' ' + esc(t('adPpmNote').replace('{p}', meta.ppm_period || 'H1 2026')) + '</p><div class="filters"><input type="search" id="q" placeholder="' + t('search') + '"></div><div id="tbl"></div>' +
         (pro ? '' : '<div class="actions center"><a class="btn" href="#/pricing">' + esc(t('adMore').replace('{n}', areas.length - shown.length)) + '</a></div>') + '</div>' +
         '<p class="note">' + esc(adSource(meta)) + '</p>');
       var tb = table($('#tbl'), adCols(), shown, { sort: 'v12', per: 50 });
       $('#q').oninput = function () { var q = this.value.toLowerCase(); tb.set(shown.filter(function (a) { return (a.name + ' ' + adName(a.name)).toLowerCase().indexOf(q) >= 0; })); };
+      adMapInit(areas);
+      view.querySelectorAll('[data-adm]').forEach(function (b) { b.onclick = function () { ADM = b.dataset.adm; store('pro_adm', ADM); view.querySelectorAll('[data-adm]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); adMapInit(areas); }; });
       var labels = qs.map(function (q, i) { return q + (i === qs.length - 1 ? ' (' + t('adPart') + ')' : ''); });
       chart($('#c1'), { data: { labels: labels, datasets: [
         { type: 'bar', label: t('value12').replace(/,.*$/, '') + ', AED bn', data: qs.map(function (q) { return +(mk[q].value / 1e9).toFixed(2); }), backgroundColor: css('--accent') + '88', yAxisID: 'y' },
@@ -479,7 +530,9 @@
       page('<div class="crumbs"><a href="#/ad">' + t('navAD') + '</a> /</div><h1 class="page">' + esc(adName(a.name)) + '</h1><p class="sub">' + esc(a.municipality || '') + ' · ADREC</p><div class="kpis">' +
         kpi(t('sales12'), fmt(a.n12)) + kpi(t('value12'), aed(a.v12 * 1e6), a.yoy_value == null ? '' : pctTag(a.yoy_value) + ' <i>' + t('adYoy') + '</i>') +
         kpi(t('adAvg'), a.avg_aed ? aed(a.avg_aed) : '—') + kpi(t('off12'), a.off12 == null ? '—' : a.off12 + '%') +
-        kpi(t('grossYield') + ' 1BR', a.yld.A1 ? fmt(a.yld.A1, 1) + '%' : '—') + '</div>' +
+        kpi(t('grossYield') + ' 1BR', a.yld.A1 ? fmt(a.yld.A1, 1) + '%' : '—') +
+        (a.ppm && a.ppm.apt ? kpi(t('adPpm').replace('м²', uLabel()).replace('m²', uLabel()), 'AED ' + fmt(ppmv(a.ppm.apt[0])), '<i>max ' + fmt(ppmv(a.ppm.apt[1])) + '</i>') : '') +
+        (a.ppm && a.ppm.villa ? kpi(t('adPpmV').replace('м²', uLabel()).replace('m²', uLabel()), 'AED ' + fmt(ppmv(a.ppm.villa[0])), '<i>max ' + fmt(ppmv(a.ppm.villa[1])) + '</i>') : '') + '</div>' +
         '<div class="panel"><h2>' + t('adPrices') + '</h2><p class="hint">' + t('adNote') + '</p><div id="tbl"></div></div><p class="note">' + esc(adSource(d.meta)) + '</p>');
       table($('#tbl'), [
         { k: 'k', h: t('rooms') },
