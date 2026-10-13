@@ -133,19 +133,24 @@
       fairRange: 'Market range', fairMid: 'Median', comps: 'Comparable sales', vsMarket: 'Vs market median', fewComps: 'Too few comparable sales in 6 months', scopeProj: 'in this project', scopeArea: 'in the area', expectedYield: '* No rent contracts in this building yet: rent and yield use the area median over 12 months.', master: 'Master project', medianPrice: 'Median price', medianSize: 'Median size', medianRent: 'Rent/yr'
     }
   };
-  var lang = store('pro_lang') || (APP && APP.lang) || ((navigator.language || 'en').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
+  var I18N = window.PRO_I18N || {}, LANGS = ['ru', 'en'].concat(Object.keys(I18N));
+  var LOCALES = { ru: 'ru-RU', en: 'en-US', ar: 'ar-AE', de: 'de-DE', fr: 'fr-FR', it: 'it-IT', tr: 'tr-TR', zh: 'zh-CN', hi: 'hi-IN', ur: 'ur-PK', fa: 'fa-IR' };
+  var LNAMES = { ru: 'Русский', en: 'English', ar: 'العربية', de: 'Deutsch', fr: 'Français', it: 'Italiano', tr: 'Türkçe', zh: '中文', hi: 'हिन्दी', ur: 'اردو', fa: 'فارسی' };
+  var pickLang = function (c) { c = (c || '').toLowerCase().slice(0, 2); return LANGS.indexOf(c) >= 0 ? c : null; };
+  var lang = pickLang(store('pro_lang')) || pickLang(APP && APP.lang) || pickLang(navigator.language) || 'en';
+  var loc = function () { return LOCALES[lang] || 'en-US'; };   // numbers stay Latin digits for every language (nu-latn)
   var unit = store('pro_unit') || (lang === 'ru' ? 'm2' : 'sqft');
   var t = function (k) { return (T[lang] && T[lang][k]) || T.en[k] || k; };
 
   // ------------------------------------------------------------------ helpers
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  var fmt = function (n, d) { if (n == null || isNaN(n)) return '—'; return Number(n).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US', { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); };
+  var fmt = function (n, d) { if (n == null || isNaN(n)) return '—'; return Number(n).toLocaleString(loc() + '-u-nu-latn', { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); };
   var area = function (v) { return unit === 'm2' ? v : v * SQFT; };
   var ppmv = function (v) { return v == null ? null : (unit === 'm2' ? v : v / SQFT); };
   var uLabel = function () { return unit === 'm2' ? 'м²'.replace('м', lang === 'ru' ? 'м' : 'm') : 'sq ft'; };
   var aed = function (v) { if (v == null) return '—'; if (v >= 1e9) return fmt(v / 1e9, v >= 1e11 ? 0 : 1) + ' ' + t('bn'); if (v >= 1e6) return fmt(v / 1e6, v >= 1e8 ? 0 : 1) + ' ' + t('m'); return fmt(v); };
-  var fdate = function (d) { if (!d || !/^\d{4}-\d{2}-\d{2}/.test(d)) return d || '—'; return new Date(d.slice(0, 10) + 'T00:00:00').toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); };
+  var fdate = function (d) { if (!d || !/^\d{4}-\d{2}-\d{2}/.test(d)) return d || '—'; return new Date(d.slice(0, 10) + 'T00:00:00').toLocaleDateString((lang === 'en' ? 'en-GB' : loc()) + '-u-nu-latn', { day: 'numeric', month: 'short', year: 'numeric' }); };
   var pctTag = function (v) { if (v == null) return ''; return '<i class="' + (v >= 0 ? 'up' : 'down') + '">' + (v >= 0 ? '+' : '') + fmt(v, 1) + '%</i>'; };
   var roomsLabel = function (r) { return r === 'S' ? t('studio') : r === 'PH' ? t('ph') : r === 'V' ? t('villa') : r ? r + ' ' + t('br') : '—'; };
   var cache = {};
@@ -161,7 +166,7 @@
   var charts = [];
   var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
   function chart(el, cfg) {
-    Chart.defaults.locale = lang === 'ru' ? 'ru-RU' : 'en-US';
+    Chart.defaults.locale = loc() + '-u-nu-latn';
     Chart.defaults.font.family = css('--font') || 'system-ui';
     Chart.defaults.plugins.legend.labels.usePointStyle = true;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) Chart.defaults.animation = false;
@@ -940,7 +945,7 @@
   function mix(a, b, k) { var x = hex(a), y = hex(b); k = Math.max(0, Math.min(1, k || 0)); return '#' + x.map(function (v, i) { return ('0' + Math.round(v + (y[i] - v) * k).toString(16)).slice(-2); }).join(''); }
   function trunc(x, n) { x = String(x || ''); return x.length > n ? x.slice(0, n - 1) + '…' : x; }
   function kfmt(v) { return v >= 1000 ? fmt(v / 1000, v >= 1e4 ? 0 : 1) + it('k') : fmt(v); }
-  function mlabel(mo, short) { var d = new Date(mo + '-01T00:00:00'); return d.toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US', short ? { month: 'short' } : { month: 'short', year: '2-digit' }); }
+  function mlabel(mo, short) { var d = new Date(mo + '-01T00:00:00'); return d.toLocaleString(loc() + '-u-nu-latn', short ? { month: 'short' } : { month: 'short', year: '2-digit' }); }
   function tx(x, y, str, o) {
     o = o || {};
     return '<text x="' + x + '" y="' + y + '" font-size="' + (o.size || 14) + '"' + (o.w ? ' font-weight="' + o.w + '"' : '') + ' fill="' + (o.fill || P.text) + '"' +
@@ -1671,7 +1676,7 @@
       steps: [
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Разделы дашборда', d: 'Рынок, карта, районы, проекты, сделки и застройщики — всё по официальным данным Dubai Land Department.' },
         { route: '', sel: ['.kpis'], t: 'Главные цифры за 12 месяцев', d: 'Сколько сделок, на какую сумму, медиана цены, доля off-plan, аренда и доходность. Цифры обновляются каждую неделю.' },
-        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Единицы, язык и тема', d: 'Переключайте м² и sq ft, русский и английский, светлую и тёмную тему.' },
+        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Единицы, язык и тема', d: 'Переключайте м² и sq ft, язык интерфейса, светлую и тёмную тему.' },
         { route: 'map', sel: ['#mpanel'], t: 'Вид карты и слои', d: 'Выберите стиль, отображение (столбцы, пузыри, 2D) и включите слои: тепловую карту, метро, 3D-здания, волну сдачи.' },
         { route: 'map', sel: ['.map-time'], t: 'Таймлапс сделок', d: 'Нажмите ▶ — и посмотрите, как рынок двигался по месяцам с 2023 года.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro открывает всё', d: 'ИИ-аналитик, все проекты и сделки, фильтры по типу жилья, меморандумы и справедливая цена. Войдите тем же аккаунтом, что в приложении.' }
@@ -1680,7 +1685,7 @@
       steps: [
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Dashboard sections', d: 'Market, map, areas, projects, transactions and developers — all from official Dubai Land Department data.' },
         { route: '', sel: ['.kpis'], t: 'Key numbers for 12 months', d: 'Sales count and value, median price, off-plan share, rents and yields. Updated every week.' },
-        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Units, language and theme', d: 'Switch between m² and sq ft, Russian and English, light and dark.' },
+        { route: '', sel: ['.top .tools', '#more-btn'], t: 'Units, language and theme', d: 'Switch between m² and sq ft, pick the language, light or dark.' },
         { route: 'map', sel: ['#mpanel'], t: 'Map view and layers', d: 'Pick a style and a display (columns, bubbles, 2D) and turn on layers: heatmap, metro, 3D buildings, handover wave.' },
         { route: 'map', sel: ['.map-time'], t: 'Sales timelapse', d: 'Press ▶ to watch how the market moved month by month since 2023.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro unlocks everything', d: 'The AI analyst, every project and transaction, property-type filters, memos and fair price. Sign in with your PromptEstates app account.' }
@@ -1728,7 +1733,7 @@
       var num = parseFloat(raw.replace(lang === 'ru' ? /\s/g : /,/g, '').replace(ds, '.')), dec = (raw.split(ds)[1] || '').length;
       if (!isFinite(num)) { out.textContent = txt; return; }
       var pre = txt.slice(0, m.index), post = txt.slice(m.index + raw.length), t0 = performance.now();
-      var nf = new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : 'en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      var nf = new Intl.NumberFormat(loc() + '-u-nu-latn', { minimumFractionDigits: dec, maximumFractionDigits: dec });
       (function step() {
         var p = Math.min(1, (performance.now() - t0) / 1600), e = 1 - Math.pow(1 - p, 3);
         out.textContent = p < 1 ? pre + nf.format(num * e) + post : txt;
@@ -1826,6 +1831,7 @@
     var th = document.documentElement.getAttribute('data-theme');
     document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.unit === unit); if (b.dataset.unit === 'm2') b.textContent = lang === 'ru' ? 'м²' : 'm²'; });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
+    paintLang();
     document.querySelectorAll('button[data-city]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.city === CITY); b.textContent = t(b.dataset.city === 'ad' ? 'navAD' : 'cityDxb'); });
     document.documentElement.setAttribute('data-region', CITY);
     document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.themeSet === th); });
@@ -1860,12 +1866,39 @@
     sheet.addEventListener('click', function (e) { if (e.target.closest('[data-tour]')) setTimeout(startTour, 400); if (e.target.closest('[data-close]')) closeSheet(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
   }
+  // ------------------------------------------------------------------ extra languages (src/pro/pro-i18n.js)
+  function deepMerge(base, over) {
+    if (Array.isArray(base)) {
+      if (!Array.isArray(over)) return base;
+      return base.map(function (b, i) { return over[i] === undefined ? b : (b && typeof b === 'object' ? deepMerge(b, over[i]) : over[i]); });
+    }
+    if (base && typeof base === 'object') {
+      var out = {}; Object.keys(base).forEach(function (k) { out[k] = over && over[k] !== undefined ? deepMerge(base[k], over[k]) : base[k]; }); return out;
+    }
+    return over === undefined || over === null || over === '' ? base : over;
+  }
+  function applyI18n() {
+    var dicts = { T: T, PR: PR, TOUR: TOUR, MT: MT, IT: IT };
+    Object.keys(I18N).forEach(function (code) {
+      Object.keys(dicts).forEach(function (k) { dicts[k][code] = deepMerge(dicts[k].en, (I18N[code] || {})[k] || {}); });
+    });
+  }
+  function paintLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('select[data-lang-sel]').forEach(function (sel) {
+      if (!sel.options.length) LANGS.forEach(function (c) { var o = document.createElement('option'); o.value = c; o.textContent = LNAMES[c] || c.toUpperCase(); sel.appendChild(o); });
+      sel.value = lang;
+      sel.onchange = function () { if (sel.value !== lang) { lang = sel.value; store('pro_lang', lang); if (CHAT) CHAT.welcome = null; chrome(); route(); } };
+    });
+  }
+
   function sha256(s) {
     return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (b) {
       return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
     });
   }
   // gate (prototype access control; real auth moves to app.promptestates.com with subscriptions)
+  applyI18n();
   if (BILLING_LIVE) { startLive(); return; }
   if (store('pro_ok') === PASS_HASH) { start(); return; }
   $('#gate').hidden = false;

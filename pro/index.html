@@ -11,7 +11,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
-<link rel="stylesheet" href="pro.css?v=1a6dbbc525">
+<link rel="stylesheet" href="pro.css?v=31265eb4ce">
 <script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
@@ -42,7 +42,7 @@
     <div class="tools">
       <div class="seg seg-city" role="group" aria-label="City"><button type="button" data-city="dxb">Дубай</button><button type="button" data-city="ad">Абу-Даби</button></div>
       <div class="seg" role="group" aria-label="Units"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div>
-      <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
+      <select class="lang-sel" data-lang-sel aria-label="Language"></select>
       <div class="seg" role="group" aria-label="Theme"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div>
     </div>
     <button type="button" class="tour-btn" id="tour-btn" aria-label="Обучение / Tour" title="?">?</button>
@@ -90,7 +90,7 @@
       <div class="group settings">
         <div class="row"><span data-t="cityL"></span><div class="seg"><button type="button" data-city="dxb">Дубай</button><button type="button" data-city="ad">Абу-Даби</button></div></div>
         <div class="row"><span data-t="unitsL"></span><div class="seg"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div></div>
-        <div class="row"><span data-t="langL"></span><div class="seg"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div></div>
+        <div class="row"><span data-t="langL"></span><select class="lang-sel" data-lang-sel aria-label="Language"></select></div>
         <div class="row"><span data-t="themeL"></span><div class="seg"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div></div>
       </div>
     </div>
@@ -100,6 +100,7 @@
 <script src="vendor/maplibre/maplibre-gl.js"></script>
 <script src="vendor/firebase/firebase-app-compat.js"></script>
 <script src="vendor/firebase/firebase-auth-compat.js"></script>
-<script src="pro.js?v=9258fe405b"></script>
+<script src="pro-i18n.js?v=4e9efcb60f"></script>
+<script src="pro.js?v=48f52a4a38"></script>
 </body>
 </html>
