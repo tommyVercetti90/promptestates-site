@@ -11,7 +11,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
-<link rel="stylesheet" href="pro.css?v=a6ec933ac6">
+<link rel="stylesheet" href="pro.css?v=272df92eb6">
 <script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
@@ -32,7 +32,6 @@
     <nav class="tabs" id="tabs">
       <a href="#/" data-route="market" data-t="navMarket"></a>
       <a href="#/ask" data-route="ask" data-t="tabAsk"></a>
-      <a href="#/ad" data-route="ad" data-t="navAD"></a>
       <a href="#/map" data-route="map" data-t="navMap"></a>
       <a href="#/info" data-route="info" data-t="navInfo"></a>
       <a href="#/areas" data-route="areas" data-t="navAreas"></a>
@@ -41,6 +40,7 @@
       <a href="#/developers" data-route="developers" data-t="navDevs"></a>
     </nav>
     <div class="tools">
+      <div class="seg seg-city" role="group" aria-label="City"><button type="button" data-city="dxb">Дубай</button><button type="button" data-city="ad">Абу-Даби</button></div>
       <div class="seg" role="group" aria-label="Units"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div>
       <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
       <div class="seg" role="group" aria-label="Theme"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div>
@@ -79,7 +79,6 @@
       <div class="sheet-grip" aria-hidden="true"></div>
       <div class="sheet-head"><h2 id="sheet-h" data-t="navMore"></h2><button type="button" class="link-btn" data-close data-t="done"></button></div>
       <div class="group">
-        <a href="#/ad" data-close><span data-t="navAD"></span></a>
         <a href="#/map" data-close><span data-t="navMap"></span></a>
         <a href="#/info" data-close><span data-t="navInfo"></span></a>
         <a href="#/tx" data-close><span data-t="navTx"></span></a>
@@ -89,6 +88,7 @@
       </div>
       <p class="group-h" data-t="settings"></p>
       <div class="group settings">
+        <div class="row"><span data-t="cityL"></span><div class="seg"><button type="button" data-city="dxb">Дубай</button><button type="button" data-city="ad">Абу-Даби</button></div></div>
         <div class="row"><span data-t="unitsL"></span><div class="seg"><button type="button" data-unit="m2">м²</button><button type="button" data-unit="sqft">sq ft</button></div></div>
         <div class="row"><span data-t="langL"></span><div class="seg"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div></div>
         <div class="row"><span data-t="themeL"></span><div class="seg"><button type="button" data-theme-set="light" aria-label="Light">☀︎</button><button type="button" data-theme-set="dark" aria-label="Dark">☾</button></div></div>
@@ -100,6 +100,6 @@
 <script src="vendor/maplibre/maplibre-gl.js"></script>
 <script src="vendor/firebase/firebase-app-compat.js"></script>
 <script src="vendor/firebase/firebase-auth-compat.js"></script>
-<script src="pro.js?v=280b617291"></script>
+<script src="pro.js?v=ee4775690a"></script>
 </body>
 </html>

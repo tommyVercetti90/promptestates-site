@@ -61,11 +61,13 @@
       devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', navInfo: 'Инфографика', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
       adMap: 'Карта районов', adMapHint: 'Размер — число сделок за 12 месяцев, цвет — выбранный показатель', adPpm: 'Цена м², квартиры', adPpmV: 'Цена м², виллы', adPpmNote: 'Цена за м² — средняя по отчёту ADREC за {p}',
       adM: { yoy_value: 'Рост за год', off12: 'Доля off-plan', y1: 'Доходность 1BR', ppm: 'Цена м² квартир' }, adOpen: 'Открыть район',
-      navAD: 'Абу-Даби', adH: 'Рынок Абу-Даби', adSub: 'Продажи жилья за 12 месяцев по данным Abu Dhabi Real Estate Centre (ADREC)', adAvg: 'Средняя цена сделки', adYoy: 'объём к прошлому году',
+      navAD: 'Абу-Даби', cityDxb: 'Дубай', cityL: 'Город', adAll: 'Все районы', adMapH: 'Карта районов Абу-Даби',
+      adNoneH: 'Для Абу-Даби этого раздела пока нет', adNoneSub: 'ADREC не публикует открыто данные по отдельным проектам, сделкам и застройщикам. Рынок, карта и районы Абу-Даби уже доступны, а ИИ-аналитик отвечает и про Абу-Даби.',
+      adToDxb: 'Смотреть по Дубаю', adToMarket: 'Рынок Абу-Даби', adH: 'Рынок Абу-Даби', adSub: 'Продажи жилья за 12 месяцев по данным Abu Dhabi Real Estate Centre (ADREC)', adAvg: 'Средняя цена сделки', adYoy: 'объём к прошлому году',
       adQ: 'Продажи по кварталам', adQs: 'Объём, млрд AED, и число сделок', adPart: 'неполный', adDist: 'Районы Абу-Даби', adMore: 'Остальные районы ({n}), цены и аренда по типам жилья — в Pro',
       adNote: 'ADREC публикует средние цены за объект и аренду за год, а не цены за м², поэтому с Дубаем сравнивайте активность, рост и доходность.', adPrices: 'Средние цены и аренда', adApt: 'Квартира', adVilla: 'Вилла',
       adPrice: 'Средняя цена, AED', adRent: 'Аренда в год, AED', adSrc: 'Источник: Abu Dhabi Real Estate Centre (ADREC) — продажи за {m}, цены и аренда на {q}.', adCity: 'Город',
-      chatNew: 'Новый чат', chatHist: 'История', chatPh: 'Напишите, что ищете…', chatHi: 'Спросите рынок Дубая', chatBusy: 'Слишком много вопросов подряд — попробуйте через минуту',
+      chatNew: 'Новый чат', chatHist: 'История', chatPh: 'Напишите, что ищете…', chatHi: 'Спросите рынок Дубая и Абу-Даби', chatBusy: 'Слишком много вопросов подряд — попробуйте через минуту',
       chatNote: 'Ответы — по зарегистрированным сделкам и аренде DLD. Это не инвестиционная рекомендация.', chatGuest: 'Войдите, чтобы история чатов сохранялась — и в приложении тоже', chatEmpty: 'Здесь появятся ваши чаты',
       askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
       askEx: ['Где самая высокая доходность 1-спальных?', 'Сравни JVC и Arjan', 'Какие проекты Binghatti просрочены?', 'Сколько реально стоит 1-спальная 67 м² в Azizi Venice 14?'],
@@ -114,11 +116,13 @@
       devProjects: 'Developer projects', navAsk: 'Ask the market', navInfo: 'Infographics', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
       adMap: 'District map', adMapHint: 'Size: sales over 12 months; colour: the selected metric', adPpm: 'Price per m², apartments', adPpmV: 'Price per m², villas', adPpmNote: 'Price per m² is the ADREC report average for {p}',
       adM: { yoy_value: 'YoY growth', off12: 'Off-plan share', y1: '1-bed yield', ppm: 'Apartment price per m²' }, adOpen: 'Open district',
-      navAD: 'Abu Dhabi', adH: 'Abu Dhabi market', adSub: 'Residential sales over 12 months from Abu Dhabi Real Estate Centre (ADREC) data', adAvg: 'Average deal price', adYoy: 'value YoY',
+      navAD: 'Abu Dhabi', cityDxb: 'Dubai', cityL: 'City', adAll: 'All districts', adMapH: 'Abu Dhabi district map',
+      adNoneH: 'This section is not available for Abu Dhabi yet', adNoneSub: 'ADREC does not openly publish data on individual projects, transactions and developers. The Abu Dhabi market, map and districts are available, and the AI analyst answers about Abu Dhabi too.',
+      adToDxb: 'View Dubai', adToMarket: 'Abu Dhabi market', adH: 'Abu Dhabi market', adSub: 'Residential sales over 12 months from Abu Dhabi Real Estate Centre (ADREC) data', adAvg: 'Average deal price', adYoy: 'value YoY',
       adQ: 'Sales by quarter', adQs: 'Value, AED bn, and number of sales', adPart: 'partial', adDist: 'Abu Dhabi districts', adMore: 'All other districts ({n}), prices and rents by unit type — in Pro',
       adNote: 'ADREC publishes average prices per unit and annual rents, not prices per m², so compare activity, growth and yields with Dubai.', adPrices: 'Average prices and rents', adApt: 'Apartment', adVilla: 'Villa',
       adPrice: 'Average price, AED', adRent: 'Annual rent, AED', adSrc: 'Source: Abu Dhabi Real Estate Centre (ADREC) — sales for {m}, prices and rents as of {q}.', adCity: 'City',
-      chatNew: 'New chat', chatHist: 'History', chatPh: 'Write what you’re looking for…', chatHi: 'Ask the Dubai market', chatBusy: 'Too many questions in a row — try again in a minute',
+      chatNew: 'New chat', chatHist: 'History', chatPh: 'Write what you’re looking for…', chatHi: 'Ask about Dubai and Abu Dhabi', chatBusy: 'Too many questions in a row — try again in a minute',
       chatNote: 'Answers use registered DLD sales and rents. Not investment advice.', chatGuest: 'Sign in to keep your chat history — in the app too', chatEmpty: 'Your chats will appear here',
       askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
       askEx: ['Where are 1-bed yields highest?', 'Compare JVC and Arjan', 'Which Binghatti projects are overdue?', 'What is a fair price for a 67 m² 1-bed in Azizi Venice 14?'],
@@ -449,6 +453,8 @@
     ];
   }
   var ADM = store('pro_adm') || 'yoy_value';
+  var CITY = store('pro_city') === 'ad' ? 'ad' : 'dxb';
+  function setCity(c) { if (c === CITY) return; CITY = c; store('pro_city', c); chrome(); route(); }
   function adVal(a, m) { return m === 'y1' ? a.yld.A1 : m === 'ppm' ? (a.ppm && a.ppm.apt ? a.ppm.apt[0] : null) : a[m]; }
   function adFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(ppmv(v)) + '/' + uLabel() : m === 'yoy_value' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : fmt(v, m === 'y1' ? 1 : 0) + '%'; }
   function adMapInit(areas) {
@@ -489,35 +495,49 @@
     });
     var leg = $('#adleg'); if (leg) leg.textContent = t('adM')[ADM] + ': ' + adFmt(lo, ADM) + ' … ' + adFmt(hi, ADM) + (ADM === 'ppm' ? ' · ' + t('adPpmNote').replace('{p}', 'H1 2026') : '');
   }
-  function vAD() {
+  // Abu Dhabi versions of the Market, Map and Areas tabs (city switch in the header)
+  function vAD(part) {
     page(skeleton());
     Promise.all([get('ad/areas.json'), get('ad/market.json')]).then(function (d) {
       var meta = d[0].meta, areas = d[0].areas, mk = d[1], qs = Object.keys(mk).sort().slice(-12);
       var off = areas.reduce(function (s, a) { return s + (a.off12 || 0) * a.n12; }, 0) / Math.max(1, meta.sales_12m);
       var last4 = meta.yoy_quarters[0], prev4 = meta.yoy_quarters[1], sq = function (l) { return l.reduce(function (s, q) { return s + ((mk[q] || {}).value || 0); }, 0); };
       var yoy = sq(prev4) ? 100 * (sq(last4) / sq(prev4) - 1) : null;
-      var pro = isPro(), shown = pro ? areas : areas.slice(0, 10);
-      page('<h1 class="page">' + t('adH') + '</h1><p class="sub">' + t('adSub') + '</p><div class="kpis">' +
-        kpi(t('sales12'), fmt(meta.sales_12m)) + kpi(t('value12'), aed(meta.value_12m_aed_m * 1e6), pctTag(yoy) + ' <i>' + t('adYoy') + '</i>') +
-        kpi(t('adAvg'), aed(meta.value_12m_aed_m * 1e6 / meta.sales_12m)) + kpi(t('off12'), fmt(off) + '%') + kpi(t('navAreas'), fmt(meta.districts)) + '</div>' +
-        '<div class="panel"><h2>' + t('adQ') + '</h2><p class="hint">' + t('adQs') + '</p><div class="chart"><canvas id="c1"></canvas></div></div>' +
-        '<div class="panel"><h2>' + t('adMap') + '</h2><p class="hint">' + t('adMapHint') + '</p><div class="ad-chips" id="adm">' +
-          Object.keys(t('adM')).map(function (k) { return '<button type="button" class="chip" data-adm="' + k + '" aria-pressed="' + (k === ADM) + '">' + t('adM')[k] + '</button>'; }).join('') +
-          '</div><div class="ad-map" id="admap"></div><p class="hint ad-legend" id="adleg"></p></div>' +
-        '<div class="panel"><h2>' + t('adDist') + '</h2><p class="hint">' + t('adNote') + ' ' + esc(t('adPpmNote').replace('{p}', meta.ppm_period || 'H1 2026')) + '</p><div class="filters"><input type="search" id="q" placeholder="' + t('search') + '"></div><div id="tbl"></div>' +
-        (pro ? '' : '<div class="actions center"><a class="btn" href="#/pricing">' + esc(t('adMore').replace('{n}', areas.length - shown.length)) + '</a></div>') + '</div>' +
-        '<p class="note">' + esc(adSource(meta)) + '</p>');
-      var tb = table($('#tbl'), adCols(), shown, { sort: 'v12', per: 50 });
-      $('#q').oninput = function () { var q = this.value.toLowerCase(); tb.set(shown.filter(function (a) { return (a.name + ' ' + adName(a.name)).toLowerCase().indexOf(q) >= 0; })); };
-      adMapInit(areas);
-      view.querySelectorAll('[data-adm]').forEach(function (b) { b.onclick = function () { ADM = b.dataset.adm; store('pro_adm', ADM); view.querySelectorAll('[data-adm]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); adMapInit(areas); }; });
-      var labels = qs.map(function (q, i) { return q + (i === qs.length - 1 ? ' (' + t('adPart') + ')' : ''); });
-      chart($('#c1'), { data: { labels: labels, datasets: [
-        { type: 'bar', label: t('value12').replace(/,.*$/, '') + ', AED bn', data: qs.map(function (q) { return +(mk[q].value / 1e9).toFixed(2); }), backgroundColor: css('--accent') + '88', yAxisID: 'y' },
-        { type: 'line', label: t('sales'), data: qs.map(function (q) { return mk[q].count; }), borderColor: css('--warn'), backgroundColor: css('--warn'), tension: .3, pointRadius: 2, yAxisID: 'y1' }
-      ] }, options: baseOpts({ scales: { x: { grid: { display: false }, ticks: { color: css('--muted') } }, y: { position: 'left', grid: { color: css('--line') }, ticks: { color: css('--muted') } },
-        y1: { position: 'right', grid: { display: false }, ticks: { color: css('--muted') } } } }) });
+      var pro = isPro(), shown = part === 'areas' && pro ? areas : areas.slice(0, 10);
+      var kpis = '<div class="kpis">' + kpi(t('sales12'), fmt(meta.sales_12m)) + kpi(t('value12'), aed(meta.value_12m_aed_m * 1e6), pctTag(yoy) + ' <i>' + t('adYoy') + '</i>') +
+        kpi(t('adAvg'), aed(meta.value_12m_aed_m * 1e6 / meta.sales_12m)) + kpi(t('off12'), fmt(off) + '%') + kpi(t('navAreas'), fmt(meta.districts)) + '</div>';
+      var chartP = '<div class="panel"><h2>' + t('adQ') + '</h2><p class="hint">' + t('adQs') + '</p><div class="chart"><canvas id="c1"></canvas></div></div>';
+      var mapP = '<div class="panel"><p class="hint">' + t('adMapHint') + '</p><div class="ad-chips" id="adm">' +
+        Object.keys(t('adM')).map(function (k) { return '<button type="button" class="chip" data-adm="' + k + '" aria-pressed="' + (k === ADM) + '">' + t('adM')[k] + '</button>'; }).join('') +
+        '</div><div class="ad-map' + (part === 'map' ? ' ad-map-big' : '') + '" id="admap"></div><p class="hint ad-legend" id="adleg"></p></div>';
+      var tblP = '<div class="panel"><h2>' + t('adDist') + '</h2><p class="hint">' + t('adNote') + ' ' + esc(t('adPpmNote').replace('{p}', meta.ppm_period || 'H1 2026')) + '</p>' +
+        '<div class="filters"><input type="search" id="q" placeholder="' + t('search') + '"></div><div id="tbl"></div>' +
+        (part === 'market' ? '<div class="actions center"><a class="btn btn-ghost" href="#/areas">' + t('adAll') + ' →</a></div>' :
+          pro ? '' : '<div class="actions center"><a class="btn" href="#/pricing">' + esc(t('adMore').replace('{n}', areas.length - shown.length)) + '</a></div>') + '</div>';
+      var head = { market: [t('adH'), t('adSub')], map: [t('adMapH'), t('adMapHint')], areas: [t('adDist'), t('adSub')] }[part];
+      page('<h1 class="page">' + head[0] + '</h1><p class="sub">' + head[1] + '</p>' +
+        (part === 'market' ? kpis + chartP + tblP : part === 'map' ? mapP : tblP) + '<p class="note">' + esc(adSource(meta)) + '</p>');
+      if ($('#tbl')) {
+        var tb = table($('#tbl'), adCols(), shown, { sort: 'v12', per: 50 });
+        $('#q').oninput = function () { var q = this.value.toLowerCase(); tb.set(shown.filter(function (a) { return (a.name + ' ' + adName(a.name)).toLowerCase().indexOf(q) >= 0; })); };
+      }
+      if ($('#admap')) {
+        adMapInit(areas);
+        view.querySelectorAll('[data-adm]').forEach(function (b) { b.onclick = function () { ADM = b.dataset.adm; store('pro_adm', ADM); view.querySelectorAll('[data-adm]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); adMapInit(areas); }; });
+      }
+      if ($('#c1')) {
+        var labels = qs.map(function (q, i) { return q + (i === qs.length - 1 ? ' (' + t('adPart') + ')' : ''); });
+        chart($('#c1'), { data: { labels: labels, datasets: [
+          { type: 'bar', label: t('value12').replace(/,.*$/, '') + ', AED bn', data: qs.map(function (q) { return +(mk[q].value / 1e9).toFixed(2); }), backgroundColor: css('--accent') + '88', yAxisID: 'y' },
+          { type: 'line', label: t('sales'), data: qs.map(function (q) { return mk[q].count; }), borderColor: css('--warn'), backgroundColor: css('--warn'), tension: .3, pointRadius: 2, yAxisID: 'y1' }
+        ] }, options: baseOpts({ scales: { x: { grid: { display: false }, ticks: { color: css('--muted') } }, y: { position: 'left', grid: { color: css('--line') }, ticks: { color: css('--muted') } },
+          y1: { position: 'right', grid: { display: false }, ticks: { color: css('--muted') } } } }) });
+      }
     }).catch(function () { page('<div class="empty">' + t('apiDown') + '</div>'); });
+  }
+  function vADNone() {
+    page('<div class="lock"><h1 class="page">' + t('adNoneH') + '</h1><p class="sub">' + t('adNoneSub') + '</p><div class="actions center">' +
+      '<button type="button" class="btn" data-city-go="dxb">' + t('adToDxb') + '</button><a class="chip" href="#/">' + t('adToMarket') + '</a></div></div>');
   }
   function vADArea(slug) {
     get('ad/areas.json').then(function (d) {
@@ -1693,13 +1713,20 @@
   function route() {
     var h = location.hash.replace(/^#\/?/, '').split('/');
     var r = h[0] || 'market';
-    var cur = { area: 'areas', project: 'projects', developer: 'developers', adarea: 'ad' }[r] || r;
-    var bar = { info: 'more', map: 'more', tx: 'more', developers: 'more', ad: 'more' }[cur] || cur;
+    var cur = { area: 'areas', project: 'projects', developer: 'developers', adarea: 'areas' }[r] || r;
+    var bar = { info: 'more', map: 'more', tx: 'more', developers: 'more' }[cur] || cur;
     document.querySelectorAll('#tabs a').forEach(function (a) { var on = a.dataset.route === cur; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    if (r === 'ad' || r === 'adarea') { if (CITY !== 'ad') { CITY = 'ad'; store('pro_city', 'ad'); chrome(); } if (r === 'ad') { location.replace('#/'); return; } }
+    if (CITY === 'ad' && (r === 'area' || r === 'project' || r === 'developer')) { CITY = 'dxb'; store('pro_city', 'dxb'); chrome(); }   // Dubai links from AI answers
+    if (CITY === 'ad') {
+      var adv = { market: function () { vAD('market'); }, map: function () { vAD('map'); }, areas: function () { vAD('areas'); }, ask: function () { vAsk(h[1]); }, pricing: vPricing, account: vAccount,
+        adarea: function () { if (BILLING_LIVE && !isPro()) vLocked(r); else vADArea(h[1]); } }[r];
+      (adv || vADNone)(); return;
+    }
     if (BILLING_LIVE && !isPro() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
     if (APP && r === 'pricing') { if (isPro()) location.replace('#/'); else vLocked(r); return; }
-    ({ pricing: vPricing, account: vAccount, market: vMarket, ask: function () { vAsk(h[1]); }, ad: vAD, adarea: function () { vADArea(h[1]); }, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    ({ pricing: vPricing, account: vAccount, market: vMarket, ask: function () { vAsk(h[1]); }, adarea: function () { location.replace('#/areas'); }, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
@@ -1710,6 +1737,8 @@
     var th = document.documentElement.getAttribute('data-theme');
     document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.unit === unit); if (b.dataset.unit === 'm2') b.textContent = lang === 'ru' ? 'м²' : 'm²'; });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
+    document.querySelectorAll('button[data-city]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.city === CITY); b.textContent = t(b.dataset.city === 'ad' ? 'navAD' : 'cityDxb'); });
+    document.documentElement.setAttribute('data-region', CITY);
     document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.themeSet === th); });
     get('meta.json').then(function (m) {
       $('#foot').textContent = t('source').replace('{tx}', m.tx_date).replace('{rent}', m.rent_date).replace('{rs}', m.rent_sample).replace('{reg}', m.registry_date);
@@ -1722,6 +1751,8 @@
     var hb = document.getElementById('tour-btn'); if (hb) hb.onclick = startTour;
     maybeTour();
     document.addEventListener('click', function (e) {
+      var cg = e.target.closest('button[data-city],[data-city-go]');
+      if (cg) { setCity(cg.dataset.city || cg.dataset.cityGo); return; }
       var b = e.target.closest('[data-unit],[data-lang],[data-theme-set]');
       if (!b) return;
       if (b.dataset.unit && b.dataset.unit !== unit) { unit = b.dataset.unit; store('pro_unit', unit); }
