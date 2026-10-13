@@ -1581,3 +1581,38 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
 /* ---------- real app screenshots inside feature frames ---------- */
 .feature .frame:has(.app-shot){min-height:0;padding:48px 14px 14px}
 .app-shot{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 0 0 1px var(--line);background:#f3f6f8}
+
+/* ---------- final CTA: live market card ---------- */
+.cta-side{align-self:stretch;justify-content:center}
+.pulse-card{position:relative;border-radius:24px;padding:24px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(17,65,84,.08),0 30px 70px -30px rgba(17,65,84,.45);color:#0d2a36;text-align:start}
+[data-theme="dark"] .pulse-card{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 30px 70px -30px rgba(0,0,0,.6);color:#eaf4f8}
+.pulse-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#2b6a80}
+[data-theme="dark"] .pulse-head{color:#6bbfe0}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@media (prefers-reduced-motion:reduce){.pulse-dot{animation:none}}
+.pulse-main{margin-top:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.pulse-main b{display:block;font-size:clamp(36px,3.6vw,48px);line-height:1;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.pulse-main small{display:block;margin-top:4px;font-size:13px;opacity:.65}
+.pulse-main span{display:block;margin-top:6px;font-size:13px;opacity:.7}
+.pulse-main i{flex-shrink:0;font-style:normal;font-weight:600;font-size:15px;padding:6px 10px;border-radius:999px;text-align:center;line-height:1.15}
+.pulse-main i em{display:block;font-style:normal;font-weight:500;font-size:10px;opacity:.75}
+.pulse-main i.up{background:rgba(34,197,94,.14);color:#15803d}
+.pulse-main i.down{background:rgba(239,68,68,.12);color:#b91c1c}
+[data-theme="dark"] .pulse-main i.up{color:#4ade80}
+[data-theme="dark"] .pulse-main i.down{color:#f87171}
+.pulse-spark{display:block;width:100%;height:64px;margin:14px 0 4px}
+.pulse-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:14px;border-top:1px solid rgba(17,65,84,.1)}
+[data-theme="dark"] .pulse-stats{border-color:rgba(255,255,255,.1)}
+.pulse-stats li{font-size:12px;line-height:1.35;opacity:.85}
+.pulse-stats b{display:block;font-size:19px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;opacity:1;margin-bottom:2px}
+.pulse-upd{margin-top:12px;font-size:11px;opacity:.6}
+.pulse-cta{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.pulse-cta .btn{width:100%;justify-content:center}
+.pulse-trust{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;opacity:.75;text-align:center}
+.doc-cta .pulse-card{max-width:440px;justify-self:end;width:100%}
+@media (max-width:760px){.doc-cta{grid-template-columns:1fr}.doc-cta .pulse-card{justify-self:stretch;max-width:none}.pulse-card{padding:18px}.pulse-stats b{font-size:16px}}
+/* dashboard video sits under the chat frame as its own card, aligned with it */
+.showcase>.app-video{margin-inline-start:12%;box-shadow:inset 0 0 0 1px var(--line),0 50px 100px -40px rgba(0,0,0,.45)}
+.showcase>.app-video video{object-fit:contain;background:var(--surface)}
+@media (max-width:720px){.showcase>.app-video{margin-inline-start:0}}
