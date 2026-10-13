@@ -9,7 +9,7 @@
   var BILLING_LIVE = true;
   var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: 'promptestates-ai.firebaseapp.com', projectId: 'promptestates-ai',
                    appId: '1:321328766090:web:40be29995e21224225a173' };
-  var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json', 'ad/areas.json', 'ad/market.json', 'shj/market.json'];
+  var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json', 'areas_geo.json', 'ad/areas.json', 'ad/market.json', 'shj/market.json'];
   var FREE_ROUTES = ['market', 'map', 'pricing', 'account', 'ask', 'ad'];
   // Inside the PromptEstates app (WebView): the app injects window.PE_APP = {token, lang, platform} with the user's
   // Firebase ID token. Same account and plan, but no sign-in UI and no prices or checkout (purchases are web-only).
@@ -387,7 +387,7 @@
   function chatSend(q) {
     q = (q || '').trim(); if (!q || CHAT.busy) return;
     CHAT.busy = true; CHAT.msgs.push({ role: 'user', text: q }, { role: 'assistant', wait: true }); chatRender();
-    api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web', city: CITY }).then(function (r) {
+    api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web', city: CITY, lang: lang }).then(function (r) {
       CHAT.id = r.chatId; CHAT.msgs[CHAT.msgs.length - 1] = { role: 'assistant', text: r.message, btns: r.actionButtons, limit: r.limit };
       if (location.hash.indexOf(CHAT.id) < 0) history.replaceState(null, '', '#/ask/' + CHAT.id);
       if (USER) chatList();
@@ -462,7 +462,7 @@
   // ------------------------------------------------------------------ views
   var view = $('#view');
   var lmap = null;
-  function page(html) { document.documentElement.classList.remove('ask-full'); charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; window.scrollTo(0, 0); }
+  function page(html) { document.documentElement.classList.remove('ask-full'); charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; view.classList.remove('v-in'); void view.offsetWidth; view.classList.add('v-in'); window.scrollTo(0, 0); }
   function kpi(label, value, extra) {
     value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ ((?:млрд|млн|bn|m)(?: AED)?)$/, '<small class="u-suf">$1</small>');
     return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>';
@@ -1225,19 +1225,19 @@
       layers: 'Слои', lCols: '3D-столбцы рынка', lHeat: 'Тепловая карта сделок', lPipe: 'Волна сдачи 2026–2028', lMetro: 'Метро и трамвай', lLabels: 'Названия районов',
       top: 'Топ-10', open: 'Открыть район', sales: 'сделок', yoy: 'за год', units: 'юнитов к сдаче', overdue: 'просрочено', none: 'Нет данных для этого типа жилья',
       play: 'Воспроизвести', pause: 'Пауза', viewH: 'Вид карты', styleH: 'Стиль', modeH: 'Отображение', lBld: '3D-здания',
-      styles: { dark: 'Тёмная', light: 'Светлая', streets: 'Улицы', night: 'Ночь' }, modes: { cols: 'Столбцы', bubbles: 'Пузыри', flat: '2D' }, lMarket: 'Рынок районов', y12: '12 мес.', tl: 'Таймлапс сделок', reset: 'Сбросить вид', d3: '3D', d2: '2D', noGl: 'Браузер не поддерживает WebGL — карта недоступна' },
+      styles: { dark: 'Тёмная', light: 'Светлая', streets: 'Улицы', night: 'Ночь' }, modes: { cols: 'Столбцы', bubbles: 'Районы', flat: '2D' }, lMarket: 'Рынок районов', y12: '12 мес.', tl: 'Таймлапс сделок', reset: 'Сбросить вид', d3: '3D', d2: '2D', noGl: 'Браузер не поддерживает WebGL — карта недоступна' },
     en: { h: 'Market map', sub: 'Dubai areas from DLD data. Column height: number of sales, colour: selected metric. Tilt with right-click drag or two fingers',
       metrics: { ppm: 'Price per m²', yoy: 'YoY change', yld: 'Gross yield', n12: 'Sales', off: 'Off-plan share' },
       layers: 'Layers', lCols: '3D market columns', lHeat: 'Sales heatmap', lPipe: 'Handover wave 2026–2028', lMetro: 'Metro & tram', lLabels: 'Area names',
       top: 'Top 10', open: 'Open area', sales: 'sales', yoy: 'YoY', units: 'units due', overdue: 'overdue', none: 'No data for this property type',
       play: 'Play', pause: 'Pause', viewH: 'Map view', styleH: 'Style', modeH: 'Display', lBld: '3D buildings',
-      styles: { dark: 'Dark', light: 'Light', streets: 'Streets', night: 'Night' }, modes: { cols: 'Columns', bubbles: 'Bubbles', flat: '2D' }, lMarket: 'Area market', y12: '12 mo', tl: 'Sales timelapse', reset: 'Reset view', d3: '3D', d2: '2D', noGl: 'This browser has no WebGL, the map is unavailable' }
+      styles: { dark: 'Dark', light: 'Light', streets: 'Streets', night: 'Night' }, modes: { cols: 'Columns', bubbles: 'Districts', flat: '2D' }, lMarket: 'Area market', y12: '12 mo', tl: 'Sales timelapse', reset: 'Reset view', d3: '3D', d2: '2D', noGl: 'This browser has no WebGL, the map is unavailable' }
   };
   var mt = function (k) { return (MT[lang] || MT.en)[k]; };
   var MAPM = store('pro_mapm') || 'ppm';
   var LAYERS = (function () { try { return JSON.parse(store('pro_layers')) || null; } catch (e) { return null; } })() || { cols: true, heat: true, pipe: false, metro: true, labels: true };
   if (LAYERS.bld == null) LAYERS.bld = true;
-  var MAPSTYLE = store('pro_mapstyle') || 'auto', MAPVIEW = store('pro_mapview') || 'cols', MAPCAM = null;
+  var MAPSTYLE = store('pro_mapstyle') || 'auto', MAPVIEW = store('pro_mapview') || 'bubbles', MAPCAM = null;
   var STYLE_URL = { dark: 'dark', night: 'dark', light: 'positron', streets: 'liberty' };
   function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
   function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
@@ -1260,8 +1260,10 @@
     var cv = document.createElement('canvas');
     if (!window.maplibregl || !(cv.getContext('webgl2') || cv.getContext('webgl'))) { page('<div class="empty">' + mt('noGl') + '</div>'); return; }
     Promise.all([get('areas.json'), SEG === 'all' ? Promise.resolve(null) : get('segments.json'), get('geo.json'), get('market.json'), fetch('data/metro.geojson').then(function (r) { return r.json(); }).catch(function () { return null; }),
-                 isPro() ? get('projects.json').catch(function () { return []; }) : Promise.resolve([])]).then(function (d) {
-      var base = {}, geo = d[2], market = d[3], metro = d[4], projects = d[5];
+                 isPro() ? get('projects.json').catch(function () { return []; }) : Promise.resolve([]),
+                 get('areas_geo.json').catch(function () { return { features: [] }; })]).then(function (d) {
+      var base = {}, geo = d[2], market = d[3], metro = d[4], projects = d[5], shapes = {};
+      d[6].features.forEach(function (f) { shapes[f.properties.id] = f.geometry; });
       d[0].forEach(function (a) { base[a.id] = a; });
       var sg = d[1] ? (d[1][SEG] || d[1].all) : { areas: d[0].map(function (a) { return { id: a.id, n12: a.n12, ppm12: a.ppm12, yoy: a.yoy, off12: a.off12, yld: a.yld['1'] }; }) };
       var rows = sg.areas.filter(function (r) { return geo[r.id] && base[r.id]; }).map(function (r) {
@@ -1329,9 +1331,9 @@
             return { type: 'Feature', properties: { id: r.id, color: colorOf(v), h: 60 + 5200 * Math.sqrt(k) * Math.sqrt(k) },
                      geometry: { type: 'Polygon', coordinates: ring(r.ll, 330 + 520 * Math.sqrt(r.n12 / nMax), 28) } };
           }) },
-          bub: { type: 'FeatureCollection', features: rows.map(function (r) {
+          bub: { type: 'FeatureCollection', features: rows.filter(function (r) { return shapes[r.id]; }).map(function (r) {
             var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
-            return { type: 'Feature', properties: { id: r.id, color: colorOf(mapVal(r, MAPM)), r: 4 + 30 * Math.sqrt(n) }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
+            return { type: 'Feature', properties: { id: r.id, color: colorOf(mapVal(r, MAPM)), k: Math.sqrt(n) }, geometry: shapes[r.id] };
           }) },
           heat: { type: 'FeatureCollection', features: rows.map(function (r) {
             var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
@@ -1387,9 +1389,11 @@
           'fill-extrusion-color': ['get', 'color'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-base': 0, 'fill-extrusion-opacity': night ? .95 : .88, 'fill-extrusion-vertical-gradient': true } });
         map.addLayer({ id: 'flat', type: 'fill', source: 'cols', paint: { 'fill-color': ['get', 'color'], 'fill-opacity': .78, 'fill-outline-color': dark ? 'rgba(255,255,255,.5)' : '#fff' } });
         map.addSource('bub', { type: 'geojson', data: f.bub });
-        if (night) map.addLayer({ id: 'bub-glow', type: 'circle', source: 'bub', paint: { 'circle-radius': ['*', ['get', 'r'], 1.9], 'circle-color': ['get', 'color'], 'circle-opacity': .18, 'circle-blur': 1 } });
-        map.addLayer({ id: 'bub', type: 'circle', source: 'bub', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, ['*', ['get', 'r'], .7], 13, ['*', ['get', 'r'], 1.6]],
-          'circle-color': ['get', 'color'], 'circle-opacity': .82, 'circle-stroke-width': 1.2, 'circle-stroke-color': dark ? 'rgba(255,255,255,.6)' : '#fff' } });
+        map.addLayer({ id: 'bub', type: 'fill', source: 'bub', paint: { 'fill-color': ['get', 'color'],
+          'fill-opacity': ['+', dark ? .12 : .16, ['*', ['get', 'k'], dark ? .42 : .38]], 'fill-opacity-transition': { duration: 450 } } });
+        map.addLayer({ id: 'bub-glow', type: 'line', source: 'bub', layout: { 'line-join': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': 7, 'line-blur': 5, 'line-opacity': night ? .55 : dark ? .3 : .18 } });
+        map.addLayer({ id: 'bub-line', type: 'line', source: 'bub', layout: { 'line-join': 'round' }, paint: { 'line-color': ['get', 'color'],
+          'line-width': ['interpolate', ['linear'], ['zoom'], 9, 1.2, 13, 2.4], 'line-opacity': .95 } });
         map.addSource('pipe', { type: 'geojson', data: pipeFC });
         map.addLayer({ id: 'pipe', type: 'circle', source: 'pipe', paint: {
           'circle-radius': ['get', 'r'], 'circle-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-opacity': .28,
@@ -1423,7 +1427,7 @@
         if (!map.getLayer('cols')) return;
         var vis = function (id, on) { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); };
         vis('cols', LAYERS.cols && MAPVIEW === 'cols'); vis('flat', LAYERS.cols && MAPVIEW === 'flat');
-        vis('bub', LAYERS.cols && MAPVIEW === 'bubbles'); vis('bub-glow', LAYERS.cols && MAPVIEW === 'bubbles');
+        ['bub', 'bub-glow', 'bub-line'].forEach(function (id) { vis(id, LAYERS.cols && MAPVIEW === 'bubbles'); });
         vis('bld3d', LAYERS.bld); vis('building-3d', LAYERS.bld); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
         ['metro', 'metro-glow', 'metro-st'].forEach(function (id) { vis(id, LAYERS.metro); });
         $('#legend').hidden = !LAYERS.cols;
@@ -1718,7 +1722,7 @@
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Разделы дашборда', d: 'Рынок, карта, районы, проекты, сделки и застройщики — всё по официальным данным Dubai Land Department.' },
         { route: '', sel: ['.kpis'], t: 'Главные цифры за 12 месяцев', d: 'Сколько сделок, на какую сумму, медиана цены, доля off-plan, аренда и доходность. Цифры обновляются каждую неделю.' },
         { route: '', sel: ['.top .tools', '#more-btn'], t: 'Единицы, язык и тема', d: 'Переключайте м² и sq ft, язык интерфейса, светлую и тёмную тему.' },
-        { route: 'map', sel: ['#mpanel'], t: 'Вид карты и слои', d: 'Выберите стиль, отображение (столбцы, пузыри, 2D) и включите слои: тепловую карту, метро, 3D-здания, волну сдачи.' },
+        { route: 'map', sel: ['#mpanel'], t: 'Вид карты и слои', d: 'Выберите стиль, отображение (столбцы, границы районов, 2D) и включите слои: тепловую карту, метро, 3D-здания, волну сдачи.' },
         { route: 'map', sel: ['.map-time'], t: 'Таймлапс сделок', d: 'Нажмите ▶ — и посмотрите, как рынок двигался по месяцам с 2023 года.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro открывает всё', d: 'ИИ-аналитик, все проекты и сделки, фильтры по типу жилья, меморандумы и справедливая цена. Войдите тем же аккаунтом, что в приложении.' }
       ] },
@@ -1727,7 +1731,7 @@
         { route: '', sel: ['#tabs', '#tabbar'], t: 'Dashboard sections', d: 'Market, map, areas, projects, transactions and developers — all from official Dubai Land Department data.' },
         { route: '', sel: ['.kpis'], t: 'Key numbers for 12 months', d: 'Sales count and value, median price, off-plan share, rents and yields. Updated every week.' },
         { route: '', sel: ['.top .tools', '#more-btn'], t: 'Units, language and theme', d: 'Switch between m² and sq ft, pick the language, light or dark.' },
-        { route: 'map', sel: ['#mpanel'], t: 'Map view and layers', d: 'Pick a style and a display (columns, bubbles, 2D) and turn on layers: heatmap, metro, 3D buildings, handover wave.' },
+        { route: 'map', sel: ['#mpanel'], t: 'Map view and layers', d: 'Pick a style and a display (columns, district outlines, 2D) and turn on layers: heatmap, metro, 3D buildings, handover wave.' },
         { route: 'map', sel: ['.map-time'], t: 'Sales timelapse', d: 'Press ▶ to watch how the market moved month by month since 2023.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro unlocks everything', d: 'The AI analyst, every project and transaction, property-type filters, memos and fair price. Sign in with your PromptEstates app account.' }
       ] }

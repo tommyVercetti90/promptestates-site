@@ -72,7 +72,7 @@ window.PRO_I18N.ar = {
   metrics: { ppm: "السعر لكل م²", yoy: "التغير السنوي", yld: "العائد الإجمالي", n12: "الصفقات", off: "حصة على الخارطة" }, layers: "الطبقات", lCols: "أعمدة السوق ثلاثية الأبعاد", lHeat: "خريطة حرارية للصفقات",
   lPipe: "موجة التسليم 2026–2028", lMetro: "المترو والترام", lLabels: "أسماء المناطق", top: "أفضل 10", open: "فتح المنطقة", sales: "صفقة", yoy: "سنوياً", units: "وحدة للتسليم", overdue: "متأخرة",
   none: "لا بيانات لهذا النوع", play: "تشغيل", pause: "إيقاف", viewH: "عرض الخريطة", styleH: "النمط", modeH: "العرض", lBld: "مبانٍ ثلاثية الأبعاد",
-  styles: { dark: "داكن", light: "فاتح", streets: "شوارع", night: "ليلي" }, modes: { cols: "أعمدة", bubbles: "فقاعات", flat: "ثنائي الأبعاد" }, lMarket: "سوق المنطقة", y12: "12 شهراً", tl: "عرض زمني للمبيعات", reset: "إعادة العرض", noGl: "هذا المتصفح لا يدعم WebGL، الخريطة غير متاحة"
+  styles: { dark: "داكن", light: "فاتح", streets: "شوارع", night: "ليلي" }, modes: { cols: "أعمدة", bubbles: "الأحياء", flat: "ثنائي الأبعاد" }, lMarket: "سوق المنطقة", y12: "12 شهراً", tl: "عرض زمني للمبيعات", reset: "إعادة العرض", noGl: "هذا المتصفح لا يدعم WebGL، الخريطة غير متاحة"
  }
 };
 
@@ -149,7 +149,7 @@ window.PRO_I18N.de = {
   metrics: { ppm: "Preis pro m²", yoy: "Veränderung ggü. Vorjahr", yld: "Bruttorendite", n12: "Verkäufe", off: "Off-Plan-Anteil" }, layers: "Ebenen", lCols: "3D-Marktsäulen", lHeat: "Verkaufs-Heatmap",
   lPipe: "Übergabewelle 2026–2028", lMetro: "Metro & Tram", lLabels: "Gebietsnamen", top: "Top 10", open: "Gebiet öffnen", sales: "Verkäufe", yoy: "ggü. Vorjahr", units: "Einheiten fällig", overdue: "verspätet",
   none: "Keine Daten für diesen Typ", play: "Abspielen", pause: "Pause", viewH: "Kartenansicht", styleH: "Stil", modeH: "Darstellung", lBld: "3D-Gebäude",
-  styles: { dark: "Dunkel", light: "Hell", streets: "Straßen", night: "Nacht" }, modes: { cols: "Säulen", bubbles: "Blasen", flat: "2D" }, lMarket: "Gebietsmarkt", y12: "12 Mon.", tl: "Verkaufs-Zeitraffer", reset: "Ansicht zurücksetzen", noGl: "Dieser Browser unterstützt kein WebGL, die Karte ist nicht verfügbar"
+  styles: { dark: "Dunkel", light: "Hell", streets: "Straßen", night: "Nacht" }, modes: { cols: "Säulen", bubbles: "Bezirke", flat: "2D" }, lMarket: "Gebietsmarkt", y12: "12 Mon.", tl: "Verkaufs-Zeitraffer", reset: "Ansicht zurücksetzen", noGl: "Dieser Browser unterstützt kein WebGL, die Karte ist nicht verfügbar"
  }
 };
 
@@ -226,7 +226,7 @@ window.PRO_I18N.fa = {
   metrics: { ppm: "قیمت هر m²", yoy: "تغییر سالانه", yld: "بازده ناخالص", n12: "معاملات", off: "سهم پیش‌فروش" }, layers: "لایه‌ها", lCols: "ستون‌های سه‌بعدی بازار", lHeat: "نقشه حرارتی فروش",
   lPipe: "موج تحویل ۲۰۲۶–۲۰۲۸", lMetro: "مترو و تراموا", lLabels: "نام مناطق", top: "۱۰ برتر", open: "باز کردن منطقه", sales: "معامله", yoy: "سالانه", units: "واحد در انتظار تحویل", overdue: "دارای تأخیر",
   none: "برای این نوع داده‌ای نیست", play: "پخش", pause: "توقف", viewH: "نمای نقشه", styleH: "سبک", modeH: "نمایش", lBld: "ساختمان‌های سه‌بعدی",
-  styles: { dark: "تیره", light: "روشن", streets: "خیابان‌ها", night: "شب" }, modes: { cols: "ستون", bubbles: "حباب", flat: "دوبعدی" }, lMarket: "بازار منطقه", y12: "۱۲ ماه", tl: "نمای زمانی فروش", reset: "بازنشانی نما", noGl: "این مرورگر از WebGL پشتیبانی نمی‌کند، نقشه در دسترس نیست"
+  styles: { dark: "تیره", light: "روشن", streets: "خیابان‌ها", night: "شب" }, modes: { cols: "ستون", bubbles: "محله‌ها", flat: "دوبعدی" }, lMarket: "بازار منطقه", y12: "۱۲ ماه", tl: "نمای زمانی فروش", reset: "بازنشانی نما", noGl: "این مرورگر از WebGL پشتیبانی نمی‌کند، نقشه در دسترس نیست"
  }
 };
 
@@ -303,7 +303,7 @@ window.PRO_I18N.fr = {
   metrics: { ppm: "Prix au m²", yoy: "Variation sur un an", yld: "Rendement brut", n12: "Ventes", off: "Part sur plan" }, layers: "Couches", lCols: "Colonnes 3D du marché", lHeat: "Carte de chaleur des ventes",
   lPipe: "Vague de livraisons 2026–2028", lMetro: "Métro et tram", lLabels: "Noms des quartiers", top: "Top 10", open: "Ouvrir le quartier", sales: "ventes", yoy: "sur un an", units: "lots à livrer", overdue: "en retard",
   none: "Pas de données pour ce type", play: "Lecture", pause: "Pause", viewH: "Vue de la carte", styleH: "Style", modeH: "Affichage", lBld: "Bâtiments 3D",
-  styles: { dark: "Sombre", light: "Clair", streets: "Rues", night: "Nuit" }, modes: { cols: "Colonnes", bubbles: "Bulles", flat: "2D" }, lMarket: "Marché du quartier", y12: "12 mois", tl: "Rétrospective des ventes", reset: "Réinitialiser la vue", noGl: "Ce navigateur ne prend pas en charge WebGL, la carte est indisponible"
+  styles: { dark: "Sombre", light: "Clair", streets: "Rues", night: "Nuit" }, modes: { cols: "Colonnes", bubbles: "Quartiers", flat: "2D" }, lMarket: "Marché du quartier", y12: "12 mois", tl: "Rétrospective des ventes", reset: "Réinitialiser la vue", noGl: "Ce navigateur ne prend pas en charge WebGL, la carte est indisponible"
  }
 };
 
@@ -380,7 +380,7 @@ window.PRO_I18N.hi = {
   metrics: { ppm: "प्रति m² कीमत", yoy: "सालाना बदलाव", yld: "ग्रॉस यील्ड", n12: "सौदे", off: "ऑफ-प्लान हिस्सा" }, layers: "लेयर", lCols: "3D बाज़ार कॉलम", lHeat: "बिक्री हीटमैप",
   lPipe: "हैंडओवर लहर 2026–2028", lMetro: "मेट्रो और ट्राम", lLabels: "इलाकों के नाम", top: "टॉप 10", open: "इलाका खोलें", sales: "सौदे", yoy: "सालाना", units: "यूनिट बाकी", overdue: "देरी",
   none: "इस प्रकार के लिए डेटा नहीं", play: "चलाएं", pause: "रोकें", viewH: "मैप व्यू", styleH: "स्टाइल", modeH: "डिस्प्ले", lBld: "3D बिल्डिंग",
-  styles: { dark: "डार्क", light: "लाइट", streets: "सड़कें", night: "रात" }, modes: { cols: "कॉलम", bubbles: "बबल", flat: "2D" }, lMarket: "इलाके का बाज़ार", y12: "12 माह", tl: "बिक्री टाइमलैप्स", reset: "व्यू रीसेट करें", noGl: "इस ब्राउज़र में WebGL नहीं है, मैप उपलब्ध नहीं"
+  styles: { dark: "डार्क", light: "लाइट", streets: "सड़कें", night: "रात" }, modes: { cols: "कॉलम", bubbles: "इलाके", flat: "2D" }, lMarket: "इलाके का बाज़ार", y12: "12 माह", tl: "बिक्री टाइमलैप्स", reset: "व्यू रीसेट करें", noGl: "इस ब्राउज़र में WebGL नहीं है, मैप उपलब्ध नहीं"
  }
 };
 
@@ -457,7 +457,7 @@ window.PRO_I18N.it = {
   metrics: { ppm: "Prezzo al m²", yoy: "Variazione annua", yld: "Rendimento lordo", n12: "Vendite", off: "Quota sulla carta" }, layers: "Livelli", lCols: "Colonne 3D del mercato", lHeat: "Mappa di calore delle vendite",
   lPipe: "Ondata di consegne 2026–2028", lMetro: "Metro e tram", lLabels: "Nomi delle zone", top: "Top 10", open: "Apri la zona", sales: "vendite", yoy: "su anno", units: "unità in consegna", overdue: "in ritardo",
   none: "Nessun dato per questa tipologia", play: "Riproduci", pause: "Pausa", viewH: "Vista mappa", styleH: "Stile", modeH: "Visualizzazione", lBld: "Edifici 3D",
-  styles: { dark: "Scuro", light: "Chiaro", streets: "Strade", night: "Notte" }, modes: { cols: "Colonne", bubbles: "Bolle", flat: "2D" }, lMarket: "Mercato della zona", y12: "12 mesi", tl: "Timelapse delle vendite", reset: "Ripristina vista", noGl: "Questo browser non supporta WebGL, la mappa non è disponibile"
+  styles: { dark: "Scuro", light: "Chiaro", streets: "Strade", night: "Notte" }, modes: { cols: "Colonne", bubbles: "Quartieri", flat: "2D" }, lMarket: "Mercato della zona", y12: "12 mesi", tl: "Timelapse delle vendite", reset: "Ripristina vista", noGl: "Questo browser non supporta WebGL, la mappa non è disponibile"
  }
 };
 
@@ -534,7 +534,7 @@ window.PRO_I18N.tr = {
   metrics: { ppm: "m² fiyatı", yoy: "Yıllık değişim", yld: "Brüt getiri", n12: "Satışlar", off: "Proje aşaması payı" }, layers: "Katmanlar", lCols: "3D piyasa sütunları", lHeat: "Satış ısı haritası",
   lPipe: "Teslim dalgası 2026–2028", lMetro: "Metro ve tramvay", lLabels: "Bölge adları", top: "İlk 10", open: "Bölgeyi aç", sales: "satış", yoy: "yıllık", units: "teslim edilecek birim", overdue: "gecikmiş",
   none: "Bu tip için veri yok", play: "Oynat", pause: "Duraklat", viewH: "Harita görünümü", styleH: "Stil", modeH: "Görünüm", lBld: "3D binalar",
-  styles: { dark: "Koyu", light: "Açık", streets: "Sokaklar", night: "Gece" }, modes: { cols: "Sütunlar", bubbles: "Baloncuklar", flat: "2D" }, lMarket: "Bölge piyasası", y12: "12 ay", tl: "Satış zaman atlaması", reset: "Görünümü sıfırla", noGl: "Bu tarayıcı WebGL desteklemiyor, harita kullanılamıyor"
+  styles: { dark: "Koyu", light: "Açık", streets: "Sokaklar", night: "Gece" }, modes: { cols: "Sütunlar", bubbles: "Bölgeler", flat: "2D" }, lMarket: "Bölge piyasası", y12: "12 ay", tl: "Satış zaman atlaması", reset: "Görünümü sıfırla", noGl: "Bu tarayıcı WebGL desteklemiyor, harita kullanılamıyor"
  }
 };
 
@@ -611,7 +611,7 @@ window.PRO_I18N.ur = {
   metrics: { ppm: "فی m² قیمت", yoy: "سالانہ تبدیلی", yld: "مجموعی منافع", n12: "سودے", off: "آف پلان حصہ" }, layers: "لیئرز", lCols: "3D مارکیٹ کالم", lHeat: "فروخت ہیٹ میپ",
   lPipe: "ہینڈ اوور لہر 2026–2028", lMetro: "میٹرو اور ٹرام", lLabels: "علاقوں کے نام", top: "ٹاپ 10", open: "علاقہ کھولیں", sales: "سودے", yoy: "سالانہ", units: "یونٹس باقی", overdue: "تاخیر",
   none: "اس قسم کا ڈیٹا نہیں", play: "چلائیں", pause: "روکیں", viewH: "نقشے کا منظر", styleH: "اسٹائل", modeH: "ڈسپلے", lBld: "3D عمارتیں",
-  styles: { dark: "ڈارک", light: "لائٹ", streets: "سڑکیں", night: "رات" }, modes: { cols: "کالم", bubbles: "ببل", flat: "2D" }, lMarket: "علاقے کی مارکیٹ", y12: "12 ماہ", tl: "فروخت کا ٹائم لیپس", reset: "منظر ری سیٹ کریں", noGl: "اس براؤزر میں WebGL نہیں، نقشہ دستیاب نہیں"
+  styles: { dark: "ڈارک", light: "لائٹ", streets: "سڑکیں", night: "رات" }, modes: { cols: "کالم", bubbles: "علاقے", flat: "2D" }, lMarket: "علاقے کی مارکیٹ", y12: "12 ماہ", tl: "فروخت کا ٹائم لیپس", reset: "منظر ری سیٹ کریں", noGl: "اس براؤزر میں WebGL نہیں، نقشہ دستیاب نہیں"
  }
 };
 
@@ -687,6 +687,6 @@ window.PRO_I18N.zh = {
   metrics: { ppm: "每 m² 价格", yoy: "同比变化", yld: "毛收益率", n12: "成交量", off: "期房占比" }, layers: "图层", lCols: "3D 市场柱", lHeat: "成交热力图", lPipe: "2026–2028 交付浪潮",
   lMetro: "地铁与电车", lLabels: "区域名称", top: "前 10", open: "打开区域", sales: "笔成交", yoy: "同比", units: "待交付单位", overdue: "延期", none: "该房型暂无数据",
   play: "播放", pause: "暂停", viewH: "地图视图", styleH: "样式", modeH: "显示", lBld: "3D 建筑", styles: { dark: "深色", light: "浅色", streets: "街道", night: "夜间" },
-  modes: { cols: "柱状", bubbles: "气泡", flat: "2D" }, lMarket: "区域市场", y12: "12 个月", tl: "成交动态回放", reset: "重置视图", noGl: "此浏览器不支持 WebGL，无法显示地图"
+  modes: { cols: "柱状", bubbles: "区域", flat: "2D" }, lMarket: "区域市场", y12: "12 个月", tl: "成交动态回放", reset: "重置视图", noGl: "此浏览器不支持 WebGL，无法显示地图"
  }
 };

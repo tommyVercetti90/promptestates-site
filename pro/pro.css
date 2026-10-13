@@ -524,3 +524,28 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 .lay input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .15s}
 .lay input:checked{background:var(--accent)}.lay input:checked::after{transform:translateX(12px)}
 [dir="rtl"] .lay input:checked::after{transform:translateX(-12px)}[dir="rtl"] .lay input::after{left:auto;right:2px}
+
+/* motion: soft entrances, responsive controls */
+:root{--ease-out:cubic-bezier(.2,.8,.2,1);--ease-spring:cubic-bezier(.2,.9,.25,1.15)}
+.v-in>*{animation:vIn .48s var(--ease-out) both}
+.v-in>*:nth-child(2){animation-delay:.04s}.v-in>*:nth-child(3){animation-delay:.08s}.v-in>*:nth-child(4){animation-delay:.12s}
+.v-in>*:nth-child(5){animation-delay:.16s}.v-in>*:nth-child(6){animation-delay:.2s}.v-in>*:nth-child(n+7){animation-delay:.24s}
+@keyframes vIn{from{opacity:0;translate:0 12px}}
+.v-in .kpis>*{animation:vIn .5s var(--ease-out) both}
+.v-in .kpis>*:nth-child(2){animation-delay:.08s}.v-in .kpis>*:nth-child(3){animation-delay:.14s}.v-in .kpis>*:nth-child(4){animation-delay:.2s}.v-in .kpis>*:nth-child(n+5){animation-delay:.26s}
+.btn,.chip,.seg button,.pills .chip,.tabs a,.icon-btn,.mtop button,.sw i,.lay input,.mp-head{transition:background-color .2s,color .2s,box-shadow .2s,border-color .2s,transform .18s var(--ease-spring)}
+.btn:active,.chip:active,.seg button:active,.mtop button:active,.icon-btn:active{transform:scale(.96)}
+.kpi,.plan,.mtop button,.panel{transition:transform .3s var(--ease-out),box-shadow .3s,border-color .3s}
+@media (hover:hover){.kpi:hover,.plan:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.18)}.mtop button:hover{transform:translateX(3px);border-color:var(--line-2)}.sw:hover i{transform:scale(1.05)}}
+.map-layers{transition:width .28s var(--ease-out),padding .28s var(--ease-out)}
+.map-layers:not(.collapsed) .mp-body{animation:mpIn .3s var(--ease-out) both}
+@keyframes mpIn{from{opacity:0;translate:0 -6px}}
+.set-pop:not([hidden]){animation:popIn .2s var(--ease-spring) both;transform-origin:top right}
+@keyframes popIn{from{opacity:0;scale:.94;translate:0 -4px}}
+.map-card:not([hidden]){animation:popIn .26s var(--ease-spring) both}
+.cm-user,.cm-ai,.cm-card{animation:msgIn .36s var(--ease-out) both}
+@keyframes msgIn{from{opacity:0;translate:0 10px}}
+.chat-chip{transition:transform .2s var(--ease-spring),background-color .2s}
+@media (hover:hover){.chat-chip:hover{transform:translateY(-2px)}}
+.toast{transition:opacity .25s,transform .35s var(--ease-spring)}
+@media (prefers-reduced-motion:reduce){.v-in>*,.v-in .kpis>*,.map-layers .mp-body,.set-pop,.map-card,.cm-user,.cm-ai,.cm-card{animation:none!important}}
