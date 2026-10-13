@@ -1,0 +1,37 @@
+{
+ "meta": {
+  "source": "Sharjah Real Estate Registration Department (SRERD) monthly and period reports, as published by WAM, Sharjah24, Gulf Today, Khaleej Times and Economy Middle East",
+  "note": "SRERD does not publish open transaction data; these are the department's reported totals. Values cover all transaction types (sales, mortgages, title deeds, ownership certificates and others).",
+  "updated": "2026-10-13"
+ },
+ "periods": [
+  {"period": "2025", "label": "Full year 2025", "value_bn": 65.6, "transactions": 132659},
+  {"period": "2025-H1", "label": "H1 2025", "value_bn": 27.0},
+  {"period": "2025-9M", "label": "9 months 2025", "value_bn": 44.3, "transactions": 80320},
+  {"period": "2026-H1", "label": "H1 2026", "value_bn": 29.5, "transactions": 59460, "mortgages": 2590, "mortgage_value_bn": 7.6, "yoy_value_pct": 9.3},
+  {"period": "2026-9M", "label": "9 months 2026", "value_bn": 46.8, "transactions": 91560, "sales": 24749, "sales_value_bn": 35.0, "yoy_value_pct": 5.6, "yoy_transactions_pct": 14.0}
+ ],
+ "months": [
+  {"month": "2025-01", "value_bn": 7.0, "transactions": 11116},
+  {"month": "2025-08", "value_bn": 4.9, "transactions": 9379},
+  {"month": "2025-10", "value_bn": 7.0, "transactions": 12539},
+  {"month": "2025-11", "value_bn": 9.5, "transactions": 15131, "sales": 2126, "mortgages": 698},
+  {"month": "2026-01", "value_bn": 9.3, "transactions": 10333, "sales": 4868},
+  {"month": "2026-04", "value_bn": 3.5, "transactions": 15669},
+  {"month": "2026-06", "value_bn": 4.4},
+  {"month": "2026-07", "value_bn": 7.0, "transactions": 9376},
+  {"month": "2026-08", "value_bn": 4.6, "transactions": 9139, "sales": 2367, "mortgages": 430, "mortgage_value_bn": 0.65}
+ ],
+ "sources": [
+  "https://gulfnews.com/business/property/sharjah-property-market-hits-dh468-billion-in-nine-months-up-56-1.500708940",
+  "https://economymiddleeast.com/news/sharjah-real-estate-transactions-rise-9-3-percent-to-8-03-billion-in-h1-2026/",
+  "https://economymiddleeast.com/news/sharjah-real-estate-transactions-surge-61-8-percent-to-1-91-billion-in-july-2026/",
+  "https://sharjah24.ae/en/Articles/2026/09/10/a8",
+  "https://economymiddleeast.com/news/sharjah-real-estate-transactions-january-2026-report/",
+  "https://economymiddleeast.com/news/sharjah-posts-over-15500-real-estate-transactions-worth-953-million-in-april-2026/",
+  "https://www.sharjahupdate.com/2026/01/sharjah-real-estate-hits-record-aed-65-6bn-trading-value-in-2025/",
+  "https://sharjah24.ae/en/Articles/2025/12/10/aa1",
+  "https://sharjah24.ae/en/Articles/2025/11/11/AL011",
+  "https://sharjah24.ae/en/Articles/2025/09/15/a9"
+ ]
+}
