@@ -417,3 +417,15 @@ tr.tap:active{background:var(--surface-2)}
   .chat-scroll{max-height:none;padding-top:12px}
   .cm-user span{max-width:90%}
 }
+
+/* Ask tab full screen */
+html.ask-full .view{max-width:none;padding:0}
+html.ask-full .foot{display:none}
+html.ask-full .chat-app{height:calc(100dvh - var(--top-h,64px) - var(--bar-h,0px));min-height:0;border-radius:0;box-shadow:none;background:var(--bg)}
+html.ask-full .chat-rail{background:var(--surface);min-height:0}
+html.ask-full .chat-list{max-height:none;flex:1;min-height:0}
+html.ask-full .chat-main{height:100%;min-height:0;padding-bottom:12px}
+html.ask-full .chat-scroll{max-height:none;min-height:0;flex:1}
+html.ask-full .chat-scroll>*,html.ask-full .chat-chips,html.ask-full .chat-input,html.ask-full .chat-note,html.ask-full .chat-top{width:100%;max-width:920px;margin-inline:auto}
+html.ask-full .chat-scroll>.chat-hello{margin:auto}
+@media (max-width:860px){html.ask-full .chat-app{border-radius:0}}

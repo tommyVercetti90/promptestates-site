@@ -309,6 +309,11 @@
       '<form class="chat-input" id="chat-form"><input id="chat-q" autocomplete="off" enterkeyhint="send" placeholder="' + esc(t('chatPh')) + '" aria-label="' + esc(t('chatPh')) + '">' +
       '<button type="submit" class="chat-send" aria-label="' + t('askBtn') + '">' + ICO_SEND + '</button></form>' +
       '<p class="chat-note">' + t('chatNote') + '</p></section></div>');
+    // full-screen chat under the header, like the app
+    var fit = function () { var tp = $('.top'), tb = $('#tabbar'); document.documentElement.style.setProperty('--top-h', (tp ? tp.offsetHeight : 64) + 'px');
+      document.documentElement.style.setProperty('--bar-h', (tb && tb.offsetParent !== null ? tb.offsetHeight : 0) + 'px'); };
+    document.documentElement.classList.add('ask-full'); fit();
+    if (!window._askFit) { window._askFit = true; window.addEventListener('resize', function () { if (document.documentElement.classList.contains('ask-full')) fit(); }); }
     $('#chat-form').onsubmit = function (e) { e.preventDefault(); var i = $('#chat-q'); chatSend(i.value); i.value = ''; };
     $('#chat-chips').onclick = function (e) { var b = e.target.closest('[data-q]'); if (b) chatSend(b.dataset.q); };
     view.querySelectorAll('[data-chat-new]').forEach(function (b) { b.onclick = function () { CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome }; history.replaceState(null, '', '#/ask'); chatRender(); chatList(); $('#chat-q').focus(); }; });
@@ -341,7 +346,7 @@
   // ------------------------------------------------------------------ views
   var view = $('#view');
   var lmap = null;
-  function page(html) { charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; window.scrollTo(0, 0); }
+  function page(html) { document.documentElement.classList.remove('ask-full'); charts.forEach(function (c) { c.destroy(); }); charts = []; if (lmap) { lmap.remove(); lmap = null; } view.innerHTML = html; window.scrollTo(0, 0); }
   function kpi(label, value, extra) {
     value = String(value).replace(/^AED /, '<small class="u-pre">AED</small>').replace(/ ((?:млрд|млн|bn|m)(?: AED)?)$/, '<small class="u-suf">$1</small>');
     return '<div class="kpi"><span>' + esc(label) + '</span><b>' + value + '</b>' + (extra || '') + '</div>';
