@@ -387,7 +387,7 @@
   function chatSend(q) {
     q = (q || '').trim(); if (!q || CHAT.busy) return;
     CHAT.busy = true; CHAT.msgs.push({ role: 'user', text: q }, { role: 'assistant', wait: true }); chatRender();
-    api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web' }).then(function (r) {
+    api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web', city: CITY }).then(function (r) {
       CHAT.id = r.chatId; CHAT.msgs[CHAT.msgs.length - 1] = { role: 'assistant', text: r.message, btns: r.actionButtons, limit: r.limit };
       if (location.hash.indexOf(CHAT.id) < 0) history.replaceState(null, '', '#/ask/' + CHAT.id);
       if (USER) chatList();
@@ -433,7 +433,7 @@
     $('#chat-form').onsubmit = function (e) { e.preventDefault(); var i = $('#chat-q'); chatSend(i.value); i.value = ''; };
     $('#chat-chips').onclick = function (e) { var b = e.target.closest('[data-q]'); if (b) chatSend(b.dataset.q); };
     view.querySelectorAll('[data-chat-new]').forEach(function (b) { b.onclick = function () { CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome }; history.replaceState(null, '', '#/ask'); chatRender(); chatList(); $('#chat-q').focus(); }; });
-    if (!CHAT.welcome) api('/api/v1/variables/supported_btns?lang=' + lang, null, 'GET').then(function (r) { CHAT.welcome = r.supported_btns; if (!CHAT.msgs.length) chatRender(); }).catch(function () {});
+    if (!CHAT.welcome || CHAT.welcomeFor !== lang + CITY) { var wf = lang + CITY; api('/api/v1/variables/supported_btns?lang=' + lang + '&city=' + CITY, null, 'GET').then(function (r) { CHAT.welcome = r.supported_btns; CHAT.welcomeFor = wf; if (!CHAT.msgs.length) chatRender(); }).catch(function () {}); }
     if (id && id !== CHAT.id) chatOpen(id); else chatRender();
     chatList();
     if (CHAT.pending) { var q = CHAT.pending; CHAT.pending = null; chatSend(q); }
@@ -1283,9 +1283,9 @@
         return '<label class="lay' + (locked ? ' locked' : '') + '"><input type="checkbox" data-layer="' + x[0] + '"' + (LAYERS[x[0]] && !locked ? ' checked' : '') + (locked ? ' disabled' : '') + '><i class="li-' + x[0] + '"></i><span>' + mt(x[1]) + '</span></label>';
       }).join('');
       page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
-        '<div class="map-ctl"><div class="seg seg-wide" role="group">' + mBtns + '</div></div><div class="filters ig-seg">' + segBtns + '</div>' +
+        '<div class="map-bar"><div class="seg seg-wide" role="group">' + mBtns + '</div><div class="pills" role="group">' + segBtns + '</div></div>' +
         '<div class="map-wrap map3"><div id="map" class="map" role="application" aria-label="' + esc(mt('h')) + '"></div>' +
-        '<div class="glass map-layers' + (innerWidth < 700 ? ' collapsed' : '') + '" id="mpanel"><button type="button" class="mp-head" id="mp-toggle" aria-expanded="' + (innerWidth >= 700) + '">' + mt('viewH') + '<i></i></button>' +
+        '<div class="glass map-layers collapsed" id="mpanel"><button type="button" class="mp-head" id="mp-toggle" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/></svg><span>' + mt('viewH') + '</span><i></i></button>' +
         '<div class="mp-body"><b>' + mt('styleH') + '</b><div class="sws">' + stylesHtml + '</div><b>' + mt('modeH') + '</b><div class="seg mp-modes">' + modesHtml + '</div>' +
         '<b>' + mt('layers') + '</b>' + lay + '</div></div>' +
         '<div class="glass map-tools"><button type="button" id="m-dim" aria-pressed="true">' + mt('d3') + '</button><button type="button" id="m-reset" aria-label="' + mt('reset') + '">⟲</button></div>' +

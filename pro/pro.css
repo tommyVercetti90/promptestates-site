@@ -499,3 +499,28 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 .adl-dot{width:10px;height:10px;border-radius:50%;background:#7a858c;display:inline-block}
 .adl-size{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);display:inline-block}
 .ad-map-big{height:calc(100dvh - 330px)}
+
+/* map controls v3: one calm toolbar, collapsed layer picker */
+.map-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 12px}
+.map-bar .seg,.pills{flex:none;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.map-bar .seg button{height:34px;border-radius:9px}
+.pills{display:inline-flex;gap:2px;padding:2px;border-radius:11px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.pills .chip{flex:none;height:34px;min-width:0;padding:0 12px;border:0;border-radius:9px;background:transparent;color:var(--muted);font-weight:600;white-space:nowrap}
+.pills .chip:hover{color:var(--text)}
+.pills .chip.on{background:var(--accent);color:#05222e}
+@media (max-width:760px){.map-bar{flex-wrap:nowrap;flex-direction:column;align-items:stretch}.map-bar .seg,.pills{display:flex}}
+.map-layers{width:auto;min-width:0;padding:6px;gap:0;max-height:calc(100% - 100px);scrollbar-width:none}
+.map-layers::-webkit-scrollbar{display:none}
+.map-layers:not(.collapsed){width:240px;padding:8px 12px 10px}
+.mp-head{gap:8px;min-height:34px;padding:0 8px;font-size:14px;border-radius:10px}
+.mp-head svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.map-layers:not(.collapsed) .mp-head{padding:0}.mp-head span{flex:1;text-align:start}
+.map-layers.collapsed .mp-head i{display:none}
+.mp-body>b{margin:12px 0 6px;font-size:11px}
+.sw i{aspect-ratio:auto;height:34px;border-radius:9px}
+.lay{min-height:36px;font-size:13px}
+.lay i{order:1;width:12px;height:12px}.lay span{order:2;flex:1}
+.lay input{order:3;appearance:none;-webkit-appearance:none;position:relative;flex:none;width:32px;height:20px;border-radius:10px;background:var(--line-2);cursor:pointer;transition:background .15s}
+.lay input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .15s}
+.lay input:checked{background:var(--accent)}.lay input:checked::after{transform:translateX(12px)}
+[dir="rtl"] .lay input:checked::after{transform:translateX(-12px)}[dir="rtl"] .lay input::after{left:auto;right:2px}
