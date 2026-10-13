@@ -67,6 +67,7 @@
       adQ: 'Продажи по кварталам', adQs: 'Объём, млрд AED, и число сделок', adPart: 'неполный', adDist: 'Районы Абу-Даби', adMore: 'Остальные районы ({n}), цены и аренда по типам жилья — в Pro',
       adNote: 'ADREC публикует средние цены за объект и аренду за год, а не цены за м², поэтому с Дубаем сравнивайте активность, рост и доходность.', adPrices: 'Средние цены и аренда', adApt: 'Квартира', adVilla: 'Вилла',
       adPrice: 'Средняя цена, AED', adRent: 'Аренда в год, AED', adSrc: 'Источник: Abu Dhabi Real Estate Centre (ADREC) — продажи за {m}, цены и аренда на {q}.', adCity: 'Город',
+      cardShare: 'Поделиться', cardPng: 'PNG', cardBy: 'ИИ-аналитик PromptEstates', cardSrc: 'Источник: {s} · {d}', cardShareText: 'Разбор рынка от PromptEstates',
       chatNew: 'Новый чат', chatHist: 'История', chatPh: 'Напишите, что ищете…', chatHi: 'Спросите рынок Дубая и Абу-Даби', chatBusy: 'Слишком много вопросов подряд — попробуйте через минуту',
       chatNote: 'Ответы — по зарегистрированным сделкам и аренде DLD. Это не инвестиционная рекомендация.', chatGuest: 'Войдите, чтобы история чатов сохранялась — и в приложении тоже', chatEmpty: 'Здесь появятся ваши чаты',
       askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
@@ -122,6 +123,7 @@
       adQ: 'Sales by quarter', adQs: 'Value, AED bn, and number of sales', adPart: 'partial', adDist: 'Abu Dhabi districts', adMore: 'All other districts ({n}), prices and rents by unit type — in Pro',
       adNote: 'ADREC publishes average prices per unit and annual rents, not prices per m², so compare activity, growth and yields with Dubai.', adPrices: 'Average prices and rents', adApt: 'Apartment', adVilla: 'Villa',
       adPrice: 'Average price, AED', adRent: 'Annual rent, AED', adSrc: 'Source: Abu Dhabi Real Estate Centre (ADREC) — sales for {m}, prices and rents as of {q}.', adCity: 'City',
+      cardShare: 'Share', cardPng: 'PNG', cardBy: 'PromptEstates AI analyst', cardSrc: 'Source: {s} · {d}', cardShareText: 'Market insight from PromptEstates',
       chatNew: 'New chat', chatHist: 'History', chatPh: 'Write what you’re looking for…', chatHi: 'Ask about Dubai and Abu Dhabi', chatBusy: 'Too many questions in a row — try again in a minute',
       chatNote: 'Answers use registered DLD sales and rents. Not investment advice.', chatGuest: 'Sign in to keep your chat history — in the app too', chatEmpty: 'Your chats will appear here',
       askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
@@ -252,6 +254,88 @@
     }
     return '<div class="md">' + out.join('') + '</div>';
   }
+  // ------------------------------------------------------------------ shareable infographic for AI answers
+  // A markdown table in the answer becomes a branded image (bars for the main numeric column) that can be shared to WhatsApp or saved.
+  function mdPlain(x) { return String(x || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*|`|__/g, '').trim(); }
+  function cellNum(x) {
+    var c = mdPlain(x).replace(/[\s  ]/g, '').replace('−', '-').replace(/^[^\d+-]+/, '');
+    var m = c.match(/^[+-]?\d+(?:[.,]\d+)?/); if (!m) return null;
+    var v = m[0].replace(/,(\d{3})(?!\d)/g, '$1');
+    return parseFloat(v.replace(',', '.'));
+  }
+  function mdTable(text) {
+    var lines = String(text || '').split('\n'), i = lines.findIndex(function (l, k) { return /^\s*\|/.test(l) && /^\s*\|[\s:|-]+\|\s*$/.test(lines[k + 1] || ''); });
+    if (i < 0) return null;
+    var row = function (l) { return l.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return c.trim(); }); };
+    var head = row(lines[i]), body = [];
+    for (var k = i + 2; k < lines.length && /^\s*\|/.test(lines[k]); k++) body.push(row(lines[k]));
+    return body.length >= 2 && head.length >= 2 ? { head: head.map(mdPlain), rows: body } : null;
+  }
+  function answerSvg(id, q, text) {
+    var tb = mdTable(text); if (!tb) return '';
+    var rows = tb.rows.slice(0, 8), nc = tb.head.length;
+    var numCols = []; for (var c = 1; c < nc; c++) if (rows.filter(function (r) { return cellNum(r[c]) != null; }).length >= rows.length * 0.7) numCols.push(c);
+    var pct = numCols.filter(function (c) { return /%/.test(tb.head[c]) || rows.some(function (r) { return /%/.test(r[c] || ''); }); });
+    var main = pct.length ? pct[0] : numCols[0], second = numCols.filter(function (c) { return c !== main; })[0];
+    // a table of metrics by rows (transposed) has text in col 1+: fall back to listing the first two columns
+    var W = 560, X0 = 32, lead = mdPlain((text.split('\n').filter(function (l) { return l.trim() && !/^\s*\|/.test(l); })[0] || '')).replace(/^#+\s*/, '');
+    var title = wrapText(mdPlain(q), 30).slice(0, 3), leadL = wrapText(lead, 46).slice(0, 4);
+    var y = 0, b = '', C = { bg: '#0d2a36', bg2: '#123a4a', text: '#f2f7f9', muted: '#a8c2cc', accent: '#6bbfe0', bar: '#2f8fb5' };
+    var T = function (x, yy, str, o) { o = o || {}; return '<text x="' + x + '" y="' + yy + '" font-size="' + (o.size || 14) + '" font-family="Inter, Segoe UI, Roboto, Arial, sans-serif"' + (o.w ? ' font-weight="' + o.w + '"' : '') +
+      ' fill="' + (o.fill || C.text) + '"' + (o.anchor ? ' text-anchor="' + o.anchor + '"' : '') + '>' + esc(str) + '</text>'; };
+    b += T(X0, 46, 'PromptEstates', { size: 20, w: 800 }) + T(W - X0, 46, t('cardBy'), { size: 13, fill: C.accent, anchor: 'end', w: 600 });
+    y = 96; title.forEach(function (l) { b += T(X0, y, l, { size: 28, w: 700 }); y += 35; });
+    y += 4; leadL.forEach(function (l) { b += T(X0, y, l, { size: 17, fill: C.muted }); y += 24; });
+    y += 18;
+    var labelW = 160, barX = X0 + labelW + 10, barMax = W - X0 - barX - (second != null ? 128 : 70);
+    b += T(X0, y, trunc(tb.head[0], 18), { size: 13, fill: C.muted, w: 600 }) + (main != null ? T(barX, y, trunc(tb.head[main], 22), { size: 13, fill: C.muted, w: 600 }) : '') +
+      (second != null ? T(W - X0, y, trunc(tb.head[second], 14), { size: 13, fill: C.muted, w: 600, anchor: 'end' }) : '');
+    y += 14;
+    var vals = main != null ? rows.map(function (r) { return cellNum(r[main]); }) : [], mx = Math.max.apply(null, vals.map(function (v) { return Math.abs(v || 0); }).concat([1e-9]));
+    rows.forEach(function (r, i) {
+      b += '<rect x="' + (X0 - 12) + '" y="' + (y - 2) + '" width="' + (W - 2 * X0 + 24) + '" height="46" rx="12" fill="' + (i % 2 ? 'transparent' : C.bg2) + '"/>';
+      b += T(X0, y + 27, trunc(mdPlain(r[0]), 17), { size: 17, w: 600 });
+      if (main != null) {
+        var v = vals[i], w = v == null ? 0 : Math.max(4, barMax * Math.abs(v) / mx);
+        b += '<rect x="' + barX + '" y="' + (y + 11) + '" width="' + w + '" height="22" rx="7" fill="' + (v != null && v < 0 ? '#f07a6a' : i === 0 ? C.accent : C.bar) + '"/>' +
+          T(barX + w + 8, y + 28, mdPlain(r[main]), { size: 16, w: 700 });
+      } else b += T(barX, y + 27, trunc(mdPlain(r[1]), 30), { size: 16 });
+      if (second != null) b += T(W - X0, y + 28, trunc(mdPlain(r[second]), 12), { size: 15, fill: C.muted, anchor: 'end' });
+      y += 50;
+    });
+    var src = /ADREC|Абу-Даби|Abu Dhabi/i.test(text) ? (/DLD|Дуба|Dubai/i.test(text) ? 'DLD, ADREC' : 'ADREC') : 'DLD';
+    y += 16;
+    b += '<line x1="' + X0 + '" y1="' + y + '" x2="' + (W - X0) + '" y2="' + y + '" stroke="#2b5566"/>';
+    y += 26;
+    b += T(X0, y, t('cardSrc').replace('{s}', src).replace('{d}', fdate(new Date().toISOString())), { size: 12, fill: C.muted }) + T(W - X0, y, 'promptestates.com/pro', { size: 14, fill: C.accent, w: 700, anchor: 'end' });
+    var H = y + 26;
+    return '<svg id="' + id + '" class="cm-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(mdPlain(q)) + '">' +
+      '<defs><linearGradient id="' + id + '-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#114154"/><stop offset="1" stop-color="' + C.bg + '"/></linearGradient></defs>' +
+      '<rect width="' + W + '" height="' + H + '" rx="22" fill="url(#' + id + '-g)"/>' + b + '</svg>';
+  }
+  function svgBlob(id, cb) {
+    var svg = document.getElementById(id), vb = svg.viewBox.baseVal, img = new Image(), k = 2;
+    img.onload = function () {
+      var c = document.createElement('canvas'); c.width = vb.width * k; c.height = vb.height * k;
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(cb, 'image/png');
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+  }
+  function cardAction(id, how) {
+    svgBlob(id, function (bl) {
+      var name = 'promptestates-' + new Date().toISOString().slice(0, 10) + '.png', file = new File([bl], name, { type: 'image/png' });
+      var text = t('cardShareText') + ' — https://promptestates.com/pro/';
+      if (how === 'share' && navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], text: text }).catch(function () {});
+        return;
+      }
+      var a = document.createElement('a'); a.href = URL.createObjectURL(bl); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+      if (how === 'share') window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');   // desktop: image saved, WhatsApp opens for the message
+    });
+  }
+
   // ------------------------------------------------------------------ Ask tab: the PromptEstates app chat
   // Same AI, limits and chat history as the mobile app (pro_api /api/v1/chat/*): a chat started here continues in the app.
   var CHAT = { id: null, msgs: [], busy: false, welcome: null, pending: null };
@@ -264,19 +348,24 @@
     var f = $('#ask-form'); if (!f) return;
     f.onsubmit = function (e) { e.preventDefault(); var q = $('#ask-q').value.trim(); if (!q) return; CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome, pending: q }; location.hash = '#/ask'; };
   }
-  function chatMsg(m) {
+  function chatMsg(m, i) {
     if (m.role === 'user') return '<div class="cm cm-user"><span>' + esc(m.text) + '</span></div>';
     if (m.wait) return '<div class="cm cm-ai cm-wait"><span class="shimmer">' + t('askWait') + '</span></div>';
     var cta = '';
     if (m.limit === 'guest') cta = '<div class="cm-cta"><button type="button" class="btn" data-chat-in>' + t('signIn') + '</button></div>';
     else if (m.limit === 'free' && !APP) cta = '<div class="cm-cta"><a class="btn" href="#/pricing">' + t('lockSee') + '</a></div>';
-    return '<div class="cm cm-ai">' + (m.error ? '<p class="note">' + esc(m.text) + '</p>' : md(m.text || '')) + cta + '</div>';
+    var prev = CHAT.msgs[i - 1], svg = !m.error && m.text ? answerSvg('cm-card-' + i, prev && prev.role === 'user' ? prev.text : t('chatHi'), m.text) : '';
+    var cardH = svg ? '<figure class="cm-card">' + svg + '<figcaption><button type="button" class="cm-act" data-card="cm-card-' + i + '" data-how="share">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>' + t('cardShare') + '</button>' +
+      '<button type="button" class="cm-act" data-card="cm-card-' + i + '" data-how="png"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>' + t('cardPng') + '</button></figcaption></figure>' : '';
+    return '<div class="cm cm-ai">' + (m.error ? '<p class="note">' + esc(m.text) + '</p>' : md(m.text || '')) + cardH + cta + '</div>';
   }
   function chatRender() {
     var sc = $('#chat-scroll'); if (!sc) return;
     if (!CHAT.msgs.length) {
       sc.innerHTML = '<div class="chat-hello"><span class="chat-logo" aria-hidden="true"><svg viewBox="0 0 24 24">' + ICONS.ai + '</svg></span><h1>' + t('chatHi') + '</h1><p>' + t('askSub') + '</p></div>';
-    } else sc.innerHTML = CHAT.msgs.map(chatMsg).join('');
+    } else sc.innerHTML = CHAT.msgs.map(function (m, i) { return chatMsg(m, i); }).join('');
+    sc.querySelectorAll('[data-card]').forEach(function (b) { b.onclick = function () { cardAction(b.dataset.card, b.dataset.how); }; });
     var last = CHAT.msgs[CHAT.msgs.length - 1];
     var btns = !CHAT.msgs.length ? (CHAT.welcome || []) : (last && last.role === 'assistant' && !CHAT.busy ? last.btns || [] : []);
     $('#chat-chips').innerHTML = btns.map(function (b) { return '<button type="button" class="chat-chip" data-q="' + esc(b.text) + '">' + esc(b.title) + '</button>'; }).join('');
