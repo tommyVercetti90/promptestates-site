@@ -10,7 +10,7 @@
   var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: 'promptestates-ai.firebaseapp.com', projectId: 'promptestates-ai',
                    appId: '1:321328766090:web:40be29995e21224225a173' };
   var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json'];
-  var FREE_ROUTES = ['market', 'map', 'pricing', 'account'];
+  var FREE_ROUTES = ['market', 'map', 'pricing', 'account', 'ask'];
   // Inside the PromptEstates app (WebView): the app injects window.PE_APP = {token, lang, platform} with the user's
   // Firebase ID token. Same account and plan, but no sign-in UI and no prices or checkout (purchases are web-only).
   var APP = window.PE_APP || (/[?&]app=1/.test(location.search) ? {} : null);
@@ -59,6 +59,8 @@
       source: 'Источник: Dubai Land Department (data.dubai) — сделки на {tx}, аренда на {rent} ({rs}), реестр проектов на {reg}. Медианы, не оценка конкретного объекта.',
       studio: 'Студия', br: 'сп.', villa: 'Вилла', ph: 'Пентхаус', apt: 'Кв.', land: 'Земля', bld: 'Здание', ppmShort: 'за', perYear: '/год',
       devProjects: 'Проекты застройщика', navAsk: 'Спроси рынок', navInfo: 'Инфографика', askH: 'Спроси рынок', askSub: 'Вопрос обычными словами — ответ по реальным сделкам и аренде DLD',
+      chatNew: 'Новый чат', chatHist: 'История', chatPh: 'Напишите, что ищете…', chatHi: 'Спросите рынок Дубая', chatBusy: 'Слишком много вопросов подряд — попробуйте через минуту',
+      chatNote: 'Ответы — по зарегистрированным сделкам и аренде DLD. Это не инвестиционная рекомендация.', chatGuest: 'Войдите, чтобы история чатов сохранялась — и в приложении тоже', chatEmpty: 'Здесь появятся ваши чаты',
       askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
       askEx: ['Где самая высокая доходность 1-спальных?', 'Сравни JVC и Arjan', 'Какие проекты Binghatti просрочены?', 'Сколько реально стоит 1-спальная 67 м² в Azizi Venice 14?'],
       memoBtn: 'ИИ-меморандум', memoH: 'Инвест-меморандум', memoWait: 'Готовлю меморандум по данным DLD… (до 30 сек.)', print: 'Печать / PDF',
@@ -104,6 +106,8 @@
       source: 'Source: Dubai Land Department (data.dubai) — transactions as of {tx}, rents as of {rent} ({rs}), project registry as of {reg}. Medians, not a valuation of any unit.',
       studio: 'Studio', br: 'BR', villa: 'Villa', ph: 'Penthouse', apt: 'Apt', land: 'Land', bld: 'Building', ppmShort: 'per', perYear: '/yr',
       devProjects: 'Developer projects', navAsk: 'Ask the market', navInfo: 'Infographics', askH: 'Ask the market', askSub: 'Ask in plain words — answers from actual DLD sales and rents',
+      chatNew: 'New chat', chatHist: 'History', chatPh: 'Write what you’re looking for…', chatHi: 'Ask the Dubai market', chatBusy: 'Too many questions in a row — try again in a minute',
+      chatNote: 'Answers use registered DLD sales and rents. Not investment advice.', chatGuest: 'Sign in to keep your chat history — in the app too', chatEmpty: 'Your chats will appear here',
       askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
       askEx: ['Where are 1-bed yields highest?', 'Compare JVC and Arjan', 'Which Binghatti projects are overdue?', 'What is a fair price for a 67 m² 1-bed in Azizi Venice 14?'],
       memoBtn: 'AI memo', memoH: 'Investment memo', memoWait: 'Writing the memo from DLD data… (up to 30 s)', print: 'Print / PDF',
@@ -232,31 +236,86 @@
     }
     return '<div class="md">' + out.join('') + '</div>';
   }
-  var askHistory = [];
-  function askBox(compact) {
-    return '<form class="ask" id="ask-form"><input id="ask-q" autocomplete="off" placeholder="' + esc(t('askPh')) + '"><button class="btn" type="submit">' + t('askBtn') + '</button></form>' +
-      (compact ? '' : '<div class="ask-ex">' + t('askEx').map(function (q) { return '<button type="button" class="chip">' + esc(q) + '</button>'; }).join('') + '</div>') +
-      '<div id="ask-out"></div>';
+  // ------------------------------------------------------------------ Ask tab: the PromptEstates app chat
+  // Same AI, limits and chat history as the mobile app (pro_api /api/v1/chat/*): a chat started here continues in the app.
+  var CHAT = { id: null, msgs: [], busy: false, welcome: null, pending: null };
+  var ICO_SEND = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  var ICO_NEW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
+  function askBox() {   // entry point on the market page: opens the chat with the question
+    return '<form class="ask" id="ask-form"><input id="ask-q" autocomplete="off" placeholder="' + esc(t('askPh')) + '"><button class="btn" type="submit">' + t('askBtn') + '</button></form>';
   }
   function wireAsk() {
     var f = $('#ask-form'); if (!f) return;
-    var run = function (q) {
-      if (!q) return;
-      $('#ask-q').value = q;
-      var out = $('#ask-out');
-      out.insertAdjacentHTML('afterbegin', '<div class="panel ask-a"><p class="ask-q">' + esc(q) + '</p><div class="loading">' + t('askWait') + '</div></div>');
-      var box = out.firstChild;
-      api('/api/ask', { question: q, lang: lang, history: askHistory.slice(-6) }).then(function (r) {
-        box.querySelector('.loading').outerHTML = md(r.answer);
-        askHistory.push({ role: 'user', content: q }, { role: 'assistant', content: r.answer });
-      }).catch(function () { box.querySelector('.loading').outerHTML = '<p class="note">' + t('askErr') + '</p>'; });
-    };
-    f.onsubmit = function (e) { e.preventDefault(); run($('#ask-q').value.trim()); };
-    document.querySelectorAll('.ask-ex .chip').forEach(function (b) { b.onclick = function () { run(b.textContent); }; });
+    f.onsubmit = function (e) { e.preventDefault(); var q = $('#ask-q').value.trim(); if (!q) return; CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome, pending: q }; location.hash = '#/ask'; };
   }
-  function vAsk() {
-    page('<h1 class="page">' + t('askH') + '</h1><p class="sub">' + t('askSub') + '</p>' + askBox(false));
-    wireAsk();
+  function chatMsg(m) {
+    if (m.role === 'user') return '<div class="cm cm-user"><span>' + esc(m.text) + '</span></div>';
+    if (m.wait) return '<div class="cm cm-ai cm-wait"><span class="shimmer">' + t('askWait') + '</span></div>';
+    var cta = '';
+    if (m.limit === 'guest') cta = '<div class="cm-cta"><button type="button" class="btn" data-chat-in>' + t('signIn') + '</button></div>';
+    else if (m.limit === 'free' && !APP) cta = '<div class="cm-cta"><a class="btn" href="#/pricing">' + t('lockSee') + '</a></div>';
+    return '<div class="cm cm-ai">' + (m.error ? '<p class="note">' + esc(m.text) + '</p>' : md(m.text || '')) + cta + '</div>';
+  }
+  function chatRender() {
+    var sc = $('#chat-scroll'); if (!sc) return;
+    if (!CHAT.msgs.length) {
+      sc.innerHTML = '<div class="chat-hello"><span class="chat-logo" aria-hidden="true"><svg viewBox="0 0 24 24">' + ICONS.ai + '</svg></span><h1>' + t('chatHi') + '</h1><p>' + t('askSub') + '</p></div>';
+    } else sc.innerHTML = CHAT.msgs.map(chatMsg).join('');
+    var last = CHAT.msgs[CHAT.msgs.length - 1];
+    var btns = !CHAT.msgs.length ? (CHAT.welcome || []) : (last && last.role === 'assistant' && !CHAT.busy ? last.btns || [] : []);
+    $('#chat-chips').innerHTML = btns.map(function (b) { return '<button type="button" class="chat-chip" data-q="' + esc(b.text) + '">' + esc(b.title) + '</button>'; }).join('');
+    sc.querySelectorAll('[data-chat-in]').forEach(function (b) { b.onclick = function () { openSignIn(); }; });
+    sc.scrollTop = sc.scrollHeight;
+    var main = $('.chat-main'); if (main && CHAT.msgs.length) main.scrollIntoView({ block: 'end' });
+  }
+  function chatSend(q) {
+    q = (q || '').trim(); if (!q || CHAT.busy) return;
+    CHAT.busy = true; CHAT.msgs.push({ role: 'user', text: q }, { role: 'assistant', wait: true }); chatRender();
+    api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web' }).then(function (r) {
+      CHAT.id = r.chatId; CHAT.msgs[CHAT.msgs.length - 1] = { role: 'assistant', text: r.message, btns: r.actionButtons, limit: r.limit };
+      if (location.hash.indexOf(CHAT.id) < 0) history.replaceState(null, '', '#/ask/' + CHAT.id);
+      if (USER) chatList();
+    }).catch(function (e) {
+      CHAT.msgs[CHAT.msgs.length - 1] = { role: 'assistant', error: true, text: e.status === 429 ? t('chatBusy') : t('askErr') };
+    }).then(function () { CHAT.busy = false; chatRender(); var i = $('#chat-q'); if (i && matchMedia('(hover:hover)').matches) i.focus(); });
+  }
+  function chatList() {
+    var box = $('#chat-list'); if (!box) return;
+    if (!USER) { box.innerHTML = '<p class="chat-empty">' + t('chatGuest') + '</p>'; return; }
+    api('/api/v1/personal/chats/', null, 'GET').then(function (r) {
+      var rows = (r.data || []).slice(0, 40);
+      box.innerHTML = rows.length ? rows.map(function (c) {
+        return '<button type="button" class="chat-item' + (c.chat_id === CHAT.id ? ' on' : '') + '" data-chat="' + esc(c.chat_id) + '"><b>' + esc(c.title) + '</b><span>' + fdate(c.last_message_at) + '</span></button>';
+      }).join('') : '<p class="chat-empty">' + t('chatEmpty') + '</p>';
+      box.querySelectorAll('[data-chat]').forEach(function (b) { b.onclick = function () { location.hash = '#/ask/' + b.dataset.chat; }; });
+    }).catch(function () { box.innerHTML = ''; });
+  }
+  function chatOpen(id) {
+    if (!USER || id === CHAT.id && CHAT.msgs.length) { chatRender(); return; }
+    CHAT = { id: id, msgs: [{ role: 'assistant', wait: true }], busy: true, welcome: CHAT.welcome }; chatRender();
+    api('/api/v1/personal/chats/' + encodeURIComponent(id), null, 'GET').then(function (r) {
+      CHAT.msgs = (r.data || []).map(function (m) {
+        return m.role === 'user' ? { role: 'user', text: m.message } : { role: 'assistant', text: m.message, btns: m.chat_response && m.chat_response.actionButtons };
+      });
+    }).catch(function () { CHAT.id = null; CHAT.msgs = []; history.replaceState(null, '', '#/ask'); }).then(function () { CHAT.busy = false; chatRender(); });
+  }
+  function vAsk(id) {
+    page('<div class="chat-app">' +
+      '<aside class="chat-rail"><button type="button" class="chat-new" data-chat-new>' + ICO_NEW + '<span>' + t('chatNew') + '</span></button>' +
+      '<p class="chat-rail-h">' + t('chatHist') + '</p><div class="chat-list" id="chat-list"></div></aside>' +
+      '<section class="chat-main"><div class="chat-top"><button type="button" class="chip" data-chat-new>' + ICO_NEW + ' ' + t('chatNew') + '</button></div>' +
+      '<div class="chat-scroll" id="chat-scroll" aria-live="polite"></div>' +
+      '<div class="chat-chips" id="chat-chips"></div>' +
+      '<form class="chat-input" id="chat-form"><input id="chat-q" autocomplete="off" enterkeyhint="send" placeholder="' + esc(t('chatPh')) + '" aria-label="' + esc(t('chatPh')) + '">' +
+      '<button type="submit" class="chat-send" aria-label="' + t('askBtn') + '">' + ICO_SEND + '</button></form>' +
+      '<p class="chat-note">' + t('chatNote') + '</p></section></div>');
+    $('#chat-form').onsubmit = function (e) { e.preventDefault(); var i = $('#chat-q'); chatSend(i.value); i.value = ''; };
+    $('#chat-chips').onclick = function (e) { var b = e.target.closest('[data-q]'); if (b) chatSend(b.dataset.q); };
+    view.querySelectorAll('[data-chat-new]').forEach(function (b) { b.onclick = function () { CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome }; history.replaceState(null, '', '#/ask'); chatRender(); chatList(); $('#chat-q').focus(); }; });
+    if (!CHAT.welcome) api('/api/v1/variables/supported_btns?lang=' + lang, null, 'GET').then(function (r) { CHAT.welcome = r.supported_btns; if (!CHAT.msgs.length) chatRender(); }).catch(function () {});
+    if (id && id !== CHAT.id) chatOpen(id); else chatRender();
+    chatList();
+    if (CHAT.pending) { var q = CHAT.pending; CHAT.pending = null; chatSend(q); }
   }
 
   // fair price from comparable sales (client-side, no AI)
@@ -332,7 +391,7 @@
       var ppm12 = median(l12.map(function (r) { return r[3]; }).filter(Boolean)), ppmP = median(p12.map(function (r) { return r[3]; }).filter(Boolean));
       var n12 = sum(l12, 1), off = sum(l12, 6), v12 = sum(l12, 2) * 1e6, rent12 = median(l12.map(function (r) { return r[9]; }).filter(Boolean));
       var ylds = areas.map(function (a) { return a.yld['1']; }).filter(Boolean);
-      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p>' + (isPro() ? askBox(true) : '') + '<div class="kpis">' +
+      page('<h1 class="page">' + t('marketH') + '</h1><p class="sub">' + t('marketSub') + '</p>' + askBox() + '<div class="kpis">' +
         kpi(t('sales12'), fmt(n12)) + kpi(t('value12'), aed(v12)) +
         kpi(t('ppm') + ' ' + uLabel(), 'AED ' + fmt(ppmv(ppm12)), pctTag(ppmP ? 100 * (ppm12 / ppmP - 1) : null) + ' <i>' + t('yoy') + '</i>') +
         kpi(t('off12'), fmt(100 * off / n12) + '%') + kpi(t('rent'), 'AED ' + fmt(rent12)) +
@@ -1511,7 +1570,7 @@
     document.querySelectorAll('#tabbar [data-route]').forEach(function (a) { var on = a.dataset.route === bar; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (BILLING_LIVE && !isPro() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
     if (APP && r === 'pricing') { if (isPro()) location.replace('#/'); else vLocked(r); return; }
-    ({ pricing: vPricing, account: vAccount, market: vMarket, ask: vAsk, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
+    ({ pricing: vPricing, account: vAccount, market: vMarket, ask: function () { vAsk(h[1]); }, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
   function chrome() {
