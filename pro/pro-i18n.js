@@ -2,6 +2,7 @@
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.ar = {
  T: {
+  adLegNo: "لا بيانات", adLegSize: "حجم الدائرة — صفقات 12 شهراً", adLegDiv: "الأزرق — نمو، الأحمر — تراجع",
   citySHJ: "الشارقة", shjH: "سوق الشارقة", shjVal9: "قيمة الصفقات، 9 أشهر 2026", shjTx9: "الصفقات، 9 أشهر 2026", shjSales9: "المبيعات، 9 أشهر 2026", shjMortH1: "الرهون، النصف الأول 2026", shjFY: "القيمة في 2025", shjDeals: "صفقة", shjMonths: "القيمة حسب الشهر", shjSrc: "المصادر:", shjNoneH: "هذا القسم غير متاح للشارقة",
   mort12: "الرهون، 12 شهراً", mortS: "الرهون", mortOf: "{x}% من عدد الصفقات",
   gateText: "تحليلات عقارات دبي من بيانات دائرة الأراضي والأملاك. أدخل كلمة المرور.", gateBtn: "دخول", gateErr: "كلمة مرور غير صحيحة",
@@ -78,6 +79,7 @@ window.PRO_I18N.ar = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.de = {
  T: {
+  adLegNo: "keine Daten", adLegSize: "Kreisgröße — Verkäufe in 12 Monaten", adLegDiv: "blau — Wachstum, rot — Rückgang",
   citySHJ: "Schardscha", shjH: "Markt Schardscha", shjVal9: "Transaktionsvolumen, 9 Mon. 2026", shjTx9: "Transaktionen, 9 Mon. 2026", shjSales9: "Verkäufe, 9 Mon. 2026", shjMortH1: "Hypotheken, H1 2026", shjFY: "Volumen 2025", shjDeals: "Transaktionen", shjMonths: "Volumen nach Monat", shjSrc: "Quellen:", shjNoneH: "Dieser Bereich ist für Schardscha nicht verfügbar",
   mort12: "Hypotheken, 12 Monate", mortS: "Hypotheken", mortOf: "{x} % der Verkäufe",
   gateText: "Immobilienanalysen für Dubai auf Basis der Daten des Dubai Land Department. Geben Sie Ihr Passwort ein.", gateBtn: "Anmelden", gateErr: "Falsches Passwort",
@@ -154,6 +156,7 @@ window.PRO_I18N.de = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.fa = {
  T: {
+  adLegNo: "بدون داده", adLegSize: "اندازه دایره — معاملات ۱۲ ماه", adLegDiv: "آبی — رشد، قرمز — افت",
   citySHJ: "شارجه", shjH: "بازار شارجه", shjVal9: "ارزش معاملات، ۹ ماه ۲۰۲۶", shjTx9: "معاملات، ۹ ماه ۲۰۲۶", shjSales9: "فروش، ۹ ماه ۲۰۲۶", shjMortH1: "رهن، نیمه اول ۲۰۲۶", shjFY: "ارزش در ۲۰۲۵", shjDeals: "معامله", shjMonths: "ارزش ماهانه", shjSrc: "منابع:", shjNoneH: "این بخش برای شارجه در دسترس نیست",
   mort12: "وام‌های رهنی، ۱۲ ماه", mortS: "رهن", mortOf: "{x}٪ از تعداد معاملات",
   gateText: "تحلیل املاک دبی بر پایه داده‌های اداره زمین دبی. رمز عبور خود را وارد کنید.", gateBtn: "ورود", gateErr: "رمز عبور اشتباه است",
@@ -230,6 +233,7 @@ window.PRO_I18N.fa = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.fr = {
  T: {
+  adLegNo: "pas de données", adLegSize: "taille du cercle — ventes sur 12 mois", adLegDiv: "bleu — hausse, rouge — baisse",
   citySHJ: "Charjah", shjH: "Marché de Charjah", shjVal9: "Volume des transactions, 9 mois 2026", shjTx9: "Transactions, 9 mois 2026", shjSales9: "Ventes, 9 mois 2026", shjMortH1: "Hypothèques, S1 2026", shjFY: "Volume 2025", shjDeals: "transactions", shjMonths: "Volume par mois", shjSrc: "Sources :", shjNoneH: "Cette rubrique n’est pas disponible pour Charjah",
   mort12: "Hypothèques, 12 mois", mortS: "Hypothèques", mortOf: "{x} % des ventes",
   gateText: "Analyses immobilières de Dubaï à partir des données du Dubai Land Department. Saisissez votre mot de passe.", gateBtn: "Se connecter", gateErr: "Mot de passe incorrect",
@@ -306,6 +310,7 @@ window.PRO_I18N.fr = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.hi = {
  T: {
+  adLegNo: "डेटा नहीं", adLegSize: "गोले का आकार — 12 महीनों के सौदे", adLegDiv: "नीला — बढ़त, लाल — गिरावट",
   citySHJ: "शारजाह", shjH: "शारजाह बाज़ार", shjVal9: "सौदों का मूल्य, 9 माह 2026", shjTx9: "सौदे, 9 माह 2026", shjSales9: "बिक्री, 9 माह 2026", shjMortH1: "मॉर्गेज, पहली छमाही 2026", shjFY: "2025 में मूल्य", shjDeals: "सौदे", shjMonths: "महीनेवार मूल्य", shjSrc: "स्रोत:", shjNoneH: "यह सेक्शन शारजाह के लिए उपलब्ध नहीं है",
   mort12: "मॉर्गेज, 12 महीने", mortS: "मॉर्गेज", mortOf: "सौदों का {x}%",
   gateText: "दुबई लैंड डिपार्टमेंट के डेटा पर दुबई रियल एस्टेट एनालिटिक्स। अपना पासवर्ड दर्ज करें।", gateBtn: "साइन इन", gateErr: "गलत पासवर्ड",
@@ -382,6 +387,7 @@ window.PRO_I18N.hi = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.it = {
  T: {
+  adLegNo: "nessun dato", adLegSize: "dimensione del cerchio — vendite in 12 mesi", adLegDiv: "blu — crescita, rosso — calo",
   citySHJ: "Sharjah", shjH: "Mercato di Sharjah", shjVal9: "Valore delle transazioni, 9 mesi 2026", shjTx9: "Transazioni, 9 mesi 2026", shjSales9: "Vendite, 9 mesi 2026", shjMortH1: "Mutui, 1° sem. 2026", shjFY: "Valore nel 2025", shjDeals: "transazioni", shjMonths: "Valore per mese", shjSrc: "Fonti:", shjNoneH: "Questa sezione non è disponibile per Sharjah",
   mort12: "Mutui, 12 mesi", mortS: "Mutui", mortOf: "{x}% delle vendite",
   gateText: "Analisi immobiliari di Dubai sui dati del Dubai Land Department. Inserisci la password.", gateBtn: "Accedi", gateErr: "Password errata",
@@ -458,6 +464,7 @@ window.PRO_I18N.it = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.tr = {
  T: {
+  adLegNo: "veri yok", adLegSize: "daire boyutu — 12 aylık satış", adLegDiv: "mavi — artış, kırmızı — düşüş",
   citySHJ: "Şarika", shjH: "Şarika piyasası", shjVal9: "İşlem hacmi, 9 ay 2026", shjTx9: "İşlemler, 9 ay 2026", shjSales9: "Satışlar, 9 ay 2026", shjMortH1: "İpotekler, 2026 ilk yarı", shjFY: "2025 hacmi", shjDeals: "işlem", shjMonths: "Aylara göre hacim", shjSrc: "Kaynaklar:", shjNoneH: "Bu bölüm Şarika için mevcut değil",
   mort12: "İpotekler, 12 ay", mortS: "İpotek", mortOf: "satışların %{x}’i",
   gateText: "Dubai Tapu Dairesi (DLD) verilerine dayalı Dubai gayrimenkul analizi. Erişim şifrenizi girin.", gateBtn: "Giriş yap", gateErr: "Yanlış şifre",
@@ -534,6 +541,7 @@ window.PRO_I18N.tr = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.ur = {
  T: {
+  adLegNo: "ڈیٹا نہیں", adLegSize: "دائرے کا سائز — 12 ماہ کے سودے", adLegDiv: "نیلا — اضافہ، سرخ — کمی",
   citySHJ: "شارجہ", shjH: "شارجہ مارکیٹ", shjVal9: "سودوں کی مالیت، 9 ماہ 2026", shjTx9: "سودے، 9 ماہ 2026", shjSales9: "فروخت، 9 ماہ 2026", shjMortH1: "رہن، پہلی ششماہی 2026", shjFY: "2025 میں مالیت", shjDeals: "سودے", shjMonths: "ماہانہ مالیت", shjSrc: "ذرائع:", shjNoneH: "یہ سیکشن شارجہ کے لیے دستیاب نہیں",
   mort12: "رہن، 12 ماہ", mortS: "رہن", mortOf: "سودوں کا {x}%",
   gateText: "دبئی لینڈ ڈیپارٹمنٹ کے ڈیٹا پر دبئی رئیل اسٹیٹ تجزیہ۔ اپنا پاس ورڈ درج کریں۔", gateBtn: "سائن ان", gateErr: "غلط پاس ورڈ",
@@ -610,6 +618,7 @@ window.PRO_I18N.ur = {
 window.PRO_I18N = window.PRO_I18N || {};
 window.PRO_I18N.zh = {
  T: {
+  adLegNo: "无数据", adLegSize: "圆圈大小 — 12 个月成交量", adLegDiv: "蓝色 — 上涨，红色 — 下跌",
   citySHJ: "沙迦", shjH: "沙迦市场", shjVal9: "交易额，2026 年前 9 个月", shjTx9: "交易笔数，2026 年前 9 个月", shjSales9: "销售，2026 年前 9 个月", shjMortH1: "抵押，2026 年上半年", shjFY: "2025 年交易额", shjDeals: "笔交易", shjMonths: "按月交易额", shjSrc: "来源：", shjNoneH: "沙迦暂不提供此板块",
   mort12: "抵押贷款，12 个月", mortS: "抵押", mortOf: "占成交量 {x}%",
   gateText: "基于迪拜土地局数据的迪拜房地产分析。请输入访问密码。", gateBtn: "登录", gateErr: "密码错误",

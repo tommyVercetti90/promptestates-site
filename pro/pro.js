@@ -62,6 +62,7 @@
       adMap: 'Карта районов', adMapHint: 'Размер — число сделок за 12 месяцев, цвет — выбранный показатель', adPpm: 'Цена м², квартиры', adPpmV: 'Цена м², виллы', adPpmNote: 'Цена за м² — средняя по отчёту ADREC за {p}',
       adM: { yoy_value: 'Рост за год', off12: 'Доля off-plan', y1: 'Доходность 1BR', ppm: 'Цена м² квартир' }, adOpen: 'Открыть район',
       citySHJ: 'Шарджа', shjH: 'Рынок Шарджи', shjSub: 'Итоги Регистрационного департамента недвижимости Шарджи (SRERD) по сообщениям прессы', shjVal9: 'Объём сделок, 9 мес. 2026', shjTx9: 'Сделок, 9 мес. 2026', shjSales9: 'Продаж, 9 мес. 2026', shjMortH1: 'Ипотек, I пол. 2026', shjFY: 'Объём за 2025 год', shjDeals: 'сделок', shjMonths: 'Объём по месяцам', shjMonthsHint: 'Месяцы, по которым SRERD публиковал итоги: объём, млрд AED, и число сделок', shjSrc: 'Источники:', shjNoneH: 'Для Шарджи этого раздела нет', shjNoneSub: 'Шарджа не публикует открытые данные по районам, проектам и отдельным сделкам — только общие итоги. Обзор рынка доступен, ИИ-аналитик отвечает и про Шарджу.',
+      adLegNo: 'нет данных', adLegSize: 'размер круга — сделки за 12 мес.', adLegDiv: 'синий — рост, красный — падение',
       mort12: 'Ипотек за 12 мес.', mortS: 'Ипотека', mortOf: '{x}% от числа продаж',
       navAD: 'Абу-Даби', cityDxb: 'Дубай', cityL: 'Город', adAll: 'Все районы', adMapH: 'Карта районов Абу-Даби',
       adNoneH: 'Для Абу-Даби этого раздела пока нет', adNoneSub: 'ADREC не публикует открыто данные по отдельным проектам, сделкам и застройщикам. Рынок, карта и районы Абу-Даби уже доступны, а ИИ-аналитик отвечает и про Абу-Даби.',
@@ -120,6 +121,7 @@
       adMap: 'District map', adMapHint: 'Size: sales over 12 months; colour: the selected metric', adPpm: 'Price per m², apartments', adPpmV: 'Price per m², villas', adPpmNote: 'Price per m² is the ADREC report average for {p}',
       adM: { yoy_value: 'YoY growth', off12: 'Off-plan share', y1: '1-bed yield', ppm: 'Apartment price per m²' }, adOpen: 'Open district',
       citySHJ: 'Sharjah', shjH: 'Sharjah market', shjSub: 'Totals reported by the Sharjah Real Estate Registration Department (SRERD), as published in the press', shjVal9: 'Transaction value, 9M 2026', shjTx9: 'Transactions, 9M 2026', shjSales9: 'Sales, 9M 2026', shjMortH1: 'Mortgages, H1 2026', shjFY: 'Value in 2025', shjDeals: 'transactions', shjMonths: 'Value by month', shjMonthsHint: 'Months with a published SRERD report: value, AED bn, and number of transactions', shjSrc: 'Sources:', shjNoneH: 'This section is not available for Sharjah', shjNoneSub: 'Sharjah does not publish open data by area, project or transaction — only overall totals. The market overview is available and the AI analyst answers about Sharjah too.',
+      adLegNo: 'no data', adLegSize: 'circle size — sales over 12 months', adLegDiv: 'blue — growth, red — decline',
       mort12: 'Mortgages, 12 months', mortS: 'Mortgages', mortOf: '{x}% of sales count',
       navAD: 'Abu Dhabi', cityDxb: 'Dubai', cityL: 'City', adAll: 'All districts', adMapH: 'Abu Dhabi district map',
       adNoneH: 'This section is not available for Abu Dhabi yet', adNoneSub: 'ADREC does not openly publish data on individual projects, transactions and developers. The Abu Dhabi market, map and districts are available, and the AI analyst answers about Abu Dhabi too.',
@@ -592,7 +594,13 @@
           '<span>' + t('adAvg') + ': ' + esc(p.avg) + '</span><span>' + t('off12') + ': ' + esc(p.off) + '</span><span>' + esc(t('adM')[ADM]) + ': <b>' + esc(p.v) + '</b></span><a href="#/adarea/' + p.slug + '">' + t('adOpen') + ' →</a></div>').addTo(map);
       });
     });
-    var leg = $('#adleg'); if (leg) leg.textContent = t('adM')[ADM] + ': ' + adFmt(lo, ADM) + ' … ' + adFmt(hi, ADM) + (ADM === 'ppm' ? ' · ' + t('adPpmNote').replace('{p}', 'H1 2026') : '');
+    var leg = $('#adleg');
+    if (leg) {
+      var stops = [0, .25, .5, .75, 1].map(function (k) { return rampColor(k, div); }).join(',');
+      leg.innerHTML = '<div class="adl-row"><b>' + esc(t('adM')[ADM]) + '</b><span class="adl-v">' + esc(adFmt(lo, ADM)) + '</span><i class="adl-grad" style="background:linear-gradient(90deg,' + stops + ')"></i><span class="adl-v">' + esc(adFmt(hi, ADM)) + '</span></div>' +
+        '<div class="adl-row adl-sub"><span><i class="adl-dot"></i>' + esc(t('adLegNo')) + '</span><span><i class="adl-size"></i>' + esc(t('adLegSize')) + '</span>' +
+        (ADM === 'ppm' ? '<span>' + esc(t('adPpmNote').replace('{p}', 'H1 2026')) + '</span>' : div ? '<span>' + esc(t('adLegDiv')) + '</span>' : '') + '</div>';
+    }
   }
   // Abu Dhabi versions of the Market, Map and Areas tabs (city switch in the header)
   function vAD(part) {
@@ -606,9 +614,9 @@
       var kpis = '<div class="kpis">' + kpi(t('sales12'), fmt(meta.sales_12m)) + kpi(t('value12'), aed(meta.value_12m_aed_m * 1e6), pctTag(yoy) + ' <i>' + t('adYoy') + '</i>') +
         kpi(t('adAvg'), aed(meta.value_12m_aed_m * 1e6 / meta.sales_12m)) + kpi(t('off12'), fmt(off) + '%') + kpi(t('navAreas'), fmt(meta.districts)) + '</div>';
       var chartP = '<div class="panel"><h2>' + t('adQ') + '</h2><p class="hint">' + t('adQs') + '</p><div class="chart"><canvas id="c1"></canvas></div></div>';
-      var mapP = '<div class="panel"><p class="hint">' + t('adMapHint') + '</p><div class="ad-chips" id="adm">' +
+      var mapP = '<div class="panel">' + (part === 'map' ? '' : '<p class="hint">' + t('adMapHint') + '</p>') + '<div class="ad-chips" id="adm">' +
         Object.keys(t('adM')).map(function (k) { return '<button type="button" class="chip" data-adm="' + k + '" aria-pressed="' + (k === ADM) + '">' + t('adM')[k] + '</button>'; }).join('') +
-        '</div><div class="ad-map' + (part === 'map' ? ' ad-map-big' : '') + '" id="admap"></div><p class="hint ad-legend" id="adleg"></p></div>';
+        '</div><div class="ad-map' + (part === 'map' ? ' ad-map-big' : '') + '" id="admap"></div><div class="ad-legend" id="adleg"></div></div>';
       var tblP = '<div class="panel"><h2>' + t('adDist') + '</h2><p class="hint">' + t('adNote') + ' ' + esc(t('adPpmNote').replace('{p}', meta.ppm_period || 'H1 2026')) + '</p>' +
         '<div class="filters"><input type="search" id="q" placeholder="' + t('search') + '"></div><div id="tbl"></div>' +
         (part === 'market' ? '<div class="actions center"><a class="btn btn-ghost" href="#/areas">' + t('adAll') + ' →</a></div>' :
@@ -1869,7 +1877,10 @@
     document.querySelectorAll('[data-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.unit === unit); if (b.dataset.unit === 'm2') b.textContent = lang === 'ru' ? 'м²' : 'm²'; });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
     paintLang();
-    document.querySelectorAll('button[data-city]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.city === CITY); b.textContent = t(b.dataset.city === 'ad' ? 'navAD' : b.dataset.city === 'shj' ? 'citySHJ' : 'cityDxb'); });
+    document.querySelectorAll('select[data-city-sel]').forEach(function (sel) {
+      sel.innerHTML = [['dxb', 'cityDxb'], ['ad', 'navAD'], ['shj', 'citySHJ']].map(function (c) { return '<option value="' + c[0] + '">' + esc(t(c[1])) + '</option>'; }).join('');
+      sel.value = CITY; sel.onchange = function () { setCity(sel.value); };
+    });
     document.documentElement.setAttribute('data-region', CITY);
     document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.themeSet === th); });
     get('meta.json').then(function (m) {
@@ -1880,7 +1891,14 @@
     $('#gate').hidden = true; $('#app').hidden = false;
     chrome(); route();
     window.addEventListener('hashchange', route);
-    var hb = document.getElementById('tour-btn'); if (hb) hb.onclick = startTour;
+    var hb = document.getElementById('tour-btn'); if (hb) hb.onclick = function () { closeSet(); startTour(); };
+    var sb = $('#set-btn'), sp = $('#set-pop');
+    function closeSet() { if (sp && !sp.hidden) { sp.hidden = true; sb.setAttribute('aria-expanded', 'false'); } }
+    if (sb) {
+      sb.onclick = function (e) { e.stopPropagation(); sp.hidden = !sp.hidden; sb.setAttribute('aria-expanded', String(!sp.hidden)); };
+      document.addEventListener('click', function (e) { if (!e.target.closest('.set-wrap')) closeSet(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSet(); });
+    }
     maybeTour();
     document.addEventListener('click', function (e) {
       var cg = e.target.closest('button[data-city],[data-city-go]');

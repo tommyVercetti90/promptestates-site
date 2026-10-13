@@ -471,3 +471,31 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 
 /* language list */
 .lang-sel{height:34px;padding:0 28px 0 10px;border-radius:9px;border:0;background:var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238b979f' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 10px center;color:var(--text);font:inherit;font-size:13px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line);-webkit-appearance:none;appearance:none;cursor:pointer}
+
+/* minimal header: tabs take the room, settings live in a popover */
+.top{gap:14px}
+.top .tabs{flex:1 1 auto;min-width:0;mask-image:linear-gradient(90deg,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.top .tabs a{white-space:nowrap;flex-shrink:0}
+.top .tools{margin-inline-start:0;align-items:center;gap:8px;flex-shrink:0}
+.city-sel{height:34px;padding:0 28px 0 12px;border-radius:999px;border:0;background:var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238b979f' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 11px center;color:var(--text);font:inherit;font-size:13px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line);-webkit-appearance:none;appearance:none;cursor:pointer}
+.icon-btn{width:36px;height:36px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);color:var(--text);cursor:pointer}
+.icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn:hover,.icon-btn[aria-expanded="true"]{box-shadow:inset 0 0 0 1px var(--line-2)}
+.set-wrap{position:relative}
+.set-pop{position:absolute;top:calc(100% + 8px);right:0;z-index:60;min-width:260px;padding:10px;border-radius:14px;background:var(--surface);box-shadow:0 18px 50px -12px rgba(0,0,0,.45),inset 0 0 0 1px var(--line);display:flex;flex-direction:column;gap:4px}
+.set-pop[hidden]{display:none}
+.set-pop .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 6px;font-size:13px;color:var(--muted)}
+.set-tour{margin-top:4px;padding:9px 10px;border:0;border-radius:10px;background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:600;text-align:start;cursor:pointer}
+.set-tour:hover{background:var(--surface-2)}
+.top .tour-btn{display:none}
+/* Abu Dhabi map legend */
+.ad-legend{margin-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
+.adl-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.adl-row b{color:var(--text);font-weight:600}
+.adl-v{font-variant-numeric:tabular-nums;color:var(--text)}
+.adl-grad{display:inline-block;width:min(260px,40vw);height:10px;border-radius:999px}
+.adl-sub{font-size:12px;gap:16px}
+.adl-sub span{display:inline-flex;align-items:center;gap:6px}
+.adl-dot{width:10px;height:10px;border-radius:50%;background:#7a858c;display:inline-block}
+.adl-size{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);display:inline-block}
+.ad-map-big{height:calc(100dvh - 330px)}
