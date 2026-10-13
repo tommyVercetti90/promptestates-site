@@ -607,3 +607,86 @@
     if (regs.length && window.caches) caches.keys().then(function (k) { k.forEach(function (n) { caches.delete(n); }); });
   }).catch(function () {});
 })();
+
+/* Lightbox for project photos and floor plans: tap to open full screen, zoom (wheel, pinch, double tap, +/- buttons), drag to pan,
+   swipe / arrows / keys to move between images of the same gallery. */
+(function () {
+  'use strict';
+  var groups = document.querySelectorAll('.pj-gallery, .pj-units');
+  if (!groups.length) return;
+  var box, img, cap, list = [], idx = 0, z = 1, tx = 0, ty = 0;
+  var ru = (document.documentElement.lang || '').indexOf('ru') === 0;
+  function apply() { img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + z + ')'; box.classList.toggle('zoomed', z > 1); }
+  function setZ(v) { z = Math.max(1, Math.min(6, v)); if (z === 1) { tx = 0; ty = 0; } apply(); }
+  function zoom(k) { setZ(z * k); }
+  function reset() { z = 1; tx = 0; ty = 0; apply(); }
+  function show() {
+    var el = list[idx]; reset();
+    img.src = el.currentSrc || el.src; img.alt = el.alt || '';
+    cap.textContent = (idx + 1) + ' / ' + list.length + (el.alt ? ' · ' + el.alt : '');
+    box.querySelector('.lb-prev').hidden = list.length < 2;
+    box.querySelector('.lb-next').hidden = list.length < 2;
+  }
+  function go(d) { idx = (idx + d + list.length) % list.length; show(); }
+  function close() { box.hidden = true; document.documentElement.classList.remove('lb-open'); img.removeAttribute('src'); }
+  function build() {
+    box = document.createElement('div'); box.className = 'lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.hidden = true;
+    box.innerHTML = '<div class="lb-stage"><img alt=""></div><button type="button" class="lb-x" aria-label="' + (ru ? 'Закрыть' : 'Close') + '">✕</button>' +
+      '<button type="button" class="lb-nav lb-prev" aria-label="' + (ru ? 'Назад' : 'Previous') + '">‹</button><button type="button" class="lb-nav lb-next" aria-label="' + (ru ? 'Дальше' : 'Next') + '">›</button>' +
+      '<div class="lb-bar"><span class="lb-cap"></span><span class="lb-zoom"><button type="button" data-z="-1" aria-label="Zoom out">−</button><button type="button" data-z="0" aria-label="Reset">1:1</button><button type="button" data-z="1" aria-label="Zoom in">+</button></span></div>';
+    document.body.appendChild(box);
+    img = box.querySelector('img'); cap = box.querySelector('.lb-cap');
+    box.querySelector('.lb-x').onclick = close;
+    box.querySelector('.lb-prev').onclick = function () { go(-1); };
+    box.querySelector('.lb-next').onclick = function () { go(1); };
+    box.querySelectorAll('[data-z]').forEach(function (b) { b.onclick = function () { var d = +b.dataset.z; if (d) zoom(d > 0 ? 1.5 : 1 / 1.5); else reset(); }; });
+    var stage = box.querySelector('.lb-stage');
+    stage.addEventListener('click', function (e) { if (e.target === stage && z === 1) close(); });
+    stage.addEventListener('wheel', function (e) { e.preventDefault(); zoom(e.deltaY < 0 ? 1.2 : 1 / 1.2); }, { passive: false });
+    img.addEventListener('dblclick', function () { if (z > 1) reset(); else zoom(2.5); });
+    var pts = {}, start = null, pinch = null, lastTap = 0;
+    stage.addEventListener('pointerdown', function (e) {
+      pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+      var ids = Object.keys(pts);
+      if (ids.length === 2) { var a = pts[ids[0]], b = pts[ids[1]]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, z: z }; start = null; }
+      else start = { x: e.clientX, y: e.clientY, tx: tx, ty: ty, t: Date.now() };
+      if (e.pointerType === 'touch' && ids.length === 1) { var now = Date.now(); if (now - lastTap < 300) { if (z > 1) reset(); else zoom(2.5); } lastTap = now; }
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!pts[e.pointerId]) return;
+      pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+      var ids = Object.keys(pts);
+      if (pinch && ids.length === 2) { var a = pts[ids[0]], b = pts[ids[1]]; setZ(pinch.z * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d); }
+      else if (start && z > 1) { tx = start.tx + e.clientX - start.x; ty = start.ty + e.clientY - start.y; apply(); }
+    });
+    function up(e) {
+      if (start && z === 1 && pts[e.pointerId]) {
+        var dx = e.clientX - start.x, dy = e.clientY - start.y;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) && Date.now() - start.t < 700) go(dx < 0 ? 1 : -1);
+        else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) close();
+      }
+      delete pts[e.pointerId];
+      if (Object.keys(pts).length < 2) pinch = null;
+      start = null;
+    }
+    stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up);
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') go(1); else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === '+' || e.key === '=') zoom(1.5); else if (e.key === '-') zoom(1 / 1.5);
+    });
+  }
+  function open(g, i) {
+    if (!box) build();
+    list = [].slice.call(g.querySelectorAll('img')); idx = i; box.hidden = false;
+    document.documentElement.classList.add('lb-open'); show(); box.querySelector('.lb-x').focus();
+  }
+  groups.forEach(function (g) {
+    [].forEach.call(g.querySelectorAll('img'), function (im, i) {
+      im.tabIndex = 0; im.setAttribute('role', 'button');
+      im.addEventListener('click', function () { open(g, i); });
+      im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(g, i); } });
+    });
+  });
+})();
