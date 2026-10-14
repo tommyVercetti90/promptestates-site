@@ -1237,7 +1237,7 @@
   var MAPM = store('pro_mapm') || 'ppm';
   var LAYERS = (function () { try { return JSON.parse(store('pro_layers')) || null; } catch (e) { return null; } })() || { cols: true, heat: true, pipe: false, metro: true, labels: true };
   if (LAYERS.bld == null) LAYERS.bld = true;
-  var MAPSTYLE = store('pro_mapstyle') || 'auto', MAPVIEW = store('pro_mapview') || 'bubbles', MAPCAM = null;
+  var MAPSTYLE = store('pro_mapstyle') || 'auto', MAPVIEW = store('pro_mapview') === 'cols' ? 'cols' : 'bubbles', MAPCAM = null;
   var STYLE_URL = { dark: 'dark', night: 'dark', light: 'positron', streets: 'liberty' };
   function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
   function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
@@ -1279,7 +1279,7 @@
       var stylesHtml = ['dark', 'light', 'streets', 'night'].map(function (k) {
         return '<button type="button" class="sw sw-' + k + '" data-mstyle="' + k + '" aria-pressed="' + (k === styleKey) + '"><i></i><span>' + mt('styles')[k] + '</span></button>';
       }).join('');
-      var modesHtml = ['cols', 'bubbles', 'flat'].map(function (k) { return '<button type="button" data-mview="' + k + '" aria-pressed="' + (k === MAPVIEW) + '">' + mt('modes')[k] + '</button>'; }).join('');
+      var modesHtml = ['bubbles', 'cols'].map(function (k) { return '<button type="button" data-mview="' + k + '" aria-pressed="' + (k === MAPVIEW) + '">' + mt('modes')[k] + '</button>'; }).join('');
       var lay = [['cols', 'lMarket'], ['heat', 'lHeat'], ['pipe', 'lPipe'], ['metro', 'lMetro'], ['bld', 'lBld'], ['labels', 'lLabels']].map(function (x) {
         var locked = x[0] === 'pipe' && !isPro();
         return '<label class="lay' + (locked ? ' locked' : '') + '"><input type="checkbox" data-layer="' + x[0] + '"' + (LAYERS[x[0]] && !locked ? ' checked' : '') + (locked ? ' disabled' : '') + '><i class="li-' + x[0] + '"></i><span>' + mt(x[1]) + '</span></label>';
@@ -1292,8 +1292,6 @@
         '<b>' + mt('layers') + '</b>' + lay + '</div></div>' +
         '<div class="glass map-tools"><button type="button" id="m-dim" aria-pressed="true">' + mt('d3') + '</button><button type="button" id="m-reset" aria-label="' + mt('reset') + '">⟲</button></div>' +
         '<div class="glass map-legend" id="legend"></div>' +
-        '<div class="glass map-time"><button type="button" id="m-play" aria-label="' + mt('play') + '">▶</button><div class="tl"><span id="m-month">' + mt('tl') + ' · ' + mt('y12') + '</span>' +
-        '<input type="range" id="m-slider" min="0" max="' + months.length + '" value="' + months.length + '" aria-label="' + mt('tl') + '"></div></div>' +
         '<div class="glass map-card" id="mcard" hidden></div></div>' +
         '<div class="panel"><h2>' + mt('top') + ' · ' + mt('metrics')[MAPM] + '</h2><div id="mtop" class="mtop"></div></div>');
       view.querySelectorAll('[data-mseg]').forEach(function (b) { b.onclick = function () { if (b.classList.contains('locked')) { if (APP) toast(t('lockSeg')); else location.hash = '#/pricing'; return; } SEG = b.dataset.mseg; store('pro_seg', SEG); vMap(); }; });
@@ -1475,23 +1473,7 @@
         map.easeTo({ pitch: to3 ? 55 : 0, bearing: to3 ? -17 : 0, duration: reduce ? 0 : 800 });
       };
       $('#m-reset').onclick = function () { map.flyTo({ center: [55.235, 25.12], zoom: 10.8, pitch: 55, bearing: -17, duration: reduce ? 0 : 1200 }); };
-      // timelapse
-      var slider = $('#m-slider'), label = $('#m-month'), playBtn = $('#m-play');
-      var setMonth = function (i) {
-        slider.value = i;
-        label.textContent = mt('tl') + ' · ' + (i >= months.length ? mt('y12') : mlabel(months[i]));
-        if (!map.getSource('cols')) return;
-        var f = features(i); map.getSource('cols').setData(f.cols); map.getSource('heat').setData(f.heat); if (map.getSource('bub')) map.getSource('bub').setData(f.bub);
-      };
-      slider.oninput = function () { stop(); setMonth(+slider.value); };
-      var stop = function () { if (mapTimer) { clearInterval(mapTimer); mapTimer = null; } playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', mt('play')); };
-      playBtn.onclick = function () {
-        if (mapTimer) { stop(); return; }
-        var i = +slider.value >= months.length ? 0 : +slider.value;
-        playBtn.textContent = '❚❚'; playBtn.setAttribute('aria-label', mt('pause'));
-        setMonth(i);
-        mapTimer = setInterval(function () { i++; if (i > months.length) { stop(); return; } setMonth(i); }, 450);
-      };
+      // the month-by-month timelapse was removed: the map always shows the last 12 months
       // legend
       var stops = [0, .2, .4, .6, .8, 1].map(function (k) { return rampColor(k, div); }).join(',');
       $('#legend').innerHTML = '<span>' + esc(MAPM === 'ppm' ? 'AED/' + uLabel() : mt('metrics')[MAPM]) + '</span><i style="background:linear-gradient(90deg,' + stops + ')"></i><div><em>' +
@@ -1738,7 +1720,7 @@
         { route: '', sel: ['.kpis'], t: 'Главные цифры за 12 месяцев', d: 'Сколько сделок, на какую сумму, медиана цены, доля off-plan, аренда и доходность. Цифры обновляются каждую неделю.' },
         { route: '', sel: ['.top .tools', '#more-btn'], t: 'Единицы, язык и тема', d: 'Переключайте м² и sq ft, язык интерфейса, светлую и тёмную тему.' },
         { route: 'map', sel: ['#mpanel'], t: 'Вид карты и слои', d: 'Выберите стиль, отображение (столбцы, границы районов, 2D) и включите слои: тепловую карту, метро, 3D-здания, волну сдачи.' },
-        { route: 'map', sel: ['.map-time'], t: 'Таймлапс сделок', d: 'Нажмите ▶ — и посмотрите, как рынок двигался по месяцам с 2023 года.' },
+        { route: 'map', sel: ['#legend'], t: 'Цвет и цифры', d: 'Цвет района — его место среди других районов по выбранному показателю, цифра внутри — само значение.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro открывает всё', d: 'ИИ-аналитик, все проекты и сделки, фильтры по типу жилья, меморандумы и справедливая цена. Войдите тем же аккаунтом, что в приложении.' }
       ] },
     en: { next: 'Next', back: 'Back', skip: 'Skip', done: 'Done', of: 'of', replay: 'Tour', start: 'Start the tour', hi: 'Welcome to PromptEstates Pro', hiSub: 'The Dubai market from official DLD data, in one window. Here are the essentials in 30 seconds.',
@@ -1747,7 +1729,7 @@
         { route: '', sel: ['.kpis'], t: 'Key numbers for 12 months', d: 'Sales count and value, median price, off-plan share, rents and yields. Updated every week.' },
         { route: '', sel: ['.top .tools', '#more-btn'], t: 'Units, language and theme', d: 'Switch between m² and sq ft, pick the language, light or dark.' },
         { route: 'map', sel: ['#mpanel'], t: 'Map view and layers', d: 'Pick a style and a display (columns, district outlines, 2D) and turn on layers: heatmap, metro, 3D buildings, handover wave.' },
-        { route: 'map', sel: ['.map-time'], t: 'Sales timelapse', d: 'Press ▶ to watch how the market moved month by month since 2023.' },
+        { route: 'map', sel: ['#legend'], t: 'Colours and numbers', d: 'A district\'s colour shows where it ranks among all districts on the chosen metric; the number inside is the value itself.' },
         { route: 'map', sel: ['#acct', '#more-btn'], t: 'Pro unlocks everything', d: 'The AI analyst, every project and transaction, property-type filters, memos and fair price. Sign in with your PromptEstates app account.' }
       ] }
   };

@@ -549,3 +549,7 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 @media (hover:hover){.chat-chip:hover{transform:translateY(-2px)}}
 .toast{transition:opacity .25s,transform .35s var(--ease-spring)}
 @media (prefers-reduced-motion:reduce){.v-in>*,.v-in .kpis>*,.map-layers .mp-body,.set-pop,.map-card,.cm-user,.cm-ai,.cm-card{animation:none!important}}
+/* no timelapse bar: legend, attribution and the mobile card sit at the bottom edge */
+.map3 .map-legend{bottom:12px}
+.map3 .maplibregl-ctrl-bottom-right{bottom:0}
+@media (max-width:1024px){.map3 .map-card{bottom:12px}}
