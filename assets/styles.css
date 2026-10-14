@@ -1552,7 +1552,7 @@ a.emi-dist:hover{box-shadow:inset 0 0 0 1px var(--sand)}
 .pj-gallery:not(.pj-plans) img:first-child{grid-column:1/-1;aspect-ratio:16/9}
 .pj-plans img{object-fit:contain;background:#fff;border:1px solid #e1e8ec}
 .pj-amen{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:12px 0}
-.pj-amen li{background:#eef7fb;border-radius:999px;padding:6px 12px;font-size:14px}
+.pj-amen li{background:var(--surface-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:500}
 
 /* pricing: Free / Pro */
 .bill-switch{display:flex;width:max-content;margin:0 auto 22px;padding:3px;border-radius:12px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--line,rgba(255,255,255,.1))}
@@ -1647,3 +1647,9 @@ html.lb-open{overflow:hidden}
 @media (max-width:640px){.pj-units{font-size:14px}.pj-units th,.pj-units td{padding:8px 6px}.pj-units .pu-size{display:none}}
 .pc-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#114154,#0b2a37);color:rgba(107,191,224,.85)}
 .pc-ph small{font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(223,241,248,.75);text-align:center;padding:0 12px}
+/* WhatsApp help box on guides */
+.wa-help{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:28px 0;padding:20px 22px;border-radius:18px;background:color-mix(in srgb,#25d366 9%,var(--surface,transparent));border:1px solid color-mix(in srgb,#25d366 35%,transparent)}
+.wa-help h2{margin:0 0 4px;font-size:20px}.wa-help p{margin:0;max-width:52ch}
+.wa-btn{background:#25d366!important;color:#06301a!important;font-weight:700;white-space:nowrap}
+.wa-btn:hover{filter:brightness(1.05)}
+@media (max-width:640px){.wa-btn{width:100%;justify-content:center;white-space:normal}}

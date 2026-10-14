@@ -39,6 +39,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [Property revaluation for the Golden Visa: if you bought below AED 2 million](https://promptestates.com/en/guide/golden-visa-valuation/): Bought below AED 2 million and the home has gone up? The Golden Visa counts the current DLD valuation, not the purchase price. How to order a revaluation.
 - [UAE mortgages for foreigners: how much you can borrow and how](https://promptestates.com/en/guide/uae-mortgage-foreigners/): Getting a Dubai mortgage as a foreigner: down payments for residents and non-residents, Central Bank limits, term, documents, every fee and off-plan.
 - [Property taxes in the UAE: what an apartment owner pays](https://promptestates.com/en/guide/uae-property-taxes/): Which taxes and fees a property owner pays in Dubai: one-off at purchase, annual, tax on rent and on sale, VAT, inheritance and taxes in your home country.
+- [How to buy property in Dubai with USDT](https://promptestates.com/en/guide/buy-property-with-usdt/): Buying Dubai property with USDT or other crypto: conversion through a VARA-licensed provider, DLD registration, source-of-funds documents, costs and risks.
 - [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official DLD data. Table and CSV.
 - [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
 - [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
@@ -1357,6 +1358,61 @@ A: There is no capital gains tax for individuals in the UAE.
 
 Q: Is VAT charged when buying a home?
 A: Residential sales are mostly VAT-exempt; 5% applies to the agent's commission and some related services.
+
+## How to buy property in Dubai with USDT
+
+URL: https://promptestates.com/en/guide/buy-property-with-usdt/
+
+You can buy a home in Dubai with funds held in USDT, and it is legal. But crypto never goes to the Land Department directly: it is converted to dirhams through a licensed provider, and the deal is registered with DLD like any other. Here is the process step by step, the documents, the costs, and the mistakes that get funds frozen.
+
+- Crypto is not legal tender in the UAE: DLD registers the deal in dirhams.
+
+- USDT is converted to AED by a company licensed by VARA (Dubai's virtual assets regulator) or by the developer's payment partner.
+
+- You receive the same freehold title as with a bank transfer.
+
+- KYC and source-of-funds checks are mandatory: wallet and exchange history.
+
+- Costs are the same as a normal purchase (4% DLD and others), plus a conversion fee.
+
+### Can you buy Dubai property with crypto?
+Yes. Many developers and agencies accept USDT, USDC, BTC and ETH. However, the UAE Central Bank does not recognise crypto as legal tender, so the DLD register always records the deal in dirhams. In practice you send crypto to a licensed provider, which converts it to AED and pays the seller or the project's escrow account. For you it looks like paying in USDT; for DLD and the bank it is an ordinary dirham payment.
+
+### Who is involved
+VARA (Virtual Assets Regulatory Authority) licenses crypto businesses in Dubai outside the DIFC financial centre: exchanges, brokers and conversion services. The Dubai Land Department (DLD) registers ownership. The developer or seller receives dirhams. The VARA-licensed provider accepts the crypto, runs anti-money-laundering checks on you and converts it. You can check a provider's licence in the public register on VARA's website.
+
+### Step-by-step process
+1. Choose the property and ask the developer or agent whether they accept crypto and through which partner. 2. Reserve the unit and sign the contract: an SPA for off-plan, a sale agreement (Form F) for ready homes. 3. Complete KYC with the provider: passport, address, proof of source of funds. 4. Send USDT to the address given by the licensed provider, never to a personal wallet of the agent or seller. 5. The provider converts the amount to AED and pays the developer (for off-plan, into the project's escrow account) or the seller. 6. The deal is registered with DLD, you pay the registration fee and receive the title deed, or the Oqood registration for off-plan.
+
+### Source of funds: what to prepare
+This is the key question when paying with crypto. The provider and developer must make sure the money is clean. They usually ask for statements from the exchanges where the crypto was bought, the wallet's transaction history, proof of the income used to buy it (salary, sale of a business or property) and, for large amounts, an explanation of how the wealth was built. If the crypto was acquired long ago or earned (mining, trading, payment for services), prepare documents in advance: exchange reports, tax returns, contracts. Coins that passed through mixers or sanctioned wallets will not be accepted.
+
+### Off-plan payment plans in USDT
+Developer instalments can also be paid in crypto if the developer has a payment partner. Under Dubai law, off-plan buyers' money must go into the project's escrow account, so each payment is converted to dirhams and credited there. The rate is fixed at the moment of each payment: if you hold BTC or ETH, the number of coins you need will change. With stablecoins such as USDT this is barely an issue.
+
+### How much it costs
+The usual purchase costs remain: 4% DLD fee, admin fees, an agency fee of about 2% for ready homes, Oqood registration for off-plan. On top comes the provider's conversion fee and rate spread. It varies between companies, so ask for a full quote upfront: how much USDT you send and how many dirhams the seller receives. Compare it with selling USDT on an exchange and making a bank transfer — sometimes that is cheaper.
+
+### Residence visa for a property bought with crypto
+The payment method does not affect the visa. A property from AED 750,000 qualifies for a two-year residence visa, from AED 2 million for a 10-year Golden Visa. What matters is that the property is registered with DLD and the price is documented.
+
+### Risks and common mistakes
+Do not send crypto to a personal wallet of the agent, seller or a "friendly exchanger": the money is unprotected and the deal is hard to prove later. Avoid unlicensed exchangers and P2P cash deals — banks may freeze the funds and developers may refuse them. Do not agree to pay around an off-plan escrow account. Check the project and developer in the DLD register before paying. And remember taxes at home: selling crypto to buy property may count as a taxable disposal in your country.
+
+Q: Can I register a property with DLD by paying directly in USDT?
+A: No. DLD registers deals in dirhams, so USDT is first converted to AED through a licensed provider or the developer's payment partner.
+
+Q: What documents do I need when paying with crypto?
+A: Passport, proof of address and source-of-funds documents: exchange statements, wallet history and proof of the income used to buy the crypto.
+
+Q: Can I pay a developer's instalments in USDT?
+A: Yes, if the developer has a payment partner. Each payment is converted to dirhams and credited to the project's escrow account.
+
+Q: Will I get a visa if the property was bought with crypto?
+A: Yes. The payment method does not matter: a property from AED 750,000 gives a two-year visa, from AED 2 million a Golden Visa.
+
+Q: Can I buy a ready home from a private seller with USDT?
+A: Yes, if the seller agrees and payment goes through a licensed provider that pays the seller in dirhams. Sending crypto to the seller directly is risky.
 
 ## Dubai off-plan market in numbers
 

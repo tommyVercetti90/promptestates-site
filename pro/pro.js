@@ -1242,7 +1242,7 @@
   function mapVal(a, m) { return m === 'ppm' ? ppmv(a.ppm12) : m === 'yoy' ? a.yoy : m === 'yld' ? a.yld : m === 'n12' ? a.n12 : a.off12; }
   function mapFmt(v, m) { return v == null ? '—' : m === 'ppm' ? 'AED ' + fmt(v) : m === 'yoy' ? (v >= 0 ? '+' : '') + fmt(v, 1) + '%' : m === 'yld' ? fmt(v, 1) + '%' : m === 'off' ? fmt(v) + '%' : fmt(v); }
   function rampColor(k, diverging) {
-    var stops = diverging ? ['#e5534b', '#d98f5c', '#8a949c', '#62b88a', '#2fbf71'] : ['#2a6f97', '#2fa3c9', '#6bd0e8', '#f5c85b', '#ff7a45'];
+    var stops = diverging ? ['#e5534b', '#d98f5c', '#8a949c', '#62b88a', '#2fbf71'] : ['#3a56d4', '#22a7d6', '#2fbf8f', '#c9d94a', '#f5a623', '#ef4b4b'];
     k = Math.max(0, Math.min(1, k)) * (stops.length - 1);
     var i = Math.min(Math.floor(k), stops.length - 2);
     return mix(stops[i], stops[i + 1], k - i);
@@ -1305,7 +1305,13 @@
       var q = function (f) { return vals.length ? vals[Math.floor((vals.length - 1) * f)] : 0; };
       var lo = q(.05), hi = q(.95), div = MAPM === 'yoy';
       if (div) { var mxa = Math.max(Math.abs(lo), Math.abs(hi)) || 1; lo = -mxa; hi = mxa; }
-      var colorOf = function (v) { return v == null ? '#7a858c' : rampColor((v - lo) / ((hi - lo) || 1), div); };
+      var rankK = function (v) { var a = 0, b = vals.length - 1; while (a < b) { var m = (a + b) >> 1; if (vals[m] < v) a = m + 1; else b = m; } return vals.length > 1 ? a / (vals.length - 1) : .5; };
+      var colorOf = function (v) { return v == null ? '#7a858c' : div ? rampColor((v - lo) / ((hi - lo) || 1), true) : rampColor(rankK(v), false); };
+      var shortVal = function (v) {
+        if (v == null) return '';
+        if (MAPM === 'ppm' || MAPM === 'n12') return v >= 1000 ? (v / 1000).toFixed(v >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k' : fmt(v);
+        return mapFmt(v, MAPM);
+      };
       var nMax = rows[0].n12;
       // monthly sales per area for the timelapse (all property types)
       var monthly = {};
@@ -1335,6 +1341,9 @@
             var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
             return { type: 'Feature', properties: { id: r.id, color: colorOf(mapVal(r, MAPM)), k: Math.sqrt(n) }, geometry: shapes[r.id] };
           }) },
+          nums: { type: 'FeatureCollection', features: rows.filter(function (r) { return mapVal(r, MAPM) != null; }).map(function (r, i) {
+            return { type: 'Feature', properties: { txt: shortVal(mapVal(r, MAPM)), rank: i }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
+          }) },
           heat: { type: 'FeatureCollection', features: rows.map(function (r) {
             var n = mo ? (monthly[r.id][mo] || 0) / mMax : r.n12 / nMax;
             return { type: 'Feature', properties: { w: n }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
@@ -1353,7 +1362,7 @@
           name: base[id] ? aname(base[id]) : id }, geometry: { type: 'Point', coordinates: [geo[id][1], geo[id][0]] } };
       }) };
       var labelsFC = { type: 'FeatureCollection', features: rows.slice(0, 30).map(function (r) {
-        return { type: 'Feature', properties: { name: r.name, rank: rows.indexOf(r) }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
+        return { type: 'Feature', properties: { name: r.name, txt: shortVal(mapVal(r, MAPM)), rank: rows.indexOf(r) }, geometry: { type: 'Point', coordinates: [r.ll[1], r.ll[0]] } };
       }) };
 
       map.on('load', function () {
@@ -1394,12 +1403,16 @@
         map.addLayer({ id: 'bub-glow', type: 'line', source: 'bub', layout: { 'line-join': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': 7, 'line-blur': 5, 'line-opacity': night ? .55 : dark ? .3 : .18 } });
         map.addLayer({ id: 'bub-line', type: 'line', source: 'bub', layout: { 'line-join': 'round' }, paint: { 'line-color': ['get', 'color'],
           'line-width': ['interpolate', ['linear'], ['zoom'], 9, 1.2, 13, 2.4], 'line-opacity': .95 } });
+        map.addSource('nums', { type: 'geojson', data: f.nums });
+        map.addLayer({ id: 'nums', type: 'symbol', source: 'nums', minzoom: 9.6, layout: { 'text-field': ['get', 'txt'], 'text-font': ['Noto Sans Regular'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 10, 13, 13, 17], 'symbol-sort-key': ['get', 'rank'], 'text-allow-overlap': false, 'text-padding': 4 },
+          paint: { 'text-color': dark ? '#ffffff' : '#0d1418', 'text-halo-color': dark ? 'rgba(5,7,10,.85)' : 'rgba(255,255,255,.95)', 'text-halo-width': 1.8 } });
         map.addSource('pipe', { type: 'geojson', data: pipeFC });
         map.addLayer({ id: 'pipe', type: 'circle', source: 'pipe', paint: {
           'circle-radius': ['get', 'r'], 'circle-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-opacity': .28,
           'circle-stroke-width': 1.5, 'circle-stroke-color': ['interpolate', ['linear'], ['get', 'late'], 0, '#34c759', .3, '#f5c85b', .6, '#ff3b47'], 'circle-pitch-alignment': 'map' } });
         map.addSource('labels', { type: 'geojson', data: labelsFC });
-        map.addLayer({ id: 'labels', type: 'symbol', source: 'labels', layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 9, 11, 13, 14],
+        map.addLayer({ id: 'labels', type: 'symbol', source: 'labels', layout: { 'text-field': ['format', ['get', 'name'], {}, '\n', {}, ['get', 'txt'], { 'font-scale': 1.3 }], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 9, 11, 13, 14],
           'text-offset': [0, -1.4], 'text-anchor': 'bottom', 'symbol-sort-key': ['get', 'rank'], 'text-allow-overlap': false },
           paint: { 'text-color': dark ? '#f2f5f7' : '#0d1418', 'text-halo-color': dark ? 'rgba(5,7,10,.9)' : 'rgba(255,255,255,.95)', 'text-halo-width': 1.6 } });
         applyLayers();
@@ -1428,6 +1441,8 @@
         var vis = function (id, on) { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); };
         vis('cols', LAYERS.cols && MAPVIEW === 'cols'); vis('flat', LAYERS.cols && MAPVIEW === 'flat');
         ['bub', 'bub-glow', 'bub-line'].forEach(function (id) { vis(id, LAYERS.cols && MAPVIEW === 'bubbles'); });
+        vis('nums', LAYERS.cols && MAPVIEW !== 'cols');
+        if (map.getLayer('nums')) map.setFilter('nums', LAYERS.labels ? ['>=', ['get', 'rank'], 30] : null);
         vis('bld3d', LAYERS.bld); vis('building-3d', LAYERS.bld); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
         ['metro', 'metro-glow', 'metro-st'].forEach(function (id) { vis(id, LAYERS.metro); });
         $('#legend').hidden = !LAYERS.cols;
@@ -1478,9 +1493,9 @@
         mapTimer = setInterval(function () { i++; if (i > months.length) { stop(); return; } setMonth(i); }, 450);
       };
       // legend
-      var stops = [0, .25, .5, .75, 1].map(function (k) { return rampColor(k, div); }).join(',');
+      var stops = [0, .2, .4, .6, .8, 1].map(function (k) { return rampColor(k, div); }).join(',');
       $('#legend').innerHTML = '<span>' + esc(MAPM === 'ppm' ? 'AED/' + uLabel() : mt('metrics')[MAPM]) + '</span><i style="background:linear-gradient(90deg,' + stops + ')"></i><div><em>' +
-        mapFmt(lo, MAPM).replace('AED ', '') + '</em><em>' + mapFmt(hi, MAPM).replace('AED ', '') + '</em></div>';
+        mapFmt(lo, MAPM).replace('AED ', '') + '</em>' + (div ? '' : '<em>' + mapFmt(q(.5), MAPM).replace('AED ', '') + '</em>') + '<em>' + mapFmt(hi, MAPM).replace('AED ', '') + '</em></div>';
       function showCard(r) {
         var c = $('#mcard');
         c.hidden = false;
