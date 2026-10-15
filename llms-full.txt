@@ -40,6 +40,8 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [UAE mortgages for foreigners: how much you can borrow and how](https://promptestates.com/en/guide/uae-mortgage-foreigners/): Getting a Dubai mortgage as a foreigner: down payments for residents and non-residents, Central Bank limits, term, documents, every fee and off-plan.
 - [Property taxes in the UAE: what an apartment owner pays](https://promptestates.com/en/guide/uae-property-taxes/): Which taxes and fees a property owner pays in Dubai: one-off at purchase, annual, tax on rent and on sale, VAT, inheritance and taxes in your home country.
 - [How to buy property in Dubai with USDT](https://promptestates.com/en/guide/buy-property-with-usdt/): Buying Dubai property with USDT or other crypto: conversion through a VARA-licensed provider, DLD registration, source-of-funds documents, costs and risks.
+- [Dubai Hills Estate apartment prices in 2026](https://promptestates.com/en/guide/dubai-hills-prices/): What an apartment in Dubai Hills Estate costs: median price per m² and per sq ft, rents by unit type, rental yields, best-selling projects and a comparison with Dubai Marina, Business Bay and JVC from DLD transactions.
+- [Is Dubai Hills Estate a good investment?](https://promptestates.com/en/guide/dubai-hills-investment/): Investing in Dubai Hills Estate on DLD data: rental yield against price growth, off-plan supply due in 2029, slowing sales, who the district suits and what to check before buying.
 - [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official DLD data. Table and CSV.
 - [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
 - [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
@@ -1413,6 +1415,98 @@ A: Yes. The payment method does not matter: a property from AED 750,000 gives a 
 
 Q: Can I buy a ready home from a private seller with USDT?
 A: Yes, if the seller agrees and payment goes through a licensed provider that pays the seller in dirhams. Sending crypto to the seller directly is risky.
+
+## Dubai Hills Estate apartment prices in 2026
+
+URL: https://promptestates.com/en/guide/dubai-hills-prices/
+
+Dubai Hills Estate is one of Dubai's most expensive and liquid family districts. Here are its prices from registered Dubai Land Department (DLD) sales for the 12 months to 8 October 2026, not from developer brochures.
+
+- The median price is about AED 25,800 per m² (AED 2,400 per sq ft) across 3,068 sales in 12 months.
+
+- Sales value over the year: about AED 19.3 billion.
+
+- Prices barely moved year on year: +0.7%.
+
+- 47% of sales are off-plan; 40% of purchases use a mortgage.
+
+- Gross rental yields run from 5.2% (1–2 bed) to 6.9% (studios).
+
+### Price per square metre
+The median sale in Dubai Hills Estate is about AED 25,800 per m² (AED 2,400 per sq ft). In recent months it has stayed within AED 23,800–27,000 per m² without sharp swings. New projects by the park sell above the average: Palace Residences Hillside at about AED 27,900 per m² (AED 2,590 per sq ft) and the recently handed-over Eden Hills at about AED 28,300 per m² (AED 2,630 per sq ft). Cheaper options are in projects on the edge of the district, where the median is below AED 20,000 per m² (AED 1,860 per sq ft).
+
+### Rents
+Median annual rents from Ejari contracts: a studio about AED 55,000, one bedroom AED 90,000, two bedrooms AED 140,000 and three bedrooms about AED 245,000. Rental demand is steady: families choose the district for the park, schools and Dubai Hills Mall.
+
+### Rental yield
+Gross yield (annual rent over purchase price, before costs) is about 6.9% for studios, 5.2% for one- and two-bedroom apartments and 5.5% for three bedrooms. Net yield is lower by the service charge, insurance and vacancy between tenants.
+
+### Best-selling projects
+By number of sales in 12 months the leaders are Emaar's new phases by the park: Palace Residences Hillside (345 sales), Rosehill, Vida Residences Hillside and Parkwood, all scheduled for handover in 2029 in the DLD registry. Among ready buildings, Eden Hills (handed over in June 2026) and MAG EYE resell actively.
+
+### Compared with other areas
+Dubai Hills Estate is priced in line with Dubai Marina (about AED 26,600 per m²) and Business Bay (about AED 26,900 per m²), but one- and two-bedroom apartments yield noticeably more: 5.2% against 4.1–4.7%. JVC is almost half the price (about AED 16,100 per m², AED 1,500 per sq ft) and yields more (5.7–6.8%), but it is a different product — dense blocks without a large park.
+
+### How to check the price of a specific unit
+The district median is a reference, not a valuation of a particular unit. Price depends on the project, floor, park or golf view and whether the building is ready. Compare the offer with actual sales in the same project over the last 6 months to see whether the seller is over asking.
+
+Q: What is the price per square metre in Dubai Hills Estate?
+A: The median from DLD sales for the 12 months to 8 October 2026 is about AED 25,800 per m² (AED 2,400 per sq ft).
+
+Q: How much is rent in Dubai Hills?
+A: Median annual rent: a studio about AED 55,000, one bedroom AED 90,000, two bedrooms AED 140,000.
+
+Q: What is the rental yield in Dubai Hills Estate?
+A: Gross yield is about 6.9% for studios and 5.2–5.5% for one- to three-bedroom apartments.
+
+Q: Is Dubai Hills more expensive than JVC?
+A: Yes, about 1.6 times: around AED 25,800 per m² against AED 16,100 in JVC.
+
+## Is Dubai Hills Estate a good investment?
+
+URL: https://promptestates.com/en/guide/dubai-hills-investment/
+
+Dubai Hills Estate is often called a "safe" place to buy in Dubai. We look at DLD figures for the 12 months to 8 October 2026: what the district offers an investor, where the risks are and who it suits best.
+
+- Gross apartment yields are 5.2–6.9%, higher than in Dubai Marina and Business Bay.
+
+- Prices barely rose in a year: +0.7%, with a median of about AED 25,800 per m² (AED 2,400 per sq ft).
+
+- The district has 25 projects under construction; the large phases hand over in 2029.
+
+- Monthly sales fell from 445 in January to about 170 a month since June 2026.
+
+- 40% of purchases use a mortgage: many buyers live in their homes.
+
+### What the district offers an investor
+Above all, steady rental demand and liquidity. Dubai Hills Estate has its infrastructure in place: the park, the golf course, schools, clinics and Dubai Hills Mall. Families rent here for the long term, so vacancies are shorter and resale is easier: the district recorded 3,068 sales worth AED 19.3 billion in 12 months.
+
+### Yield versus price growth
+Gross yield is about 6.9% for studios and 5.2–5.5% for one- to three-bedroom apartments — above Dubai Marina and Business Bay (4.1–4.7% for one and two bedrooms). But price growth over the year is close to zero: +0.7%. Right now the district is about rental income and preserving capital rather than fast appreciation.
+
+### Off-plan supply
+The DLD registry lists 25 projects under construction in the district. Emaar's largest new phases — Palace Residences Hillside, Rosehill, Vida Residences Hillside and Parkwood — are due in 2029. When they complete, many units will reach the rental and resale market at once, which may hold back rents and prices in 2029–2030.
+
+### Market activity
+Sales are slowing: 445 in January 2026 and about 170 a month since June. The median price meanwhile holds at AED 24,000–25,700 per m² (AED 2,230–2,390 per sq ft). Fewer sales at stable prices means the market is cooling, not falling — and it gives buyers more room to negotiate.
+
+### Who Dubai Hills suits
+Buyers who will live in the home and families who value the setting. Investors who want steady rent and liquidity rather than the highest yield. Anyone planning to hold for 5+ years. If the goal is the most rental income per dirham invested, districts such as JVC yield more (5.7–6.8%) at about AED 16,100 per m² (AED 1,500 per sq ft).
+
+### What to check before buying
+Compare the project's price with the district median and with actual sales in the project over 6 months. Check the developer and the planned handover date in the DLD registry. Work out the net yield after the service charge. For off-plan, make sure payments go into the project's escrow account.
+
+Q: Are prices rising in Dubai Hills Estate?
+A: Over the 12 months to 8 October 2026 the median price barely changed: +0.7%.
+
+Q: What yield do Dubai Hills apartments give?
+A: Gross yield is 5.2–6.9% depending on unit type, higher than in Dubai Marina and Business Bay.
+
+Q: When do the new Dubai Hills projects hand over?
+A: Emaar's large new phases — Palace Residences Hillside, Rosehill, Vida Residences Hillside and Parkwood — are due in 2029 in the DLD registry.
+
+Q: Who is Dubai Hills Estate for?
+A: Owner-occupiers, families and investors who value steady rent and liquidity over a 5+ year horizon.
 
 ## Dubai off-plan market in numbers
 
