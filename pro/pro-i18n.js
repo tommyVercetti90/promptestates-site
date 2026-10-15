@@ -51,6 +51,7 @@ window.PRO_I18N.ar = {
   master: "المشروع الرئيسي", medianPrice: "وسيط السعر", medianSize: "وسيط المساحة", medianRent: "الإيجار/سنة"
  },
  PR: {
+  trial: "14 يوماً مجاناً",
   h: "تحليلات سوق دبي للمحترفين", sub: "كل صفقات دائرة الأراضي والأملاك والإيجارات وسجل المشاريع ومحلل ذكي في لوحة واحدة. قرر بالبيانات لا بتسويق المطورين.",
   stats: [["sales", "صفقة DLD في قاعدة البيانات"], ["rents", "عقد إيجار"], ["projects", "مشروع في السجل"], ["n_areas", "منطقة على الخريطة"]],
   upd: "بيانات DLD حتى {d} · تحديث أسبوعي", month: "شهري", year: "سنوي", perM: "/ شهر", perY: "/ سنة", yearNote: "≈ {m} شهرياً عند الدفع سنوياً", popular: "اختيار المستثمرين",
@@ -60,8 +61,8 @@ window.PRO_I18N.ar = {
   cmpH: "مجاني أم Pro", cmpRows: [["نظرة السوق والخريطة"], ["فلاتر: استوديو، 1–4 غرف، فلل"], ["المناطق: الأسعار والإيجارات والعوائد"], ["3,353 مشروعاً: الإنجاز والتسليم والضمان"], ["كل صفقة خلال 24 شهراً + CSV"], ["موثوقية المطورين والتأخير"], ["المحلل الذكي والمذكرات"], ["السعر العادل من الصفقات المماثلة"], ["رسوم PNG للمنشورات"]],
   featH: "داخل Pro", feats: [["map", "خريطة سوق ثلاثية الأبعاد", "السعر والعائد والنمو وحصة الخارطة حسب المنطقة، وطبقات المترو والتسليم، وعرض زمني لثلاث سنوات"], ["ai", "محلل ذكي", "«أين أعلى عائد لغرفة واحدة تحت مليون درهم؟» — إجابة من الصفقات الفعلية مع روابط"], ["memo", "مذكرة استثمارية", "تحليل المشروع: السعر مقابل المنطقة، المطور، مخاطر التسليم، الإيجارات — جاهزة للإرسال للعميل"], ["fair", "السعر العادل", "القيمة الحقيقية للوحدة من صفقات 6 أشهر وكم يزيد طلب البائع"], ["risk", "مخاطر المطور", "نسبة المشاريع المتأخرة ومتوسط الإنجاز وبنك الضمان لكل مطور"], ["png", "رسوم بيانية", "بطاقات جاهزة لتيليغرام ولينكدإن والعروض بفلاترك"]],
   trustH: "بلا مخاطرة", trust: [["إلغاء بنقرة", "من بوابة Stripe دون رسائل أو اتصالات"], ["دفع آمن", "بطاقات وApple Pay وGoogle Pay عبر Stripe"], ["بيانات رسمية", "بيانات دائرة الأراضي والأملاك المفتوحة فقط"], ["حساب واحد", "نفس تسجيل الدخول في تطبيق PromptEstates"]],
-  faqH: "أسئلة شائعة", faq: [["من أين البيانات؟", "البيانات المفتوحة لدائرة الأراضي والأملاك: الصفقات المسجلة وعقود إيجاري وسجل المشاريع. لا أسعار إعلانات."], ["كم مرة تُحدَّث؟", "أسبوعياً بعد كل تصدير جديد من DLD. تاريخ البيانات أسفل كل صفحة."], ["لماذا السنوي؟", "أرخص بـ34% من الشهري: 390$ بدلاً من 588$ سنوياً."], ["هل يمكنني الإلغاء؟", "نعم، في أي وقت من حسابك. يبقى الوصول حتى نهاية الفترة المدفوعة."], ["هل هذه نصيحة استثمارية؟", "لا. إنها تحليلات من صفقات فعلية؛ قرار الشراء لك."]],
-  finalH: "اشترِ عقار دبي بالبيانات لا بالوعود", note: "الدفع عبر Stripe. الأسعار بالدولار الأمريكي."
+  faqH: "أسئلة شائعة", faq: [["من أين البيانات؟", "البيانات المفتوحة لدائرة الأراضي والأملاك: الصفقات المسجلة وعقود إيجاري وسجل المشاريع. لا أسعار إعلانات."], ["كم مرة تُحدَّث؟", "أسبوعياً بعد كل تصدير جديد من DLD. تاريخ البيانات أسفل كل صفحة."], ["لماذا السنوي؟", "أرخص بنسبة 31% من الدفع الشهري: 1,490 درهماً بدلاً من 2,148 درهماً في السنة."], ["هل يمكنني الإلغاء؟", "نعم، في أي وقت من حسابك. يبقى الوصول حتى نهاية الفترة المدفوعة."], ["هل هذه نصيحة استثمارية؟", "لا. إنها تحليلات من صفقات فعلية؛ قرار الشراء لك."]],
+  finalH: "اشترِ عقار دبي بالبيانات لا بالوعود", note: "الدفع عبر Stripe. الأسعار بالدرهم. أول 14 يوماً مجاناً."
  },
  TOUR: {
   next: "التالي", back: "السابق", skip: "تخطٍ", done: "تم", of: "من", replay: "جولة", start: "ابدأ الجولة", hi: "مرحباً بك في PromptEstates Pro", hiSub: "سوق دبي من بيانات DLD الرسمية في نافذة واحدة. إليك الأساسيات في 30 ثانية.",
@@ -128,6 +129,7 @@ window.PRO_I18N.de = {
   master: "Masterprojekt", medianPrice: "Medianpreis", medianSize: "Medianfläche", medianRent: "Miete/Jahr"
  },
  PR: {
+  trial: "14 Tage kostenlos",
   h: "Marktanalysen für Dubai für Profis", sub: "Jeder Verkauf beim Dubai Land Department, Mieten, das Projektregister und ein KI-Analyst in einem Dashboard. Entscheiden Sie nach Daten, nicht nach Bauträger-Marketing.",
   stats: [["sales", "DLD-Verkäufe in der Datenbank"], ["rents", "Mietverträge"], ["projects", "Projekte im Register"], ["n_areas", "Gebiete auf der Karte"]],
   upd: "DLD-Daten bis {d} · wöchentlich aktualisiert", month: "Monatlich", year: "Jährlich", perM: "/ Monat", perY: "/ Jahr", yearNote: "≈ {m} pro Monat bei jährlicher Zahlung", popular: "Wahl der Investoren",
@@ -137,8 +139,8 @@ window.PRO_I18N.de = {
   cmpH: "Kostenlos oder Pro", cmpRows: [["Marktüberblick und Karte"], ["Filter: Studios, 1–4 Zimmer, Villen"], ["Gebiete: Preise, Mieten, Renditen"], ["3.353 Projekte: Fortschritt, Übergabe, Treuhand"], ["Jeder Verkauf über 24 Monate + CSV"], ["Zuverlässigkeit und Verzögerungen der Bauträger"], ["KI-Analyst und KI-Memos"], ["Fairer Preis aus Vergleichsverkäufen"], ["PNG-Infografiken für Posts"]],
   featH: "In Pro enthalten", feats: [["map", "3D-Marktkarte", "Preis, Rendite, Wachstum und Off-Plan-Anteil nach Gebiet, Metro- und Übergabe-Layer, 3-Jahres-Zeitraffer"], ["ai", "KI-Analyst", "„Wo ist die 1-Zimmer-Rendite unter 1 Mio. AED am höchsten?“ — beantwortet aus echten Verkäufen, mit Links"], ["memo", "Investment-Memo", "Projektanalyse: Preis vs. Gebiet, Bauträger, Lieferrisiko, Mieten — bereit zum Versand an Kunden"], ["fair", "Fairer Preis", "Was eine Einheit laut 6 Monaten Vergleichsverkäufen wirklich wert ist und wie viel der Verkäufer darüber liegt"], ["risk", "Bauträgerrisiko", "Anteil verspäteter Projekte, Ø Fertigstellung und Treuhandbank je Bauträger"], ["png", "Infografiken", "Fertige Karten für Telegram, LinkedIn und Präsentationen mit Ihren Filtern"]],
   trustH: "Ohne Risiko", trust: [["Mit einem Klick kündbar", "Im Stripe-Portal, ohne E-Mails oder Anrufe"], ["Sichere Zahlung", "Karten, Apple Pay und Google Pay über Stripe"], ["Offizielle Daten", "Nur offene Daten des Dubai Land Department"], ["Ein Konto", "Dieselbe Anmeldung wie in der PromptEstates-App"]],
-  faqH: "FAQ", faq: [["Woher stammen die Daten?", "Offene Daten des Dubai Land Department: registrierte Verkäufe, Ejari-Mietverträge und das Projektregister. Keine Inseratspreise."], ["Wie oft wird aktualisiert?", "Wöchentlich nach jedem neuen DLD-Export. Das Datenstand-Datum steht unten auf jeder Seite."], ["Warum jährlich?", "34 % günstiger als monatlich: 390 $ statt 588 $ pro Jahr."], ["Kann ich kündigen?", "Ja, jederzeit im Konto. Der Zugang bleibt bis zum Ende des bezahlten Zeitraums."], ["Ist das Anlageberatung?", "Nein. Es sind Analysen aus echten Transaktionen; die Kaufentscheidung treffen Sie."]],
-  finalH: "Kaufen Sie Immobilien in Dubai nach Daten, nicht nach Versprechen", note: "Zahlung über Stripe. Preise in USD."
+  faqH: "FAQ", faq: [["Woher stammen die Daten?", "Offene Daten des Dubai Land Department: registrierte Verkäufe, Ejari-Mietverträge und das Projektregister. Keine Inseratspreise."], ["Wie oft wird aktualisiert?", "Wöchentlich nach jedem neuen DLD-Export. Das Datenstand-Datum steht unten auf jeder Seite."], ["Warum jährlich?", "31 % günstiger als monatlich: AED 1.490 statt AED 2.148 pro Jahr."], ["Kann ich kündigen?", "Ja, jederzeit im Konto. Der Zugang bleibt bis zum Ende des bezahlten Zeitraums."], ["Ist das Anlageberatung?", "Nein. Es sind Analysen aus echten Transaktionen; die Kaufentscheidung treffen Sie."]],
+  finalH: "Kaufen Sie Immobilien in Dubai nach Daten, nicht nach Versprechen", note: "Zahlung über Stripe. Preise in AED. Die ersten 14 Tage kostenlos."
  },
  TOUR: {
   next: "Weiter", back: "Zurück", skip: "Überspringen", done: "Fertig", of: "von", replay: "Tour", start: "Tour starten", hi: "Willkommen bei PromptEstates Pro", hiSub: "Der Markt in Dubai aus offiziellen DLD-Daten in einem Fenster. Das Wichtigste in 30 Sekunden.",
@@ -205,6 +207,7 @@ window.PRO_I18N.fa = {
   master: "پروژه مادر", medianPrice: "میانه قیمت", medianSize: "میانه متراژ", medianRent: "اجاره/سال"
  },
  PR: {
+  trial: "۱۴ روز رایگان",
   h: "تحلیل بازار دبی برای حرفه‌ای‌ها", sub: "هر معامله اداره زمین دبی، اجاره‌ها، ثبت پروژه‌ها و تحلیلگر هوشمند در یک داشبورد. بر پایه داده تصمیم بگیرید، نه تبلیغات سازنده.",
   stats: [["sales", "معامله DLD در پایگاه داده"], ["rents", "قرارداد اجاره"], ["projects", "پروژه ثبت‌شده"], ["n_areas", "منطقه روی نقشه"]],
   upd: "داده‌های DLD تا {d} · به‌روزرسانی هفتگی", month: "ماهانه", year: "سالانه", perM: "/ ماه", perY: "/ سال", yearNote: "با پرداخت سالانه ≈ {m} در ماه", popular: "انتخاب سرمایه‌گذاران",
@@ -214,8 +217,8 @@ window.PRO_I18N.fa = {
   cmpH: "رایگان یا Pro", cmpRows: [["نمای بازار و نقشه"], ["فیلترها: استودیو، ۱ تا ۴ خواب، ویلا"], ["مناطق: قیمت، اجاره، بازده"], ["۳٬۳۵۳ پروژه: پیشرفت، تحویل، حساب امانی"], ["هر معامله در ۲۴ ماه + CSV"], ["اعتبار و تأخیر سازندگان"], ["تحلیلگر و یادداشت‌های هوشمند"], ["قیمت منصفانه از معاملات مشابه"], ["اینفوگرافیک PNG برای پست"]],
   featH: "در Pro", feats: [["map", "نقشه سه‌بعدی بازار", "قیمت، بازده، رشد و سهم پیش‌فروش بر اساس منطقه، لایه‌های مترو و تحویل، نمای زمانی سه‌ساله"], ["ai", "تحلیلگر هوشمند", "«بیشترین بازده یک‌خوابه زیر یک میلیون درهم کجاست؟» — پاسخ از معاملات واقعی همراه با پیوند"], ["memo", "یادداشت سرمایه‌گذاری", "تحلیل پروژه: قیمت نسبت به منطقه، سازنده، ریسک تحویل، اجاره — آماده ارسال به مشتری"], ["fair", "قیمت منصفانه", "ارزش واقعی واحد بر پایه ۶ ماه معاملات مشابه و اینکه فروشنده چقدر بیشتر می‌خواهد"], ["risk", "ریسک سازنده", "سهم پروژه‌های دارای تأخیر، میانگین پیشرفت و بانک امانی هر سازنده"], ["png", "اینفوگرافیک", "کارت‌های آماده برای تلگرام، لینکدین و ارائه با فیلترهای شما"]],
   trustH: "بدون ریسک", trust: [["لغو با یک کلیک", "از پرتال Stripe، بدون ایمیل یا تماس"], ["پرداخت امن", "کارت، Apple Pay و Google Pay از طریق Stripe"], ["داده رسمی", "فقط داده‌های باز اداره زمین دبی"], ["یک حساب", "همان ورود اپلیکیشن PromptEstates"]],
-  faqH: "پرسش‌های متداول", faq: [["داده‌ها از کجا می‌آیند؟", "از داده‌های باز اداره زمین دبی: فروش‌های ثبت‌شده، قراردادهای اجاره Ejari و ثبت پروژه‌ها. قیمت آگهی‌ها نیست."], ["هر چند وقت به‌روز می‌شود؟", "هفتگی، پس از هر خروجی جدید DLD. تاریخ داده‌ها پایین هر صفحه آمده است."], ["چرا سالانه؟", "۳۴٪ ارزان‌تر از ماهانه: سالانه ۳۹۰ دلار به‌جای ۵۸۸ دلار."], ["می‌توانم لغو کنم؟", "بله، هر زمان از حساب خود. دسترسی تا پایان دوره پرداخت‌شده باقی می‌ماند."], ["آیا این توصیه سرمایه‌گذاری است؟", "خیر. این تحلیل معاملات واقعی است؛ تصمیم خرید با شماست."]],
-  finalH: "ملک دبی را با داده بخرید، نه با وعده", note: "پرداخت از طریق Stripe. قیمت‌ها به دلار آمریکا."
+  faqH: "پرسش‌های متداول", faq: [["داده‌ها از کجا می‌آیند؟", "از داده‌های باز اداره زمین دبی: فروش‌های ثبت‌شده، قراردادهای اجاره Ejari و ثبت پروژه‌ها. قیمت آگهی‌ها نیست."], ["هر چند وقت به‌روز می‌شود؟", "هفتگی، پس از هر خروجی جدید DLD. تاریخ داده‌ها پایین هر صفحه آمده است."], ["چرا سالانه؟", "۳۱٪ ارزان‌تر از ماهانه: سالانه AED 1,490 به جای AED 2,148."], ["می‌توانم لغو کنم؟", "بله، هر زمان از حساب خود. دسترسی تا پایان دوره پرداخت‌شده باقی می‌ماند."], ["آیا این توصیه سرمایه‌گذاری است؟", "خیر. این تحلیل معاملات واقعی است؛ تصمیم خرید با شماست."]],
+  finalH: "ملک دبی را با داده بخرید، نه با وعده", note: "پرداخت از طریق Stripe. قیمت‌ها به AED. ۱۴ روز اول رایگان."
  },
  TOUR: {
   next: "بعدی", back: "قبلی", skip: "رد کردن", done: "تمام", of: "از", replay: "راهنما", start: "شروع راهنما", hi: "به PromptEstates Pro خوش آمدید", hiSub: "بازار دبی از داده‌های رسمی DLD در یک پنجره. نکات اصلی در ۳۰ ثانیه.",
@@ -282,6 +285,7 @@ window.PRO_I18N.fr = {
   master: "Projet directeur", medianPrice: "Prix médian", medianSize: "Surface médiane", medianRent: "Loyer/an"
  },
  PR: {
+  trial: "14 jours gratuits",
   h: "L’analyse du marché de Dubaï pour les professionnels", sub: "Chaque vente du Dubai Land Department, les loyers, le registre des projets et un analyste IA dans un seul tableau de bord. Décidez sur des données, pas sur le marketing des promoteurs.",
   stats: [["sales", "ventes DLD dans la base"], ["rents", "baux"], ["projects", "projets au registre"], ["n_areas", "quartiers sur la carte"]],
   upd: "Données DLD au {d} · mises à jour chaque semaine", month: "Mensuel", year: "Annuel", perM: "/ mois", perY: "/ an", yearNote: "≈ {m} par mois en paiement annuel", popular: "Le choix des investisseurs",
@@ -291,8 +295,8 @@ window.PRO_I18N.fr = {
   cmpH: "Gratuit ou Pro", cmpRows: [["Aperçu du marché et carte"], ["Filtres : studios, 1–4 ch., villas"], ["Quartiers : prix, loyers, rendements"], ["3 353 projets : avancement, livraison, séquestre"], ["Chaque vente sur 24 mois + CSV"], ["Fiabilité des promoteurs et retards"], ["Analyste IA et mémos IA"], ["Juste prix d’après les comparables"], ["Infographies PNG pour vos posts"]],
   featH: "Dans Pro", feats: [["map", "Carte 3D du marché", "Prix, rendement, croissance et part sur plan par quartier, couches métro et livraisons, rétrospective sur 3 ans"], ["ai", "Analyste IA", "« Où le rendement d’un 1 chambre est-il le plus élevé sous 1 M AED ? » — réponse fondée sur les ventes réelles, avec liens"], ["memo", "Mémo d’investissement", "Analyse du projet : prix vs quartier, promoteur, risque de livraison, loyers — prête à envoyer au client"], ["fair", "Juste prix", "Ce que vaut réellement un bien d’après 6 mois de comparables et l’écart du vendeur"], ["risk", "Risque promoteur", "Part de projets en retard, avancement moyen et banque séquestre pour chaque promoteur"], ["png", "Infographies", "Cartes prêtes pour Telegram, LinkedIn et présentations avec vos filtres"]],
   trustH: "Sans risque", trust: [["Résiliation en un clic", "Depuis votre portail Stripe, sans e-mail ni appel"], ["Paiement sécurisé", "Cartes, Apple Pay et Google Pay via Stripe"], ["Données officielles", "Uniquement les données ouvertes du Dubai Land Department"], ["Un seul compte", "La même connexion que l’application PromptEstates"]],
-  faqH: "FAQ", faq: [["D’où viennent les données ?", "Des données ouvertes du Dubai Land Department : ventes enregistrées, baux Ejari et registre des projets. Pas de prix d’annonces."], ["À quelle fréquence sont-elles mises à jour ?", "Chaque semaine, après chaque nouvel export DLD. La date des données figure en bas de chaque page."], ["Pourquoi l’annuel ?", "34 % moins cher que le mensuel : 390 $ au lieu de 588 $ par an."], ["Puis-je résilier ?", "Oui, à tout moment depuis votre compte. L’accès reste actif jusqu’à la fin de la période payée."], ["Est-ce un conseil en investissement ?", "Non. Ce sont des analyses issues de transactions réelles ; la décision d’achat vous appartient."]],
-  finalH: "Achetez à Dubaï sur des données, pas sur des promesses", note: "Paiement via Stripe. Prix en USD."
+  faqH: "FAQ", faq: [["D’où viennent les données ?", "Des données ouvertes du Dubai Land Department : ventes enregistrées, baux Ejari et registre des projets. Pas de prix d’annonces."], ["À quelle fréquence sont-elles mises à jour ?", "Chaque semaine, après chaque nouvel export DLD. La date des données figure en bas de chaque page."], ["Pourquoi l’annuel ?", "C'est 31 % moins cher que le mensuel : 1 490 AED au lieu de 2 148 AED par an."], ["Puis-je résilier ?", "Oui, à tout moment depuis votre compte. L’accès reste actif jusqu’à la fin de la période payée."], ["Est-ce un conseil en investissement ?", "Non. Ce sont des analyses issues de transactions réelles ; la décision d’achat vous appartient."]],
+  finalH: "Achetez à Dubaï sur des données, pas sur des promesses", note: "Paiement par Stripe. Prix en AED. 14 premiers jours gratuits."
  },
  TOUR: {
   next: "Suivant", back: "Retour", skip: "Passer", done: "Terminé", of: "sur", replay: "Visite", start: "Lancer la visite", hi: "Bienvenue sur PromptEstates Pro", hiSub: "Le marché de Dubaï d’après les données officielles du DLD, dans une seule fenêtre. L’essentiel en 30 secondes.",
@@ -359,6 +363,7 @@ window.PRO_I18N.hi = {
   master: "मास्टर प्रोजेक्ट", medianPrice: "मीडियन कीमत", medianSize: "मीडियन क्षेत्रफल", medianRent: "किराया/वर्ष"
  },
  PR: {
+  trial: "14 दिन मुफ़्त",
   h: "पेशेवरों के लिए दुबई बाज़ार विश्लेषण", sub: "दुबई लैंड डिपार्टमेंट का हर सौदा, किराये, प्रोजेक्ट रजिस्ट्री और AI एनालिस्ट एक डैशबोर्ड में। डेवलपर के विज्ञापन नहीं, डेटा देखकर फ़ैसला करें।",
   stats: [["sales", "डेटाबेस में DLD सौदे"], ["rents", "किराया अनुबंध"], ["projects", "रजिस्ट्री प्रोजेक्ट"], ["n_areas", "मैप पर इलाके"]],
   upd: "DLD डेटा {d} तक · हर हफ़्ते अपडेट", month: "मासिक", year: "वार्षिक", perM: "/ माह", perY: "/ वर्ष", yearNote: "वार्षिक भुगतान पर ≈ {m} प्रति माह", popular: "निवेशकों की पसंद",
@@ -368,8 +373,8 @@ window.PRO_I18N.hi = {
   cmpH: "मुफ़्त या Pro", cmpRows: [["बाज़ार अवलोकन और मैप"], ["फ़िल्टर: स्टूडियो, 1–4 बेडरूम, विला"], ["इलाके: कीमत, किराया, यील्ड"], ["3,353 प्रोजेक्ट: प्रगति, हैंडओवर, एस्क्रो"], ["24 महीनों का हर सौदा + CSV"], ["डेवलपर की विश्वसनीयता और देरी"], ["AI एनालिस्ट और AI मेमो"], ["तुलनीय सौदों से उचित कीमत"], ["पोस्ट के लिए PNG इन्फ़ोग्राफ़िक्स"]],
   featH: "Pro में क्या है", feats: [["map", "3D बाज़ार मैप", "इलाकेवार कीमत, यील्ड, बढ़त और ऑफ-प्लान हिस्सा, मेट्रो और हैंडओवर लेयर, 3 साल का टाइमलैप्स"], ["ai", "AI एनालिस्ट", "“10 लाख AED से कम में 1BR की सबसे ज़्यादा यील्ड कहां है?” — वास्तविक सौदों से जवाब, लिंक के साथ"], ["memo", "निवेश मेमो", "प्रोजेक्ट विश्लेषण: इलाके की तुलना में कीमत, डेवलपर, डिलीवरी जोखिम, किराये — क्लाइंट को भेजने के लिए तैयार"], ["fair", "उचित कीमत", "6 महीनों के तुलनीय सौदों से यूनिट की असली कीमत और विक्रेता कितना ज़्यादा मांग रहा है"], ["risk", "डेवलपर जोखिम", "हर डेवलपर के देरी वाले प्रोजेक्ट का हिस्सा, औसत प्रगति और एस्क्रो बैंक"], ["png", "इन्फ़ोग्राफ़िक्स", "आपके फ़िल्टर के साथ Telegram, LinkedIn और प्रेज़ेंटेशन के लिए तैयार कार्ड"]],
   trustH: "कोई जोखिम नहीं", trust: [["एक क्लिक में रद्द", "Stripe पोर्टल से, बिना ईमेल या कॉल"], ["सुरक्षित भुगतान", "Stripe से कार्ड, Apple Pay और Google Pay"], ["आधिकारिक डेटा", "केवल दुबई लैंड डिपार्टमेंट का ओपन डेटा"], ["एक अकाउंट", "PromptEstates ऐप वाला ही साइन इन"]],
-  faqH: "सवाल-जवाब", faq: [["डेटा कहां से आता है?", "दुबई लैंड डिपार्टमेंट के ओपन डेटा से: दर्ज बिक्री, Ejari किराया अनुबंध और प्रोजेक्ट रजिस्ट्री। लिस्टिंग कीमतें नहीं।"], ["कितनी बार अपडेट होता है?", "हर हफ़्ते, हर नए DLD एक्सपोर्ट के बाद। डेटा की तारीख हर पेज के नीचे दिखती है।"], ["वार्षिक क्यों?", "मासिक से 34% सस्ता: सालाना 588 $ की जगह 390 $।"], ["क्या मैं रद्द कर सकता हूं?", "हां, कभी भी अपने अकाउंट से। भुगतान की अवधि ख़त्म होने तक एक्सेस रहता है।"], ["क्या यह निवेश सलाह है?", "नहीं। यह वास्तविक सौदों का विश्लेषण है; ख़रीदने का फ़ैसला आपका है।"]],
-  finalH: "दुबई में प्रॉपर्टी वादों पर नहीं, डेटा पर ख़रीदें", note: "भुगतान Stripe से। कीमतें USD में।"
+  faqH: "सवाल-जवाब", faq: [["डेटा कहां से आता है?", "दुबई लैंड डिपार्टमेंट के ओपन डेटा से: दर्ज बिक्री, Ejari किराया अनुबंध और प्रोजेक्ट रजिस्ट्री। लिस्टिंग कीमतें नहीं।"], ["कितनी बार अपडेट होता है?", "हर हफ़्ते, हर नए DLD एक्सपोर्ट के बाद। डेटा की तारीख हर पेज के नीचे दिखती है।"], ["वार्षिक क्यों?", "मासिक से 31% सस्ता: साल में AED 2,148 की जगह AED 1,490।"], ["क्या मैं रद्द कर सकता हूं?", "हां, कभी भी अपने अकाउंट से। भुगतान की अवधि ख़त्म होने तक एक्सेस रहता है।"], ["क्या यह निवेश सलाह है?", "नहीं। यह वास्तविक सौदों का विश्लेषण है; ख़रीदने का फ़ैसला आपका है।"]],
+  finalH: "दुबई में प्रॉपर्टी वादों पर नहीं, डेटा पर ख़रीदें", note: "Stripe से भुगतान। कीमतें AED में। पहले 14 दिन मुफ़्त।"
  },
  TOUR: {
   next: "आगे", back: "पीछे", skip: "छोड़ें", done: "हो गया", of: "में से", replay: "टूर", start: "टूर शुरू करें", hi: "PromptEstates Pro में आपका स्वागत है", hiSub: "आधिकारिक DLD डेटा से दुबई बाज़ार, एक ही विंडो में। 30 सेकंड में मुख्य बातें।",
@@ -436,6 +441,7 @@ window.PRO_I18N.it = {
   master: "Progetto principale", medianPrice: "Prezzo mediano", medianSize: "Superficie mediana", medianRent: "Affitto/anno"
  },
  PR: {
+  trial: "14 giorni gratis",
   h: "L’analisi del mercato di Dubai per i professionisti", sub: "Ogni vendita del Dubai Land Department, gli affitti, il registro dei progetti e un analista IA in un’unica dashboard. Decidi sui dati, non sul marketing degli sviluppatori.",
   stats: [["sales", "vendite DLD nel database"], ["rents", "contratti di affitto"], ["projects", "progetti a registro"], ["n_areas", "zone sulla mappa"]],
   upd: "Dati DLD al {d} · aggiornati ogni settimana", month: "Mensile", year: "Annuale", perM: "/ mese", perY: "/ anno", yearNote: "≈ {m} al mese con pagamento annuale", popular: "La scelta degli investitori",
@@ -445,8 +451,8 @@ window.PRO_I18N.it = {
   cmpH: "Gratis o Pro", cmpRows: [["Panoramica del mercato e mappa"], ["Filtri: monolocali, 1–4 camere, ville"], ["Zone: prezzi, affitti, rendimenti"], ["3.353 progetti: avanzamento, consegna, escrow"], ["Ogni vendita per 24 mesi + CSV"], ["Affidabilità e ritardi degli sviluppatori"], ["Analista IA e memo IA"], ["Prezzo equo dai comparabili"], ["Infografiche PNG per i post"]],
   featH: "Dentro Pro", feats: [["map", "Mappa 3D del mercato", "Prezzo, rendimento, crescita e quota sulla carta per zona, livelli metro e consegne, timelapse di 3 anni"], ["ai", "Analista IA", "«Dove rende di più un bilocale sotto 1 mln AED?» — risposta dalle vendite reali, con link"], ["memo", "Memo d’investimento", "Analisi del progetto: prezzo vs zona, sviluppatore, rischio di consegna, affitti — pronto da inviare al cliente"], ["fair", "Prezzo equo", "Quanto vale davvero un’unità secondo 6 mesi di comparabili e quanto chiede in più il venditore"], ["risk", "Rischio sviluppatore", "Quota di progetti in ritardo, avanzamento medio e banca escrow per ogni sviluppatore"], ["png", "Infografiche", "Schede pronte per Telegram, LinkedIn e presentazioni con i tuoi filtri"]],
   trustH: "Nessun rischio", trust: [["Disdici con un clic", "Dal portale Stripe, senza email né telefonate"], ["Pagamenti sicuri", "Carte, Apple Pay e Google Pay tramite Stripe"], ["Dati ufficiali", "Solo dati aperti del Dubai Land Department"], ["Un solo account", "Lo stesso accesso dell’app PromptEstates"]],
-  faqH: "FAQ", faq: [["Da dove provengono i dati?", "Dai dati aperti del Dubai Land Department: vendite registrate, contratti Ejari e registro dei progetti. Nessun prezzo di annuncio."], ["Ogni quanto vengono aggiornati?", "Ogni settimana, dopo ogni nuova esportazione DLD. La data dei dati è indicata in fondo a ogni pagina."], ["Perché l’annuale?", "Costa il 34% in meno del mensile: 390 $ invece di 588 $ all’anno."], ["Posso disdire?", "Sì, in qualsiasi momento dal tuo account. L’accesso resta attivo fino alla fine del periodo pagato."], ["È una consulenza finanziaria?", "No. Sono analisi di transazioni reali; la decisione d’acquisto è tua."]],
-  finalH: "Compra a Dubai in base ai dati, non alle promesse", note: "Pagamenti tramite Stripe. Prezzi in USD."
+  faqH: "FAQ", faq: [["Da dove provengono i dati?", "Dai dati aperti del Dubai Land Department: vendite registrate, contratti Ejari e registro dei progetti. Nessun prezzo di annuncio."], ["Ogni quanto vengono aggiornati?", "Ogni settimana, dopo ogni nuova esportazione DLD. La data dei dati è indicata in fondo a ogni pagina."], ["Perché l’annuale?", "Costa il 31% in meno del mensile: 1.490 AED invece di 2.148 AED all'anno."], ["Posso disdire?", "Sì, in qualsiasi momento dal tuo account. L’accesso resta attivo fino alla fine del periodo pagato."], ["È una consulenza finanziaria?", "No. Sono analisi di transazioni reali; la decisione d’acquisto è tua."]],
+  finalH: "Compra a Dubai in base ai dati, non alle promesse", note: "Pagamento tramite Stripe. Prezzi in AED. Primi 14 giorni gratis."
  },
  TOUR: {
   next: "Avanti", back: "Indietro", skip: "Salta", done: "Fatto", of: "di", replay: "Tour", start: "Inizia il tour", hi: "Benvenuto in PromptEstates Pro", hiSub: "Il mercato di Dubai dai dati ufficiali DLD, in un’unica finestra. L’essenziale in 30 secondi.",
@@ -513,6 +519,7 @@ window.PRO_I18N.tr = {
   master: "Ana proje", medianPrice: "Medyan fiyat", medianSize: "Medyan alan", medianRent: "Kira/yıl"
  },
  PR: {
+  trial: "14 gün ücretsiz",
   h: "Profesyoneller için Dubai piyasa analizi", sub: "Dubai Tapu Dairesi’nin her satışı, kiralar, proje sicili ve yapay zekâ analisti tek panelde. Geliştirici reklamlarıyla değil, verilerle karar verin.",
   stats: [["sales", "veritabanındaki DLD satışı"], ["rents", "kira sözleşmesi"], ["projects", "sicildeki proje"], ["n_areas", "haritadaki bölge"]],
   upd: "DLD verileri {d} itibarıyla · haftalık güncellenir", month: "Aylık", year: "Yıllık", perM: "/ ay", perY: "/ yıl", yearNote: "Yıllık ödemede ayda ≈ {m}", popular: "Yatırımcıların seçimi",
@@ -522,8 +529,8 @@ window.PRO_I18N.tr = {
   cmpH: "Ücretsiz mi, Pro mu", cmpRows: [["Piyasaya genel bakış ve harita"], ["Filtreler: stüdyo, 1–4 oda, villalar"], ["Bölgeler: fiyat, kira, getiri"], ["3.353 proje: ilerleme, teslim, emanet"], ["24 ayın tüm satışları + CSV"], ["Geliştirici güvenilirliği ve gecikmeler"], ["Yapay zekâ analisti ve notları"], ["Emsallerden adil fiyat"], ["Paylaşımlar için PNG infografikler"]],
   featH: "Pro’da neler var", feats: [["map", "3D piyasa haritası", "Bölgeye göre fiyat, getiri, büyüme ve proje aşaması payı; metro ve teslim katmanları, 3 yıllık zaman atlaması"], ["ai", "Yapay zekâ analisti", "“1 milyon AED altında 1+1 getirisi en yüksek nerede?” — gerçek satışlardan, bağlantılarla yanıt"], ["memo", "Yatırım notu", "Proje analizi: bölgeye göre fiyat, geliştirici, teslim riski, kiralar — müşteriye göndermeye hazır"], ["fair", "Adil fiyat", "6 aylık emsallere göre birimin gerçek değeri ve satıcının fazla istediği tutar"], ["risk", "Geliştirici riski", "Her geliştirici için geciken proje payı, ortalama tamamlanma ve emanet bankası"], ["png", "İnfografikler", "Filtrelerinizle Telegram, LinkedIn ve sunumlar için hazır kartlar"]],
   trustH: "Risk yok", trust: [["Tek tıkla iptal", "Stripe portalından, e-posta veya arama olmadan"], ["Güvenli ödeme", "Stripe ile kart, Apple Pay ve Google Pay"], ["Resmî veriler", "Yalnızca Dubai Tapu Dairesi açık verileri"], ["Tek hesap", "PromptEstates uygulamasıyla aynı giriş"]],
-  faqH: "SSS", faq: [["Veriler nereden geliyor?", "Dubai Tapu Dairesi açık verilerinden: kayıtlı satışlar, Ejari kira sözleşmeleri ve proje sicili. İlan fiyatları yok."], ["Ne sıklıkla güncelleniyor?", "Her yeni DLD verisinden sonra haftalık. Veri tarihi her sayfanın altında yazar."], ["Neden yıllık?", "Aylıktan %34 daha ucuz: yılda 588 $ yerine 390 $."], ["İptal edebilir miyim?", "Evet, istediğiniz zaman hesabınızdan. Erişim ödenen dönemin sonuna kadar sürer."], ["Bu yatırım tavsiyesi mi?", "Hayır. Gerçek işlemlerden yapılan analizlerdir; satın alma kararı sizindir."]],
-  finalH: "Dubai’de vaatlerle değil, verilerle mülk alın", note: "Ödemeler Stripe ile. Fiyatlar USD cinsindendir."
+  faqH: "SSS", faq: [["Veriler nereden geliyor?", "Dubai Tapu Dairesi açık verilerinden: kayıtlı satışlar, Ejari kira sözleşmeleri ve proje sicili. İlan fiyatları yok."], ["Ne sıklıkla güncelleniyor?", "Her yeni DLD verisinden sonra haftalık. Veri tarihi her sayfanın altında yazar."], ["Neden yıllık?", "Aylık ödemeden %31 daha ucuz: yılda 2.148 AED yerine 1.490 AED."], ["İptal edebilir miyim?", "Evet, istediğiniz zaman hesabınızdan. Erişim ödenen dönemin sonuna kadar sürer."], ["Bu yatırım tavsiyesi mi?", "Hayır. Gerçek işlemlerden yapılan analizlerdir; satın alma kararı sizindir."]],
+  finalH: "Dubai’de vaatlerle değil, verilerle mülk alın", note: "Stripe ile ödeme. Fiyatlar AED cinsinden. İlk 14 gün ücretsiz."
  },
  TOUR: {
   next: "İleri", back: "Geri", skip: "Atla", done: "Tamam", of: "/", replay: "Tur", start: "Turu başlat", hi: "PromptEstates Pro’ya hoş geldiniz", hiSub: "Resmî DLD verileriyle Dubai piyasası tek pencerede. 30 saniyede temel bilgiler.",
@@ -590,6 +597,7 @@ window.PRO_I18N.ur = {
   master: "ماسٹر پروجیکٹ", medianPrice: "میڈین قیمت", medianSize: "میڈین رقبہ", medianRent: "کرایہ/سال"
  },
  PR: {
+  trial: "14 دن مفت",
   h: "پیشہ ور افراد کے لیے دبئی مارکیٹ تجزیہ", sub: "دبئی لینڈ ڈیپارٹمنٹ کا ہر سودا، کرایے، پروجیکٹ رجسٹری اور AI تجزیہ کار ایک ڈیش بورڈ میں۔ ڈویلپر کی تشہیر نہیں، ڈیٹا پر فیصلہ کریں۔",
   stats: [["sales", "ڈیٹا بیس میں DLD سودے"], ["rents", "کرایہ معاہدے"], ["projects", "رجسٹری پروجیکٹس"], ["n_areas", "نقشے پر علاقے"]],
   upd: "DLD ڈیٹا {d} تک · ہفتہ وار اپ ڈیٹ", month: "ماہانہ", year: "سالانہ", perM: "/ ماہ", perY: "/ سال", yearNote: "سالانہ ادائیگی پر ≈ {m} ماہانہ", popular: "سرمایہ کاروں کا انتخاب",
@@ -599,8 +607,8 @@ window.PRO_I18N.ur = {
   cmpH: "مفت یا Pro", cmpRows: [["مارکیٹ جائزہ اور نقشہ"], ["فلٹر: اسٹوڈیو، 1–4 بیڈروم، ولاز"], ["علاقے: قیمت، کرایہ، منافع"], ["3,353 پروجیکٹس: پیش رفت، ہینڈ اوور، ایسکرو"], ["24 ماہ کا ہر سودا + CSV"], ["ڈویلپر کی ساکھ اور تاخیر"], ["AI تجزیہ کار اور AI میمو"], ["موازنہ سودوں سے مناسب قیمت"], ["پوسٹس کے لیے PNG انفوگرافکس"]],
   featH: "Pro میں کیا ہے", feats: [["map", "3D مارکیٹ نقشہ", "علاقہ وار قیمت، منافع، اضافہ اور آف پلان حصہ، میٹرو اور ہینڈ اوور لیئرز، 3 سال کا ٹائم لیپس"], ["ai", "AI تجزیہ کار", "“10 لاکھ AED سے کم میں 1BR کا سب سے زیادہ منافع کہاں ہے؟” — حقیقی سودوں سے جواب، لنکس کے ساتھ"], ["memo", "سرمایہ کاری میمو", "پروجیکٹ تجزیہ: علاقے کے مقابلے میں قیمت، ڈویلپر، ڈیلیوری خطرہ، کرایے — کلائنٹ کو بھیجنے کے لیے تیار"], ["fair", "مناسب قیمت", "6 ماہ کے موازنہ سودوں سے یونٹ کی اصل قیمت اور بیچنے والا کتنا زیادہ مانگ رہا ہے"], ["risk", "ڈویلپر خطرہ", "ہر ڈویلپر کے تاخیر والے پروجیکٹس کا حصہ، اوسط پیش رفت اور ایسکرو بینک"], ["png", "انفوگرافکس", "آپ کے فلٹرز کے ساتھ Telegram، LinkedIn اور پریزنٹیشنز کے لیے تیار کارڈز"]],
   trustH: "کوئی خطرہ نہیں", trust: [["ایک کلک میں منسوخی", "Stripe پورٹل سے، بغیر ای میل یا کال"], ["محفوظ ادائیگی", "Stripe کے ذریعے کارڈ، Apple Pay اور Google Pay"], ["سرکاری ڈیٹا", "صرف دبئی لینڈ ڈیپارٹمنٹ کا اوپن ڈیٹا"], ["ایک اکاؤنٹ", "PromptEstates ایپ والا ہی سائن ان"]],
-  faqH: "سوالات", faq: [["ڈیٹا کہاں سے آتا ہے؟", "دبئی لینڈ ڈیپارٹمنٹ کے اوپن ڈیٹا سے: درج فروخت، Ejari کرایہ معاہدے اور پروجیکٹ رجسٹری۔ اشتہاری قیمتیں نہیں۔"], ["کتنی بار اپ ڈیٹ ہوتا ہے؟", "ہر ہفتے، ہر نئے DLD ایکسپورٹ کے بعد۔ ڈیٹا کی تاریخ ہر صفحے کے نیچے لکھی ہے۔"], ["سالانہ کیوں؟", "ماہانہ سے 34% سستا: سالانہ 588 $ کی بجائے 390 $۔"], ["کیا میں منسوخ کر سکتا ہوں؟", "جی ہاں، کبھی بھی اپنے اکاؤنٹ سے۔ ادا شدہ مدت کے اختتام تک رسائی رہتی ہے۔"], ["کیا یہ سرمایہ کاری کا مشورہ ہے؟", "نہیں۔ یہ حقیقی سودوں کا تجزیہ ہے؛ خریدنے کا فیصلہ آپ کا ہے۔"]],
-  finalH: "دبئی میں پراپرٹی وعدوں پر نہیں، ڈیٹا پر خریدیں", note: "ادائیگی Stripe کے ذریعے۔ قیمتیں USD میں۔"
+  faqH: "سوالات", faq: [["ڈیٹا کہاں سے آتا ہے؟", "دبئی لینڈ ڈیپارٹمنٹ کے اوپن ڈیٹا سے: درج فروخت، Ejari کرایہ معاہدے اور پروجیکٹ رجسٹری۔ اشتہاری قیمتیں نہیں۔"], ["کتنی بار اپ ڈیٹ ہوتا ہے؟", "ہر ہفتے، ہر نئے DLD ایکسپورٹ کے بعد۔ ڈیٹا کی تاریخ ہر صفحے کے نیچے لکھی ہے۔"], ["سالانہ کیوں؟", "ماہانہ سے 31% سستا: سال میں AED 2,148 کے بجائے AED 1,490۔"], ["کیا میں منسوخ کر سکتا ہوں؟", "جی ہاں، کبھی بھی اپنے اکاؤنٹ سے۔ ادا شدہ مدت کے اختتام تک رسائی رہتی ہے۔"], ["کیا یہ سرمایہ کاری کا مشورہ ہے؟", "نہیں۔ یہ حقیقی سودوں کا تجزیہ ہے؛ خریدنے کا فیصلہ آپ کا ہے۔"]],
+  finalH: "دبئی میں پراپرٹی وعدوں پر نہیں، ڈیٹا پر خریدیں", note: "Stripe کے ذریعے ادائیگی۔ قیمتیں AED میں۔ پہلے 14 دن مفت۔"
  },
  TOUR: {
   next: "آگے", back: "پیچھے", skip: "چھوڑیں", done: "ہو گیا", of: "میں سے", replay: "ٹور", start: "ٹور شروع کریں", hi: "PromptEstates Pro میں خوش آمدید", hiSub: "سرکاری DLD ڈیٹا سے دبئی مارکیٹ، ایک ہی ونڈو میں۔ 30 سیکنڈ میں اہم باتیں۔",
@@ -666,6 +674,7 @@ window.PRO_I18N.zh = {
   master: "总体项目", medianPrice: "中位价", medianSize: "中位面积", medianRent: "年租金"
  },
  PR: {
+  trial: "14 天免费",
   h: "面向专业人士的迪拜市场分析", sub: "迪拜土地局每一笔成交、租金、项目登记册和 AI 分析师集于一个面板。用数据决策，而非开发商营销。",
   stats: [["sales", "条 DLD 成交记录"], ["rents", "份租赁合同"], ["projects", "个登记项目"], ["n_areas", "个地图区域"]],
   upd: "DLD 数据截至 {d} · 每周更新", month: "按月", year: "按年", perM: "/ 月", perY: "/ 年", yearNote: "按年付费约合每月 {m}", popular: "投资者首选",
@@ -675,8 +684,8 @@ window.PRO_I18N.zh = {
   cmpH: "免费还是 Pro", cmpRows: [["市场概览与地图"], ["筛选：开间、1–4 居、别墅"], ["区域：价格、租金、收益率"], ["3,353 个项目：进度、交付、托管"], ["24 个月全部成交 + CSV"], ["开发商可靠性与延期"], ["AI 分析师与 AI 备忘录"], ["基于可比成交的合理价格"], ["用于帖子的 PNG 信息图"]],
   featH: "Pro 包含", feats: [["map", "3D 市场地图", "按区域显示价格、收益率、增长和期房占比，含地铁与交付图层及三年动态回放"], ["ai", "AI 分析师", "“100 万迪拉姆以下哪里一居室收益最高？”——基于实际成交回答并附链接"], ["memo", "投资备忘录", "项目拆解：价格与区域对比、开发商、交付风险、租金——可直接发给客户"], ["fair", "合理价格", "根据 6 个月可比成交判断单位真实价值及卖方溢价"], ["risk", "开发商风险", "每家开发商的延期项目占比、平均进度和托管银行"], ["png", "信息图", "按您的筛选生成可用于 Telegram、LinkedIn 和演示的卡片"]],
   trustH: "零风险", trust: [["一键取消", "在 Stripe 门户操作，无需邮件或电话"], ["安全支付", "通过 Stripe 支持银行卡、Apple Pay 和 Google Pay"], ["官方数据", "仅使用迪拜土地局开放数据"], ["统一账户", "与 PromptEstates 应用同一登录"]],
-  faqH: "常见问题", faq: [["数据来自哪里？", "迪拜土地局开放数据：登记成交、Ejari 租赁合同和项目登记册，不含挂牌价。"], ["多久更新一次？", "每周，在 DLD 每次发布新数据后更新。每页底部显示数据日期。"], ["为什么选择按年？", "比按月便宜 34%：每年 390 美元而非 588 美元。"], ["可以取消吗？", "可以，随时在账户中取消，已付费期间内仍可使用。"], ["这是投资建议吗？", "不是。这是基于实际成交的分析，购买决定由您做出。"]],
-  finalH: "用数据而非承诺购买迪拜房产", note: "通过 Stripe 支付，价格以美元计。"
+  faqH: "常见问题", faq: [["数据来自哪里？", "迪拜土地局开放数据：登记成交、Ejari 租赁合同和项目登记册，不含挂牌价。"], ["多久更新一次？", "每周，在 DLD 每次发布新数据后更新。每页底部显示数据日期。"], ["为什么选择按年？", "比按月付费便宜 31%：每年 1,490 AED，而非 2,148 AED。"], ["可以取消吗？", "可以，随时在账户中取消，已付费期间内仍可使用。"], ["这是投资建议吗？", "不是。这是基于实际成交的分析，购买决定由您做出。"]],
+  finalH: "用数据而非承诺购买迪拜房产", note: "通过 Stripe 支付。价格以 AED 计。前 14 天免费。"
  },
  TOUR: {
   next: "下一步", back: "上一步", skip: "跳过", done: "完成", of: "/", replay: "导览", start: "开始导览", hi: "欢迎使用 PromptEstates Pro", hiSub: "基于 DLD 官方数据的迪拜市场，一屏尽览。30 秒带您了解要点。",

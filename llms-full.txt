@@ -1,6 +1,6 @@
 # PromptEstates
 
-> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from $49.
+> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from AED 179 a month with a 14-day free trial.
 
 PromptEstates is an AI search service for off-plan (new-build) property in the United Arab Emirates — Dubai, Abu Dhabi and other emirates. Users describe what they want in natural language (budget, area, handover date, living or rental investment); the AI matches developer projects and explains each match with market analytics: price per m² versus the area average, payment plan including the 4% Dubai Land Department (DLD) fee, rental yield forecast and developer track record. Results appear as a list, on a map, and as a PDF presentation in the client's language and currency. The catalogue is built on Dubai Land Department open data and grows every week. The app interface is available in 10 languages. PromptEstates Pro (https://promptestates.com/pro/) is the analytics dashboard on DLD data: market overview and 3D area map for free; the Pro subscription adds every area, project and transaction, developer reliability, property-type filters, an AI analyst, AI investment memos, fair-price estimates and exports (see Pricing below). One account works in the dashboard and the app. Analytics are informational and not investment advice.
 
@@ -77,7 +77,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: Real Estate Transactions and Projects registry). Medians of registered sales, not advertised prices. Full table: https://promptestates.com/en/guide/dubai-market-data/ · CSV: https://promptestates.com/data/dubai-districts-dld.csv
 
 - Al Furjan: median AED 15,157/m² (AED 1,408/sq ft) over 12 months; change since 2023: +38%; median studio AED 553,000, 1-bed AED 1,100,000, 2-bed AED 1,722,000; off-plan share of sales 50%; projects under construction 49, of which past planned handover 12
-- Jumeirah Village Circle (JVC): median AED 16,104/m² (AED 1,496/sq ft) over 12 months; change since 2023: +19%; median studio AED 709,000, 1-bed AED 1,110,000, 2-bed AED 1,652,000; off-plan share of sales 61%; projects under construction 167, of which past planned handover 70
+- Jumeirah Village Circle (JVC): median AED 16,104/m² (AED 1,496/sq ft) over 12 months; change since 2023: +19%; median studio AED 709,000, 1-bed AED 1,110,000, 2-bed AED 1,652,000; off-plan share of sales 61%; projects under construction 167, of which past planned handover 71
 - Arjan: median AED 16,854/m² (AED 1,566/sq ft) over 12 months; change since 2023: +36%; median studio AED 726,000, 1-bed AED 1,186,000, 2-bed AED 1,680,000; off-plan share of sales 64%; projects under construction 39, of which past planned handover 19
 - Dubai South: median AED 17,505/m² (AED 1,626/sq ft) over 12 months; change since 2023: +62%; median studio AED 648,000, 1-bed AED 1,144,000, 2-bed AED 1,683,000; off-plan share of sales 91%; projects under construction 105, of which past planned handover 23
 - Jumeirah Village Triangle (JVT): median AED 17,847/m² (AED 1,658/sq ft) over 12 months; change since 2023: +25%; median studio AED 780,000, 1-bed AED 1,239,000, 2-bed AED 1,735,000; off-plan share of sales 84%; projects under construction 40, of which past planned handover 9
@@ -91,7 +91,7 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 - Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
 - Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
-## Key rules for buyers (checked 2026-10-14)
+## Key rules for buyers (checked 2026-10-15)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
 - Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
 - 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).
@@ -101,16 +101,16 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 ## How to cite
 "PromptEstates, based on Dubai Land Department data" with a link to the page used. Analytics are informational and not investment advice.
 
-## Pricing (USD, subscription, cancel anytime)
+## Pricing (AED, subscription, 14 days free, cancel anytime)
 
-- Free: $0. Includes: Dubai market overview; Interactive 3D area map; Monthly DLD price and sales trends.
-- Pro: $49 per month or $390 per year. Includes: Every area, 3,353 projects, transactions and developers; Filters: studios, 1–4 bed, villas; AI analyst: ask in plain words; AI project memo in 30 seconds; Fair price from actual sales; PNG infographics and CSV export.
+- Free: AED 0. Includes: Dubai market overview; Interactive 3D area map; Monthly DLD price and sales trends.
+- Pro: AED 179 per month or AED 1,490 per year, first 14 days free. Includes: Every area, 3,353 projects, transactions and developers; Filters: studios, 1–4 bed, villas; AI analyst: ask in plain words; AI project memo in 30 seconds; Fair price from actual sales; PNG infographics and CSV export.
 
 Cancel in one click — access stays until the end of the paid period. Details: https://promptestates.com/en/#pricing and https://promptestates.com/pro/#/pricing
 
 ## FAQ (English)
 
-> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from $49.
+> AI search and Dubai market analytics on DLD data: price per m², rental yield, developer checks. Free plan, Pro from AED 179 a month with a 14-day free trial.
 
 ### What is PromptEstates?
 PromptEstates is an AI service for finding off-plan property in the UAE. You describe what you want in plain words, and the AI matches developer projects and shows market analytics for each one: price per m², area trends, rental yield forecast and payment plan.
@@ -125,7 +125,7 @@ Dubai, Abu Dhabi and other UAE emirates. You can search by a specific area — s
 The AI matches your budget, area, handover date and goal — to live in or to rent out — against developer projects, area price per m², handover schedules and rental demand, then explains why each option made the shortlist.
 
 ### How much does PromptEstates cost?
-The Dubai market overview and the area map are free. Pro costs $49 a month or $390 a year (34% less) and unlocks every area, project and transaction, the AI analyst and memos. Cancel in one click.
+The Dubai market overview and the area map are free. Pro costs AED 179 a month or AED 1,490 a year (31% less), with the first 14 days free, and unlocks every area, project and transaction, the AI analyst and memos. Cancel in one click.
 
 ### Is the analytics investment advice?
 No. PromptEstates analytics and forecasts are for information only and help you compare projects; they do not constitute investment advice.
@@ -153,7 +153,7 @@ Yes. PromptEstates has one account for the dashboard and the app: sign in with G
 
 ## Вопросы и ответы (Русский)
 
-> ИИ-поиск новостроек и аналитика рынка Дубая по данным DLD: цена за м², доходность аренды, проверка застройщика. Бесплатно, Pro от $49.
+> ИИ-поиск новостроек и аналитика рынка Дубая по данным DLD: цена за м², доходность аренды, проверка застройщика. Бесплатно, Pro от AED 179 в месяц, 14 дней бесплатно.
 
 ### Что такое PromptEstates?
 PromptEstates — это ИИ-сервис для поиска новостроек (off-plan недвижимости) в ОАЭ. Вы описываете запрос обычными словами, а ИИ подбирает проекты застройщиков и показывает аналитику рынка по каждому: цену за м², динамику района, прогноз доходности аренды и план платежей.
@@ -168,7 +168,7 @@ PromptEstates — это ИИ-сервис для поиска новостро�
 ИИ сопоставляет ваш бюджет, район, срок сдачи и цель покупки — жить или сдавать — с проектами застройщиков, ценами за м² в районе, сроками сдачи и спросом на аренду, а затем объясняет, почему каждый вариант попал в подборку.
 
 ### Сколько стоит PromptEstates?
-Обзор рынка Дубая и карта районов — бесплатно. Подписка Pro стоит $49 в месяц или $390 в год (на 34% дешевле) и открывает все районы, проекты, сделки, ИИ-аналитика и меморандумы. Отмена в один клик.
+Обзор рынка Дубая и карта районов — бесплатно. Подписка Pro стоит AED 179 в месяц или AED 1,490 в год (на 31% дешевле), первые 14 дней бесплатно. Pro открывает все районы, проекты, сделки, ИИ-аналитика и меморандумы. Отмена в один клик.
 
 ### Является ли аналитика инвестиционной рекомендацией?
 Нет. Аналитика и прогнозы PromptEstates носят информационный характер и помогают сравнивать проекты, но не являются инвестиционной рекомендацией.
@@ -211,7 +211,7 @@ PromptEstates خدمة تعتمد على الذكاء الاصطناعي للب�
 يطابق الذكاء الاصطناعي ميزانيتك والمنطقة وموعد التسليم وهدف الشراء — للسكن أو للإيجار — مع مشاريع المطوّرين وأسعار المتر في المنطقة ومواعيد التسليم والطلب على الإيجار، ثم يشرح سبب اختيار كل خيار.
 
 ### كم تكلفة PromptEstates؟
-النظرة العامة على سوق دبي وخريطة المناطق مجانية. اشتراك Pro بسعر 49 دولاراً شهرياً أو 390 دولاراً سنوياً (أقل بنسبة 34%) ويفتح كل المناطق والمشاريع والصفقات ومحلل الذكاء الاصطناعي والمذكرات. إلغاء بنقرة واحدة.
+النظرة العامة على سوق دبي وخريطة المناطق مجانية. اشتراك Pro بسعر 179 درهماً شهرياً أو 1,490 درهماً سنوياً (أقل بنسبة 31%)، وأول 14 يوماً مجاناً، ويفتح كل المناطق والمشاريع والصفقات ومحلل الذكاء الاصطناعي والمذكرات. إلغاء بنقرة واحدة.
 
 ### هل تُعد التحليلات نصيحة استثمارية؟
 لا. تحليلات وتوقعات PromptEstates لأغراض إعلامية فقط وتساعدك على مقارنة المشاريع، لكنها لا تُعد نصيحة استثمارية.

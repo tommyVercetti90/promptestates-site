@@ -1500,11 +1500,11 @@
   }
 
   // ------------------------------------------------------------------ subscription: pricing, account, paywall, sign-in
-  var PLANS = { display: { month: '$49', year: '$390' } }, afterSignIn = null;
+  var PLANS = { display: { month: 'AED 179', year: 'AED 1,490' }, trial_days: 14 }, afterSignIn = null;
   var PR = {
     ru: { eyebrow: 'PromptEstates Pro', h: 'Аналитика рынка Дубая, которой пользуются профессионалы', sub: 'Все сделки Земельного департамента Дубая, аренда, реестр проектов и ИИ-аналитик — в одном дашборде. Решения на данных, а не на рекламе застройщиков.',
       stats: [['sales', 'сделок DLD в базе'], ['rents', 'договоров аренды'], ['projects', 'проектов в реестре'], ['n_areas', 'районов на карте']],
-      upd: 'Данные DLD на {d} · обновление каждую неделю', month: 'Месяц', year: 'Год', save: '−34%', perM: '/ мес', perY: '/ год', yearNote: '≈ {m} в месяц при оплате за год',
+      trial: '14 дней бесплатно', upd: 'Данные DLD на {d} · обновление каждую неделю', month: 'Месяц', year: 'Год', save: '−34%', perM: '/ мес', perY: '/ год', yearNote: '≈ {m} в месяц при оплате за год',
       popular: 'Выбор инвесторов', cta: 'Получить Pro', ctaFree: 'Начать бесплатно', current: 'Ваш тариф', free: 'Бесплатно',
       freeL: ['Обзор рынка Дубая', 'Карта районов (все типы жилья)', 'Ежемесячная динамика цен и сделок'],
       proL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту за 30 секунд', 'Справедливая цена по реальным сделкам', 'Инфографика в PNG и выгрузка сделок в CSV'],
@@ -1514,12 +1514,12 @@
         ['risk', 'Риски застройщиков', 'Доля просроченных проектов, средняя готовность и эскроу-банк по каждому застройщику'], ['png', 'Инфографика', 'Готовые карточки для Telegram, LinkedIn и презентаций с вашими фильтрами']],
       trustH: 'Без рисков', trust: [['Отмена в один клик', 'В личном кабинете Stripe, без писем и звонков'], ['Безопасная оплата', 'Карты, Apple Pay и Google Pay через Stripe'], ['Официальные данные', 'Только открытые данные Dubai Land Department'], ['Один аккаунт', 'Тот же вход, что в приложении PromptEstates']],
       faqH: 'Вопросы', faq: [['Откуда данные?', 'Из открытых данных Dubai Land Department: зарегистрированные сделки, договоры аренды Ejari и реестр проектов. Мы не используем цены из рекламы.'],
-        ['Как часто обновляется?', 'Каждую неделю после новой выгрузки DLD. Дата данных указана внизу каждой страницы.'], ['Чем годовой тариф лучше?', 'Он на 34% дешевле помесячной оплаты: $390 вместо $588 в год.'],
+        ['Как часто обновляется?', 'Каждую неделю после новой выгрузки DLD. Дата данных указана внизу каждой страницы.'], ['Чем годовой тариф лучше?', 'Он на 31% дешевле помесячной оплаты: AED 1,490 вместо AED 2,148 в год.'],
         ['Можно ли отменить?', 'Да, в любой момент в личном кабинете. Доступ сохранится до конца оплаченного периода.'], ['Это инвестиционный совет?', 'Нет. Это аналитика по фактическим сделкам; решение о покупке остаётся за вами.']],
-      finalH: 'Покупайте недвижимость в Дубае по данным, а не по обещаниям', note: 'Оплата через Stripe. Цены в USD.' },
+      finalH: 'Покупайте недвижимость в Дубае по данным, а не по обещаниям', note: 'Оплата через Stripe. Цены в AED. Первые 14 дней бесплатно.' },
     en: { eyebrow: 'PromptEstates Pro', h: 'Dubai market intelligence built for professionals', sub: 'Every Dubai Land Department sale, rents, the project registry and an AI analyst in one dashboard. Decide on data, not developer marketing.',
       stats: [['sales', 'DLD sales in the database'], ['rents', 'rent contracts'], ['projects', 'registry projects'], ['n_areas', 'areas on the map']],
-      upd: 'DLD data to {d} · updated weekly', month: 'Monthly', year: 'Yearly', save: '−34%', perM: '/ mo', perY: '/ yr', yearNote: '≈ {m} per month billed yearly',
+      trial: '14 days free', upd: 'DLD data to {d} · updated weekly', month: 'Monthly', year: 'Yearly', save: '−34%', perM: '/ mo', perY: '/ yr', yearNote: '≈ {m} per month billed yearly',
       popular: 'Investors’ choice', cta: 'Get Pro', ctaFree: 'Start free', current: 'Your plan', free: 'Free',
       freeL: ['Dubai market overview', 'Area map (all property types)', 'Monthly price and sales trends'],
       proL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'AI analyst: ask in plain words', 'AI memo for any project in 30 seconds', 'Fair price from actual sales', 'PNG infographics and CSV export'],
@@ -1529,9 +1529,9 @@
         ['risk', 'Developer risk', 'Share of overdue projects, average completion and escrow bank for every developer'], ['png', 'Infographics', 'Ready-made cards for Telegram, LinkedIn and decks with your filters']],
       trustH: 'No risk', trust: [['Cancel in one click', 'From your Stripe portal, no emails or calls'], ['Secure payments', 'Cards, Apple Pay and Google Pay via Stripe'], ['Official data', 'Dubai Land Department open data only'], ['One account', 'Same sign-in as the PromptEstates app']],
       faqH: 'FAQ', faq: [['Where does the data come from?', 'Dubai Land Department open data: registered sales, Ejari rent contracts and the project registry. No listing prices.'],
-        ['How often is it updated?', 'Weekly, after each new DLD export. The data date is shown at the bottom of every page.'], ['Why yearly?', 'It is 34% cheaper than monthly: $390 instead of $588 a year.'],
+        ['How often is it updated?', 'Weekly, after each new DLD export. The data date is shown at the bottom of every page.'], ['Why yearly?', 'It is 31% cheaper than monthly: AED 1,490 instead of AED 2,148 a year.'],
         ['Can I cancel?', 'Yes, anytime from your account. Access stays until the end of the paid period.'], ['Is this investment advice?', 'No. It is analytics from actual transactions; the buying decision is yours.']],
-      finalH: 'Buy Dubai property on data, not promises', note: 'Payments by Stripe. Prices in USD.' }
+      finalH: 'Buy Dubai property on data, not promises', note: 'Payments by Stripe. Prices in AED. First 14 days free.' }
   };
   var ICONS = {
     map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>', ai: '<path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/>',
@@ -1542,7 +1542,9 @@
     var L = PR[lang] || PR.en, cur = isPro();
     get('meta.json').then(function (m) {
       var pm = function (s) { return parseFloat(String(s).replace(/[^\d.]/g, '')) || 0; };
-      var monthly = PLANS.display.month, yearly = PLANS.display.year, perMonthYearly = '$' + fmt(pm(yearly) / 12, 1);
+      var money = function (n) { return 'AED ' + Math.round(n).toLocaleString('en-US'); };
+      var monthly = PLANS.display.month, yearly = PLANS.display.year, perMonthYearly = money(pm(yearly) / 12);
+      var save = '−' + Math.round(100 * (1 - pm(yearly) / (pm(monthly) * 12))) + '%', trial = PLANS.trial_days ? (L.trial || '') : '';
       var ico = function (k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[k] + '</svg>'; };
       var check = '<svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>', dash = '<span class="dash" aria-hidden="true">—</span>';
       page('<div class="pricing">' +
@@ -1551,12 +1553,12 @@
         '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p>' +
         (USER || APP ? '' : '<p class="pr-have">' + t('haveSub') + ' <button type="button" class="link-btn" id="pr-in">' + t('signIn') + '</button></p>') + '</section>' +
         '<div class="plans plans-3">' +
-          '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>$0</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
+          '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>' + money(0) + '</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
           (!cur ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
-          '<div class="plan"><h2>Pro · ' + L.month + '</h2><p class="price"><b>' + monthly + '</b><span> ' + L.perM + '</span></p><p class="pnote">&nbsp;</p><ul>' +
+          '<div class="plan"><h2>Pro · ' + L.month + '</h2><p class="price"><b>' + monthly + '</b><span> ' + L.perM + '</span></p><p class="pnote">' + (trial ? esc(trial) : '&nbsp;') + '</p><ul>' +
           L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
           (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn btn-ghost" data-buy="month">' + L.cta + ' →</button>') + '</div>' +
-          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + ' · ' + L.save + '</span><h2>Pro · ' + L.year + '</h2><p class="price"><s>$' + fmt(pm(monthly) * 12) + '</s> <b>' + yearly + '</b><span> ' + L.perY + '</span></p><p class="pnote">' + esc(L.yearNote.replace('{m}', perMonthYearly)) + '</p><ul>' +
+          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + ' · ' + save + '</span><h2>Pro · ' + L.year + '</h2><p class="price"><s>' + money(pm(monthly) * 12) + '</s> <b>' + yearly + '</b><span> ' + L.perY + '</span></p><p class="pnote">' + esc(L.yearNote.replace('{m}', perMonthYearly)) + (trial ? ' · ' + esc(trial) : '') + '</p><ul>' +
           L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
           (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn" data-buy="year">' + L.cta + ' →</button>') + '</div>' +
         '</div><p class="note center">' + esc(L.note) + '</p>' +
