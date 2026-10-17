@@ -42,6 +42,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [How to buy property in Dubai with USDT](https://promptestates.com/en/guide/buy-property-with-usdt/): Buying Dubai property with USDT or other crypto: conversion through a VARA-licensed provider, DLD registration, source-of-funds documents, costs and risks.
 - [Dubai Hills Estate apartment prices in 2026](https://promptestates.com/en/guide/dubai-hills-prices/): What an apartment in Dubai Hills Estate costs: median price per m² and per sq ft, rents by unit type, rental yields, best-selling projects and a comparison with Dubai Marina, Business Bay and JVC from DLD transactions.
 - [Is Dubai Hills Estate a good investment?](https://promptestates.com/en/guide/dubai-hills-investment/): Investing in Dubai Hills Estate on DLD data: rental yield against price growth, off-plan supply due in 2029, slowing sales, who the district suits and what to check before buying.
+- [Villas and townhouses in Dubai: how to choose and which areas to look at](https://promptestates.com/en/guide/villas-townhouses-dubai/): How to choose a villa or townhouse in Dubai: how they differ, what they cost in each area from DLD sales, where rental yields are higher, ready or off-plan, and what to check before buying.
 - [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official DLD data. Table and CSV.
 - [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
 - [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
@@ -93,7 +94,7 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 - Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
 - Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
-## Key rules for buyers (checked 2026-10-16)
+## Key rules for buyers (checked 2026-10-17)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
 - Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
 - 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).

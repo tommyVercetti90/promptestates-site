@@ -42,6 +42,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [How to buy property in Dubai with USDT](https://promptestates.com/en/guide/buy-property-with-usdt/): Buying Dubai property with USDT or other crypto: conversion through a VARA-licensed provider, DLD registration, source-of-funds documents, costs and risks.
 - [Dubai Hills Estate apartment prices in 2026](https://promptestates.com/en/guide/dubai-hills-prices/): What an apartment in Dubai Hills Estate costs: median price per m² and per sq ft, rents by unit type, rental yields, best-selling projects and a comparison with Dubai Marina, Business Bay and JVC from DLD transactions.
 - [Is Dubai Hills Estate a good investment?](https://promptestates.com/en/guide/dubai-hills-investment/): Investing in Dubai Hills Estate on DLD data: rental yield against price growth, off-plan supply due in 2029, slowing sales, who the district suits and what to check before buying.
+- [Villas and townhouses in Dubai: how to choose and which areas to look at](https://promptestates.com/en/guide/villas-townhouses-dubai/): How to choose a villa or townhouse in Dubai: how they differ, what they cost in each area from DLD sales, where rental yields are higher, ready or off-plan, and what to check before buying.
 - [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official DLD data. Table and CSV.
 - [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
 - [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
@@ -93,7 +94,7 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 - Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
 - Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
-## Key rules for buyers (checked 2026-10-16)
+## Key rules for buyers (checked 2026-10-17)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
 - Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
 - 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).
@@ -1507,6 +1508,61 @@ A: Emaar's large new phases — Palace Residences Hillside, Rosehill, Vida Resid
 
 Q: Who is Dubai Hills Estate for?
 A: Owner-occupiers, families and investors who value steady rent and liquidity over a 5+ year horizon.
+
+## Villas and townhouses in Dubai: how to choose and which areas to look at
+
+URL: https://promptestates.com/en/guide/villas-townhouses-dubai/
+
+Villas and townhouses are about 9% of all residential sales in Dubai, but a far bigger share of the money: buyers spent AED 74.7 billion on them in the 12 months to 8 October 2026. Here is how a villa differs from a townhouse, which areas suit which budget and how not to overpay. All figures come from registered Dubai Land Department (DLD) sales.
+
+- 15,605 villa and townhouse sales in 12 months, worth AED 74.7 billion.
+
+- 63% of sales are off-plan; the rest are ready homes.
+
+- Entry level is about AED 2.2–3 million for a townhouse in a new community.
+
+- Gross rental yields on villas are usually 4–5.5%, lower than apartments.
+
+- A villa from AED 2 million qualifies for a 10-year Golden Visa.
+
+### Villa or townhouse: the difference
+A townhouse is a house in a row sharing walls with neighbours, usually with 2–4 bedrooms and a small yard. A villa is a detached house on its own plot, usually with 3–4 bedrooms or more, often with a pool or space for one. A townhouse is cheaper and easier to maintain, and it sells and rents faster. A villa gives more space and privacy but costs more, and expensive villas are less liquid because there are fewer buyers. When comparing, look at two areas: the BUA (built-up area of the house) and the plot. Two houses with the same BUA can differ a lot in price because of plot size.
+
+### The villa market in numbers
+In the 12 months to 8 October 2026, Dubai registered 15,605 villa and townhouse sales worth AED 74.7 billion. Almost two thirds (63%) were purchases in projects under construction: developers keep launching new communities on the outskirts, where there is more land. The most sales were in the new projects of Damac Islands (3,740), Dubai Investment Park 2 (1,462), Dubai South (1,207) and Emaar's The Valley (1,168).
+
+### How to choose: 6 questions before buying
+1. To live in or to rent out: for living, schools, the commute and ready infrastructure matter; for renting, the yield and demand for the specific house type. 2. Ready or off-plan: a ready home can be viewed and moved into or let at once; off-plan is cheaper upfront and sold on a payment plan, but handover is 2–4 years away and may be delayed. 3. Budget with every cost: add the 4% DLD fee, the agency fee (about 2% on resale) and the annual community service charge. 4. Plot and BUA: compare the price per m² (per sq ft) of living space and the plot size separately. 5. Commute: many villas are far from the centre, so check rush-hour travel time to work and schools. 6. Developer and timeline: for off-plan, check the developer and the planned handover date in the DLD registry and make sure payments go into the project's escrow account.
+
+### Under AED 3 million: townhouses in new communities
+Here and below: the average villa or townhouse deal over 12 months (total sales value divided by the number of sales) and the gross yield where there is enough data. Damac Lagoons — about AED 2.25 million, almost all sales off-plan; the yield from rent contracts is about 7%, but the sample of ready homes is still small. Villanova and The Acres — about AED 2.4 million, roughly half ready homes and half off-plan. Town Square — about AED 3 million, ready homes only, yield about 5.2%. Damac Islands — about AED 3.35 million, the best-selling new project of the year (94% off-plan).
+
+### AED 3–5 million: the family mid-market
+Emaar's The Valley — about AED 3.45 million, 73% off-plan, yield about 4.4%. Mudon — about AED 3.9 million, mostly ready homes, yield about 5.1%. Dubai South — about AED 4.4 million, next to Al Maktoum Airport and Expo City. Al Furjan — about AED 4.5 million, ready homes near the metro, yield about 5.4%.
+
+### AED 5–9 million: established infrastructure and status
+Damac Hills — about AED 5.7 million, ready homes by the golf course, yield about 4.3%. Nad Al Sheba — about AED 6.2 million, close to the centre and Meydan, yield about 5.5%. Jebel Ali Hills — about AED 8 million, new projects (all sales off-plan). Arabian Ranches — about AED 8.2 million, a mature community with schools, yield about 3.6%. Dubai Hills Estate — about AED 8.8 million, park and golf course, yield about 4.8%.
+
+### Luxury
+Palm Jumeirah, Emirates Hills, Jumeirah Golf Estates and Jumeirah Bay — villas cost tens of millions of dirhams. Price here depends heavily on the plot, the view and the finish, so district averages say little; you need to look at sales on specific streets and houses.
+
+### Yield: villas versus apartments
+Villas usually earn less than apartments: gross yield is most often 4–5.5% against 5–7% for apartments. But villa tenants are mostly families who stay longer, so there are fewer vacancies. Among villas the highest yields are in affordable communities such as Town Square, Al Furjan and Nad Al Sheba (5.2–5.5%), the lowest in expensive mature areas such as Arabian Ranches (3.6%).
+
+### What to watch out for
+Price growth in new projects can mislead: in the Damac Islands area, for example, the median price per m² rose 63% in a year, but that reflects the launch of a newer, pricier project, not the same homes getting more expensive. Check the developer's track record — the share of its projects handed over late. Community service charges per m² are lower for villas than for apartments, but the large area can make the annual bill noticeable. Compare any offer with actual sales in the same community over the last 6 months.
+
+Q: How much is a townhouse in Dubai?
+A: In new communities, from AED 2.2–3 million (Damac Lagoons, Villanova, Town Square). More in mature areas.
+
+Q: Where do villas yield the most?
+A: From DLD sales, in affordable communities: Town Square, Al Furjan and Nad Al Sheba, about 5.2–5.5% gross.
+
+Q: Which is a better investment: a villa or an apartment?
+A: An apartment usually yields more. A villa has steadier tenants and makes more sense if you buy to live in or for the long term.
+
+Q: Do I get a visa for buying a villa?
+A: Yes. A property from AED 750,000 gives a two-year residence visa, from AED 2 million a 10-year Golden Visa.
 
 ## Dubai off-plan market in numbers
 
