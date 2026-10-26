@@ -390,9 +390,7 @@ tr.tap:active{background:var(--surface-2)}
 .chat-top{display:none}
 .chat-scroll{flex:1;overflow:auto;padding:28px 0 12px;display:flex;flex-direction:column;gap:18px;max-height:calc(100dvh - 330px);min-height:320px}
 .chat-hello{margin:auto;text-align:center;max-width:520px;padding:24px 0}
-.chat-logo{display:inline-flex;width:56px;height:56px;border-radius:50%;align-items:center;justify-content:center;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
-.chat-logo svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8}
-.chat-hello h1{margin:16px 0 8px;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em}
+.chat-hello h1{margin:0 0 8px;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em}
 .chat-hello p{color:var(--muted);font-size:15px;line-height:1.5}
 .cm-user{display:flex;justify-content:flex-end}
 .cm-user span{max-width:78%;padding:10px 16px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);font-size:15px;line-height:1.45;white-space:pre-wrap}

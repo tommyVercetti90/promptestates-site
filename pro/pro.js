@@ -376,7 +376,7 @@
   function chatRender() {
     var sc = $('#chat-scroll'); if (!sc) return;
     if (!CHAT.msgs.length) {
-      sc.innerHTML = '<div class="chat-hello"><span class="chat-logo" aria-hidden="true"><svg viewBox="0 0 24 24">' + ICONS.ai + '</svg></span><h1>' + t('chatHi') + '</h1><p>' + t('askSub') + '</p></div>';
+      sc.innerHTML = '<div class="chat-hello"><h1>' + t('chatHi') + '</h1><p>' + t('askSub') + '</p></div>';
     } else sc.innerHTML = CHAT.msgs.map(function (m, i) { return chatMsg(m, i); }).join('');
     sc.querySelectorAll('[data-card]').forEach(function (b) { b.onclick = function () { cardAction(b.dataset.card, b.dataset.how); }; });
     var last = CHAT.msgs[CHAT.msgs.length - 1];
