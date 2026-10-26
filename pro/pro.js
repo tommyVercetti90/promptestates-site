@@ -73,7 +73,7 @@
       cardShare: 'Поделиться', cardPng: 'PNG', cardBy: 'ИИ-аналитик PromptEstates', cardSrc: 'Источник: {s} · {d}', cardShareText: 'Разбор рынка от PromptEstates',
       chatNew: 'Новый чат', chatHist: 'История', chatPh: 'Напишите, что ищете…', chatHi: 'Спросите рынок Дубая и Абу-Даби', chatBusy: 'Слишком много вопросов подряд — попробуйте через минуту',
       chatNote: 'Ответы — по зарегистрированным сделкам и аренде DLD. Это не инвестиционная рекомендация.', chatGuest: 'Войдите, чтобы история чатов сохранялась — и в приложении тоже', chatEmpty: 'Здесь появятся ваши чаты',
-      askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик пока недоступен',
+      askPh: 'Например: студии в JVC с доходностью выше 6% и сдачей в 2027 году', askBtn: 'Спросить', askWait: 'Считаю по данным DLD…', askErr: 'ИИ-аналитик временно недоступен — попробуйте через пару минут',
       askEx: ['Где самая высокая доходность 1-спальных?', 'Сравни JVC и Arjan', 'Какие проекты Binghatti просрочены?', 'Сколько реально стоит 1-спальная 67 м² в Azizi Venice 14?'],
       memoBtn: 'ИИ-меморандум', memoH: 'Инвест-меморандум', memoWait: 'Готовлю меморандум по данным DLD… (до 30 сек.)', print: 'Печать / PDF',
       fairH: 'Справедливая цена', fairSub: 'По похожим сделкам за 6 месяцев: те же комнаты, площадь ±20%', asking: 'Цена продавца, AED', calc: 'Рассчитать',
@@ -132,7 +132,7 @@
       cardShare: 'Share', cardPng: 'PNG', cardBy: 'PromptEstates AI analyst', cardSrc: 'Source: {s} · {d}', cardShareText: 'Market insight from PromptEstates',
       chatNew: 'New chat', chatHist: 'History', chatPh: 'Write what you’re looking for…', chatHi: 'Ask about Dubai and Abu Dhabi', chatBusy: 'Too many questions in a row — try again in a minute',
       chatNote: 'Answers use registered DLD sales and rents. Not investment advice.', chatGuest: 'Sign in to keep your chat history — in the app too', chatEmpty: 'Your chats will appear here',
-      askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is not available yet',
+      askPh: 'E.g. studios in JVC with yield above 6% and handover in 2027', askBtn: 'Ask', askWait: 'Crunching DLD data…', askErr: 'The AI analyst is temporarily unavailable — please try again in a few minutes',
       askEx: ['Where are 1-bed yields highest?', 'Compare JVC and Arjan', 'Which Binghatti projects are overdue?', 'What is a fair price for a 67 m² 1-bed in Azizi Venice 14?'],
       memoBtn: 'AI memo', memoH: 'Investment memo', memoWait: 'Writing the memo from DLD data… (up to 30 s)', print: 'Print / PDF',
       fairH: 'Fair price', fairSub: 'From comparable sales in the last 6 months: same beds, size ±20%', asking: 'Asking price, AED', calc: 'Calculate',
@@ -386,6 +386,7 @@
   }
   function chatSend(q) {
     q = (q || '').trim(); if (!q || CHAT.busy) return;
+    track('ask_question', { city: CITY });
     CHAT.busy = true; CHAT.msgs.push({ role: 'user', text: q }, { role: 'assistant', wait: true }); chatRender();
     api('/api/v1/chat/message', { message: q, chatId: CHAT.id, client: 'web', city: CITY, lang: lang }).then(function (r) {
       CHAT.id = r.chatId; CHAT.msgs[CHAT.msgs.length - 1] = { role: 'assistant', text: r.message, btns: r.actionButtons, limit: r.limit };
@@ -1572,6 +1573,7 @@
       var interval = 'year';
       var go = function () {
         if (!BILLING_LIVE) { toast(t('prSoon')); return; }
+        track('begin_checkout', { plan: interval, currency: 'AED', value: interval === 'year' ? 1490 : 179, signed_in: !!USER });
         var run = function () {
           view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
           api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
@@ -1611,6 +1613,17 @@
     if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
     el.textContent = msg; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('show'); }, 3500);
   }
+  // analytics: the same GA4 / Clarity / PostHog the site loads (absent on localhost or after "Decline")
+  function track(name, params) {
+    params = params || {};
+    try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
+    try { if (typeof window.clarity === 'function') { window.clarity('event', name); if (/^(sign_up|login|begin_checkout|purchase)$/.test(name)) window.clarity('upgrade', name); } } catch (e) {}
+    try { if (window.posthog && window.posthog.capture) window.posthog.capture(name, params); } catch (e) {}
+  }
+  function authEvent(cred) {
+    var info = cred && cred.additionalUserInfo;
+    track(info && info.isNewUser ? 'sign_up' : 'login', { method: (info && info.providerId) || 'password' });
+  }
   var siMode = 'in';
   function openSignIn(then) {
     if (APP) { toApp({ type: 'signin' }); return; }
@@ -1626,7 +1639,7 @@
       el.textContent = (t('siErrs')[code] || t('siErr')) + (code && !t('siErrs')[code] ? ' (' + code.replace('auth/', '') + ')' : '');
       el.hidden = false;
     };
-    var done = function () { closeSignIn(); var f = afterSignIn; afterSignIn = null; if (f) setTimeout(f, 400); };
+    var done = function (cred) { authEvent(cred); closeSignIn(); var f = afterSignIn; afterSignIn = null; if (f) setTimeout(f, 400); };
     $('#signin').addEventListener('click', function (e) { if (e.target.closest('[data-sclose]')) closeSignIn(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#signin').hidden) closeSignIn(); });
     document.querySelectorAll('[data-provider]').forEach(function (b) {
@@ -1666,7 +1679,7 @@
     el.hidden = !BILLING_LIVE;
     el.innerHTML = USER ? '<span class="av">' + esc(((USER.email || USER.displayName || '?')[0] || '?').toUpperCase()) + '</span>' + (isPro() ? '<span class="badge">Pro</span>' : '') : '<span>' + t('signIn') + '</span>';
     el.setAttribute('aria-label', USER ? t('navAccount') : t('signIn'));
-    el.onclick = function (e) { if (!USER) { e.preventDefault(); if (APP) openSignIn(); else location.hash = '#/pricing'; } };
+    el.onclick = function (e) { if (!USER) { e.preventDefault(); openSignIn(); } };
   }
   function jwtEmail(tk) {
     try { return JSON.parse(decodeURIComponent(escape(atob(tk.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))))).email || ''; } catch (e) { return ''; }
@@ -1691,7 +1704,7 @@
     if (!window.firebase) { clearTimeout(guard); first = false; start(); return; }
     firebase.initializeApp(FIREBASE);
     firebase.auth().getRedirectResult().then(function (r) {
-      if (r && r.user) { var h = null; try { h = sessionStorage.getItem('pe_after_signin'); sessionStorage.removeItem('pe_after_signin'); } catch (x) {} if (h) location.hash = h; }
+      if (r && r.user) { authEvent(r); var h = null; try { h = sessionStorage.getItem('pe_after_signin'); sessionStorage.removeItem('pe_after_signin'); } catch (x) {} if (h) location.hash = h; }
     }).catch(function (e) { if (e && e.code) { toast((t('siErrs')[e.code] || t('siErr')) + ' (' + e.code.replace('auth/', '') + ')'); } });
     fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
     wireSignIn();
@@ -1704,10 +1717,10 @@
         if (!wasIn && USER && !isPro() && !afterSignIn && !paid) location.hash = '#/pricing';
         if (paid && USER) {
           paid = false; history.replaceState(null, '', location.pathname + location.hash);
-          if (isPro()) { toast(t('okPaid')); return; }
+          if (isPro()) { track('purchase', { currency: 'AED' }); toast(t('okPaid')); return; }
           toast(t('waitPaid'));
           var tries = 0, poll = setInterval(function () {   // the Stripe webhook usually lands within seconds
-            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { toast(t('okPaid')); route(); } } });
+            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { track('purchase', { currency: 'AED' }); toast(t('okPaid')); route(); } } });
           }, 2000);
         }
       });
@@ -1844,11 +1857,14 @@
   }
   function maybeTour() {
     var seen = false; try { seen = localStorage.getItem('pe_tour_done') === '1'; } catch (e) { seen = true; }
-    if (!seen) setTimeout(function () { if (!document.querySelector('.modal:not([hidden])')) startTour(); }, 1800);
+    if (!seen) setTimeout(function () { if (!document.querySelector('.modal:not([hidden])') && !/^#\/(pricing|ask|account)/.test(location.hash)) startTour(); }, 1800);
   }
 
   // ------------------------------------------------------------------ router & chrome
+  var routeSeen = false;
   function route() {
+    if (routeSeen) track('page_view', { page_location: location.href, page_title: 'Pro · ' + (location.hash.replace(/^#\/?/, '').split('/')[0] || 'market') });
+    routeSeen = true;
     var h = location.hash.replace(/^#\/?/, '').split('/');
     var r = h[0] || 'market';
     var cur = { area: 'areas', project: 'projects', developer: 'developers', adarea: 'areas' }[r] || r;
