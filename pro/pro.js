@@ -1578,7 +1578,7 @@
         track('begin_checkout', { plan: interval, currency: 'AED', value: interval === 'year' ? 1490 : 179, signed_in: !!USER });
         var run = function () {
           view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
-          api('/api/billing/checkout', { interval: interval, lang: lang }).then(function (r) { location.href = r.url; })
+          api('/api/billing/checkout', { interval: interval, lang: lang, ga_cid: gaCid() }).then(function (r) { location.href = r.url; })
             .catch(function (e) { view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = false; }); toast(e.status === 503 ? t('prSoon') : t('apiDown')); });
         };
         if (USER) run(); else openSignIn(run);
@@ -1621,6 +1621,9 @@
     try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
     try { if (typeof window.clarity === 'function') { window.clarity('event', name); if (/^(sign_up|login|begin_checkout|purchase)$/.test(name)) window.clarity('upgrade', name); } } catch (e) {}
     try { if (window.posthog && window.posthog.capture) window.posthog.capture(name, params); } catch (e) {}
+  }
+  function gaCid() {   // GA4 client id from the _ga cookie (GA1.1.123.456 -> 123.456)
+    var m = document.cookie.match(/(?:^|; )_ga=GA\d\.\d\.([^;]+)/); return m ? m[1] : '';
   }
   function authEvent(cred) {
     var info = cred && cred.additionalUserInfo;
@@ -1710,6 +1713,7 @@
     }).catch(function (e) { if (e && e.code) { toast((t('siErrs')[e.code] || t('siErr')) + ' (' + e.code.replace('auth/', '') + ')'); } });
     fetch(API + '/api/plans').then(function (r) { return r.json(); }).then(function (p) { PLANS = p; }).catch(function () {});
     wireSignIn();
+    if (/checkout=cancel/.test(location.search)) { track('checkout_cancel', {}); history.replaceState(null, '', location.pathname + location.hash); }
     var paid = /checkout=success/.test(location.search), signedIn = null;
     firebase.auth().onAuthStateChanged(function (u) {
       USER = u; clearTimeout(guard);
@@ -1719,10 +1723,10 @@
         if (!wasIn && USER && !isPro() && !afterSignIn && !paid) location.hash = '#/pricing';
         if (paid && USER) {
           paid = false; history.replaceState(null, '', location.pathname + location.hash);
-          if (isPro()) { track('purchase', { currency: 'AED' }); toast(t('okPaid')); return; }
+          if (isPro()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); return; }
           toast(t('waitPaid'));
           var tries = 0, poll = setInterval(function () {   // the Stripe webhook usually lands within seconds
-            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { track('purchase', { currency: 'AED' }); toast(t('okPaid')); route(); } } });
+            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); route(); } } });
           }, 2000);
         }
       });
