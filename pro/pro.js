@@ -7,7 +7,8 @@
   // Subscriptions: Firebase Auth (same accounts as the PromptEstates app) + Stripe via pro_api.
   // Keep false until pro_api runs with Stripe keys; the prototype password gate stays active meanwhile.
   var BILLING_LIVE = true;
-  var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: 'promptestates-ai.firebaseapp.com', projectId: 'promptestates-ai',
+  var FIREBASE = { apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: /(^|\.)promptestates\.com$/.test(location.hostname) ? 'promptestates.com' : 'promptestates-ai.firebaseapp.com',   // own domain: sign-in survives storage partitioning (in-app browsers, Safari) and Google shows promptestates.com
+    projectId: 'promptestates-ai',
                    appId: '1:321328766090:web:40be29995e21224225a173' };
   var FREE_FILES = ['meta.json', 'market.json', 'areas.json', 'geo.json', 'areas_geo.json', 'ad/areas.json', 'ad/market.json', 'shj/market.json'];
   var FREE_ROUTES = ['market', 'map', 'pricing', 'account', 'ask', 'ad'];
