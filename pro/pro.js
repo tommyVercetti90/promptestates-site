@@ -430,7 +430,7 @@
       '<p class="chat-note">' + t('chatNote') + '</p></section></div>');
     // full-screen chat under the header, like the app
     var fit = function () { var tp = $('.top'), tb = $('#tabbar'); document.documentElement.style.setProperty('--top-h', (tp ? tp.offsetHeight : 64) + 'px');
-      document.documentElement.style.setProperty('--bar-h', (tb && tb.offsetParent !== null ? tb.offsetHeight : 0) + 'px'); };
+      document.documentElement.style.setProperty('--bar-h', (tb && getComputedStyle(tb).display !== 'none' ? tb.offsetHeight : 0) + 'px'); };
     document.documentElement.classList.add('ask-full'); fit();
     if (!window._askFit) { window._askFit = true; window.addEventListener('resize', function () { if (document.documentElement.classList.contains('ask-full')) fit(); }); }
     $('#chat-form').onsubmit = function (e) { e.preventDefault(); var i = $('#chat-q'); chatSend(i.value); i.value = ''; };

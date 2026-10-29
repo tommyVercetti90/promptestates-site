@@ -46,7 +46,7 @@ h1.page{margin:4px 0 4px;font-size:30px;letter-spacing:-.01em}
 .chart{position:relative;height:280px}
 /* filters */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.filters input,.filters select{height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font:inherit;font-size:14px}
+.filters input,.filters select{max-width:100%;min-width:0;text-overflow:ellipsis;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font:inherit;font-size:14px}
 .filters input[type=search]{min-width:220px;flex:1}
 .filters label{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text-2)}
 /* tables */
@@ -354,7 +354,7 @@ tr.tap:active{background:var(--surface-2)}
 @keyframes cardPop{from{opacity:0;translate:0 10px;scale:.97}}
 .tour-step{margin:0 0 4px;font-size:12px;font-weight:700;color:var(--accent)}
 .tour-card h3{margin:0 0 6px;font-size:18px}.tour-text{margin:0 0 14px;color:var(--text-2);font-size:14px;line-height:1.5}
-.tour-btns{display:flex;align-items:center;gap:8px}.tour-btns>span{flex:1}.tour-btns .btn{height:40px;padding:0 18px}.tour-btns .chip{height:40px}
+.tour-btns{display:flex;align-items:center;gap:8px}.tour-btns>span{flex:1}.tour-btns .btn{height:40px;padding:0 18px;white-space:nowrap;flex:none}.tour-btns .chip{white-space:nowrap}.tour-btns .chip{height:40px}
 .tour-skip{font-size:14px;color:var(--muted)}
 .tour-dots{display:flex;gap:5px;margin-bottom:10px}
 .tour-dots i{width:6px;height:6px;border-radius:999px;background:var(--line-2);transition:width .3s,background .3s}
@@ -501,7 +501,7 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 /* map controls v3: one calm toolbar, collapsed layer picker */
 .map-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 12px}
 .map-bar .seg,.pills{flex:none;max-width:100%;overflow-x:auto;scrollbar-width:none}
-.map-bar .seg button{height:34px;border-radius:9px}
+.map-bar .seg button{flex:none;height:34px;border-radius:9px}
 .pills{display:inline-flex;gap:2px;padding:2px;border-radius:11px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
 .pills .chip{flex:none;height:34px;min-width:0;padding:0 12px;border:0;border-radius:9px;background:transparent;color:var(--muted);font-weight:600;white-space:nowrap}
 .pills .chip:hover{color:var(--text)}
