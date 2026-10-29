@@ -551,3 +551,10 @@ html.ask-full .chat-scroll>.chat-hello{margin:auto}
 .map3 .map-legend{bottom:12px}
 .map3 .maplibregl-ctrl-bottom-right{bottom:0}
 @media (max-width:1024px){.map3 .map-card{bottom:12px}}
+/* pricing: month / year switch above the plans */
+.pr-period{display:flex;justify-content:center;margin:0 0 22px}
+.pr-period .seg button{height:38px;padding:0 18px;font-size:14px}
+.pr-save{margin-inline-start:4px;padding:1px 6px;border-radius:999px;background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good);font-size:11px;font-weight:800}
+.cmp td.c b{font-variant-numeric:tabular-nums}
+.plans-3 .plan .price{white-space:nowrap}.plans-3 .plan .price b{font-size:34px}
+.plans .plan .price s{display:block;margin-bottom:2px;font-size:15px}

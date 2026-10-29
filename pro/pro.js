@@ -18,6 +18,7 @@
   var APP = window.PE_APP || (/[?&]app=1/.test(location.search) ? {} : null);
   var USER = null, ACCOUNT = { plan: BILLING_LIVE ? 'free' : 'pro' };
   var isPro = function () { return ACCOUNT.plan === 'pro'; };
+  var isPaid = function () { return ACCOUNT.plan === 'pro' || ACCOUNT.plan === 'basic'; };   // Basic: every data section; memos and PNG stay Pro
   var store = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
 
   // ------------------------------------------------------------------ i18n
@@ -40,7 +41,7 @@
       lockH: 'Раздел доступен в Pro', lockSub: 'Оформите подписку, чтобы открыть все данные DLD, ИИ-аналитика и инфографику', lockSee: 'Смотреть тарифы', lockApp: 'Подписка оформляется на сайте promptestates.com — после этого Pro откроется и здесь, в том же аккаунте.', lockSeg: 'Фильтры по типу жилья — в Pro',
       acH: 'Аккаунт', acPlan: 'Тариф', acRenew: 'Продлится', acEnds: 'Доступ до', acManage: 'Управлять подпиской', acOut: 'Выйти', acUpgrade: 'Перейти на Pro',
       acStatus: { active: 'активна', trialing: 'пробный период', past_due: 'проблема с оплатой', canceled: 'отменена', incomplete: 'не завершена' },
-      okPaid: 'Подписка оформлена — добро пожаловать в Pro!', waitPaid: 'Подтверждаем оплату…', apiDown: 'Сервис временно недоступен, попробуйте позже', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
+      proOnly: 'Это доступно в Pro: ИИ-меморандумы и инфографика в PNG', okPaid: 'Подписка оформлена — добро пожаловать!', waitPaid: 'Подтверждаем оплату…', apiDown: 'Сервис временно недоступен, попробуйте позже', navMore: 'Ещё', done: 'Готово', settings: 'Настройки', unitsL: 'Площадь', langL: 'Язык', themeL: 'Тема', loadingA: 'Загружаю данные',
       navMarket: 'Рынок', navAreas: 'Районы', navProjects: 'Проекты', navTx: 'Сделки', navDevs: 'Застройщики',
       marketH: 'Рынок недвижимости Дубая', marketSub: 'Зарегистрированные сделки продажи и договоры аренды DLD',
       sales12: 'Сделок за 12 мес.', value12: 'Объём за 12 мес.', ppm: 'Медиана за', yoy: 'к прошлому году', off12: 'Доля off-plan',
@@ -99,7 +100,7 @@
       lockH: 'This section is part of Pro', lockSub: 'Subscribe to unlock all DLD data, the AI analyst and infographics', lockSee: 'See plans', lockApp: 'Subscribe on the promptestates.com website — Pro then unlocks here too, on the same account.', lockSeg: 'Property-type filters are part of Pro',
       acH: 'Account', acPlan: 'Plan', acRenew: 'Renews', acEnds: 'Access until', acManage: 'Manage subscription', acOut: 'Sign out', acUpgrade: 'Upgrade to Pro',
       acStatus: { active: 'active', trialing: 'trial', past_due: 'payment issue', canceled: 'canceled', incomplete: 'incomplete' },
-      okPaid: 'You are on Pro — welcome!', waitPaid: 'Confirming your payment…', apiDown: 'Service is temporarily unavailable, try again later', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
+      proOnly: 'This is part of Pro: AI memos and PNG infographics', okPaid: 'Your subscription is active — welcome!', waitPaid: 'Confirming your payment…', apiDown: 'Service is temporarily unavailable, try again later', navMore: 'More', done: 'Done', settings: 'Settings', unitsL: 'Area units', langL: 'Language', themeL: 'Appearance', loadingA: 'Loading data',
       navMarket: 'Market', navAreas: 'Areas', navProjects: 'Projects', navTx: 'Transactions', navDevs: 'Developers',
       marketH: 'Dubai property market', marketSub: 'Registered DLD sales transactions and Ejari rent contracts',
       sales12: 'Sales, 12 months', value12: 'Value, 12 months', ppm: 'Median per', yoy: 'YoY', off12: 'Off-plan share',
@@ -613,7 +614,7 @@
       var off = areas.reduce(function (s, a) { return s + (a.off12 || 0) * a.n12; }, 0) / Math.max(1, meta.sales_12m);
       var last4 = meta.yoy_quarters[0], prev4 = meta.yoy_quarters[1], sq = function (l) { return l.reduce(function (s, q) { return s + ((mk[q] || {}).value || 0); }, 0); };
       var yoy = sq(prev4) ? 100 * (sq(last4) / sq(prev4) - 1) : null;
-      var pro = isPro(), shown = part === 'areas' && pro ? areas : areas.slice(0, 10);
+      var pro = isPaid(), shown = part === 'areas' && pro ? areas : areas.slice(0, 10);
       var kpis = '<div class="kpis">' + kpi(t('sales12'), fmt(meta.sales_12m)) + kpi(t('value12'), aed(meta.value_12m_aed_m * 1e6), pctTag(yoy) + ' <i>' + t('adYoy') + '</i>') +
         kpi(t('adAvg'), aed(meta.value_12m_aed_m * 1e6 / meta.sales_12m)) + kpi(t('off12'), fmt(off) + '%') + kpi(t('navAreas'), fmt(meta.districts)) + '</div>';
       var chartP = '<div class="panel"><h2>' + t('adQ') + '</h2><p class="hint">' + t('adQs') + '</p><div class="chart"><canvas id="c1"></canvas></div></div>';
@@ -893,6 +894,7 @@
         });
       };
       $('#memo-btn').onclick = function () {
+        if (BILLING_LIVE && !isPro()) { proOnly(); return; }
         var box = $('#memo'), btn = this; btn.disabled = true;
         box.innerHTML = '<div class="panel"><div class="loading">' + t('memoWait') + '</div></div>';
         api('/api/memo', { project: p.id, lang: lang }).then(function (r) {
@@ -1188,6 +1190,7 @@
   }
 
   function savePng(id) {
+    if (BILLING_LIVE && !isPro()) { proOnly(); return; }
     var svg = document.getElementById(id), vb = svg.viewBox.baseVal, img = new Image(), k = 2;
     img.onload = function () {
       var c = document.createElement('canvas'); c.width = vb.width * k; c.height = vb.height * k;
@@ -1259,11 +1262,11 @@
   function vMap() {
     if (mapTimer) { clearInterval(mapTimer); mapTimer = null; }
     page(skeleton());
-    if (!isPro()) SEG = 'all';
+    if (!isPaid()) SEG = 'all';
     var cv = document.createElement('canvas');
     if (!window.maplibregl || !(cv.getContext('webgl2') || cv.getContext('webgl'))) { page('<div class="empty">' + mt('noGl') + '</div>'); return; }
     Promise.all([get('areas.json'), SEG === 'all' ? Promise.resolve(null) : get('segments.json'), get('geo.json'), get('market.json'), fetch('data/metro.geojson').then(function (r) { return r.json(); }).catch(function () { return null; }),
-                 isPro() ? get('projects.json').catch(function () { return []; }) : Promise.resolve([]),
+                 isPaid() ? get('projects.json').catch(function () { return []; }) : Promise.resolve([]),
                  get('areas_geo.json').catch(function () { return { features: [] }; })]).then(function (d) {
       var base = {}, geo = d[2], market = d[3], metro = d[4], projects = d[5], shapes = {};
       d[6].features.forEach(function (f) { shapes[f.properties.id] = f.geometry; });
@@ -1274,7 +1277,7 @@
       }).sort(function (a, b) { return b.n12 - a.n12; });
       var months = market.all.map(function (r) { return r[0]; });
       var segBtns = ['all', 'apt', 'S', '1', '2', '3', '4+', 'villa'].map(function (k) {
-        var locked = !isPro() && k !== 'all';
+        var locked = !isPaid() && k !== 'all';
         return '<button type="button" class="chip' + (k === SEG ? ' on' : '') + (locked ? ' locked' : '') + '" data-mseg="' + k + '">' + it('segs')[k] + '</button>';
       }).join('');
       var mBtns = Object.keys(mt('metrics')).map(function (k) { return '<button type="button" data-metric="' + k + '" aria-pressed="' + (k === MAPM) + '">' + mt('metrics')[k] + '</button>'; }).join('');
@@ -1284,7 +1287,7 @@
       }).join('');
       var modesHtml = ['bubbles', 'cols'].map(function (k) { return '<button type="button" data-mview="' + k + '" aria-pressed="' + (k === MAPVIEW) + '">' + mt('modes')[k] + '</button>'; }).join('');
       var lay = [['cols', 'lMarket'], ['heat', 'lHeat'], ['pipe', 'lPipe'], ['metro', 'lMetro'], ['bld', 'lBld'], ['labels', 'lLabels']].map(function (x) {
-        var locked = x[0] === 'pipe' && !isPro();
+        var locked = x[0] === 'pipe' && !isPaid();
         return '<label class="lay' + (locked ? ' locked' : '') + '"><input type="checkbox" data-layer="' + x[0] + '"' + (LAYERS[x[0]] && !locked ? ' checked' : '') + (locked ? ' disabled' : '') + '><i class="li-' + x[0] + '"></i><span>' + mt(x[1]) + '</span></label>';
       }).join('');
       page('<h1 class="page">' + mt('h') + '</h1><p class="sub">' + mt('sub') + '</p>' +
@@ -1444,7 +1447,7 @@
         ['bub', 'bub-glow', 'bub-line'].forEach(function (id) { vis(id, LAYERS.cols && MAPVIEW === 'bubbles'); });
         vis('nums', LAYERS.cols && MAPVIEW !== 'cols');
         if (map.getLayer('nums')) map.setFilter('nums', LAYERS.labels ? ['>=', ['get', 'rank'], 30] : null);
-        vis('bld3d', LAYERS.bld); vis('building-3d', LAYERS.bld); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPro()); vis('labels', LAYERS.labels);
+        vis('bld3d', LAYERS.bld); vis('building-3d', LAYERS.bld); vis('heat', LAYERS.heat); vis('pipe', LAYERS.pipe && isPaid()); vis('labels', LAYERS.labels);
         ['metro', 'metro-glow', 'metro-st'].forEach(function (id) { vis(id, LAYERS.metro); });
         $('#legend').hidden = !LAYERS.cols;
         $('#m-dim').hidden = MAPVIEW === 'flat';
@@ -1503,15 +1506,16 @@
   }
 
   // ------------------------------------------------------------------ subscription: pricing, account, paywall, sign-in
-  var PLANS = { display: { month: 'AED 179', year: 'AED 1,490' }, trial_days: 14 }, afterSignIn = null;
+  var PLANS = { display: { month: 'AED 179', year: 'AED 1,490', basic_month: 'AED 49', basic_year: 'AED 390' }, trial_days: 14 }, afterSignIn = null;
   var PR = {
     ru: { eyebrow: 'PromptEstates Pro', h: 'Аналитика рынка Дубая, которой пользуются профессионалы', sub: 'Все сделки Земельного департамента Дубая, аренда, реестр проектов и ИИ-аналитик — в одном дашборде. Решения на данных, а не на рекламе застройщиков.',
       stats: [['sales', 'сделок DLD в базе'], ['rents', 'договоров аренды'], ['projects', 'проектов в реестре'], ['n_areas', 'районов на карте']],
       trial: '14 дней бесплатно', upd: 'Данные DLD на {d} · обновление каждую неделю', month: 'Месяц', year: 'Год', save: '−34%', perM: '/ мес', perY: '/ год', yearNote: '≈ {m} в месяц при оплате за год',
-      popular: 'Выбор инвесторов', cta: 'Получить Pro', ctaFree: 'Начать бесплатно', current: 'Ваш тариф', free: 'Бесплатно',
+      popular: 'Выбор инвесторов', cta: 'Получить Pro', ctaFree: 'Начать бесплатно', ctaBasic: 'Выбрать Базовый', current: 'Ваш тариф', free: 'Бесплатно', basic: 'Базовый',
+      basicL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте', 'ИИ-аналитик: 30 вопросов в день', 'Выгрузка сделок в CSV'],
       freeL: ['Обзор рынка Дубая', 'Карта районов (все типы жилья)', 'Ежемесячная динамика цен и сделок'],
       proL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту за 30 секунд', 'Справедливая цена по реальным сделкам', 'Инфографика в PNG и выгрузка сделок в CSV'],
-      cmpH: 'Free или Pro', cmpRows: [['Обзор рынка и карта', 1, 1], ['Фильтры: студии, 1–4 спальни, виллы', 0, 1], ['Районы: цены, аренда, доходность', 0, 1], ['3 353 проекта: готовность, сдача, эскроу', 0, 1], ['Все сделки за 24 месяца + CSV', 0, 1], ['Надёжность застройщиков и просрочки', 0, 1], ['ИИ-аналитик и ИИ-меморандумы', 0, 1], ['Справедливая цена по аналогам', 0, 1], ['Инфографика в PNG для постов', 0, 1]],
+      cmpH: 'Free или Pro', cmpH3: 'Сравнение тарифов', cmpRows: [['Обзор рынка и карта', 1, 1, 1], ['Фильтры: студии, 1–4 спальни, виллы', 0, 1, 1], ['Районы: цены, аренда, доходность', 0, 1, 1], ['3 353 проекта: готовность, сдача, эскроу', 0, 1, 1], ['Все сделки за 24 месяца + CSV', 0, 1, 1], ['Надёжность застройщиков и просрочки', 0, 1, 1], ['ИИ-аналитик: вопросов в день', '10', '30', '∞'], ['ИИ-меморандумы по проектам', 0, 0, 1], ['Справедливая цена по аналогам', 0, 1, 1], ['Инфографика в PNG для постов', 0, 0, 1]],
       featH: 'Что внутри Pro', feats: [['map', '3D-карта рынка', 'Цена, доходность, рост и off-plan по районам, слои метро и волны сдачи, таймлапс за 3 года'], ['ai', 'ИИ-аналитик', '«Где самая высокая доходность 1-спальных до 1 млн?» — ответ по реальным сделкам, со ссылками'],
         ['memo', 'Инвест-меморандум', 'Разбор проекта: цена против района, застройщик, риск сдачи, аренда — готов к отправке клиенту'], ['fair', 'Справедливая цена', 'Сколько реально стоит юнит по аналогам за 6 месяцев и насколько продавец завышает цену'],
         ['risk', 'Риски застройщиков', 'Доля просроченных проектов, средняя готовность и эскроу-банк по каждому застройщику'], ['png', 'Инфографика', 'Готовые карточки для Telegram, LinkedIn и презентаций с вашими фильтрами']],
@@ -1523,10 +1527,11 @@
     en: { eyebrow: 'PromptEstates Pro', h: 'Dubai market intelligence built for professionals', sub: 'Every Dubai Land Department sale, rents, the project registry and an AI analyst in one dashboard. Decide on data, not developer marketing.',
       stats: [['sales', 'DLD sales in the database'], ['rents', 'rent contracts'], ['projects', 'registry projects'], ['n_areas', 'areas on the map']],
       trial: '14 days free', upd: 'DLD data to {d} · updated weekly', month: 'Monthly', year: 'Yearly', save: '−34%', perM: '/ mo', perY: '/ yr', yearNote: '≈ {m} per month billed yearly',
-      popular: 'Investors’ choice', cta: 'Get Pro', ctaFree: 'Start free', current: 'Your plan', free: 'Free',
+      popular: 'Investors’ choice', cta: 'Get Pro', ctaFree: 'Start free', ctaBasic: 'Choose Basic', current: 'Your plan', free: 'Free', basic: 'Basic',
+      basicL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map', 'AI analyst: 30 questions a day', 'CSV export of transactions'],
       freeL: ['Dubai market overview', 'Area map (all property types)', 'Monthly price and sales trends'],
       proL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'AI analyst: ask in plain words', 'AI memo for any project in 30 seconds', 'Fair price from actual sales', 'PNG infographics and CSV export'],
-      cmpH: 'Free or Pro', cmpRows: [['Market overview and map', 1, 1], ['Filters: studios, 1–4 bed, villas', 0, 1], ['Areas: prices, rents, yields', 0, 1], ['3,353 projects: progress, handover, escrow', 0, 1], ['Every sale for 24 months + CSV', 0, 1], ['Developer reliability and delays', 0, 1], ['AI analyst and AI memos', 0, 1], ['Fair price from comparables', 0, 1], ['PNG infographics for posts', 0, 1]],
+      cmpH: 'Free or Pro', cmpH3: 'Compare plans', cmpRows: [['Market overview and map', 1, 1, 1], ['Filters: studios, 1–4 bed, villas', 0, 1, 1], ['Areas: prices, rents, yields', 0, 1, 1], ['3,353 projects: progress, handover, escrow', 0, 1, 1], ['Every sale for 24 months + CSV', 0, 1, 1], ['Developer reliability and delays', 0, 1, 1], ['AI analyst: questions a day', '10', '30', '∞'], ['AI memos for projects', 0, 0, 1], ['Fair price from comparables', 0, 1, 1], ['PNG infographics for posts', 0, 0, 1]],
       featH: 'Inside Pro', feats: [['map', '3D market map', 'Price, yield, growth and off-plan by area, metro and handover layers, a 3-year timelapse'], ['ai', 'AI analyst', '“Where are 1-bed yields highest under AED 1M?” — answered from actual sales, with links'],
         ['memo', 'Investment memo', 'Project breakdown: price vs area, developer, delivery risk, rents — ready to send to a client'], ['fair', 'Fair price', 'What a unit is really worth from 6 months of comparables and how much the seller is over asking'],
         ['risk', 'Developer risk', 'Share of overdue projects, average completion and escrow bank for every developer'], ['png', 'Infographics', 'Ready-made cards for Telegram, LinkedIn and decks with your filters']],
@@ -1542,40 +1547,59 @@
     risk: '<path d="M12 3 3 20h18zM12 10v4M12 17v.5"/>', png: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6M15.5 8.5h.01"/>'
   };
   function vPricing() {
-    var L = PR[lang] || PR.en, cur = isPro();
+    var L = PR[lang] || PR.en, plan = isPro() ? 'pro' : (isPaid() ? 'basic' : 'free'), basic = !!PLANS.basic || plan === 'basic';
     get('meta.json').then(function (m) {
       var pm = function (s) { return parseFloat(String(s).replace(/[^\d.]/g, '')) || 0; };
       var money = function (n) { return 'AED ' + Math.round(n).toLocaleString('en-US'); };
-      var monthly = PLANS.display.month, yearly = PLANS.display.year, perMonthYearly = money(pm(yearly) / 12);
-      var save = '−' + Math.round(100 * (1 - pm(yearly) / (pm(monthly) * 12))) + '%', trial = PLANS.trial_days ? (L.trial || '') : '';
+      var D = PLANS.display, trial = PLANS.trial_days ? (L.trial || '') : '';
+      var price = { pro: { month: D.month, year: D.year }, basic: { month: D.basic_month || 'AED 49', year: D.basic_year || 'AED 390' } };
+      var save = '−' + Math.round(100 * (1 - pm(D.year) / (pm(D.month) * 12))) + '%';
       var ico = function (k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[k] + '</svg>'; };
       var check = '<svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>', dash = '<span class="dash" aria-hidden="true">—</span>';
+      var cell = function (v) { return typeof v === 'string' ? '<b>' + esc(v) + '</b>' : (v ? check : dash); };
+      var feats = function (xs) { return '<ul>' + xs.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>'; };
+      // a paid card: price for the chosen period (filled by paint()), its features and the buy button
+      var paidCard = function (k, name, list, pop) {
+        return '<div class="plan' + (pop ? ' plan-pro' : '') + '">' + (pop ? '<span class="badge-pop">' + L.popular + '</span>' : '') + '<h2>' + esc(name) + '</h2>' +
+          '<p class="price" data-price="' + k + '"></p><p class="pnote" data-note="' + k + '"></p>' + feats(list) +
+          (plan === k ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn' + (pop ? '' : ' btn-ghost') + '" data-buy="' + k + '">' + (k === 'pro' ? L.cta : L.ctaBasic) + '</button>') + '</div>';
+      };
       page('<div class="pricing">' +
         '<section class="pr-hero"><p class="eyebrow">' + L.eyebrow + '</p><h1>' + esc(L.h) + '</h1><p class="lead">' + esc(L.sub) + '</p>' +
         '<div class="pr-stats">' + L.stats.map(function (s) { return '<div><b>' + fmt(m[s[0]]) + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('') + '</div>' +
         '<p class="pr-upd">' + esc(L.upd.replace('{d}', fdate(m.tx_date))) + '</p>' +
         (USER || APP ? '' : '<p class="pr-have">' + t('haveSub') + ' <button type="button" class="link-btn" id="pr-in">' + t('signIn') + '</button></p>') + '</section>' +
-        '<div class="plans plans-3">' +
-          '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>' + money(0) + '</b></p><p class="pnote">&nbsp;</p><ul>' + L.freeL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
-          (!cur ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
-          '<div class="plan"><h2>Pro · ' + L.month + '</h2><p class="price"><b>' + monthly + '</b><span> ' + L.perM + '</span></p><p class="pnote">' + (trial ? esc(trial) : '&nbsp;') + '</p><ul>' +
-          L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
-          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn btn-ghost" data-buy="month">' + L.cta + ' →</button>') + '</div>' +
-          '<div class="plan plan-pro"><span class="badge-pop">' + L.popular + ' · ' + save + '</span><h2>Pro · ' + L.year + '</h2><p class="price"><s>' + money(pm(monthly) * 12) + '</s> <b>' + yearly + '</b><span> ' + L.perY + '</span></p><p class="pnote">' + esc(L.yearNote.replace('{m}', perMonthYearly)) + (trial ? ' · ' + esc(trial) : '') + '</p><ul>' +
-          L.proL.map(function (x) { return '<li>' + check + esc(x) + '</li>'; }).join('') + '</ul>' +
-          (cur ? '<p class="cur">' + L.current + '</p>' : '<button type="button" class="btn" data-buy="year">' + L.cta + ' →</button>') + '</div>' +
+        '<div class="pr-period"><div class="seg seg-wide" role="group"><button type="button" data-period="month">' + L.month + '</button><button type="button" data-period="year">' + L.year + ' <span class="pr-save">' + save + '</span></button></div></div>' +
+        '<div class="plans' + (basic ? ' plans-3' : '') + '">' +
+          '<div class="plan"><h2>' + L.free + '</h2><p class="price"><b>' + money(0) + '</b></p><p class="pnote">&nbsp;</p>' + feats(L.freeL) +
+          (plan === 'free' ? (USER ? '<p class="cur">' + L.current + '</p>' : '<a class="btn btn-ghost" href="#/">' + L.ctaFree + '</a>') : '') + '</div>' +
+          (basic ? paidCard('basic', L.basic, L.basicL, false) : '') + paidCard('pro', 'Pro', L.proL, true) +
         '</div><p class="note center">' + esc(L.note) + '</p>' +
         '<section class="pr-sec"><h2>' + L.featH + '</h2><div class="feats">' + L.feats.map(function (f) { return '<div class="feat"><i>' + ico(f[0]) + '</i><h3>' + esc(f[1]) + '</h3><p>' + esc(f[2]) + '</p></div>'; }).join('') + '</div></section>' +
-        '<section class="pr-sec"><h2>' + L.cmpH + '</h2><div class="tw cmp"><table><thead><tr><th></th><th class="c">' + L.free + '</th><th class="c pro">Pro</th></tr></thead><tbody>' +
-          L.cmpRows.map(function (r) { return '<tr><td class="wrap">' + esc(r[0]) + '</td><td class="c">' + (r[1] ? check : dash) + '</td><td class="c pro">' + (r[2] ? check : dash) + '</td></tr>'; }).join('') + '</tbody></table></div></section>' +
+        '<section class="pr-sec"><h2>' + (basic ? L.cmpH3 : L.cmpH) + '</h2><div class="tw cmp"><table><thead><tr><th></th><th class="c">' + L.free + '</th>' + (basic ? '<th class="c">' + esc(L.basic) + '</th>' : '') + '<th class="c pro">Pro</th></tr></thead><tbody>' +
+          L.cmpRows.map(function (r) { return '<tr><td class="wrap">' + esc(r[0]) + '</td><td class="c">' + cell(r[1]) + '</td>' + (basic ? '<td class="c">' + cell(r[2]) + '</td>' : '') + '<td class="c pro">' + cell(r[3]) + '</td></tr>'; }).join('') + '</tbody></table></div></section>' +
         '<section class="pr-sec"><h2>' + L.trustH + '</h2><div class="trust">' + L.trust.map(function (x) { return '<div><b>' + esc(x[0]) + '</b><span>' + esc(x[1]) + '</span></div>'; }).join('') + '</div></section>' +
         '<section class="pr-sec"><h2>' + L.faqH + '</h2><div class="faq">' + L.faq.map(function (q) { return '<details><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join('') + '</div></section>' +
-        (cur ? '' : '<section class="pr-final"><h2>' + esc(L.finalH) + '</h2><button type="button" class="btn" id="pr-cta2">' + L.cta + ' →</button></section>') +
-        '</div>' + (cur ? '' : '<div class="pr-sticky"><span id="pr-sticky-price"><b>' + monthly + '</b> ' + L.perM + '</span><button type="button" class="btn" id="pr-cta3">' + L.cta + '</button></div>'));
-      var interval = 'year';
-      var go = function () {
+        (plan === 'pro' ? '' : '<section class="pr-final"><h2>' + esc(L.finalH) + '</h2><button type="button" class="btn" id="pr-cta2">' + L.cta + '</button></section>') +
+        '</div>' + (plan === 'pro' ? '' : '<div class="pr-sticky"><span id="pr-sticky-price"><b>' + D.month + '</b> ' + L.perM + '</span><button type="button" class="btn" id="pr-cta3">' + L.cta + '</button></div>'));
+      var period = 'year';
+      var paint = function () {
+        view.querySelectorAll('[data-period]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.period === period); });
+        ['basic', 'pro'].forEach(function (k) {
+          var p = price[k], el = view.querySelector('[data-price="' + k + '"]'), note = view.querySelector('[data-note="' + k + '"]'); if (!el) return;
+          el.innerHTML = period === 'year' ? '<s>' + money(pm(p.month) * 12) + '</s> <b>' + p.year + '</b><span> ' + L.perY + '</span>' : '<b>' + p.month + '</b><span> ' + L.perM + '</span>';
+          note.textContent = [period === 'year' ? L.yearNote.replace('{m}', money(pm(p.year) / 12)) : '', trial].filter(Boolean).join(' · ') || ' ';
+        });
+      };
+      view.querySelectorAll('[data-period]').forEach(function (b) { b.onclick = function () { period = b.dataset.period; paint(); }; });
+      paint();
+      var go = function (tier, per) {
         if (!BILLING_LIVE) { toast(t('prSoon')); return; }
-        track('begin_checkout', { plan: interval, currency: 'AED', value: interval === 'year' ? 1490 : 179, signed_in: !!USER });
+        var interval = (tier === 'basic' ? 'basic_' : '') + per, p = price[tier];
+        if (USER && isPaid()) {   // switching Basic <-> Pro happens in the Stripe portal, not in a second checkout
+          api('/api/billing/portal').then(function (r) { location.href = r.url; }).catch(function () { toast(t('apiDown')); }); return;
+        }
+        track('begin_checkout', { plan: interval, currency: 'AED', value: pm(per === 'year' ? p.year : p.month), signed_in: !!USER });
         var run = function () {
           view.querySelectorAll('[data-buy],#pr-cta2,#pr-cta3').forEach(function (b) { b.disabled = true; });
           api('/api/billing/checkout', { interval: interval, lang: lang, ga_cid: gaCid() }).then(function (r) { location.href = r.url; })
@@ -1583,10 +1607,10 @@
         };
         if (USER) run(); else openSignIn(run);
       };
-      view.querySelectorAll('[data-buy]').forEach(function (b) { b.onclick = function () { interval = b.dataset.buy; go(); }; });
+      view.querySelectorAll('[data-buy]').forEach(function (b) { b.onclick = function () { go(b.dataset.buy, period); }; });
       if ($('#pr-in')) $('#pr-in').onclick = function () { openSignIn(); };
-      if ($('#pr-cta2')) $('#pr-cta2').onclick = function () { interval = 'year'; go(); };
-      if ($('#pr-cta3')) $('#pr-cta3').onclick = function () { interval = 'month'; go(); };
+      if ($('#pr-cta2')) $('#pr-cta2').onclick = function () { go('pro', 'year'); };
+      if ($('#pr-cta3')) $('#pr-cta3').onclick = function () { go('pro', 'month'); };
     });
   }
   function vAccount() {
@@ -1596,13 +1620,16 @@
     var end = a.period_end ? fdate(new Date(a.period_end * 1000).toISOString()) : '—';
     page('<h1 class="page">' + t('acH') + '</h1><div class="group-card">' +
       '<div class="row"><span>Email</span><b>' + esc(a.email || (USER && USER.email) || '—') + '</b></div>' +
-      '<div class="row"><span>' + t('acPlan') + '</span><b>' + (isPro() ? 'Pro' : t('prFree')) + (st ? ' · ' + esc(st) : '') + '</b></div>' +
+      '<div class="row"><span>' + t('acPlan') + '</span><b>' + (isPaid() ? planName() : t('prFree')) + (st ? ' · ' + esc(st) : '') + '</b></div>' +
       (a.period_end ? '<div class="row"><span>' + t(a.status === 'canceled' ? 'acEnds' : 'acRenew') + '</span><b>' + esc(end) + '</b></div>' : '') + '</div>' +
-      (APP ? (isPro() ? '' : '<p class="sub">' + t('lockApp') + '</p>') : '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
+      (APP ? (isPaid() ? '' : '<p class="sub">' + t('lockApp') + '</p>') : '<div class="actions">' + (a.can_manage ? '<button type="button" class="btn" id="ac-portal">' + t('acManage') + '</button>' : '<a class="btn" href="#/pricing">' + t('acUpgrade') + '</a>') +
       (USER ? '<button type="button" class="chip" id="ac-out">' + t('acOut') + '</button>' : '') + '</div>'));
     if ($('#ac-portal')) $('#ac-portal').onclick = function () { api('/api/billing/portal').then(function (r) { location.href = r.url; }).catch(function () { toast(t('apiDown')); }); };
     if ($('#ac-out')) $('#ac-out').onclick = function () { firebase.auth().signOut(); location.hash = '#/pricing'; };
   }
+  function planName() { return isPro() ? 'Pro' : ((PR[lang] || PR.en).basic || 'Basic'); }
+  // Basic subscribers meet a Pro-only feature (AI memo, PNG): say so and offer the upgrade
+  function proOnly() { toast(t('proOnly')); setTimeout(function () { location.hash = '#/pricing'; }, 900); }
   function vLocked(r) {
     page('<div class="lock"><div class="lock-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></div>' +
       '<h1 class="page">' + t('lockH') + '</h1><p class="sub">' + t('lockSub') + '</p><ul class="lock-list">' + t('prProL').slice(0, 5).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
@@ -1682,7 +1709,7 @@
   function paintAccount() {
     var el = $('#acct'); if (!el) return;
     el.hidden = !BILLING_LIVE;
-    el.innerHTML = USER ? '<span class="av">' + esc(((USER.email || USER.displayName || '?')[0] || '?').toUpperCase()) + '</span>' + (isPro() ? '<span class="badge">Pro</span>' : '') : '<span>' + t('signIn') + '</span>';
+    el.innerHTML = USER ? '<span class="av">' + esc(((USER.email || USER.displayName || '?')[0] || '?').toUpperCase()) + '</span>' + (isPaid() ? '<span class="badge">' + planName() + '</span>' : '') : '<span>' + t('signIn') + '</span>';
     el.setAttribute('aria-label', USER ? t('navAccount') : t('signIn'));
     el.onclick = function (e) { if (!USER) { e.preventDefault(); openSignIn(); } };
   }
@@ -1720,13 +1747,13 @@
       refreshAccount().then(function () {
         var wasIn = signedIn; signedIn = !!USER;
         if (first) { first = false; start(); } else { chrome(); route(); }
-        if (!wasIn && USER && !isPro() && !afterSignIn && !paid) location.hash = '#/pricing';
+        if (!wasIn && USER && !isPaid() && !afterSignIn && !paid) location.hash = '#/pricing';
         if (paid && USER) {
           paid = false; history.replaceState(null, '', location.pathname + location.hash);
-          if (isPro()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); return; }
+          if (isPaid()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); return; }
           toast(t('waitPaid'));
           var tries = 0, poll = setInterval(function () {   // the Stripe webhook usually lands within seconds
-            refreshAccount().then(function () { if (isPro() || ++tries > 10) { clearInterval(poll); if (isPro()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); route(); } } });
+            refreshAccount().then(function () { if (isPaid() || ++tries > 10) { clearInterval(poll); if (isPaid()) { track(PLANS.mp ? 'pro_activated' : 'purchase', { currency: 'AED' }); toast(t('okPaid')); route(); } } });
           }, 2000);
         }
       });
@@ -1885,11 +1912,11 @@
     if (CITY === 'ad' && (r === 'area' || r === 'project' || r === 'developer')) { CITY = 'dxb'; store('pro_city', 'dxb'); chrome(); }   // Dubai links from AI answers
     if (CITY === 'ad') {
       var adv = { market: function () { vAD('market'); }, map: function () { vAD('map'); }, areas: function () { vAD('areas'); }, ask: function () { vAsk(h[1]); }, pricing: vPricing, account: vAccount,
-        adarea: function () { if (BILLING_LIVE && !isPro()) vLocked(r); else vADArea(h[1]); } }[r];
+        adarea: function () { if (BILLING_LIVE && !isPaid()) vLocked(r); else vADArea(h[1]); } }[r];
       (adv || vADNone)(); return;
     }
-    if (BILLING_LIVE && !isPro() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
-    if (APP && r === 'pricing') { if (isPro()) location.replace('#/'); else vLocked(r); return; }
+    if (BILLING_LIVE && !isPaid() && FREE_ROUTES.indexOf(r) < 0) { vLocked(r); return; }
+    if (APP && r === 'pricing') { if (isPaid()) location.replace('#/'); else vLocked(r); return; }
     ({ pricing: vPricing, account: vAccount, market: vMarket, ask: function () { vAsk(h[1]); }, adarea: function () { location.replace('#/areas'); }, info: vInfo, map: vMap, areas: vAreas, area: function () { vArea(h[1]); }, projects: vProjects, project: function () { vProject(h[1]); },
        tx: function () { vTx(h[1]); }, developers: vDevelopers, developer: function () { vDeveloper(h[1]); } }[r] || vMarket)();
   }
