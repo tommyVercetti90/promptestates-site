@@ -715,11 +715,17 @@
     if (!name) { fName.focus(); return; }
     if (digits.length < 8 || digits.length > 15) { err.textContent = form.dataset.bad; err.hidden = false; fPhone.focus(); return; }
     err.hidden = true; btn.disabled = true;
-    fetch(form.dataset.endpoint, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ visa: visa(), name: name, phone: phone, page: location.pathname, lang: form.dataset.lang, _honey: fHp.value,
-                             _subject: 'Visa consultation (' + visa() + '): ' + name + ' ' + phone, _template: 'table', _captcha: 'false' })
-    }).then(function (r) { if (!r.ok) throw new Error(r.status); })
+    var lead = { visa: visa(), name: name, phone: phone, page: location.pathname, lang: form.dataset.lang };
+    var post = function (url, body) {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+    };
+    // our API stores the lead and forwards it; the e-mail service directly only when the API is unreachable
+    post(form.dataset.api, Object.assign({ honey: fHp.value }, lead))
+      .catch(function () {
+        return post(form.dataset.endpoint, Object.assign({ _honey: fHp.value, _subject: 'Visa consultation (' + lead.visa + '): ' + name + ' ' + phone, _template: 'table', _captcha: 'false' }, lead))
+          .then(function (j) { if (String(j.success) !== 'true') throw new Error('not sent'); });   // formsubmit answers 200 with success:false
+      })
       .then(function () {
         box.classList.add('is-sent'); box.querySelector('.lf-ok').hidden = false;
         ev('generate_lead', { form: form.dataset.lead, page: form.dataset.page, visa: visa() });
