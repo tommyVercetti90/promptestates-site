@@ -397,6 +397,10 @@ tr.tap:active{background:var(--surface-2)}
 .cm-ai{max-width:860px;font-size:15px;line-height:1.6}
 .cm-ai .md table{font-size:13px}
 .cm-cta{margin-top:12px}
+.cm-up{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.cm-up p{margin:0 0 10px;font-size:14px;color:var(--text-2)}
+.cm-up .actions{margin:0;flex-wrap:wrap;align-items:center}
+.cm-up a.chip{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .cm-wait .shimmer{color:var(--muted)}
 .chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0 10px}
 .chat-chip{padding:8px 14px;border-radius:10px;background:#6bbfe0;color:#fff;font-size:14px;font-weight:500;line-height:1.25;text-align:start;transition:background .2s}

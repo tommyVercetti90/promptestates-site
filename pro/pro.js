@@ -38,6 +38,7 @@
       prCta: 'Оформить Pro', prCurrent: 'Ваш тариф', prFree: 'Бесплатно', prFreeL: ['Обзор рынка Дубая', 'Карта районов', 'Данные DLD каждую неделю'],
       prProL: ['Все разделы: районы, проекты, сделки, застройщики', 'Фильтры по типу жилья на карте и в инфографике', 'Инфографика в PNG для постов и презентаций', 'ИИ-аналитик: вопросы обычными словами', 'ИИ-меморандум по любому проекту', 'Калькулятор справедливой цены', 'Выгрузка сделок в CSV'],
       prNote: 'Оплата через Stripe. Отмена в любой момент в личном кабинете', prSoon: 'Оплата скоро откроется',
+      askUpGuest: 'Гостям — 3 вопроса в день. Войдите бесплатно: 10 вопросов в день и история чатов.', askUpFree: 'Хотите без лимита на вопросы и со всеми данными DLD? Это Pro.',
       lockH: 'Раздел доступен в Pro', lockSub: 'Оформите подписку, чтобы открыть все данные DLD, ИИ-аналитика и инфографику', lockSee: 'Смотреть тарифы', lockApp: 'Подписка оформляется на сайте promptestates.com — после этого Pro откроется и здесь, в том же аккаунте.', lockSeg: 'Фильтры по типу жилья — в Pro',
       acH: 'Аккаунт', acPlan: 'Тариф', acRenew: 'Продлится', acEnds: 'Доступ до', acManage: 'Управлять подпиской', acOut: 'Выйти', acUpgrade: 'Перейти на Pro',
       acStatus: { active: 'активна', trialing: 'пробный период', past_due: 'проблема с оплатой', canceled: 'отменена', incomplete: 'не завершена' },
@@ -97,6 +98,7 @@
       prCta: 'Get Pro', prCurrent: 'Your plan', prFree: 'Free', prFreeL: ['Dubai market overview', 'Area map', 'Weekly DLD data'],
       prProL: ['Every section: areas, projects, transactions, developers', 'Property-type filters on the map and infographics', 'Infographics as PNG for posts and decks', 'AI analyst: ask in plain words', 'AI memo for any project', 'Fair price calculator', 'Transactions CSV export'],
       prNote: 'Payments by Stripe. Cancel anytime from your account', prSoon: 'Checkout opens soon',
+      askUpGuest: 'Guests get 3 questions a day. Sign in for free: 10 a day plus your chat history.', askUpFree: 'Want unlimited questions and every DLD data section? That’s Pro.',
       lockH: 'This section is part of Pro', lockSub: 'Subscribe to unlock all DLD data, the AI analyst and infographics', lockSee: 'See plans', lockApp: 'Subscribe on the promptestates.com website — Pro then unlocks here too, on the same account.', lockSeg: 'Property-type filters are part of Pro',
       acH: 'Account', acPlan: 'Plan', acRenew: 'Renews', acEnds: 'Access until', acManage: 'Manage subscription', acOut: 'Sign out', acUpgrade: 'Upgrade to Pro',
       acStatus: { active: 'active', trialing: 'trial', past_due: 'payment issue', canceled: 'canceled', incomplete: 'incomplete' },
@@ -368,6 +370,10 @@
     var cta = '';
     if (m.limit === 'guest') cta = '<div class="cm-cta"><button type="button" class="btn" data-chat-in>' + t('signIn') + '</button></div>';
     else if (m.limit === 'free' && !APP) cta = '<div class="cm-cta"><a class="btn" href="#/pricing">' + t('lockSee') + '</a></div>';
+    else if (!m.error && !APP && BILLING_LIVE && !isPaid() && i === CHAT.msgs.length - 1)   // soft upsell under the latest answer only
+      cta = '<div class="cm-up"><p>' + t(USER ? 'askUpFree' : 'askUpGuest') + '</p><div class="actions">' +
+        (USER ? '' : '<button type="button" class="btn" data-chat-in>' + t('signIn') + '</button>') +
+        '<a class="' + (USER ? 'btn' : 'chip') + '" href="#/pricing" data-up="ask">' + t('lockSee') + '</a></div></div>';
     var prev = CHAT.msgs[i - 1], svg = !m.error && m.text ? answerSvg('cm-card-' + i, prev && prev.role === 'user' ? prev.text : t('chatHi'), m.text) : '';
     var cardH = svg ? '<figure class="cm-card">' + svg + '<figcaption><button type="button" class="cm-act" data-card="cm-card-' + i + '" data-how="share">' +
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>' + t('cardShare') + '</button>' +
@@ -384,6 +390,7 @@
     var btns = !CHAT.msgs.length ? (CHAT.welcome || []) : (last && last.role === 'assistant' && !CHAT.busy ? last.btns || [] : []);
     $('#chat-chips').innerHTML = btns.map(function (b) { return '<button type="button" class="chat-chip" data-q="' + esc(b.text) + '">' + esc(b.title) + '</button>'; }).join('');
     sc.querySelectorAll('[data-chat-in]').forEach(function (b) { b.onclick = function () { openSignIn(); }; });
+    sc.querySelectorAll('[data-up]').forEach(function (a) { a.onclick = function () { track('upsell_click', { from: a.dataset.up }); }; });
     sc.scrollTop = sc.scrollHeight;
     var main = $('.chat-main'); if (main && CHAT.msgs.length) main.scrollIntoView({ block: 'end' });
   }
