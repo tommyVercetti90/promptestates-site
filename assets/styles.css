@@ -1682,6 +1682,25 @@ html.lb-open{overflow:hidden}
   [dir="rtl"] .ck{left:50%;right:auto}
   .ck .btn{height:34px}
 }
+/* quarterly market report */
+.dtbl.qr-kpi{min-width:640px;font-size:14px}
+.dtbl.qr-kpi td,.dtbl.qr-kpi th{white-space:nowrap}
+.dtbl.qr-kpi small,.dtbl.qr-areas small{display:block;font-size:11px;color:var(--muted)}
+.dtbl.qr-areas{font-size:14px}
+@media (max-width:720px){.dtbl.qr-kpi{min-width:0;font-size:13px}.dtbl.qr-kpi td,.dtbl.qr-kpi th{white-space:normal}
+  .dtbl.qr-kpi th:nth-child(5),.dtbl.qr-kpi td:nth-child(5),.dtbl.qr-kpi th:nth-child(6),.dtbl.qr-kpi td:nth-child(6){display:none}
+  .dtbl.qr-areas th:nth-child(5),.dtbl.qr-areas td:nth-child(5){display:none}}
+.qr-bars{list-style:none;margin:18px 0 8px;padding:0;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px;height:220px;align-items:end}
+.qr-bars li{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.qr-bars span{width:100%;max-width:56px;background:var(--surface-3);border-radius:6px 6px 2px 2px;position:relative;min-height:4px}
+.qr-bars li.on span{background:var(--accent)}
+.qr-bars i{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:4px;font-style:normal;font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.qr-bars b{font-size:11px;font-weight:500;color:var(--muted);white-space:nowrap}
+@media (max-width:560px){.qr-bars{gap:4px}.qr-bars i{font-size:9px}.qr-bars b{font-size:10px}}
+.qr-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0}
+.qr-cards figure{margin:0}
+.qr-cards img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+.qr-cards figcaption{margin-top:6px;font-size:13px}
 
 /* ---------- visa consultation lead form (visa guides): pick a visa, then name + phone ---------- */
 .lead-form{margin:36px 0;padding:28px;border-radius:24px;background:var(--surface);border:1px solid var(--line-2)}
@@ -1714,3 +1733,9 @@ html.lb-open{overflow:hidden}
 .lead-form.is-sent .lf-form,.lead-form.is-sent .lf-note,.lead-form.is-sent .lf-sub{display:none}
 @media (max-width:820px){.lf-opts{grid-template-columns:repeat(2,minmax(0,1fr))}.lf-row{grid-template-columns:1fr}.lf-btn{width:100%}}
 @media (max-width:480px){.lead-form{padding:20px 16px}.lead-form h2{font-size:22px}.lf-opt{min-height:76px;padding:12px}.lf-row{padding:12px}}
+.qr-cards figcaption{font-size:12px;line-height:1.45;color:var(--muted);margin-top:8px}
+.qr-cards .qr-act{margin:6px 0 0;font-size:13px;line-height:1.4}
+.qr-embed{margin-top:6px;font-size:13px}
+.qr-embed summary{cursor:pointer;color:var(--accent)}
+.qr-embed textarea{width:100%;box-sizing:border-box;margin:8px 0 6px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;padding:8px;border-radius:8px;
+  border:1px solid var(--line);background:var(--surface-2);color:var(--text);resize:vertical}

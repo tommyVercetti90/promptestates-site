@@ -44,6 +44,8 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [Is Dubai Hills Estate a good investment?](https://promptestates.com/en/guide/dubai-hills-investment/): Is Dubai Hills Estate a good investment? DLD data on rental yield vs price growth, 2029 off-plan supply, slowing sales and what to check before buying.
 - [Villas and townhouses in Dubai: how to choose and which areas to look at](https://promptestates.com/en/guide/villas-townhouses-dubai/): How to choose a villa or townhouse in Dubai: the difference, prices by area from DLD sales, where yields are higher, ready or off-plan, and what to check first.
 - [Dubai off-plan market in numbers](https://promptestates.com/en/guide/dubai-market-data/): Median price per m², studio and 1–2 bedroom prices, off-plan share and overdue handovers across 14 Dubai areas — from official DLD data. Table and CSV.
+- [Dubai property market: Q3 2026 in numbers](https://promptestates.com/en/guide/dubai-property-market-q3-2026/): Dubai Q3 2026 from DLD data: 37,354 sales (−36% y/y), AED 93.4bn, median AED 18,167/m² (AED 1,688/sq ft). Off-plan down, ready up. Tables and CSV.
+- [Dubai property market reports](https://promptestates.com/en/guide/dubai-property-market-reports/): Quarterly Dubai property market reports from DLD data: sales, prices per m² and sq ft, off-plan vs ready, mortgages, rents and areas. Tables, CSV, infographics.
 - [Dubai Marina](https://promptestates.com/en/areas/dubai-marina/): Dubai Marina is a high-rise district around a man-made canal next to JBR beach. What the area is like, who it suits and how to find off-plan projects here.
 - [Business Bay](https://promptestates.com/en/areas/business-bay/): Business Bay is a business and residential district on the Dubai Canal next to Downtown. What the area is like, who it suits and how to find off-plan projects here.
 - [Jumeirah Village Circle (JVC)](https://promptestates.com/en/areas/jvc/): Jumeirah Village Circle: a Dubai community of apartments, townhouses and parks. What it is like, who it suits and how to find off-plan projects.
@@ -1597,6 +1599,78 @@ A: With every new DLD export; the data date is shown under the table.
 
 Q: Can I use the data in my article?
 A: Yes, with credit: “PromptEstates, based on Dubai Land Department data” and a link to this page.
+
+## Dubai property market: Q3 2026 in numbers
+
+URL: https://promptestates.com/en/guide/dubai-property-market-q3-2026/
+
+A third fewer deals, yet almost no change in the price per square metre. Here is July–September 2026 from registered Dubai Land Department (DLD) transactions: volumes, off-plan and ready prices, mortgages, rents and the areas where demand moved.
+
+- 37,354 sales in the quarter — 36.4% fewer than in Q3 2025 and 2.4% fewer than in Q2 2026.
+
+- Sales value of AED 93.4bn, down 44.2% year on year: the average deal fell from AED 2.85m to AED 2.50m.
+
+- Median price of AED 18,167 per m² (about AED 1,688 per sq ft), +0.4% year on year: volumes fell, prices did not.
+
+- Off-plan fell 6.1% to AED 18,709 per m²; ready homes rose 1.8% to AED 15,717 per m².
+
+- 10,845 mortgage registrations — 1.4% more than a year ago, with a third fewer sales.
+
+### Volumes fell, prices held
+Dubai registered 58,741 sales worth AED 167.5bn in Q3 2025 and 37,354 sales worth AED 93.4bn in Q3 2026. The slowdown began in spring: from March to September 2026 the city recorded 10,000–14,000 sales a month, against 16,000–20,000 a year earlier. Yet the median price per square metre barely moved: AED 18,167 against AED 18,099 a year ago (about AED 1,688 per sq ft). The market cooled in the number of buyers, not in price — sellers are not cutting prices across the board.
+
+### Off-plan is getting cheaper, ready homes are not
+The off-plan median fell from AED 19,934 to AED 18,709 per m² (−6.1% year on year), while ready homes rose from AED 15,438 to AED 15,717 (+1.8%). The premium of off-plan over ready narrowed from 29% to 19%. Part of this is mix: developers are launching more projects in the more affordable south of the city, where a metre costs less than in Business Bay or Dubai Marina. The off-plan share of sales was unchanged at 68%.
+
+### Where demand moved
+The busiest area of the quarter was Dubai South: 5,352 sales, 2.2 times more than a year ago, 95% of them off-plan. Next came Downtown Jebel Ali (2,570 sales against 217 a year ago) and JVC (2,491, −55%). Growth came from projects in the south and east: City of Arabia (+90%) and Damac Lagoons (+62%). The central areas shrank the most: Business Bay (−72%), Dubai Marina (−44%), Motor City (−58%). Dubai Islands recorded 482 sales (−51%), but its median rose 12% to AED 28,074 per m².
+
+### Mortgages and rents
+The quarter saw 10,845 mortgage registrations worth AED 35.2bn — 1.4% more than a year ago and 31% more than in Q2. There are now about 29 mortgage registrations per 100 sales, against 18 a year earlier: the share of financed buyers grows as speculative demand leaves. The median annual rent on new Ejari contracts was AED 67,417, +1.6% year on year and +5.2% on the quarter: rents are not cooling along with sales.
+
+### What it means for buyers
+With fewer buyers, those who do buy have more room to negotiate, especially for ready homes in central areas where deal counts halved. Prices per metre have not collapsed, so the data does not yet point to a market-wide drop. This is not investment advice: a median also reflects which properties sold in the quarter.
+
+### Methodology
+Source: Dubai Land Department open data — the Real Estate Transactions export (sales) and Ejari rent contracts on the data.dubai portal. The quarterly median is the monthly medians of price per m², weighted by the number of sales. Areas follow DLD zones; the table includes areas with 300 or more sales in the quarter. A change in an area's median largely reflects which projects sold, not the price change of any given apartment.
+
+### How to cite
+Please credit “PromptEstates, based on Dubai Land Department data” with a link to this page. The tables can be downloaded as CSV and the infographics as PNG below. Press enquiries: first@promptestates.com.
+
+Q: How many property sales were there in Dubai in Q3 2026?
+A: According to DLD data, 37,354 sales worth AED 93.4bn — 36.4% fewer by count and 44.2% less by value than in Q3 2025.
+
+Q: Are Dubai property prices falling?
+A: Not on average: the Q3 2026 median was AED 18,167 per m² (about AED 1,688 per sq ft), 0.4% higher than a year ago. Off-plan fell 6.1%, ready homes rose 1.8%.
+
+Q: Which Dubai area was the busiest in Q3 2026?
+A: Dubai South, with 5,352 sales — 2.2 times more than a year ago, 95% of them off-plan.
+
+Q: Can I use this data in my article?
+A: Yes, with credit: “PromptEstates, based on Dubai Land Department data” and a link to this page. The tables are available as CSV.
+
+## Dubai property market reports
+
+URL: https://promptestates.com/en/guide/dubai-property-market-reports/
+
+Every quarter we break down the Dubai market from registered Dubai Land Department (DLD) transactions: how much sold and at what price, what is happening with off-plan, mortgages and rents, and where demand is moving. All reports are collected here, newest first.
+
+- Official Dubai Land Department data and Ejari rent contracts only, no advertised prices.
+
+- Each report covers sales and value, median per m² and sq ft, off-plan vs ready, mortgages, rents and the busiest areas.
+
+- Compared with the same quarter last year and with the previous quarter.
+
+- Tables as CSV and infographics as PNG, free for publications with a credit to the source.
+
+### What is in each report
+The quarter's key numbers in one table, a chart of sales by month, off-plan and ready prices, mortgages and rents, a table of the 15 busiest areas and what it means for buyers. Area figures link to the area pages with 12 months of detailed data.
+
+### Where the data comes from
+Sales come from the Dubai Land Department Real Estate Transactions open dataset on data.dubai, rents from Ejari contracts. The quarterly median is the monthly medians of price per m², weighted by the number of sales. We check the totals against figures published by market analysts.
+
+### Using the data in publications
+Numbers, tables and charts may be used in articles, research and social media with a credit: “PromptEstates, based on Dubai Land Department data”. Every chart comes with ready-made embed code. Press enquiries: first@promptestates.com.
 
 ## Dubai Marina: off-plan property and the area
 

@@ -1,0 +1,38 @@
+section,name,sales,sales_value_aed_m,median_aed_per_m2,median_aed_per_sqft,offplan_median_aed_per_m2,ready_median_aed_per_m2,offplan_share_pct,mortgage_registrations,median_annual_rent_aed,sales_same_quarter_last_year,median_aed_per_m2_same_quarter_last_year
+dubai,Q3 2026,37354,93418.7,18167,1688,18709,15717,68.0,10845,67417,,
+dubai,Q3 2025,58741,167470.1,18099,1681,19934,15438,67.9,10691,66330,,
+dubai,Q2 2026,38279,109210.3,18678,1735,19336,15830,72.7,8268,64113,,
+area,"Dubai South (Madinat Al Mataar)",5352,,18266,1697,,,95.4,,,2428,15794
+area,"Downtown Jebel Ali (Jabal Ali Industrial Second)",2570,,18621,1730,,,98.6,,,217,15140
+area,"JVC (Al Barsha South Fourth)",2491,,15246,1416,,,49.5,,,5519,15914
+area,"City of Arabia (Wadi Al Safa 4)",1982,,18489,1718,,,97.3,,,1043,21482
+area,"Al Furjan (Jabal Ali First)",1545,,17236,1601,,,63.6,,,2290,15970
+area,"Majan (Wadi Al Safa 3)",1524,,15551,1445,,,85.2,,,2511,16117
+area,"Dubailand Residence Complex (Wadi Al Safa 5)",1456,,15003,1394,,,75.8,,,2447,15397
+area,"Business Bay",1281,,23172,2153,,,35.8,,,4559,27851
+area,"Damac Lagoons (Al Hebiah Fifth)",1039,,17643,1639,,,64.5,,,640,16646
+area,"JLT (Al Thanyah Fifth)",899,,23143,2150,,,58.3,,,1194,19506
+area,"Dubai Marina (Marsa Dubai)",825,,25232,2344,,,12.1,,,1473,27958
+area,"Dubai Production City (IMPZ) (Me'Aisem First)",788,,15682,1457,,,57.9,,,1753,15319
+area,"Dubai Investment Park 1 (Dubai Investment Park First)",787,,11397,1059,,,93.6,,,122,9541
+area,"Dubai Creek Harbour (Al Khairan First)",765,,27086,2516,,,68.0,,,1084,26433
+area,"Motor City (Al Hebiah First)",763,,19253,1789,,,86.2,,,1815,20804
+area,"Arjan (Al Barshaa South Third)",734,,16719,1553,,,59.8,,,857,15063
+area,"Sobha Hartland (MBR City) (Al Merkadh)",717,,21545,2002,,,27.2,,,789,22468
+area,"The Valley by Emaar (Al Yufrah 1)",688,,20126,1870,,,41.9,,,431,14679
+area,"Dubai Sports City (Al Hebiah Fourth)",634,,14210,1320,,,44.3,,,1019,13798
+area,"International City (Al Warsan First)",513,,9392,873,,,34.5,,,578,7306
+area,"Downtown Dubai (Burj Khalifa)",512,,28895,2684,,,19.5,,,768,30835
+area,"Dubai Hills Estate (Hadaeq Sheikh Mohammed Bin Rashid)",511,,24555,2281,,,31.3,,,1353,26043
+area,"Al Jaddaf (Al Jadaf)",493,,20966,1948,,,74.6,,,1004,21402
+area,"Damac Hills (Al Hebiah Third)",492,,19152,1779,,,67.7,,,373,15757
+area,"Dubai Islands (Palm Deira)",482,,28074,2608,,,96.7,,,975,25013
+area,"JVT (Al Barsha South Fifth)",455,,17158,1594,,,73.0,,,1264,16231
+area,"Damac Islands 2 (Al Yelayiss 1)",448,,18228,1693,,,58.0,,,862,17476
+area,"Nad Al Sheba (Nad Al Shiba First)",417,,33833,3143,,,79.6,,,282,22548
+area,"Dubai Silicon Oasis (Nadd Hessa)",404,,12435,1155,,,27.7,,,1079,15901
+area,"Sobha Hartland 2 (Bukadra)",386,,27470,2552,,,99.2,,,1639,27083
+area,"Dubai Studio City (Al Hebiah Second)",370,,16854,1566,,,79.5,,,386,15841
+area,"Town Square (Al Yelayiss 2)",344,,14860,1381,,,41.6,,,740,15542
+area,"International City 3 (Warsan Fourth)",336,,13240,1230,,,73.8,,,512,11150
+# Source: PromptEstates analysis of Dubai Land Department open data, transactions export 2026-10-08. https://promptestates.com
