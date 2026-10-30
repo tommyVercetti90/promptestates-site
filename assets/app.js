@@ -690,3 +690,40 @@
     });
   });
 })();
+
+/* ---------- visa consultation form: name + phone e-mailed via the form endpoint ---------- */
+(function () {
+  var form = document.querySelector('form[data-lead]');
+  if (!form) return;
+  var box = form.closest('.lead-form'), err = form.querySelector('.lf-err'), btn = form.querySelector('.lf-btn');
+  var fName = form.querySelector('[name=name]'), fPhone = form.querySelector('[name=phone]'), fHp = form.querySelector('[name=_honey]');   // form.name is the form's own attribute
+  var ev = function (name, params) {
+    try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
+    try { if (typeof window.clarity === 'function') { window.clarity('event', name); window.clarity('upgrade', name); } } catch (e) {}
+  };
+  var visa = function () { var c = form.querySelector('[name=visa]:checked'); return c ? c.value : 'unsure'; };
+  form.addEventListener('change', function (e) {   // the button follows the picked visa
+    if (e.target.name === 'visa') btn.textContent = e.target.value === 'unsure' ? form.dataset.ctaUnsure : form.dataset.cta;
+  });
+  var started = false;
+  form.addEventListener('input', function () { if (!started) { started = true; ev('lead_form_start', { form: form.dataset.lead }); } });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = fName.value.trim(), phone = fPhone.value.trim(), digits = phone.replace(/\D/g, '');
+    fName.setAttribute('aria-invalid', String(!name));
+    fPhone.setAttribute('aria-invalid', String(digits.length < 8));
+    if (!name) { fName.focus(); return; }
+    if (digits.length < 8 || digits.length > 15) { err.textContent = form.dataset.bad; err.hidden = false; fPhone.focus(); return; }
+    err.hidden = true; btn.disabled = true;
+    fetch(form.dataset.endpoint, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ visa: visa(), name: name, phone: phone, page: location.pathname, lang: form.dataset.lang, _honey: fHp.value,
+                             _subject: 'Visa consultation (' + visa() + '): ' + name + ' ' + phone, _template: 'table', _captcha: 'false' })
+    }).then(function (r) { if (!r.ok) throw new Error(r.status); })
+      .then(function () {
+        box.classList.add('is-sent'); box.querySelector('.lf-ok').hidden = false;
+        ev('generate_lead', { form: form.dataset.lead, page: form.dataset.page, visa: visa() });
+      })
+      .catch(function () { btn.disabled = false; box.querySelector('.lf-fail').hidden = false; });
+  });
+})();
