@@ -492,10 +492,18 @@
       islTabs.forEach(function (t) { t.setAttribute('aria-pressed', String(t.getAttribute('data-island') === k)); });
       document.querySelectorAll('.isl').forEach(function (a) { a.hidden = a.getAttribute('data-island') !== k; });
       document.querySelectorAll('.plan-spot').forEach(function (s) { s.classList.toggle('is-on', s.getAttribute('data-island') === k); });
-      if (scroll) document.querySelector('.isl-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (scroll) document.getElementById('islands').scrollIntoView({ behavior: 'smooth', block: 'start' });
       track('spot_island', { island: k });
     };
-    islTabs.forEach(function (t) { t.addEventListener('click', function () { setIsland(t.getAttribute('data-island'), false); }); });
+    var islBar = document.querySelector('.isl-tabs'), islPanels = document.querySelector('.isl-panels');
+    islTabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        setIsland(t.getAttribute('data-island'), false);
+        // tabs are stuck and the reader is mid-card: start the new island from its top, just under the tabs
+        var gap = islPanels.getBoundingClientRect().top - islBar.getBoundingClientRect().bottom;
+        if (gap < 0) window.scrollBy({ top: gap - 8, behavior: 'smooth' });
+      });
+    });
     document.querySelectorAll('.plan-spot').forEach(function (s) {
       s.addEventListener('click', function () { setIsland(s.getAttribute('data-island'), true); });
     });

@@ -1777,3 +1777,8 @@ html.lb-open{overflow:hidden}
 /* Dubai Islands: projects table — developer reads as text, prices and dates stay on one line */
 .di-proj th:nth-child(2),.di-proj td:nth-child(2){text-align:start}
 .di-proj td:nth-child(n+3){white-space:nowrap}
+/* Dubai Islands: island tabs stay under the section nav while the islands block is on screen (sticky ends with its container) */
+.isl-tabs{position:sticky;top:129px;z-index:15;padding:10px 0;margin:-10px 0 12px;background:var(--header-bg);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)}
+.spot-where{margin-top:32px;font-size:20px;line-height:1.3;scroll-margin-top:140px}
+@media (max-width:720px){.isl-tabs{top:117px;padding:8px 0;margin-bottom:6px}}
+@media (min-width:721px){#about .spot-2col{align-items:start}#about .spot-loc{position:sticky;top:150px}}
