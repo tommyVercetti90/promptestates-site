@@ -548,6 +548,24 @@
     });
   });
 
+  /* ---------- end of a guide: closest articles, minus the ones this reader has already opened ---------- */
+  var readNext = document.querySelector('[data-read-next]');
+  if (readNext) {
+    var seen = [];
+    try { seen = JSON.parse(localStorage.getItem('pe_read') || '[]'); } catch (err) {}
+    var cur = readNext.getAttribute('data-read-next');
+    var cards = [].slice.call(readNext.querySelectorAll('.mag-card'));
+    var fresh = cards.filter(function (c) { return seen.indexOf(c.getAttribute('data-slug')) < 0; });
+    var pick = fresh.concat(cards.filter(function (c) { return fresh.indexOf(c) < 0; })).slice(0, 3);
+    cards.forEach(function (c) { c.hidden = pick.indexOf(c) < 0; });
+    pick.forEach(function (c) { c.parentElement.appendChild(c); });
+    cards.forEach(function (c) {
+      c.addEventListener('click', function () { track('read_next_click', { from: cur, to: c.getAttribute('data-slug'), pos: pick.indexOf(c) + 1 }); });
+    });
+    seen = [cur].concat(seen.filter(function (s) { return s !== cur; })).slice(0, 40);
+    try { localStorage.setItem('pe_read', JSON.stringify(seen)); } catch (err) {}
+  }
+
   /* ---------- FAQ: show all / fewer ---------- */
   document.querySelectorAll('.faq-toggle').forEach(function (b) {
     b.addEventListener('click', function () {
