@@ -492,7 +492,7 @@
       islTabs.forEach(function (t) { t.setAttribute('aria-pressed', String(t.getAttribute('data-island') === k)); });
       document.querySelectorAll('.isl').forEach(function (a) { a.hidden = a.getAttribute('data-island') !== k; });
       document.querySelectorAll('.plan-spot').forEach(function (s) { s.classList.toggle('is-on', s.getAttribute('data-island') === k); });
-      if (scroll) document.getElementById('islands').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (scroll) document.querySelector('.isl-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
       track('spot_island', { island: k });
     };
     islTabs.forEach(function (t) { t.addEventListener('click', function () { setIsland(t.getAttribute('data-island'), false); }); });
@@ -528,7 +528,11 @@
     var sio = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
         if (!en.isIntersecting) return;
-        spotLinks.forEach(function (a) { a.classList.toggle('is-on', a.getAttribute('href') === '#' + en.target.id); });
+        spotLinks.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.classList.toggle('is-on', on);
+          if (on && a.parentNode.scrollWidth > a.parentNode.clientWidth) a.parentNode.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });  // phones: keep the current chip in view
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     spotLinks.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s) sio.observe(s); });

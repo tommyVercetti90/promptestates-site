@@ -1743,3 +1743,34 @@ html.lb-open{overflow:hidden}
 .read-next .mag-grid{margin-top:18px}
 .read-next .mkt-link{margin-top:16px}
 .read-next .mkt-link a{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+/* Dubai Islands spotlight: phone layout */
+.doc .spot-hero .crumbs-row{position:absolute;top:24px;margin:0;padding:0;background:none;box-shadow:none}
+.isl-tabs{scroll-margin-top:140px}
+@media (max-width:720px){.spot-nav .container{flex-wrap:nowrap;overflow-x:auto}}
+@media (max-width:640px){
+  .spot-hero{padding-top:0}
+  .spot-hero-in{padding-top:96px;padding-bottom:28px}
+  .spot-hero .crumbs-row{display:none}
+  .spot-hero .kicker{max-width:100%;white-space:normal;line-height:1.35}
+  .spot-hero h1{font-size:clamp(44px,14vw,60px)}
+  .spot-sub{margin-top:14px;font-size:16px!important}
+  .spot-cta{margin-top:22px;gap:10px}
+  .spot-nav .container{flex-wrap:nowrap;overflow-x:auto;gap:4px;padding-top:8px;padding-bottom:8px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  [dir="rtl"] .spot-nav .container{-webkit-mask-image:linear-gradient(270deg,#000 88%,transparent);mask-image:linear-gradient(270deg,#000 88%,transparent)}
+  .spot-nav .spot-back{display:none}
+  .spot-nav a{height:36px;padding:0 12px;font-size:13px}
+  .spot-sec,.isl-tabs{scroll-margin-top:124px}
+  .spot-head{margin-bottom:22px}
+  .spot-loc figcaption{position:static;border-radius:0;background:#04151c}
+  .plan-spot{width:44px;height:44px}
+  .plan-side{margin-top:4px}
+  .plan-legend{grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:12px}
+  .plan-legend li{gap:8px;font-size:12.5px;align-items:flex-start}
+  .plan-legend i{flex-basis:22px;height:22px;font-size:11px}
+  .isl-tabs{margin-bottom:14px}
+  .isl-body h3{font-size:22px}
+  .spot-nums b{font-size:30px}
+  .spot-nums span{font-size:13px}
+  .fit-card{padding:22px 20px}
+  .fit-card li{font-size:14px}
+}
