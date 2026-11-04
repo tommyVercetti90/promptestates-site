@@ -29,6 +29,32 @@
     });
   }
 
+  // photos by category (all images stay in one gallery for the lightbox)
+  var cats = document.querySelector('.pj-cats'), pg = document.querySelector('.pj-pgrid');
+  if (cats && pg) cats.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-cat]');
+    if (!b) return;
+    cats.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    pg.querySelectorAll('img').forEach(function (im) { im.classList.toggle('off', im.dataset.cat !== b.dataset.cat); });
+  });
+  if (pg) pg.querySelectorAll('img').forEach(function (im) { im.classList.toggle('off', im.dataset.cat !== 'Project'); });
+
+  // payment schedule for the chosen unit type
+  var sw = document.querySelector('.pj-paysw .pj-types');
+  if (sw) {
+    var pay = {};
+    try { pay = JSON.parse(sw.getAttribute('data-pay') || '{}'); } catch (e) { pay = {}; }
+    var sec = document.getElementById('pj-plan');
+    sw.addEventListener('click', function (ev) {
+      var b = ev.target.closest('button[data-t]');
+      if (!b || !pay[b.dataset.t]) return;
+      var d = pay[b.dataset.t];
+      sw.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      d.rows.forEach(function (v, i) { var el = sec.querySelector('[data-k="r' + i + '"]'); if (el) el.textContent = v; });
+      ['price', 'dld', 'total'].forEach(function (k) { var el = sec.querySelector('[data-k="' + k + '"]'); if (el) el.textContent = d[k]; });
+    });
+  }
+
   var nav = document.querySelector('.pj-nav');
   if (nav && 'IntersectionObserver' in window) {
     var links = {}, secs = [];
