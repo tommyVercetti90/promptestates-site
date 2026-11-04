@@ -34,7 +34,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [How to buy resale property in Dubai: a step-by-step guide](https://promptestates.com/en/guide/buying-resale/): How to buy a ready home on Dubai's secondary market: RERA agent and forms, MOU (Form F) and 10% deposit, NOC, mortgage, DLD transfer and every cost.
 - [Freehold areas in Dubai and the UAE: where foreigners can own property](https://promptestates.com/en/guide/freehold-areas/): Where foreigners can buy property outright in Dubai and other emirates: the main freehold areas, how freehold differs from leasehold and how to check an area.
 - [UAE retirement visa: how to move to Dubai after 55](https://promptestates.com/en/guide/retirement-visa/): The five-year UAE retirement visa for people aged 55+: financial conditions (savings, property or income), documents, insurance, family and renewal.
-- [UAE visa through financial investment: fund, business and bank deposit](https://promptestates.com/en/guide/investment-visa-deposit/): A UAE Golden Visa without buying property: AED 2 million in an investment fund, company capital or taxes, and how this differs from a plain bank deposit.
+- [UAE visa through financial investment: fund, business and bank deposit](https://promptestates.com/en/guide/investment-visa-deposit/): Can a deposit get you a UAE Golden Visa? The AED 2 million investment fund and company routes, the conditions, and why a plain bank deposit alone does not qualify.
 - [UAE residency through investment: all the options compared](https://promptestates.com/en/guide/uae-residency-options/): Ways to get a UAE visa through investment compared: the two-year visa for a home, the Golden Visa through property, fund or business, and the retirement visa.
 - [Property revaluation for the Golden Visa: if you bought below AED 2 million](https://promptestates.com/en/guide/golden-visa-valuation/): Bought below AED 2 million and the home has gone up? The Golden Visa counts the current DLD valuation, not the purchase price. How to order a revaluation.
 - [UAE mortgages for foreigners: how much you can borrow and how](https://promptestates.com/en/guide/uae-mortgage-foreigners/): Getting a Dubai mortgage as a foreigner: down payments for residents and non-residents, Central Bank limits, term, documents, every fee and off-plan.
@@ -56,7 +56,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [MBR City & Meydan](https://promptestates.com/en/areas/mbr-city/): Mohammed Bin Rashid City and Meydan are a large area next to Downtown: Sobha Hartland, District One, Azizi Riviera. Who it suits and what is being built.
 - [Dubai South](https://promptestates.com/en/areas/dubai-south/): Dubai South surrounds Al Maktoum airport and Expo City. Affordable apartments and villas, large projects such as Emaar South and Azizi Venice. Who it suits.
 - [Dubai Islands](https://promptestates.com/en/areas/dubai-islands/): Dubai Islands are five Nakheel islands off the Deira coast with beaches, marinas and resorts. What is built, who it suits and how it differs from Palm Jumeirah.
-- [Arjan](https://promptestates.com/en/areas/arjan/): Arjan is a Dubailand district next to Dubai Miracle Garden: mid-rise buildings, affordable studios and apartments for rent. Who builds there and who it suits.
+- [Arjan](https://promptestates.com/en/areas/arjan/): Arjan in Dubailand, next to Dubai Miracle Garden: price per m² from DLD data, off-plan projects by Samana, Danube and Iman, rental demand and who the area suits.
 - [Jumeirah Village Triangle (JVT)](https://promptestates.com/en/areas/jvt/): Jumeirah Village Triangle neighbours JVC, with villas, townhouses and new residential buildings. How it differs from JVC, who builds there and who it suits.
 - [Al Furjan](https://promptestates.com/en/areas/al-furjan/): Al Furjan is a Nakheel family community between Sheikh Zayed Road and Sheikh Mohammed Bin Zayed Road, with metro access. Villas, townhouses and apartments.
 - [DAMAC Hills](https://promptestates.com/en/areas/damac-hills/): DAMAC Hills is a DAMAC community around the Trump International golf club: villas, townhouses and apartments with golf views. Who it suits and what to check.
@@ -70,7 +70,7 @@ PromptEstates is an AI search service for off-plan (new-build) property in the U
 - [Danube Properties](https://promptestates.com/en/developers/danube/): Danube Properties is an affordable-segment developer in Dubai, known for a payment plan with 1% monthly instalments. What it builds and what to check.
 - [Aldar Properties](https://promptestates.com/en/developers/aldar/): Aldar is Abu Dhabi’s largest developer: Yas Island and Saadiyat Island, and it now builds in Dubai too. What it builds and what to check before buying.
 - [Imtiaz Developments](https://promptestates.com/en/developers/imtiaz/): Imtiaz Developments builds residential projects in JVC, Al Furjan, Dubai Islands and Meydan. What it is known for, what it builds and what to check.
-- [Iman Developers](https://promptestates.com/en/developers/iman/): Iman Developers builds mid-rise residential buildings in JVC, Arjan and Motor City. The Oxford series, delivery record and what to check before buying.
+- [Iman Developers](https://promptestates.com/en/developers/iman/): Who owns Iman Developers, its Oxford series and mid-rise projects in JVC, Arjan and Motor City, delivery record and what to check before buying.
 - [Ellington Properties](https://promptestates.com/en/developers/ellington/): Ellington Properties is a design-led Dubai developer in JVC, Palm Jumeirah, MBR City and Dubai Hills. What it is known for, what it builds and what to check.
 - [Azizi Developments](https://promptestates.com/en/developers/azizi/): Azizi Developments is one of Dubai's largest private developers: Riviera in Meydan, Azizi Venice in Dubai South, Burj Azizi. What to check before buying.
 - [Samana Developers](https://promptestates.com/en/developers/samana/): Samana Developers is a Dubai developer known for apartments with private balcony pools: Arjan, JVC, Dubailand, Dubai South. What to check before buying.
@@ -98,7 +98,7 @@ Source: PromptEstates analysis of Dubai Land Department open data (data.dubai: R
 - Downtown Dubai: median AED 33,214/m² (AED 3,086/sq ft) over 12 months; change since 2023: +5%; median studio AED 1,775,000, 1-bed AED 2,350,000, 2-bed AED 3,924,000; off-plan share of sales 35%; projects under construction 21, of which past planned handover 7
 - Palm Jumeirah: median AED 38,301/m² (AED 3,558/sq ft) over 12 months; change since 2023: +30%; median studio AED 1,480,000, 1-bed AED 3,375,000, 2-bed AED 6,016,000; off-plan share of sales 31%; projects under construction 23, of which past planned handover 8
 
-## Key rules for buyers (checked 2026-11-03)
+## Key rules for buyers (checked 2026-11-04)
 - Dubai Land Department transfer fee: 4% of the price, paid by the buyer.
 - Golden Visa (10 years) through property: AED 2 million or more by DLD valuation; off-plan from an approved developer and mortgaged homes (with bank NOC) qualify.
 - 2-year property investor visa in Dubai: since 29 April 2026 there is no minimum property value for a sole owner (previously AED 750,000); joint owners need at least AED 400,000 each; the home must be ready (title deed).
@@ -2329,6 +2329,9 @@ Nakheel is the developer that created Palm Jumeirah. It is linked to the Governm
 
 - Villas, townhouses and apartments, with many waterfront projects.
 
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Palm Central Private Residences Phase 2 (Palm Jebel Ali) — Q3 2030, from AED 4.27M; Palm Beach Tower 3 (Dubai Marina) — Q4 2026, from AED 4.2M. Sold out or handed over: Bay Grove Residences, Rixos Hotel & Residences, Bay Villas (Dubai Islands), Palm Jebel Ali Villas, Como Residences, The Palm Tower (Palm Jumeirah), Naya, Opal Gardens, Al Furjan Villas, District One West.
+
 ## Sobha Realty: projects and off-plan homes
 
 URL: https://promptestates.com/en/developers/sobha/
@@ -2385,6 +2388,9 @@ Danube Properties is an affordable-segment developer and part of the Danube Grou
 
 - Apartments are often sold furnished.
 
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Shahrukhz By Danube (Al Sufouh) — Q2 2029, from AED 2.55M; Shahrukhz Residences (Maritime City) — Q4 2029, from AED 1.65M; Serenz (JVC) — Q4 2029, from AED 969K; Elitz 3 (JVC) — Q4 2026, from AED 1.9M; Fashionz (JVT) — Q2 2028, from AED 1.6M; Diamondz (JLT) — Q1 2028, from AED 1.2M; Viewz (JLT) — Q2 2027, from AED 1.95M; Bayz 101 (Business Bay) — Q2 2029, from AED 2.67M; Bayz 102 (Business Bay) — Q4 2029, from AED 2.6M; Oceanz (Maritime City) — Q3 2027, from AED 2.47M; Aspirz (Dubai Sports City) — Q4 2028, from AED 891K; Timez (Dubai Silicon Oasis) — Q2 2028, from AED 1.7M; Sparklz (Jebel Ali Village) — Q4 2027, from AED 2.87M; Greenz (Al Warsan) — Q4 2029, from AED 3.99M. Sold out or handed over: Lawnz, Petalz (International City), Oasiz (Dubai Silicon Oasis), Sportz (Dubai Sports City).
+
 ## Aldar Properties: projects and off-plan homes
 
 URL: https://promptestates.com/en/developers/aldar/
@@ -2413,6 +2419,9 @@ Imtiaz started in 1993 as a construction company and since 2014 has developed it
 
 - Entered Meydan with Wynwood projects and residences with Zaha Hadid Architects.
 
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Kore by Imtiaz (Dubailand Residence Complex) — Q4 2028, from AED 679K; The Archive (Dubailand Residence Complex) — Q3 2028, from AED 719K; Cove Boulevard (Dubailand Residence Complex) — Q4 2028, from AED 2.05M; Cove Edition 2 (Dubailand Residence Complex) — Q4 2026, from AED 1.88M; Sea Cliff by Imtiaz (Dubai Islands) — Q1 2028, from AED 2.22M; Wynwood by Imtiaz (Dubai Islands) — Q3 2027, from AED 4.2M; Sunset Bay Grand (Dubai Islands) — Q4 2027, from AED 3.38M; Wynwood Horizon (Bukadra) — Q2 2028, from AED 2.2M; The Symphony by Imtiaz (Bukadra) — Q2 2029, from AED 2.45M; Raw District Phase 2 (Jebel Ali Freezone Extension) — Q4 2029, from AED 1.8M. Sold out or handed over: Pearl House, Westwood Grande Residences, Westwood Grande 2 (JVC), Beach Walk, Beach Walk 3, Sunset Bay 2, Sunset Bay 3 (Dubai Islands), Cove by Imtiaz, Cove Grand.
+
 ## Iman Developers: projects and off-plan homes
 
 URL: https://promptestates.com/en/developers/iman/
@@ -2426,6 +2435,18 @@ Iman Developers was founded in 2016 and is registered with the Dubai Land Depart
 - Known for its Oxford series: Oxford Gardens, Oxford Terraces, Oxford Cove.
 
 - Noted among developers with fast delivery times.
+
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Sierra by Iman (Motor City) — Q2 2029, from AED 7.92M; One Sky Park (JVC) — Q1 2028, from AED 985K; 15 Cascade Featured by Versace Ceramics (Motor City) — Q3 2028, from AED 889K; 113 Residences by Iman (Al Sufouh) — Q2 2029, from AED 2.19M. Sold out or handed over: Oxford Gardens, Gardens 2 (Arjan), Oxford Terraces 2, Oxford Cove, Oxford 10, One Park Central, One Park Square (JVC), The Grove (Dubai Hills).
+
+Q: Who owns Iman Developers?
+A: Iman Developers was founded in 2016 by Ismail Marfani, who is its founder and CEO. The company is registered with the Dubai Land Department.
+
+Q: Where does Iman Developers build?
+A: Mostly mid-rise residential buildings in Jumeirah Village Circle (JVC), Arjan and Motor City, including the Oxford series: Oxford Gardens, Oxford Terraces and Oxford Cove.
+
+Q: Is Iman Developers reliable?
+A: Iman is noted for fast delivery times, but check each project yourself: its registration and escrow account in the DLD Dubai REST app, the construction progress and the handover date in the sales contract.
 
 ## Ellington Properties: projects and off-plan homes
 
@@ -2441,6 +2462,9 @@ Ellington Properties was founded in 2014 by Robert Booth, a former managing dire
 
 - Its projects have won awards for architecture and interior design.
 
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. The Meriva Collection (Dubai Islands) — Q2 2030, from AED 3.01M; Eltiera Views (Emirates Hills) — Q4 2029, from AED 2.12M; Everly Place (Ras Al Khor) — Q4 2029, from AED 2.05M; Portside Square (Mina Rashid) — Q4 2029, from AED 2.44M; Mercer House (JLT) — Q3 2028, from AED 4.64M; One River Point (Business Bay) — Q3 2027, from AED 3.33M; Ellington Ocean House (Palm Jumeirah) — Q4 2026, from AED 10.56M; Costa Mare (Al Marjan Island) — Q3 2028, from AED 3.6M; Playa Del Sol (Al Marjan Island) — Q4 2028, from AED 3.6M; Soto Grande (Al Jazeera Al Hamra) — Q4 2029, from AED 1.7M. Sold out or handed over: Oakley Square Residences, The Portman (JVC), Upper House (JLT), Ellington House III (Dubai Hills), The Highbury (Sobha Hartland), Art Bay (Al Jaddaf), Claydon House, The Sanctuary, Windsor House 2.
+
 ## Azizi Developments: projects and off-plan homes
 
 URL: https://promptestates.com/en/developers/azizi/
@@ -2454,6 +2478,9 @@ Azizi Developments was founded in 2007 by Mirwais Azizi and is part of the Azizi
 - Azizi Venice — a large lagoon project in Dubai South.
 
 - Building Burj Azizi on Sheikh Zayed Road, announced as the world's second-tallest tower.
+
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Burj Azizi (Trade Centre) — Q3 2030, from AED 5.14M; Azizi Venice (Dubai South) — Q4 2026, from AED 710K; Azizi Milan (City of Arabia) — Q2 2028, from AED 738K; Azizi Ruby (JVC) — Q4 2027, from AED 1.11M; Azizi Amir (Al Furjan) — Q4 2027, from AED 2.09M; Azizi Sakandar (Jebel Ali Village) — Q4 2027, from AED 1.05M; Creek Views 4 (Al Jaddaf) — Q4 2028, from AED 1.19M; Jaddaf Beach Oasis (Al Jaddaf) — Q4 2028, from AED 730K; Azizi Noura (Jebel Ali Freezone Extension) — Q3 2028, from AED 5.05M; Beach Oasis 1 and 2 (Dubai Studio City) — Q1 2027, from AED 1.16M.
 
 ## Samana Developers: projects and off-plan homes
 
@@ -2469,6 +2496,9 @@ Samana Developers was founded by Imran Farooq. It was among the first in Dubai t
 
 - Offers long payment plans, including post-handover.
 
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Samana Imperial Garden (Arjan) — Q3 2028, from AED 2.28M; Samana Skyros (Arjan) — Q2 2027, from AED 999K; Ocean Crest (Dubai Islands) — Q3 2028, from AED 2.94M; Samana Ocean Bay (Dubai Islands) — Q4 2028, from AED 3.8M; Samana Ibiza (Dubailand Residence Complex) — Q1 2028, from AED 2.29M; Ivy Gardens 2 (Dubailand Residence Complex) — Q4 2028, from AED 1.4M; Samana Barari Avenue (Majan) — Q2 2028, from AED 2.38M; Samana Barari Lagoons (Majan) — Q1 2028, from AED 2.23M; Rome by Samana Developers (Meydan South) — Q1 2027, from AED 2.74M; Samana Boulevard Heights (Wadi Al Safa 5) — Q2 2029, from AED 1.58M; Samana Greenfield 2 (International City) — Q3 2029, from AED 999K; Samana Portside (Jebel Ali Freezone Extension) — Q3 2029, from AED 1.34M.
+
 ## Select Group: projects and off-plan homes
 
 URL: https://promptestates.com/en/developers/select-group/
@@ -2482,6 +2512,9 @@ Select Group has worked in Dubai since 2002 and specialises in premium residenti
 - Peninsula — a residential community on the Dubai Canal in Business Bay.
 
 - Builds branded residences with hospitality operators.
+
+### Projects on sale now
+Off-plan projects listed in the Reelly catalogue on 4 November 2026, with handover quarter and starting price. Prices and availability change, so check before booking. Six Senses Residence (Dubai Marina) — Q3 2028, from AED 11.58M; Artistry One Residences (Dubai Design District) — Q1 2029, from AED 2.35M; Artistry Two Residences (Dubai Design District) — Q1 2029, from AED 2.35M. Sold out or handed over: Peninsula Four – The Plaza, Residence 110 (Business Bay), Nautica Towers (Maritime City), Six Senses (Palm Jumeirah), Mushrif Village.
 
 ## Omniyat: projects and off-plan homes
 
