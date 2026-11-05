@@ -878,7 +878,7 @@
         '<div class="kpis">' + kpi(t('sales12'), fmt(p.n12)) + kpi(t('ppm') + ' ' + uLabel(), p.ppm12 ? 'AED ' + fmt(ppmv(p.ppm12)) : '—') +
         kpi(t('off12'), p.off12 == null ? '—' : p.off12 + '%') + kpi(t('pct'), p.pct == null ? '—' : fmt(p.pct) + '%') +
         kpi(t('grossYield') + ' 1BR' + (expected ? '*' : ''), p.yld && p.yld['1'] ? fmt(p.yld['1'], 1) + '%' : '—') + kpi(t('last'), esc(fdate(p.last))) + '</div>' +
-        '<div class="actions"><button class="btn" id="memo-btn" type="button">✦ ' + t('memoBtn') + '</button></div><div id="memo"></div>' +
+        '<div class="actions"><button class="btn" id="memo-btn" type="button">' + t('memoBtn') + '</button></div><div id="memo"></div>' +
         '<div class="panel"><h2>' + t('registry') + '</h2>' + (p.pct != null ? '<div class="progress"><i style="width:' + p.pct + '%"></i></div>' : '') +
         '<dl class="meta-list">' + meta.map(function (m) { return '<div><dt>' + esc(m[0]) + '</dt><dd>' + m[1] + '</dd></div>'; }).join('') + '</dl></div>' +
         (p.series ? '<div class="panel"><h2>' + t('priceHist') + '</h2><p class="hint">AED/' + uLabel() + '</p><div class="chart"><canvas id="c1"></canvas></div></div>' : '') +
@@ -1549,7 +1549,7 @@
       finalH: 'Buy Dubai property on data, not promises', note: 'Payments by Stripe. Prices in AED. First 14 days free.' }
   };
   var ICONS = {
-    map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>', ai: '<path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/>',
+    map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>', ai: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
     memo: '<path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/>', fair: '<path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/>',
     risk: '<path d="M12 3 3 20h18zM12 10v4M12 17v.5"/>', png: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6M15.5 8.5h.01"/>'
   };
