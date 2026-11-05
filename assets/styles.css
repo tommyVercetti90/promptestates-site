@@ -1742,7 +1742,7 @@ html.lb-open{overflow:hidden}
 .read-next{margin-top:56px}
 .read-next .mag-grid{margin-top:18px}
 .read-next .mkt-link{margin-top:16px}
-.read-next .mkt-link a,.spot-sec .mkt-link a{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.read-next .mkt-link a{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 /* Dubai Islands spotlight: phone layout */
 .doc .spot-hero .crumbs-row{position:absolute;top:24px;margin:0;padding:0;background:none;box-shadow:none}
 .isl-tabs{scroll-margin-top:140px}
@@ -1774,11 +1774,3 @@ html.lb-open{overflow:hidden}
   .fit-card{padding:22px 20px}
   .fit-card li{font-size:14px}
 }
-/* Dubai Islands: projects table — developer reads as text, prices and dates stay on one line */
-.di-proj th:nth-child(2),.di-proj td:nth-child(2){text-align:start}
-.di-proj td:nth-child(n+3){white-space:nowrap}
-/* Dubai Islands: island tabs stay under the section nav while the islands block is on screen (sticky ends with its container) */
-.isl-tabs{position:sticky;top:129px;z-index:15;padding:10px 0;margin:-10px 0 12px;background:var(--header-bg);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)}
-.spot-where{margin-top:32px;font-size:20px;line-height:1.3;scroll-margin-top:140px}
-@media (max-width:720px){.isl-tabs{top:117px;padding:8px 0;margin-bottom:6px}}
-@media (min-width:721px){#about .spot-2col{align-items:start}#about .spot-loc{position:sticky;top:150px}}
