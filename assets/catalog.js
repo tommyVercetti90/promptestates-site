@@ -147,7 +147,9 @@
       .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
       .then(function (f) {
         if (q.value.trim() !== text) return;    // a newer request replaced this one
-        if (!f.areas.length && lf.areas.length) f.areas = lf.areas;
+        if (!f.areas.length && lf.areas.length) f.areas = lf.areas;   // the model missed something the words clearly say: keep it
+        if (!f.developers.length && lf.developers.length) f.developers = lf.developers;
+        ['beds', 'max_price', 'min_price', 'handover_by', 'keywords', 'sort'].forEach(function (k) { if (f[k] === undefined && lf[k] !== undefined) f[k] = lf[k]; });
         fromFilters(f);
         say.textContent = f.reply || '';
       })
