@@ -200,3 +200,6 @@
 }
 
 @media (prefers-reduced-motion:reduce){.rb i{transition:none}}
+/* floor plans: each drawing captioned with the unit type it shows */
+.pj-plans figure{display:flex;flex-direction:column;gap:8px;margin:0;min-width:0}
+.pj-plans figcaption{padding-inline-start:2px;font-size:14px;font-weight:600;line-height:1.35;color:var(--text)}
