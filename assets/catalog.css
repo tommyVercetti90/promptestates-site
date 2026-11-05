@@ -32,7 +32,7 @@
 .cat-empty{margin:24px 0;padding:18px;border-radius:16px;background:var(--surface-2);color:var(--text-2)}
 .cat-more{display:flex;margin:22px auto 0;height:44px;padding:0 26px;background:var(--surface-3);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-2)}
 .cat-more:hover{background:var(--ghost-hover)}
-.pcard[hidden]{display:none}
+.pcard[hidden],.cat-more[hidden],.cat-empty[hidden],.cat-reset[hidden]{display:none}
 :root[data-theme="light"] .cat-ai{background:linear-gradient(160deg,rgba(107,191,224,.22),rgba(107,191,224,.06) 60%),var(--surface-2)}
 :root[data-theme="light"] .cat-ex{color:#0d3442}
 /* developer page: project cards after the description */
