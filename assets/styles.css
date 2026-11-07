@@ -1776,3 +1776,6 @@ html.lb-open{overflow:hidden}
   .fit-card{padding:22px 20px}
   .fit-card li{font-size:14px}
 }
+.pro-ask{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 8px;padding:20px 22px;border-radius:18px;background:color-mix(in srgb,var(--accent) 8%,var(--surface,transparent));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.pro-ask h2{margin:0 0 4px;font-size:20px}.pro-ask p{margin:0;max-width:52ch}.pro-ask .btn{height:44px;padding:0 22px;flex-shrink:0}
+@media (max-width:560px){.pro-ask .btn{width:100%}}
