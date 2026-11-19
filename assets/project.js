@@ -81,6 +81,20 @@
     var lang = (pm.getAttribute('data-lang') || 'en').slice(0, 2);
     var label = lang === 'ar' ? ['coalesce', ['get', 'name:ar'], ['get', 'name']]
       : ['coalesce', ['get', 'name:' + lang], ['get', 'name_en'], ['get', 'name:en'], ['get', 'name:latin'], ['get', 'name']];
+    // the "use Ctrl + scroll" hint in the page language
+    var HINT = {
+      en: ['Use Ctrl + scroll to zoom the map', 'Use ⌘ + scroll to zoom the map', 'Use two fingers to move the map'],
+      ru: ['Чтобы изменить масштаб, прокручивайте с Ctrl', 'Чтобы изменить масштаб, прокручивайте с ⌘', 'Двигайте карту двумя пальцами'],
+      ar: ['استخدم Ctrl مع التمرير لتكبير الخريطة', 'استخدم ⌘ مع التمرير لتكبير الخريطة', 'استخدم إصبعين لتحريك الخريطة'],
+      de: ['Strg + Scrollen zum Zoomen der Karte', '⌘ + Scrollen zum Zoomen der Karte', 'Karte mit zwei Fingern bewegen'],
+      fr: ['Ctrl + molette pour zoomer sur la carte', '⌘ + molette pour zoomer sur la carte', 'Utilisez deux doigts pour déplacer la carte'],
+      it: ['Usa Ctrl + scorrimento per ingrandire la mappa', 'Usa ⌘ + scorrimento per ingrandire la mappa', 'Usa due dita per spostare la mappa'],
+      tr: ['Haritayı yakınlaştırmak için Ctrl + kaydırma kullanın', 'Haritayı yakınlaştırmak için ⌘ + kaydırma kullanın', 'Haritayı iki parmakla kaydırın'],
+      hi: ['मैप ज़ूम करने के लिए Ctrl दबाकर स्क्रॉल करें', 'मैप ज़ूम करने के लिए ⌘ दबाकर स्क्रॉल करें', 'मैप को दो उंगलियों से खिसकाएँ'],
+      ur: ['نقشہ زوم کرنے کے لیے Ctrl کے ساتھ اسکرول کریں', 'نقشہ زوم کرنے کے لیے ⌘ کے ساتھ اسکرول کریں', 'نقشہ دو انگلیوں سے ہلائیں'],
+      fa: ['برای بزرگ‌نمایی نقشه، Ctrl را نگه دارید و اسکرول کنید', 'برای بزرگ‌نمایی نقشه، ⌘ را نگه دارید و اسکرول کنید', 'نقشه را با دو انگشت جابه‌جا کنید'],
+      zh: ['按住 Ctrl 并滚动以缩放地图', '按住 ⌘ 并滚动以缩放地图', '用两根手指移动地图']
+    };
     var start = function () {
       var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = '/assets/vendor/maplibre-gl.css'; document.head.appendChild(css);
       var sc = document.createElement('script'); sc.src = '/assets/vendor/maplibre-gl.js';
@@ -88,7 +102,9 @@
         if (!window.maplibregl) return;
         var ll = pm.getAttribute('data-ll').split(',').map(Number), map;
         try {
-          map = new maplibregl.Map({ container: pm, style: theme(), center: ll, zoom: 13.5, attributionControl: { compact: true }, cooperativeGestures: true });
+          var H = HINT[lang] || HINT.en;
+          map = new maplibregl.Map({ container: pm, style: theme(), center: ll, zoom: 13.5, attributionControl: { compact: true }, cooperativeGestures: true,
+            locale: { 'CooperativeGesturesHandler.WindowsHelpText': H[0], 'CooperativeGesturesHandler.MacHelpText': H[1], 'CooperativeGesturesHandler.MobileHelpText': H[2] } });
         } catch (e) { return; }
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
         var pin = document.createElement('div'); pin.className = 'pj-pin';
