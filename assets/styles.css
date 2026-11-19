@@ -1653,6 +1653,9 @@ html.lb-open{overflow:hidden}
 .wa-help{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:28px 0;padding:20px 22px;border-radius:18px;background:color-mix(in srgb,#25d366 9%,var(--surface,transparent));border:1px solid color-mix(in srgb,#25d366 35%,transparent)}
 .wa-help h2{margin:0 0 4px;font-size:20px}.wa-help p{margin:0;max-width:52ch}
 .wa-btn{background:#25d366!important;color:#06301a!important;font-weight:700;white-space:nowrap}
+.pro-ask{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 8px;padding:20px 22px;border-radius:18px;background:color-mix(in srgb,var(--accent) 8%,var(--surface,transparent));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.pro-ask h2{margin:0 0 4px;font-size:20px}.pro-ask p{margin:0;max-width:52ch}.pro-ask .btn{height:44px;padding:0 22px;flex-shrink:0}
+@media (max-width:560px){.pro-ask .btn{width:100%}}
 .wa-btn:hover{filter:brightness(1.05)}
 @media (max-width:640px){.wa-btn{width:100%;justify-content:center;white-space:normal}}
 
@@ -1744,7 +1747,7 @@ html.lb-open{overflow:hidden}
 .read-next{margin-top:56px}
 .read-next .mag-grid{margin-top:18px}
 .read-next .mkt-link{margin-top:16px}
-.read-next .mkt-link a{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.read-next .mkt-link a,.spot-sec .mkt-link a{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 /* Dubai Islands spotlight: phone layout */
 .doc .spot-hero .crumbs-row{position:absolute;top:24px;margin:0;padding:0;background:none;box-shadow:none}
 .isl-tabs{scroll-margin-top:140px}
@@ -1776,6 +1779,12 @@ html.lb-open{overflow:hidden}
   .fit-card{padding:22px 20px}
   .fit-card li{font-size:14px}
 }
-.pro-ask{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 8px;padding:20px 22px;border-radius:18px;background:color-mix(in srgb,var(--accent) 8%,var(--surface,transparent));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
-.pro-ask h2{margin:0 0 4px;font-size:20px}.pro-ask p{margin:0;max-width:52ch}.pro-ask .btn{height:44px;padding:0 22px;flex-shrink:0}
-@media (max-width:560px){.pro-ask .btn{width:100%}}
+/* Dubai Islands: projects table — developer reads as text, prices and dates stay on one line */
+.di-proj th:nth-child(2),.di-proj td:nth-child(2){text-align:start}
+.di-proj td:nth-child(n+3){white-space:nowrap}
+.dtbl-wrap:has(>.di-proj){overflow-x:clip}  /* the projects table fits the column; no sideways scroll for a 1px rounding overflow */
+/* Dubai Islands: island tabs stay under the section nav while the islands block is on screen (sticky ends with its container) */
+.isl-tabs{position:sticky;top:129px;z-index:15;padding:10px 0;margin:-10px 0 12px;background:var(--header-bg);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px)}
+.spot-where{margin-top:32px;font-size:20px;line-height:1.3;scroll-margin-top:140px}
+@media (max-width:720px){.isl-tabs{top:117px;padding:8px 0;margin-bottom:6px}}
+@media (min-width:721px){#about .spot-2col{align-items:start}#about .spot-loc{position:sticky;top:150px}}
