@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Вопросы к ИИ — PromptEstates</title>
+<script>(function(){var t;try{t=localStorage.getItem('pe_theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
+<style>
+:root{--bg:#0d1b22;--card:#13262f;--line:#24414e;--text:#e8f1f4;--muted:#8ea7b1;--accent:#6bbfe0;--warn:#e0a96b;--bad:#e07b6b}
+[data-theme="light"]{--bg:#f3f7f9;--card:#fff;--line:#d9e4ea;--text:#0e3443;--muted:#5b7884;--accent:#1b7fa8;--warn:#a8661b;--bad:#b5412f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:26px;margin:0 0 4px}
+h2{font-size:16px;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 20px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+select,input,button{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+input{flex:1 1 220px;min-width:0}
+button{cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#06222e;font-weight:600}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font-size:28px;line-height:1.1}
+.kpi span{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+.wide{grid-column:1/-1}
+.days{display:flex;align-items:flex-end;gap:3px;height:120px}
+.days i{flex:1;min-width:2px;background:var(--accent);border-radius:3px 3px 0 0;position:relative}
+.days-l{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:6px}
+ol,ul{margin:0;padding:0;list-style:none}
+li.row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--line)}
+li.row:last-child{border:0}
+li.row span{min-width:0;overflow-wrap:anywhere}
+li.row b{flex:none;color:var(--muted);font-weight:600}
+.q{border-bottom:1px solid var(--line);padding:10px 0}
+.q:last-child{border:0}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px 12px;color:var(--muted);font-size:13px}
+.q-text{margin:4px 0 0;overflow-wrap:anywhere;font-weight:500}
+.tag{padding:1px 8px;border-radius:999px;border:1px solid var(--line)}
+.tag.limit{color:var(--warn);border-color:var(--warn)}
+.tag.err{color:var(--bad);border-color:var(--bad)}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--accent);font-size:13px}
+details p{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted);font-size:14px;margin:6px 0 0}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.msg a{color:var(--accent)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<main>
+<h1>Вопросы к ИИ</h1>
+<p class="sub">Что пишут в ИИ-чат приложения, во вкладку «Спросить» в Pro и в ИИ-поиск каталога. Видно только администраторам.</p>
+<div id="app"><div class="msg">Загружаю…</div></div>
+</main>
+<script src="vendor/firebase/firebase-app-compat.js"></script>
+<script src="vendor/firebase/firebase-auth-compat.js"></script>
+<script>
+(function () {
+  'use strict';
+  var API = 'https://api.promptestates.com';
+  try { API = localStorage.getItem('pro_api') || API; } catch (e) {}
+  var SRC = { app: 'Приложение', web: 'Pro: «Спросить»', catalog: 'Поиск в каталоге', ask: 'Pro (старый чат)' };
+  var PLAN = { guest: 'Гость', free: 'Бесплатный', basic: 'Basic', pro: 'Pro' };
+  var app = document.getElementById('app'), USER = null, state = { days: 30, source: '', q: '' };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var msg = function (html) { app.innerHTML = '<div class="msg">' + html + '</div>'; };
+  var list = function (rows, names) {
+    if (!rows.length) return '<p class="sub">Пока пусто</p>';
+    return '<ol>' + rows.map(function (r) { return '<li class="row"><span>' + esc((names && names[r[0]]) || r[0]) + '</span><b>' + r[1] + '</b></li>'; }).join('') + '</ol>';
+  };
+  function url(fmt) {
+    return API + '/api/admin/ai-log?days=' + state.days + '&source=' + encodeURIComponent(state.source) + '&q=' + encodeURIComponent(state.q) + (fmt ? '&format=' + fmt : '');
+  }
+  function get(fmt) {
+    return USER.getIdToken().then(function (tk) { return fetch(url(fmt), { headers: { Authorization: 'Bearer ' + tk } }); });
+  }
+  function render(d) {
+    var st = Object.fromEntries(d.by_status), limit = st.limit || 0, err = 0;
+    d.by_status.forEach(function (s) { if (/^error/.test(s[0])) err += s[1]; });
+    var max = Math.max.apply(null, [1].concat(d.by_day.map(function (x) { return x[1]; })));
+    var days = d.by_day.map(function (x) { return '<i style="height:' + Math.max(3, Math.round(x[1] / max * 100)) + '%" title="' + x[0] + ': ' + x[1] + '"></i>'; }).join('');
+    var rep = d.repeat.filter(function (r) { return r[1] > 1; });
+    var qs = d.rows.map(function (r) {
+      var t = new Date(r.at * 1000).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      var tag = r.status === 'ok' ? '' : '<span class="tag ' + (r.status === 'limit' ? 'limit' : 'err') + '">' + (r.status === 'limit' ? 'упёрся в лимит' : esc(r.status)) + '</span>';
+      return '<div class="q"><div class="q-meta"><span>' + t + '</span><span>' + esc(SRC[r.source] || r.source) + '</span><span>' + esc(PLAN[r.plan] || r.plan) + '</span>'
+        + (r.lang ? '<span>' + esc(r.lang) + '</span>' : '') + (r.email ? '<span>' + esc(r.email) + '</span>' : '') + (r.ms ? '<span>' + (r.ms / 1000).toFixed(1) + ' с</span>' : '') + tag + '</div>'
+        + '<p class="q-text">' + esc(r.question) + '</p>'
+        + (r.answer ? '<details><summary>Ответ' + (r.tools ? ' · данные: ' + esc(r.tools) : '') + '</summary><p>' + esc(r.answer) + '</p></details>' : '') + '</div>';
+    }).join('');
+    app.innerHTML =
+      '<form class="bar" id="f"><select id="days" aria-label="Период">' + [1, 7, 30, 90, 365].map(function (n) { return '<option value="' + n + '"' + (n === state.days ? ' selected' : '') + '>' + (n === 1 ? 'Сутки' : n + ' дней') + '</option>'; }).join('') + '</select>'
+      + '<select id="src" aria-label="Где спросили"><option value="">Все источники</option>' + Object.keys(SRC).map(function (k) { return '<option value="' + k + '"' + (k === state.source ? ' selected' : '') + '>' + SRC[k] + '</option>'; }).join('') + '</select>'
+      + '<input id="q" type="search" placeholder="Найти в вопросах" value="' + esc(state.q) + '"><button class="primary" type="submit">Показать</button><button type="button" id="csv">Скачать CSV</button></form>'
+      + '<div class="kpi"><div><b>' + d.total + '</b><span>вопросов</span></div><div><b>' + d.people + '</b><span>человек</span></div><div><b>' + limit + '</b><span>упёрлись в дневной лимит</span></div><div><b>' + err + '</b><span>ошибок ответа</span></div></div>'
+      + '<div class="grid"><div class="card wide"><h2>По дням</h2><div class="days">' + days + '</div><div class="days-l"><span>' + esc((d.by_day[0] || [''])[0]) + '</span><span>' + esc((d.by_day[d.by_day.length - 1] || [''])[0]) + '</span></div></div>'
+      + '<div class="card"><h2>Где спрашивают</h2>' + list(d.by_source, SRC) + '</div><div class="card"><h2>Кто</h2>' + list(d.by_plan, PLAN) + '</div><div class="card"><h2>Язык</h2>' + list(d.by_lang) + '</div>'
+      + '<div class="card"><h2>Частые слова</h2>' + list(d.words.slice(0, 20)) + '</div><div class="card"><h2>Повторяющиеся вопросы</h2>' + list(rep) + '</div><div class="card"><h2>Какие данные брал ИИ</h2>' + list(d.tools) + '</div>'
+      + '<div class="card wide"><h2>Последние вопросы' + (d.rows.length < d.total ? ' (первые ' + d.rows.length + ')' : '') + '</h2>' + (qs || '<p class="sub">За этот период вопросов нет</p>') + '</div></div>';
+    document.getElementById('f').onsubmit = function (e) {
+      e.preventDefault();
+      state.days = +document.getElementById('days').value; state.source = document.getElementById('src').value; state.q = document.getElementById('q').value.trim();
+      load();
+    };
+    document.getElementById('csv').onclick = function () {
+      get('csv').then(function (r) { return r.blob(); }).then(function (b) {
+        var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'ai-questions-' + state.days + 'd.csv'; a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+      });
+    };
+  }
+  function load() {
+    get().then(function (r) {
+      if (r.status === 403) { msg('Этот аккаунт не в списке администраторов (переменная PRO_ADMINS на сервере).'); return null; }
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (d) { if (d) render(d); }).catch(function (e) { msg('Не удалось загрузить данные: ' + esc(e.message) + '. Попробуйте обновить страницу.'); });
+  }
+  if (!window.firebase) { msg('Не загрузился модуль входа. Обновите страницу.'); return; }
+  firebase.initializeApp({ apiKey: 'AIzaSyDzuI6QmmsG2UQy3widIUzXDnGlFauZ9Iw', authDomain: /(^|\.)promptestates\.com$/.test(location.hostname) ? 'promptestates.com' : 'promptestates-ai.firebaseapp.com',
+    projectId: 'promptestates-ai', appId: '1:321328766090:web:40be29995e21224225a173' });
+  firebase.auth().onAuthStateChanged(function (u) {
+    USER = u;
+    if (!u) { msg('Войдите в аккаунт администратора в <a href="./">PromptEstates Pro</a> и вернитесь на эту страницу.'); return; }
+    load();
+  });
+})();
+</script>
+</body>
+</html>

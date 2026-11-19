@@ -72,4 +72,38 @@
     }, { rootMargin: '-35% 0px -55% 0px' });
     secs.forEach(function (s) { io.observe(s); });
   }
+  /* Project map: MapLibre + OpenFreeMap, loaded when the map scrolls near; place names in the page language
+     (OpenMapTiles name:xx), falling back to English / Latin, so Emirates maps are not Arabic-only. */
+  var pm = document.querySelector('.pj-map[data-ll]');
+  if (pm && 'IntersectionObserver' in window) {
+    var STY = { light: 'https://tiles.openfreemap.org/styles/positron', dark: 'https://tiles.openfreemap.org/styles/dark' };
+    var theme = function () { return document.documentElement.getAttribute('data-theme') === 'light' ? STY.light : STY.dark; };
+    var lang = (pm.getAttribute('data-lang') || 'en').slice(0, 2);
+    var label = lang === 'ar' ? ['coalesce', ['get', 'name:ar'], ['get', 'name']]
+      : ['coalesce', ['get', 'name:' + lang], ['get', 'name_en'], ['get', 'name:en'], ['get', 'name:latin'], ['get', 'name']];
+    var start = function () {
+      var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = '/assets/vendor/maplibre-gl.css'; document.head.appendChild(css);
+      var sc = document.createElement('script'); sc.src = '/assets/vendor/maplibre-gl.js';
+      sc.onload = function () {
+        if (!window.maplibregl) return;
+        var ll = pm.getAttribute('data-ll').split(',').map(Number), map;
+        try {
+          map = new maplibregl.Map({ container: pm, style: theme(), center: ll, zoom: 13.5, attributionControl: { compact: true }, cooperativeGestures: true });
+        } catch (e) { return; }
+        map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+        var pin = document.createElement('div'); pin.className = 'pj-pin';
+        new maplibregl.Marker({ element: pin, anchor: 'bottom' }).setLngLat(ll).addTo(map);
+        map.on('style.load', function () {
+          (map.getStyle().layers || []).forEach(function (l) {
+            if (l.type === 'symbol' && l.layout && l.layout['text-field']) { try { map.setLayoutProperty(l.id, 'text-field', label); } catch (e) {} }
+          });
+          pm.classList.add('is-live');
+        });
+        document.querySelectorAll('.theme-toggle').forEach(function (tg) { tg.addEventListener('click', function () { setTimeout(function () { map.setStyle(theme()); }, 50); }); });
+      };
+      document.head.appendChild(sc);
+    };
+    var mo = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { mo.disconnect(); start(); } }, { rootMargin: '300px' });
+    mo.observe(pm);
+  }
 })();
