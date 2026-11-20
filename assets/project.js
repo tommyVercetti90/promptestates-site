@@ -103,12 +103,12 @@
         var ll = pm.getAttribute('data-ll').split(',').map(Number), map;
         try {
           var H = HINT[lang] || HINT.en;
-          map = new maplibregl.Map({ container: pm, style: theme(), center: ll, zoom: 13.5, attributionControl: { compact: true }, cooperativeGestures: true,
+          map = new maplibregl.Map({ container: pm, style: theme(), center: ll, zoom: pm.hasAttribute('data-area') ? 12.5 : 13.5, attributionControl: { compact: true }, cooperativeGestures: true,
             locale: { 'CooperativeGesturesHandler.WindowsHelpText': H[0], 'CooperativeGesturesHandler.MacHelpText': H[1], 'CooperativeGesturesHandler.MobileHelpText': H[2] } });
         } catch (e) { return; }
         map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
         var pin = document.createElement('div'); pin.className = 'pj-pin';
-        new maplibregl.Marker({ element: pin, anchor: 'bottom' }).setLngLat(ll).addTo(map);
+        if (!pm.hasAttribute('data-area')) new maplibregl.Marker({ element: pin, anchor: 'bottom' }).setLngLat(ll).addTo(map);
         map.on('style.load', function () {
           (map.getStyle().layers || []).forEach(function (l) {
             if (l.type === 'symbol' && l.layout && l.layout['text-field']) { try { map.setLayoutProperty(l.id, 'text-field', label); } catch (e) {} }
