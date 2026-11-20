@@ -1,6 +1,12 @@
 /* Project page v2: "all photos" opens the gallery lightbox, unit-type switch for the return estimate, active section in the nav. */
 (function () {
   'use strict';
+  /* the section nav sticks right under the pinned breadcrumbs row, whatever height that row has on this screen */
+  var crow = document.querySelector('.crumbs-row');
+  if (crow) {
+    var setH = function () { document.documentElement.style.setProperty('--crh', crow.offsetHeight + 'px'); };
+    setH(); addEventListener('resize', setH);
+  }
   var m = document.querySelector('.pj-mosaic');
   if (m) {
     var all = m.querySelector('.pm-all');
