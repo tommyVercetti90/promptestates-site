@@ -135,7 +135,7 @@
   }
   function search(text) {
     text = (text || '').trim();
-    if (!text) return;
+    if (!text) { q.focus(); return; }
     var lf = local(text);
     fromFilters(lf);                       // instant result from the local reading
     say.textContent = C.thinking; say.classList.add('busy');

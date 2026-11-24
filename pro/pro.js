@@ -28,7 +28,7 @@
       tabAsk: 'Спросить', navMap: 'Карта', tourL: 'Обучение', navAccount: 'Аккаунт', signIn: 'Войти', haveSub: 'Уже есть подписка?',
       siH: 'Вход в PromptEstates', siSub: 'Тот же аккаунт, что в приложении PromptEstates', siGoogle: 'Продолжить с Google', siApple: 'Продолжить с Apple', siOr: 'или',
       siEmail: 'Email', siPass: 'Пароль (от 6 символов)', siSignIn: 'Войти', siSignUp: 'Создать аккаунт', siToSignUp: 'Нет аккаунта? Создать', siToSignIn: 'Уже есть аккаунт? Войти',
-      siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siErr: 'Не получилось войти. Проверьте email и пароль',
+      siReset: 'Забыли пароль?', siResetSent: 'Письмо для сброса пароля отправлено', siNeed: 'Введите email и пароль', siNeedEmail: 'Введите email — пришлём ссылку для сброса пароля', siErr: 'Не получилось войти. Проверьте email и пароль',
       siErrs: { 'auth/popup-blocked': 'Браузер заблокировал окно входа — открываем вход на этой странице…', 'auth/operation-not-supported-in-this-environment': 'Этот браузер не поддерживает окно входа — открываем вход на этой странице…',
         'auth/unauthorized-domain': 'Вход с этого адреса не разрешён. Откройте promptestates.com/pro', 'auth/operation-not-allowed': 'Этот способ входа пока не включён. Войдите через Google или email',
         'auth/invalid-oauth-client-id': 'Вход через Apple в браузере пока не настроен. Войдите через Google или email', 'auth/account-exists-with-different-credential': 'Этот email уже привязан к другому способу входа — войдите им',
@@ -88,7 +88,7 @@
       tabAsk: 'Ask', navMap: 'Map', tourL: 'Tour', navAccount: 'Account', signIn: 'Sign in', haveSub: 'Already subscribed?',
       siH: 'Sign in to PromptEstates', siSub: 'Same account as in the PromptEstates app', siGoogle: 'Continue with Google', siApple: 'Continue with Apple', siOr: 'or',
       siEmail: 'Email', siPass: 'Password (6+ characters)', siSignIn: 'Sign in', siSignUp: 'Create account', siToSignUp: 'No account? Create one', siToSignIn: 'Have an account? Sign in',
-      siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siErr: 'Could not sign in. Check your email and password',
+      siReset: 'Forgot password?', siResetSent: 'Password reset email sent', siNeed: 'Enter your email and password', siNeedEmail: 'Enter your email and we will send a reset link', siErr: 'Could not sign in. Check your email and password',
       siErrs: { 'auth/popup-blocked': 'The browser blocked the sign-in window — continuing on this page…', 'auth/operation-not-supported-in-this-environment': 'This browser does not support the sign-in window — continuing on this page…',
         'auth/unauthorized-domain': 'Sign-in is not allowed from this address. Open promptestates.com/pro', 'auth/operation-not-allowed': 'This sign-in method is not enabled yet. Use Google or email',
         'auth/invalid-oauth-client-id': 'Sign in with Apple is not set up for the web yet. Use Google or email', 'auth/account-exists-with-different-credential': 'This email is linked to another sign-in method — use that one',
@@ -362,7 +362,7 @@
   }
   function wireAsk() {
     var f = $('#ask-form'); if (!f) return;
-    f.onsubmit = function (e) { e.preventDefault(); var q = $('#ask-q').value.trim(); if (!q) return; CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome, pending: q }; location.hash = '#/ask'; };
+    f.onsubmit = function (e) { e.preventDefault(); var q = $('#ask-q').value.trim(); if (!q) { $('#ask-q').focus(); return; } CHAT = { id: null, msgs: [], busy: false, welcome: CHAT.welcome, pending: q }; location.hash = '#/ask'; };
   }
   function chatMsg(m, i) {
     if (m.role === 'user') return '<div class="cm cm-user"><span>' + esc(m.text) + '</span></div>';
@@ -1678,6 +1678,7 @@
       el.textContent = (t('siErrs')[code] || t('siErr')) + (code && !t('siErrs')[code] ? ' (' + code.replace('auth/', '') + ')' : '');
       el.hidden = false;
     };
+    var need = function (k, f) { var el = $('#si-err'); el.textContent = t(k); el.hidden = false; $(f).focus(); };
     var done = function (cred) { authEvent(cred); closeSignIn(); var f = afterSignIn; afterSignIn = null; if (f) setTimeout(f, 400); };
     $('#signin').addEventListener('click', function (e) { if (e.target.closest('[data-sclose]')) closeSignIn(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('#signin').hidden) closeSignIn(); });
@@ -1700,12 +1701,13 @@
       $('#si-pass').setAttribute('autocomplete', siMode === 'in' ? 'current-password' : 'new-password');
     };
     $('#si-reset').onclick = function () {
-      var em = $('#si-email').value.trim(); if (!em) { $('#si-email').focus(); return; }
+      var em = $('#si-email').value.trim(); if (!em) { need('siNeedEmail', '#si-email'); return; }
       firebase.auth().sendPasswordResetEmail(em).then(function () { toast(t('siResetSent')); }).catch(err);
     };
     $('#signin-form').onsubmit = function (e) {
       e.preventDefault();
       var em = $('#si-email').value.trim(), pw = $('#si-pass').value;
+      if (!em || !pw) { need('siNeed', em ? '#si-pass' : '#si-email'); return; }   // an empty press must say what is missing
       (siMode === 'in' ? firebase.auth().signInWithEmailAndPassword(em, pw) : firebase.auth().createUserWithEmailAndPassword(em, pw)).then(done).catch(err);
     };
   }
