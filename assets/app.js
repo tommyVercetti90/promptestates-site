@@ -736,13 +736,14 @@
     if (e.target.name === 'visa') btn.textContent = e.target.value === 'unsure' ? form.dataset.ctaUnsure : form.dataset.cta;
   });
   var started = false;
-  form.addEventListener('input', function () { if (!started) { started = true; ev('lead_form_start', { form: form.dataset.lead }); } });
+  form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true') e.target.removeAttribute('aria-invalid'); if (!started) { started = true; ev('lead_form_start', { form: form.dataset.lead }); } });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var name = fName.value.trim(), phone = fPhone.value.trim(), digits = phone.replace(/\D/g, '');
     fName.setAttribute('aria-invalid', String(!name));
     fPhone.setAttribute('aria-invalid', String(digits.length < 8));
-    if (!name) { fName.focus(); return; }
+    // an empty press used to only move the cursor, and visitors took it for a broken form: say what is missing
+    if (!name || !digits) { err.textContent = form.dataset.need; err.hidden = false; (name ? fPhone : fName).focus(); ev('lead_form_empty', { form: form.dataset.lead }); return; }
     if (digits.length < 8 || digits.length > 15) { err.textContent = form.dataset.bad; err.hidden = false; fPhone.focus(); return; }
     err.hidden = true; btn.disabled = true;
     var lead = { visa: visa(), name: name, phone: phone, page: location.pathname, lang: form.dataset.lang };
